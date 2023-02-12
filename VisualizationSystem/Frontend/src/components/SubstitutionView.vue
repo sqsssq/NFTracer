@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-02-12 02:41:25
+ * @LastEditTime: 2023-02-12 12:24:47
 -->
 <template>
     <div style="height: 100%;">
@@ -36,6 +36,23 @@
             <div style="height: 73%; width: 100%;" ref="distributionView">
                 <span style="color: #ABACBE; font-size: 14px;">Showing <span class="php">16 projects</span> from <span
                         class="php">55 results</span></span>
+                <div style="height: calc(100% - 30px); width: 100%;">
+                    <svg width="100%" height="100%">
+                        <g :transform="translate(elWidth / 2, (distributionHeight - 30) / 2, 0)">
+                            <path v-for="(arc_item, arc_i) in mainArc" :key="'arc' + arc_i" :d="arc_item"
+                                stroke="#D9D9D9" fill="none"></path>
+                            <text x="0" :y="-(distributionHeight * 0.8 / 2 + 15)" dy="0.5em" font-size="14" text-anchor="middle" color="#534F4F"
+                                font-weight="bold">{{
+                                '2022' }}</text>
+
+                            <text v-for="(t_item, t_i) in monthName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
+                                :x="Math.sin((Math.PI * (30 * t_i + 15)) / 180) * (distributionHeight * 0.8 / 2 + 15)"
+                                :y="-Math.cos((Math.PI * (30 * t_i + 15)) / 180) * (distributionHeight * 0.8 / 2 + 15)" font-size="14"
+                                dy="0.5em"
+                                text-anchor="middle" color="#534F4F" font-weight="bold">{{ t_item }}</text>
+                        </g>
+                    </svg>
+                </div>
             </div>
 
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
@@ -53,19 +70,20 @@
                         'Group ' + item
                     }}</text>
                     <g :transform="translate(elWidth / 8, elWidth / 8 + 15, 0)">
-                        <text x="0" :y="-(elWidth / 8 - 18)" font-size="7" text-anchor="middle" color="#534F4F"
+                        <text x="0" :y="-(elWidth / 8 - 18)" font-size="7" text-anchor="middle" color="#534F4F" dy="0.3em"
                             font-weight="bold">{{
                             '2022' }}</text>
 
                         <text v-for="(t_item, t_i) in monthName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
                             :x="Math.sin((Math.PI * (30 * t_i + 15)) / 180) * (elWidth / 8 - 18)"
-                            :y="-Math.cos((Math.PI * (30 * t_i + 15)) / 180) * (elWidth / 8 - 18)" font-size="7"
+                            :y="-Math.cos((Math.PI * (30 * t_i + 15)) / 180) * (elWidth / 8 - 18)" font-size="7" dy="0.3em"
+
                             text-anchor="middle" color="#534F4F" font-weight="bold">{{ t_item }}</text>
                         <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
                             :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (elWidth / 8 - 40)"
-                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (elWidth / 8 - 40)" font-size="12"
+                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (elWidth / 8 - 40)" font-size="12" dy="0.3em"
                             text-anchor="middle" color="#534F4F" font-weight="bold">{{ t_item }}</text>
-                        <g :transform="translate(0, -3, 0)">
+                        <g :transform="translate(0, 0, 0)">
                             <path stroke-dasharray="5.5"
                                 :d="'M 0 ' + -(elWidth / 8 - 48) + ' L 0 ' + ((elWidth / 8 - 48))" fill="none"
                                 stroke="#D9D9D9"></path>
@@ -78,7 +96,8 @@
                                 stroke-dasharray="5.5"></circle>
                             <circle x="0" y="0" :r="(elWidth / 8 - 48) * 1 / 3" fill="none" stroke="#D9D9D9"
                                 stroke-dasharray="5.5"></circle>
-                            <path v-for="(arc_item, arc_i) in monthArc" :key="'arc' + arc_i" :d="arc_item" stroke="#D9D9D9" fill="none"></path>
+                            <path v-for="(arc_item, arc_i) in monthArc" :key="'arc' + arc_i" :d="arc_item"
+                                stroke="#D9D9D9" fill="none"></path>
                         </g>
                     </g>
 
@@ -102,7 +121,7 @@ import { arc, pie } from 'd3-shape';
 export default {
     name: "APP",
     props: [""],
-    data() {
+    data () {
         return {
             elWidth: 1000,
             distributionHeight: 0,
@@ -113,15 +132,16 @@ export default {
             monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
             monthArc: [],
+            mainArc: [],
             axisName: ['F1', 'F3', 'Imp', 'F2'],
             colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"]
         };
     },
     methods: {
-        translate(x, y, d) {
+        translate (x, y, d) {
             return `translate(${x}, ${y}) rotate(${d})`;
         },
-        dataprocess() {
+        dataprocess () {
             let arcs = pie()(this.monthStep);
             let monthArc = [];
             for (let d of arcs) {
@@ -131,16 +151,30 @@ export default {
                 monthArc.push(darcs);
             }
             return monthArc;
+        },
+        mainDataprocess () {
+            let arcs = pie().padAngle(0.005)(this.monthStep);
+            let monthArc = [];
+            for (let d of arcs) {
+                d.innerRadius = this.distributionHeight * 0.8 / 2;
+                d.outerRadius = this.distributionHeight * 0.8 / 2 - 20;
+                // d.padAngle  = 10;
+                // d.padRadius = 10;
+                let darcs = arc()(d);
+                monthArc.push(darcs);
+            }
+            return monthArc;
         }
     },
-    created() {
+    created () {
     },
-    mounted() {
+    mounted () {
         this.elWidth = this.$refs.distributionView.offsetWidth;
         this.distributionHeight = this.$refs.distributionView.offsetHeight;
         this.groupHeight = this.$refs.groupView.offsetHeight;
         // console.log(this.elWidth);
         this.monthArc = this.dataprocess();
+        this.mainArc = this.mainDataprocess();
     }
 }
 </script>
