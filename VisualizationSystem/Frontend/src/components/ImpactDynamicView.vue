@@ -74,15 +74,33 @@
                                         xlink:href="https://img0.baidu.com/it/u=546973192,19042771&fm=253&fmt=auto&app=120&f=PNG?w=500&h=500"
                                         x="0" y="0" height="30" width="30" />
                                 </g>
-                                <text :x="0" :y="0" font-size="14" text-anchor="end" dx="-0.5em" dy="0em">
+                                <text :x="0" :y="0" font-size="14" text-anchor="end" dx="-0.5em" dy="-0.5em">
                                     {{ item.name }}
                                 </text>
                             </g>
                         </g>
                     </svg>
                 </div>
-                <div ref="correlationView" style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%); border: 1px solid red;">
+                <div ref="correlationTable" style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%);">
                     <svg width="100%" height="100%">
+                        <g>
+                            <text x="30" y="20" font-size="14">%Co-collecters</text>
+                            <path :d="'M 0 30 L ' + (ctWidth - 10) + ' 30'" fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M 0 ' + (ctHeight - 20) + ' L ' + (ctWidth - 10) + ' ' + (ctHeight - 20)" fill="none" stroke="#C6BCBC"></path>
+                        </g>
+                        <g>
+                            <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
+                                :transform="translate(10, item.pos[1] + 25, 0)">
+                                <!-- <g clip-path="url(#clipPath)" :transform="translate(-120, -20, 0)">
+                                    <image
+                                        xlink:href="https://img0.baidu.com/it/u=546973192,19042771&fm=253&fmt=auto&app=120&f=PNG?w=500&h=500"
+                                        x="0" y="0" height="30" width="30" />
+                                </g> -->
+                                <text :x="0" :y="0" font-size="14" text-anchor="start" dx="-0.5em" dy="-0.5em">
+                                    {{ item.name }}
+                                </text>
+                            </g>
+                        </g>
                     </svg>
                 </div>
             </div>
@@ -113,7 +131,8 @@ export default {
         return {
             cvHeight: 0,
             cvWidth: 0,
-
+            ctHeight: 0,
+            ctWidth: 0,
             sortValue: 'Longevity',
             sortOptions: ['Longevity'],
             pieLegendData: [90, 135, 135],
@@ -174,6 +193,8 @@ export default {
     mounted () {
         this.cvHeight = this.$refs.correlationView.offsetHeight;
         this.cvWidth = this.$refs.correlationView.offsetWidth;
+        this.ctHeight = this.$refs.correlationTable.offsetHeight;
+        this.ctWidth = this.$refs.correlationTable.offsetWidth;
         // this.dataprocess();
         // console.log(this.barHeight, this.barWidth)
 
