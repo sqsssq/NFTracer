@@ -24,8 +24,8 @@
                     <div>
                         <span style="position: relative; top: 4px;">TIME SLICE</span>
                         <span style="float: right; width: 65%;">
-                            <el-date-picker v-model="selectSlice" type="monthrange" range-separator="To"
-                                start-placeholder="Start month" end-placeholder="End month" style="width: 100%" />
+                            <el-date-picker v-model="selectSlice" type="daterange" range-separator="To"
+                                start-placeholder="Start date" end-placeholder="End date" style="width: 100%" />
                         </span>
 
                     </div>

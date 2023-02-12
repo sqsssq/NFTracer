@@ -14,7 +14,7 @@
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
         </div>
         <div class="frameworkBody">
-            <div style="width: 100%; height: 26px;">
+            <div style="width: 100%; height: 26px; margin-top: 5px;">
                 <span style="font-size: 12px;">
                     [F-1] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                         xmlns="http://www.w3.org/2000/svg" transform="translate(0,1.5)">
