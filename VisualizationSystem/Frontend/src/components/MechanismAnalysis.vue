@@ -40,7 +40,7 @@
             <div ref="attr_bar" style="width: 100%; height: calc((100% - 26px) / 3);">
                 [F-1: Preferential attachment ]
                 <svg id="attr_bar" width="100%" height="calc(100% - 30px)">
-                    <rect v-for="(item, i) in attachmentData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20" :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9"></rect><path :d="'M 5 ' +  barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
+                    <rect v-for="(item, i) in attachmentData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 60" :y="barHeight - item" :height="item" :width="(barWidth - 5) / 60" stroke="#D9D9D9" fill="#D9D9D9"></rect><path :d="'M 5 ' +  barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
                 </svg>
             </div>
             
@@ -73,9 +73,9 @@ export default {
         return {
             filterValue: 'Group',
             filterOptions: ['Group'],
-            attachmentData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
-            recencyData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
-            propensityData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            attachmentData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            recencyData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            propensityData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
             barHeight: 0,
             barWidth: 5
         }

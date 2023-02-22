@@ -104,7 +104,7 @@
                 </div>
                 <div>
                     <span>
-                        Grouping by: Gaussian Mixed Model
+                        Grouping by: Gaussian Mixture Model
                     </span>
                 </div>
                 <div>
@@ -119,11 +119,18 @@
                     </span>
                 </div>
                 <div style="margin-top: 0px;">
-                    <span style="">
+                    <!-- <span style="">
                         Probability: [70%-95%]
+                    </span> -->
+                    <span style="float: left; position: relative; top: -4px;">
+                        Rank by:
+                        <el-select v-model="rankValue" class="m-2" placeholder="Select"
+                            style="width: 130px; --el-border-color: white;">
+                            <el-option v-for="item in rankOptions" :key="item" :label="item" :value="item" />
+                        </el-select>
                     </span>
                     <span style="float: right; position: relative; top: -4px;">
-                        Rank by:
+                        Show:
                         <el-select v-model="rankValue" class="m-2" placeholder="Select"
                             style="width: 130px; --el-border-color: white;">
                             <el-option v-for="item in rankOptions" :key="item" :label="item" :value="item" />
