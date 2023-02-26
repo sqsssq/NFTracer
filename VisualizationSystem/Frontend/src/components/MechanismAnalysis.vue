@@ -16,21 +16,21 @@
                 <span style="float: right; position: relative; top: 1px;">
                     <span style="margin-right: 20px;">
                         [M-1] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
-                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
-                    </svg> &nbsp;
-                    [M-2] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
-                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#53ad92" fill-opacity="0.7" />
-                    </svg> &nbsp;
-                    [M-3] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
-                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#61bad6" fill-opacity="0.7" />
-                    </svg>&nbsp;
-                    [IMP] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
-                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#d77a78" fill-opacity="0.7" />
-                    </svg>
+                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
+                        </svg> &nbsp;
+                        [M-2] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#53ad92" fill-opacity="0.7" />
+                        </svg> &nbsp;
+                        [M-3] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#61bad6" fill-opacity="0.7" />
+                        </svg>&nbsp;
+                        [IMP] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#d77a78" fill-opacity="0.7" />
+                        </svg>
                     </span>
                     <span style="margin-right: 20px;">
                         Select Group:
@@ -51,7 +51,7 @@
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
         </div>
         <div class="frameworkBody">
-            <div style="width: 100%; height: 26px; margin-top: 5px;">
+            <!-- <div style="width: 100%; height: 26px; margin-top: 5px;">
                 <span style="font-size: 12px;">
                     [F-1] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                         xmlns="http://www.w3.org/2000/svg" transform="translate(0,1.5)">
@@ -73,19 +73,47 @@
                         <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
                     </el-select>
                 </span>
-            </div>
+            </div> -->
 
-            <div ref="attr_bar" style="width: 31.8%; height: calc((100% - 26px) / 3);">
-                [F-1: Preferential attachment ]
-                <svg id="attr_bar" width="100%" height="calc(100% - 30px)">
-                    <rect v-for="(item, i) in attachmentData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 60"
-                        :y="barHeight - item" :height="item" :width="(barWidth - 5) / 60" stroke="#D9D9D9" fill="#D9D9D9">
+            <div ref="attr_bar" style="width: 29.7%; height: calc(100%);">
+                <svg id="attr_bar" width="100%" height="calc(100%)">
+                    <g>
+                        <text x="5" y="20">[M-1: Preferential attachment]</text>
+                        <g :transform="translate(0, 25, 0)">
+                            <rect v-for="(item, i) in attachmentData" :key="'bar' + i" :x="5 + i * (barWidth - 10) / 60"
+                                :y="barHeight - item" :height="item" :width="(barWidth - 10) / 60" stroke="#D9D9D9"
+                                fill="#D9D9D9">
+                            </rect>
+                            <path :d="'M 5 ' + barHeight + ' L ' + (barWidth - 5) + ' ' + barHeight" fill="none"
+                                stroke="#534f4f">
+                            </path>
+                        </g>
+                    </g>
+                    <g :transform="translate(0, (barHeight + 25), 0)">
+                        <text x="5" y="20">[M-2: Recency]</text>
+                        <g :transform="translate(0, 25, 0)">
+                            <rect v-for="(item, i) in recencyData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
+                                :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9"
+                                fill="#D9D9D9">
+                            </rect>
+                            <path :d="'M 5 ' + barHeight + ' L ' + (barWidth - 5) + ' ' + barHeight" fill="none" stroke="#534f4f">
+                            </path>
+                        </g>
+                    </g>
+                    
+                    <g :transform="translate(0, 2 * (barHeight + 25), 0)">
+                        <text x="5" y="20">[M-3: Propensity]</text>
+                        <g :transform="translate(0, 25, 0)">
+                            <rect v-for="(item, i) in propensityData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
+                        :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9">
                     </rect>
                     <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
+                        </g>
+                    </g>
                 </svg>
             </div>
 
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <!-- <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
             <div style="width: 100%; height: calc((100% - 26px) / 3);">
                 [F-2: Recency]
                 <svg width="31.8%" height="calc(100% - 30px)">
@@ -104,7 +132,7 @@
                     </rect>
                     <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
                 </svg>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -115,7 +143,7 @@ import { select } from 'd3-selection';
 export default {
     name: 'APP',
     props: [''],
-    data() {
+    data () {
         return {
             filterValue: 'Group',
             filterOptions: ['Group'],
@@ -127,7 +155,10 @@ export default {
         }
     },
     methods: {
-        dataprocess() {
+        translate (x, y, deg) {
+            return 'translate(' + x + ',' + y + ') rotate(' + deg + ')';
+        },
+        dataprocess () {
             let yScale = scaleLinear([0, 5], [0, this.barHeight]);
             for (let i in this.attachmentData) {
                 this.attachmentData[i] = yScale(this.attachmentData[i]);
@@ -137,10 +168,10 @@ export default {
             // console.log(this.attachmentData)
         }
     },
-    created() {
+    created () {
     },
-    mounted() {
-        this.barHeight = this.$refs.attr_bar.offsetHeight - 30;
+    mounted () {
+        this.barHeight = (this.$refs.attr_bar.offsetHeight - 75) / 3;
         this.barWidth = this.$refs.attr_bar.offsetWidth;
         this.dataprocess();
         // console.log(this.barHeight, this.barWidth)
