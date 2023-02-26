@@ -2,15 +2,52 @@
     <div style="height: 100%">
         <div class="frameworkTitle">
 
-            <span class="title">
-                <svg t="1676053486623" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="36215" width="20" height="20">
+            <span class="title" style="float: left;">
+                <svg t="1676053486623" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    p-id="36215" width="20" height="20">
                     <path
                         d="M743.232 210.837333c144.896 144.896 149.781333 376.789333 14.656 527.573334l160.32 160.298666a8.533333 8.533333 0 0 1 0 12.074667l-33.173333 33.173333a8.533333 8.533333 0 0 1-12.074667 0l-161.557333-161.557333c-150.762667 120.746667-371.477333 111.253333-511.232-28.501333-149.973333-149.973333-149.973333-393.109333 0-543.061334 149.973333-149.973333 393.088-149.973333 543.061333 0z m-497.813333 45.248c-124.970667 124.970667-124.970667 327.594667 0 452.565334 124.970667 124.949333 327.594667 124.949333 452.565333 0 124.949333-124.970667 124.949333-327.594667 0-452.565334-124.970667-124.970667-327.594667-124.970667-452.565333 0z"
                         fill="#534f4f" p-id="36216"></path>
                 </svg>
-                &nbsp; <span style="position: relative; top: 0px; font-weight: 600;">Mechanism
-                    Analysis</span></span>
+                &nbsp; <span style="position: relative; top: 0px; font-weight: 600;">Mechanism Analysis</span>
+            </span>
+            <span style="float: right; position: relative; top: 3px; font-size: 16px;">
+
+                <span style="float: right; position: relative; top: 1px;">
+                    <span style="margin-right: 20px;">
+                        [M-1] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
+                    </svg> &nbsp;
+                    [M-2] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#53ad92" fill-opacity="0.7" />
+                    </svg> &nbsp;
+                    [M-3] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#61bad6" fill-opacity="0.7" />
+                    </svg>&nbsp;
+                    [IMP] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#d77a78" fill-opacity="0.7" />
+                    </svg>
+                    </span>
+                    <span style="margin-right: 20px;">
+                        Select Group:
+                        <el-select v-model="filterValue" class="m-2" placeholder="Select"
+                            style="width: 70px; --el-border-color: white;">
+                            <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
+                        </el-select>
+                    </span>
+                    <span>
+                        Select NFT Project:
+                        <el-select v-model="filterValue" class="m-2" placeholder="Select"
+                            style="width: 70px; --el-border-color: white;">
+                            <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
+                        </el-select>
+                    </span>
+                </span>
+            </span>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
         </div>
         <div class="frameworkBody">
@@ -37,26 +74,35 @@
                     </el-select>
                 </span>
             </div>
-            <div ref="attr_bar" style="width: 100%; height: calc((100% - 26px) / 3);">
+
+            <div ref="attr_bar" style="width: 31.8%; height: calc((100% - 26px) / 3);">
                 [F-1: Preferential attachment ]
                 <svg id="attr_bar" width="100%" height="calc(100% - 30px)">
-                    <rect v-for="(item, i) in attachmentData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 60" :y="barHeight - item" :height="item" :width="(barWidth - 5) / 60" stroke="#D9D9D9" fill="#D9D9D9"></rect><path :d="'M 5 ' +  barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
+                    <rect v-for="(item, i) in attachmentData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 60"
+                        :y="barHeight - item" :height="item" :width="(barWidth - 5) / 60" stroke="#D9D9D9" fill="#D9D9D9">
+                    </rect>
+                    <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
                 </svg>
             </div>
-            
+
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
             <div style="width: 100%; height: calc((100% - 26px) / 3);">
                 [F-2: Recency]
-                <svg width="100%" height="calc(100% - 30px)">
-                    <rect v-for="(item, i) in recencyData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20" :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9"></rect>
-                    <path :d="'M 5 ' +  barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
+                <svg width="31.8%" height="calc(100% - 30px)">
+                    <rect v-for="(item, i) in recencyData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
+                        :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9">
+                    </rect>
+                    <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
                 </svg>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
             <div style="width: 100%; height: calc((100% - 26px) / 3);">
                 [F-3: Propensity]
-                <svg width="100%" height="calc(100% - 30px)">
-                    <rect v-for="(item, i) in propensityData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20" :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9"></rect><path :d="'M 5 ' +  barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
+                <svg width="31.8%" height="calc(100% - 30px)">
+                    <rect v-for="(item, i) in propensityData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
+                        :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9">
+                    </rect>
+                    <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
                 </svg>
             </div>
         </div>
@@ -73,16 +119,16 @@ export default {
         return {
             filterValue: 'Group',
             filterOptions: ['Group'],
-            attachmentData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
-            recencyData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
-            propensityData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1,3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            attachmentData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            recencyData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            propensityData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
             barHeight: 0,
             barWidth: 5
         }
     },
     methods: {
-        dataprocess () {
-            let yScale = scaleLinear([0,5], [0, this.barHeight]);
+        dataprocess() {
+            let yScale = scaleLinear([0, 5], [0, this.barHeight]);
             for (let i in this.attachmentData) {
                 this.attachmentData[i] = yScale(this.attachmentData[i]);
                 this.recencyData[i] = yScale(this.recencyData[i]);
@@ -102,7 +148,6 @@ export default {
 }
 </script>
 <style>
-
 .el-input__suffix-inner i {
     border: 1px solid #dcdfe6;
 }
@@ -116,5 +161,4 @@ export default {
     padding-left: 0px;
     padding-right: 0px;
 }
-
 </style>

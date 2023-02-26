@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-02-12 12:24:47
+ * @LastEditTime: 2023-02-25 15:54:53
 -->
 <template>
     <div style="height: 100%;">
@@ -35,9 +35,9 @@
         </div>
         <div class="frameworkBody">
             <div style="height: 73%; width: 100%; margin-top: 5px;" ref="distributionView">
-                <span style="color: #ABACBE; font-size: 14px;">Showing <span class="php">16 projects</span> from <span
-                        class="php">55 results</span></span>
-                <div style="height: calc(100% - 30px); width: 100%;">
+                <!-- <span style="color: #ABACBE; font-size: 14px;">Showing <span class="php">16 projects</span> from <span
+                        class="php">55 results</span></span> -->
+                <div style="height: calc(100% - 0px); width: 100%;">
                     <svg width="100%" height="100%">
                         <g :transform="translate(elWidth / 2, (distributionHeight - 30) / 2, 0)">
                             <g>
@@ -305,4 +305,38 @@ export default {
     text-decoration: underline;
     color: #534F4F;
 }
+/*chrome--------------------------------------------start*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(201, 201, 202);
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(162, 162, 163);
+}
+
+.el-menu::-webkit-scrollbar,
+.el-table__body-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.el-menu:hover::-webkit-scrollbar,
+.el-table__body-wrapper:hover::-webkit-scrollbar {
+    display: block;
+}
+
+/*chrome--------------------------------------------end*/
 </style>

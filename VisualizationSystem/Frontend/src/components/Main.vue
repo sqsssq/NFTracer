@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-11-20 23:25:35
- * @LastEditTime: 2023-02-11 23:43:15
+ * @LastEditTime: 2023-02-25 15:58:06
 -->
 <template>
     <div id="navBar">
@@ -35,18 +35,17 @@
             </div>
         </div>
     </div>
-    <div style="height: calc(95.7vh - 0px); width: calc(100% - 0px); background-color: #E0DEDE
-;">
+    <div style="height: calc(95.7vh - 0px); width: calc(100% - 0px); background-color: #E0DEDE;">
         <div class="framework" id="PropensityAnalysis"
-            style="position: absolute; left: calc(5px); top: calc(5px); height: calc(62vh - 10px); width: calc(20%);">
+            style="position: absolute; left: calc(5px); top: calc(5px); height: calc(67vh - 10px); width: calc(20%);">
             <PropensityAnalysis />
         </div>
         <div class="framework" id="MechanismAnalysis"
-            style="position: absolute; left: calc(5px); top: calc(62vh); height: calc(95.7vh - 5px - 62vh); width: calc(20vw);">
+            style="position: absolute; left: calc(5px); top: calc(67vh); height: calc(95.7vh - 5px - 67vh); width: calc(66.2vw + 5px);">
             <MechanismAnalysis />
         </div>
         <div class="framework" id="ModelExplainer"
-            style="position: absolute; left: calc(5px + 20vw + 5px); top: calc(5px); height: calc(95.7vh - 10px); width: calc(46.2vw);">
+            style="position: absolute; left: calc(5px + 20vw + 5px); top: calc(5px); height: calc((67vh) - 10px); width: calc(46.2vw);">
             <SubstitutionView />
         </div>
         <div class="framework" id="CorrelationView"
@@ -59,12 +58,6 @@
 <script>
 import { dataService } from '@/service'
 
-
-import CorrelationView from './CorrelationView.vue';
-import ModelExplainer from './ModelExplainer.vue';
-import DataTransformation from './DataTransformation.vue';
-import ControlPanel from './ControlPanel.vue';
-import UnitView from './UnitView.vue';
 import PropensityAnalysis from './PropensityAnalysis.vue';
 import MechanismAnalysis from './MechanismAnalysis.vue';
 import SubstitutionView from './SubstitutionView.vue';
@@ -82,7 +75,7 @@ export default {
     },
     mounted () {
     },
-    components: { CorrelationView, ModelExplainer, DataTransformation, ControlPanel, UnitView, PropensityAnalysis, MechanismAnalysis, SubstitutionView, ImpactDynamicView }
+    components: { PropensityAnalysis, MechanismAnalysis, SubstitutionView, ImpactDynamicView }
 }
 </script>
 <style>
