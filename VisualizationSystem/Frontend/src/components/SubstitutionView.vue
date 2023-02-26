@@ -2,7 +2,11 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
+<<<<<<< HEAD
  * @LastEditTime: 2023-02-25 15:54:53
+=======
+ * @LastEditTime: 2023-02-22 10:27:23
+>>>>>>> 21f5cf23d1859c925044d7707c50808320b7e1c5
 -->
 <template>
     <div style="height: 100%;">
@@ -269,7 +273,7 @@ export default {
             let outerArc = [];
             let groupArc = [];
             for (let d of outerArcData) {
-                // console.log(d)
+                console.log(d)
                 let darcs = arc().innerRadius(this.distributionHeight * 0.96 / 2 - 5).outerRadius(this.distributionHeight * 0.96 / 2).cornerRadius(3)(d);
                 outerArc.push(darcs);
                 
