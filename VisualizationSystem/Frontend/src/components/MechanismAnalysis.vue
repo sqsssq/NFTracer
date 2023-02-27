@@ -50,7 +50,7 @@
             </span>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
         </div>
-        <div class="frameworkBody">
+        <div class="frameworkBody" style="padding-bottom: 5px;">
             <!-- <div style="width: 100%; height: 26px; margin-top: 5px;">
                 <span style="font-size: 12px;">
                     [F-1] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
@@ -75,42 +75,107 @@
                 </span>
             </div> -->
 
-            <div ref="attr_bar" style="width: 29.7%; height: calc(100%);">
+            <div ref="attr_bar" style="width: 29.7%; height: calc(100%); float: left;">
                 <svg id="attr_bar" width="100%" height="calc(100%)">
                     <g>
                         <text x="5" y="20">[M-1: Preferential attachment]</text>
-                        <g :transform="translate(0, 25, 0)">
-                            <rect v-for="(item, i) in attachmentData" :key="'bar' + i" :x="5 + i * (barWidth - 10) / 60"
-                                :y="barHeight - item" :height="item" :width="(barWidth - 10) / 60" stroke="#D9D9D9"
+                        <g :transform="translate(5, 25, 0)">
+                            <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x"
+                                :y="barHeight - item.y" :height="item.y" :width="item.w" stroke="#D9D9D9"
                                 fill="#D9D9D9">
                             </rect>
-                            <path :d="'M 5 ' + barHeight + ' L ' + (barWidth - 5) + ' ' + barHeight" fill="none"
+                            <path :d="'M 5 ' + barHeight + ' L ' + (barWidth - 15) + ' ' + barHeight" fill="none"
+                                stroke="#534f4f">
+                            </path>
+                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth) + ' ' + (barHeight + 5)"
+                                fill="none" stroke="#e0dede"></path>
+                        </g>
+                    </g>
+                    <g :transform="translate(0, (barHeight + 29), 0)">
+                        <text x="5" y="20">[M-2: Recency]</text>
+                        <g :transform="translate(5, 25, 0)">
+                            <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x"
+                                :y="barHeight - item.y" :height="item.y" :width="item.w" stroke="#D9D9D9"
+                                fill="#D9D9D9">
+                            </rect>
+                            <path :d="'M 5 ' + barHeight + ' L ' + (barWidth - 15) + ' ' + barHeight" fill="none"
+                                stroke="#534f4f">
+                            </path>
+                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
+                                fill="none" stroke="#e0dede"></path>
+                        </g>
+                    </g>
+
+                    <g :transform="translate(0, 2 * (barHeight + 29), 0)">
+                        <text x="5" y="20">[M-3: Propensity]</text>
+                        <g :transform="translate(5, 25, 0)">
+                            <rect v-for="(item, i) in propensityDataBar"  :key="'bar' + i" :x="item.x"
+                                :y="barHeight - item.y" :height="item.y" :width="item.w" stroke="#D9D9D9"
+                                fill="#D9D9D9">
+                            </rect>
+                            <path :d="'M 5 ' + barHeight + ' L ' + (barWidth - 15) + ' ' + barHeight" fill="none"
                                 stroke="#534f4f">
                             </path>
                         </g>
                     </g>
-                    <g :transform="translate(0, (barHeight + 25), 0)">
-                        <text x="5" y="20">[M-2: Recency]</text>
-                        <g :transform="translate(0, 25, 0)">
-                            <rect v-for="(item, i) in recencyData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
-                                :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9"
-                                fill="#D9D9D9">
-                            </rect>
-                            <path :d="'M 5 ' + barHeight + ' L ' + (barWidth - 5) + ' ' + barHeight" fill="none" stroke="#534f4f">
-                            </path>
+                </svg>
+            </div>
+            <!-- <div ref="groupPie" style="width: 70.3%; height: 100%; float: right;">
+                <svg id="groupPie" width="100%" height="calc(100%)"></svg>
+            </div> -->
+            <div style="height: 100%; width: 70.3%; float: right; overflow-x: scroll; overflow-y: hidden; white-space: nowrap" ref="groupView">
+                <!-- <div v-for="(item, i) in groupSet" :key="'group' + i" :style="{
+                    'width': groupWidth / 4 + 'px',
+                    'height': '100%',
+                    'padding': '0px 5px 5px 5px',
+                    'border': '1px solid purple',
+                    'display': 'inline-block'
+                }"> -->
+                <svg v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
+                    <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
+                    <text x="50%" y="20" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                        'Group ' + item
+                    }}</text>
+                    <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
+                        <text x="0" :y="-(groupWidth / 8 - 18)" font-size="7" text-anchor="middle" fill="#534F4F"
+                            dy="0.3em" font-weight="bold">{{
+                            '2022' }}</text>
+
+                        <text v-for="(t_item, t_i) in monthName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
+                            :x="Math.sin((Math.PI * (30 * t_i + 15)) / 180) * (groupWidth / 8 - 18)"
+                            :y="-Math.cos((Math.PI * (30 * t_i + 15)) / 180) * (groupWidth / 8 - 18)" font-size="7"
+                            dy="0.3em" text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
+                        <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
+                            :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 40)"
+                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 40)" font-size="12" dy="0.3em"
+                            text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
+                        <g :transform="translate(0, 0, 0)">
+                            <path stroke-dasharray="5.5"
+                                :d="'M 0 ' + -(groupWidth / 8 - 48) + ' L 0 ' + ((groupWidth / 8 - 48))" fill="none"
+                                stroke="#D9D9D9"></path>
+                            <path stroke-dasharray="5.5"
+                                :d="'M ' + -(groupWidth / 8 - 48) + ' 0 L ' + ((groupWidth / 8 - 48)) + ' 0'" fill="none"
+                                stroke="#D9D9D9"></path>
+                            <circle x="0" y="0" :r="(groupWidth / 8 - 48)" fill="none" stroke="#D9D9D9"
+                                stroke-dasharray="5.5"></circle>
+                            <circle x="0" y="0" :r="(groupWidth / 8 - 48) * 2 / 3" fill="none" stroke="#D9D9D9"
+                                stroke-dasharray="5.5"></circle>
+                            <circle x="0" y="0" :r="(groupWidth / 8 - 48) * 1 / 3" fill="none" stroke="#D9D9D9"
+                                stroke-dasharray="5.5"></circle>
+                            <path v-for="(arc_item, arc_i) in monthArc" :key="'arc' + arc_i" :d="arc_item"
+                                stroke="#D9D9D9" fill="none"></path>
                         </g>
                     </g>
-                    
-                    <g :transform="translate(0, 2 * (barHeight + 25), 0)">
-                        <text x="5" y="20">[M-3: Propensity]</text>
-                        <g :transform="translate(0, 25, 0)">
-                            <rect v-for="(item, i) in propensityData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
-                        :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9">
-                    </rect>
-                    <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
-                        </g>
+
+                    <g :transform="translate(0, groupHeight - 55, 0)">
+                        <text x="50%" y="20" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                        'Num_Projects 25' }}</text>
+                        <text x="50%" y="40" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                            'Ave_Impact 60 '
+                        }}</text>
                     </g>
                 </svg>
+                <!-- </div> -->
             </div>
 
             <!-- <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
@@ -139,41 +204,84 @@
 <script>
 import { scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
+import { arc, pie } from 'd3-shape';
 
 export default {
     name: 'APP',
     props: [''],
-    data () {
+    data() {
         return {
             filterValue: 'Group',
             filterOptions: ['Group'],
-            attachmentData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
-            recencyData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
-            propensityData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
-            barHeight: 0,
-            barWidth: 5
+            groupSet: [1, 2, 3, 4, 5, 6],
+            monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
+            monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            axisName: ['F1', 'F3', 'Imp', 'F2'],
+            attachmentData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            recencyData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            propensityData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
+            attachmentDataBar: [],
+            recencyDataBar: [],
+            propensityDataBar: [],
+            barHeight: 100,
+            barWidth: 100,
+            groupWidth: 1000,
+            groupHeight: 100,
+            monthArc: []
         }
     },
     methods: {
-        translate (x, y, deg) {
+        translate(x, y, deg) {
             return 'translate(' + x + ',' + y + ') rotate(' + deg + ')';
         },
-        dataprocess () {
-            let yScale = scaleLinear([0, 5], [0, this.barHeight]);
-            for (let i in this.attachmentData) {
-                this.attachmentData[i] = yScale(this.attachmentData[i]);
-                this.recencyData[i] = yScale(this.recencyData[i]);
-                this.propensityData[i] = yScale(this.propensityData[i]);
+        
+        calcArc () {
+            let arcs = pie()(this.monthStep);
+            let monthArc = [];
+            for (let d of arcs) {
+                d.innerRadius = this.elWidth / 8 - 30;
+                d.outerRadius = this.elWidth / 8 - 25;
+                let darcs = arc()(d);
+                monthArc.push(darcs);
             }
+            return monthArc;
+        },
+        dataProcess() {
+            let xScale = scaleLinear([0, 20], [5, this.barWidth - 15])
+            let yScale = scaleLinear([0, 5], [0, this.barHeight]);
+            let a = [], r = [], p = [];
+            for (let i in this.attachmentData) {
+                a.push({
+                    x: xScale(i),
+                    y: yScale(this.attachmentData[i]),
+                    w: (this.barWidth - 20) / 20
+                });
+                r.push({
+                    x: xScale(i),
+                    y: yScale(this.recencyData[i]),
+                    w: (this.barWidth - 20) / 20
+                });
+                p.push({
+                    x: xScale(i),
+                    y: yScale(this.propensityData[i]),
+                    w: (this.barWidth - 20) / 20
+                });
+            }
+            console.log([a, r, p]);
+            return [a, r, p];
             // console.log(this.attachmentData)
         }
     },
-    created () {
+    created() {
     },
-    mounted () {
-        this.barHeight = (this.$refs.attr_bar.offsetHeight - 75) / 3;
+    mounted() {
+        this.barHeight = (this.$refs.attr_bar.offsetHeight - 85) / 3;
         this.barWidth = this.$refs.attr_bar.offsetWidth;
-        this.dataprocess();
+        this.groupHeight = this.$refs.groupView.offsetHeight;
+        this.groupWidth = this.$refs.groupView.offsetWidth;
+        
+        this.monthArc = this.calcArc();
+        [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar] = this.dataProcess();
         // console.log(this.barHeight, this.barWidth)
     },
 }
@@ -192,4 +300,40 @@ export default {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+
+/*chrome--------------------------------------------start*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(201, 201, 202);
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(162, 162, 163);
+}
+
+.el-menu::-webkit-scrollbar,
+.el-table__body-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.el-menu:hover::-webkit-scrollbar,
+.el-table__body-wrapper:hover::-webkit-scrollbar {
+    display: block;
+}
+
+/*chrome--------------------------------------------end*/
 </style>

@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
 <<<<<<< HEAD
- * @LastEditTime: 2023-02-25 15:54:53
+ * @LastEditTime: 2023-02-27 00:01:16
 =======
  * @LastEditTime: 2023-02-22 10:27:23
 >>>>>>> 21f5cf23d1859c925044d7707c50808320b7e1c5
@@ -38,12 +38,12 @@
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
         </div>
         <div class="frameworkBody">
-            <div style="height: 73%; width: 100%; margin-top: 5px;" ref="distributionView">
+            <div style="height: 100%; width: 100%; margin-top: 5px;" ref="distributionView">
                 <!-- <span style="color: #ABACBE; font-size: 14px;">Showing <span class="php">16 projects</span> from <span
                         class="php">55 results</span></span> -->
                 <div style="height: calc(100% - 0px); width: 100%;">
                     <svg width="100%" height="100%">
-                        <g :transform="translate(elWidth / 2, (distributionHeight - 30) / 2, 0)">
+                        <g :transform="translate(elWidth / 2, (distributionHeight) / 2, 0)">
                             <g>
                                 <path v-for="(arc_item, arc_i) in mainArc" :key="'arc' + arc_i" :d="arc_item"
                                     stroke="#C6BCBC" fill="none"></path>
@@ -100,61 +100,8 @@
                 </div>
             </div>
 
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
-            <div style="height: 27%; overflow-x: scroll; overflow-y: hidden; white-space: nowrap" ref="groupView">
-                <!-- <div v-for="(item, i) in groupSet" :key="'group' + i" :style="{
-                    'width': elWidth / 4 + 'px',
-                    'height': '100%',
-                    'padding': '0px 5px 5px 5px',
-                    'border': '1px solid purple',
-                    'display': 'inline-block'
-                }"> -->
-                <svg v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
-                    <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
-                    <text x="50%" y="20" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
-                        'Group ' + item
-                    }}</text>
-                    <g :transform="translate(elWidth / 8, elWidth / 8 + 15, 0)">
-                        <text x="0" :y="-(elWidth / 8 - 18)" font-size="7" text-anchor="middle" fill="#534F4F"
-                            dy="0.3em" font-weight="bold">{{
-                            '2022' }}</text>
-
-                        <text v-for="(t_item, t_i) in monthName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
-                            :x="Math.sin((Math.PI * (30 * t_i + 15)) / 180) * (elWidth / 8 - 18)"
-                            :y="-Math.cos((Math.PI * (30 * t_i + 15)) / 180) * (elWidth / 8 - 18)" font-size="7"
-                            dy="0.3em" text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
-                        <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
-                            :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (elWidth / 8 - 40)"
-                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (elWidth / 8 - 40)" font-size="12" dy="0.3em"
-                            text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
-                        <g :transform="translate(0, 0, 0)">
-                            <path stroke-dasharray="5.5"
-                                :d="'M 0 ' + -(elWidth / 8 - 48) + ' L 0 ' + ((elWidth / 8 - 48))" fill="none"
-                                stroke="#D9D9D9"></path>
-                            <path stroke-dasharray="5.5"
-                                :d="'M ' + -(elWidth / 8 - 48) + ' 0 L ' + ((elWidth / 8 - 48)) + ' 0'" fill="none"
-                                stroke="#D9D9D9"></path>
-                            <circle x="0" y="0" :r="(elWidth / 8 - 48)" fill="none" stroke="#D9D9D9"
-                                stroke-dasharray="5.5"></circle>
-                            <circle x="0" y="0" :r="(elWidth / 8 - 48) * 2 / 3" fill="none" stroke="#D9D9D9"
-                                stroke-dasharray="5.5"></circle>
-                            <circle x="0" y="0" :r="(elWidth / 8 - 48) * 1 / 3" fill="none" stroke="#D9D9D9"
-                                stroke-dasharray="5.5"></circle>
-                            <path v-for="(arc_item, arc_i) in monthArc" :key="'arc' + arc_i" :d="arc_item"
-                                stroke="#D9D9D9" fill="none"></path>
-                        </g>
-                    </g>
-
-                    <g :transform="translate(0, groupHeight - 55, 0)">
-                        <text x="50%" y="20" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
-                        'Num_Projects 25' }}</text>
-                        <text x="50%" y="40" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
-                            'Ave_Impact 60 '
-                        }}</text>
-                    </g>
-                </svg>
-                <!-- </div> -->
-            </div>
+            <!-- <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1> -->
+            
         </div>
     </div>
 </template>
@@ -231,7 +178,7 @@ export default {
         translate (x, y, d) {
             return `translate(${x}, ${y}) rotate(${d})`;
         },
-        dataprocess () {
+        calcArc () {
             let arcs = pie()(this.monthStep);
             let monthArc = [];
             for (let d of arcs) {
@@ -273,7 +220,7 @@ export default {
             let outerArc = [];
             let groupArc = [];
             for (let d of outerArcData) {
-                console.log(d)
+                // console.log(d)
                 let darcs = arc().innerRadius(this.distributionHeight * 0.96 / 2 - 5).outerRadius(this.distributionHeight * 0.96 / 2).cornerRadius(3)(d);
                 outerArc.push(darcs);
                 
@@ -294,9 +241,8 @@ export default {
     mounted () {
         this.elWidth = this.$refs.distributionView.offsetWidth;
         this.distributionHeight = this.$refs.distributionView.offsetHeight;
-        this.groupHeight = this.$refs.groupView.offsetHeight;
         // console.log(this.elWidth);
-        this.monthArc = this.dataprocess();
+        this.monthArc = this.calcArc();
         [this.mainArc, this.innerArc] = this.mainDataprocess();
         // console.log(this.innerArc)
         [this.outerArc, this.groupArc] = this.outerArcProgress(this.groupData);
