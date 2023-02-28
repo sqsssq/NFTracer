@@ -75,10 +75,11 @@
                 </span>
             </div> -->
 
-            <div ref="attr_bar" style="width: 29.7%; height: calc(100%); float: left;">
+            <div ref="attr_bar" style="width: 30%; height: calc(100%); float: left;">
                 <svg id="attr_bar" width="100%" height="calc(100%)">
+                    <path :d="'M ' + (barWidth + 12) + ' ' + 10 + ' L ' + (barWidth + 12) + ' ' + (barHeight* 3 + 85)" fill="none" stroke="#e0dede"></path>
                     <g>
-                        <text x="5" y="20">[M-1: Preferential attachment]</text>
+                        <text x="5" y="20"  fill="#534F4F">[M-1: Preferential attachment]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x"
                                 :y="barHeight - item.y" :height="item.y" :width="item.w" stroke="#D9D9D9"
@@ -87,12 +88,12 @@
                             <path :d="'M 5 ' + barHeight + ' L ' + (barWidth - 15) + ' ' + barHeight" fill="none"
                                 stroke="#534f4f">
                             </path>
-                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth) + ' ' + (barHeight + 5)"
+                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
                                 fill="none" stroke="#e0dede"></path>
                         </g>
                     </g>
                     <g :transform="translate(0, (barHeight + 29), 0)">
-                        <text x="5" y="20">[M-2: Recency]</text>
+                        <text x="5" y="20"  fill="#534F4F">[M-2: Recency]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x"
                                 :y="barHeight - item.y" :height="item.y" :width="item.w" stroke="#D9D9D9"
@@ -107,7 +108,7 @@
                     </g>
 
                     <g :transform="translate(0, 2 * (barHeight + 29), 0)">
-                        <text x="5" y="20">[M-3: Propensity]</text>
+                        <text x="5" y="20" fill="#534F4F">[M-3: Propensity]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in propensityDataBar"  :key="'bar' + i" :x="item.x"
                                 :y="barHeight - item.y" :height="item.y" :width="item.w" stroke="#D9D9D9"
@@ -123,7 +124,7 @@
             <!-- <div ref="groupPie" style="width: 70.3%; height: 100%; float: right;">
                 <svg id="groupPie" width="100%" height="calc(100%)"></svg>
             </div> -->
-            <div style="height: 100%; width: 70.3%; float: right; overflow-x: scroll; overflow-y: hidden; white-space: nowrap" ref="groupView">
+            <div style="height: 100%; width: 70%; float: right; overflow-x: scroll; overflow-y: hidden; white-space: nowrap" ref="groupView">
                 <!-- <div v-for="(item, i) in groupSet" :key="'group' + i" :style="{
                     'width': groupWidth / 4 + 'px',
                     'height': '100%',
@@ -216,7 +217,7 @@ export default {
             groupSet: [1, 2, 3, 4, 5, 6],
             monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-            axisName: ['F1', 'F3', 'Imp', 'F2'],
+            axisName: ['M1', 'M3', 'Imp', 'M2'],
             attachmentData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
             recencyData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
             propensityData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
@@ -276,7 +277,7 @@ export default {
     },
     mounted() {
         this.barHeight = (this.$refs.attr_bar.offsetHeight - 85) / 3;
-        this.barWidth = this.$refs.attr_bar.offsetWidth;
+        this.barWidth = this.$refs.attr_bar.offsetWidth - 15;
         this.groupHeight = this.$refs.groupView.offsetHeight;
         this.groupWidth = this.$refs.groupView.offsetWidth;
         
