@@ -209,7 +209,7 @@ import { arc, pie } from 'd3-shape';
 
 export default {
     name: 'APP',
-    props: [''],
+    props: ['groupData'],
     data() {
         return {
             filterValue: 'Group',
@@ -228,14 +228,14 @@ export default {
             barWidth: 100,
             groupWidth: 1000,
             groupHeight: 100,
-            monthArc: []
+            monthArc: [],
+            clusterData: []
         }
     },
     methods: {
         translate(x, y, deg) {
             return 'translate(' + x + ',' + y + ') rotate(' + deg + ')';
         },
-        
         calcArc () {
             let arcs = pie()(this.monthStep);
             let monthArc = [];
@@ -247,7 +247,28 @@ export default {
             }
             return monthArc;
         },
-        dataProcess() {
+        dataProcess(data) {
+            let m1 = [], m2 = [], m3 = [], group = {};
+            for (let i in data) {
+                if (typeof(group[data[i].Group]) == 'undefined') {
+                    group[data[i].Group] = {
+                        project: [],
+                        m1: [],
+                        m2: [],
+                        m3: []
+                    };
+                }
+                group[data[i].Group].project.push(data[i]);
+                group[data[i].Group].m1.push(parseFloat(data[i].M1));
+                group[data[i].Group].m2.push(parseFloat(data[i].M2));
+                group[data[i].Group].m3.push(parseFloat(data[i].M3));
+                m1.push(parseFloat(data[i].M1));
+                m2.push(parseFloat(data[i].M2));
+                m3.push(parseFloat(data[i].M3));
+            }
+            console.log(m1);
+
+
             let xScale = scaleLinear([0, 20], [5, this.barWidth - 15])
             let yScale = scaleLinear([0, 5], [0, this.barHeight]);
             let a = [], r = [], p = [];
@@ -268,9 +289,9 @@ export default {
                     w: (this.barWidth - 20) / 20
                 });
             }
-            console.log([a, r, p]);
+            // console.log([a, r, p]);
             return [a, r, p];
-            // console.log(this.attachmentData)
+            // // console.log(this.attachmentData)
         }
     },
     created() {
@@ -282,7 +303,8 @@ export default {
         this.groupWidth = this.$refs.groupView.offsetWidth;
         
         this.monthArc = this.calcArc();
-        [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar] = this.dataProcess();
+        [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar] = this.dataProcess(this.groupData);
+        // console.log(this.groupData);
         // console.log(this.barHeight, this.barWidth)
     },
 }

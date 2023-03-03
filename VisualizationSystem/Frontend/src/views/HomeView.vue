@@ -2,12 +2,12 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-09-17 23:36:36
- * @LastEditTime: 2023-02-11 01:03:07
+ * @LastEditTime: 2023-03-02 20:48:00
 -->
 <template>
-  <div class="common-layout" style="width: 100%; height: 100vh; background-color: rgb(238, 236, 236);" v-loading="!initSign" :element-loading-text="loadingText"
-        element-loading-background="rgba(0, 0, 0, 0.8)">
-    <Main :msgH="msgH" :timeData="timeData" :sliceData="sliceData" :basicData="basicData"/>
+  <div class="common-layout" style="width: 100%; height: 100vh; background-color: rgb(238, 236, 236);"
+    v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
+    <Main :groupData="groupData" />
   </div>
 </template>
 
@@ -18,51 +18,46 @@ import { useDataStore } from "../stores/counter";
 import timeData from '../assets/sn_d_tot.json'
 import basicData from '../assets/data_view.json';
 import sliceData from '../assets/slice_info.json';
+import nftData from '../assets/data.csv';
 export default {
   name: "home_view",
-  data() {
+  data () {
     return {
       msgH: null,
-      timeData: null,
-      sliceData: null,
-      basicData: null
+      groupData: null
     };
   },
   computed: {
-    initSign() {
-      this.timeData = timeData;
-      this.sliceData = sliceData;
-      this.basicData = basicData;
+    initSign () {
       // return this.msgH == null;
-      return this.timeData && this.sliceData && this.basicData;
+      this.groupData = nftData;
+
+      return this.groupData != null;
     },
-    loadingText() {
+    loadingText () {
       return "Loading"
       // return "Loading:    " + 'Route: \n' +
       //     !!this.route + '   Station: \n'+ !!this.station + '   Alldata: \n'+ !!this.alldata
     }
   },
-  mounted() {
+  mounted () {
     // const dataStore = useDataStore();
     // dataStore.fetchHello();
     // this.msgH = dataStore.msg;
-      this.timeData = timeData;
-    this.msgH = 1;
   },
   methods: {
-    fetchData() {
+    fetchData () {
     }
   },
   components: { Main }
 };
 </script>
 <style scoped>
-
 .boundary {
-        /*border-style: dashed;*/
-        border-style: solid;
-        border-color: #d3dce6;
-        border-width: 0.5px;
-        border-radius: 3px;
-    }
+  /*border-style: dashed;*/
+  border-style: solid;
+  border-color: #d3dce6;
+  border-width: 0.5px;
+  border-radius: 3px;
+}
 </style>
