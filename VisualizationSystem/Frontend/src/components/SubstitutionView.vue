@@ -45,15 +45,15 @@
                             <g>
                                 <path v-for="(arc_item, arc_i) in mainArc" :key="'arc' + arc_i" :d="arc_item"
                                     stroke="#C6BCBC" fill="none"></path>
-                                <path v-for="(arc_item, arc_i) in mainInnerArc" :key="'arc' + arc_i" :d="arc_item"
-                                    stroke="#C6BCBC" fill="none"></path>
+                                <!-- <path v-for="(arc_item, arc_i) in mainInnerArc" :key="'arc' + arc_i" :d="arc_item"
+                                    stroke="#C6BCBC" fill="none"></path> -->
                                 <text x="0" :y="-(distributionHeight * 0.9 / 2)" dy="0.5em" font-size="14"
                                     text-anchor="middle" fill="#534F4F" font-weight="bold">{{ '2022' }}</text>
-                                    <text x="0" :y="-(distributionHeight * 0.75 / 2 - 3)" dy="0.5em" font-size="14"
+                                <text x="0" :y="-(distributionHeight * 0.75 / 2 - 3)" dy="0.5em" font-size="14"
                                     text-anchor="middle" fill="#534F4F" font-weight="bold">{{ '2021' }}</text>
 
                                 <text v-for="(t_item, t_i) in monthName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
-                                    :x="Math.sin((Math.PI * (30 * t_i + 15)) / 180) * (distributionHeight * 0.9 / 2- 5)"
+                                    :x="Math.sin((Math.PI * (30 * t_i + 15)) / 180) * (distributionHeight * 0.9 / 2 - 5)"
                                     :y="-Math.cos((Math.PI * (30 * t_i + 15)) / 180) * (distributionHeight * 0.9 / 2 - 5)"
                                     font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
                                         t_item
@@ -63,6 +63,9 @@
                             <g :transform="translate(0, 0, -6)">
                                 <path v-for="(arc_item, arc_i) in innerArc" :key="'arc' + arc_i" :d="arc_item"
                                     stroke="#C6BCBC" :fill="arc_i == 0 ? 'none' : 'none'"></path>
+                            </g>
+                            <g>
+                                <path v-for="(arc_item, arc_i) in monthArc" :key="'select_time' + arc_i" :d="arc_item" fill="#C6BCBC" stroke="#C6BCBC"></path>
                             </g>
 
                             <g>
@@ -91,11 +94,11 @@
                             <g :transform="translate(0, 0, 0)">
 
                                 <path v-for="(arc_item, arc_i) in outerArc" :key="'arc' + arc_i" :d="arc_item" stroke="none"
-                                    :fill="arc_i == 6 ? 'none' : colormap[arc_i]"></path>
+                                    :fill="arc_i == groupTag ? 'none' : colormap[arc_i]"></path>
 
                                 <path v-for="(arc_item, arc_i) in groupArc" :key="'arc' + arc_i" :d="arc_item.arc"
-                                    :fill="arc_item.group == 7 ? 'white' : colormap[parseInt(arc_item.group) - 1]"
-                                    :stroke="arc_item.group == 7 ? '#C6BCBC' : colormap[parseInt(arc_item.group) - 1]"
+                                    :fill="arc_item.group ==  groupTag? 'white' : colormap[parseInt(arc_item.group)]"
+                                    :stroke="arc_item.group == groupTag ? '#C6BCBC' : colormap[parseInt(arc_item.group)]"
                                     stroke-width="1"></path>
                             </g>
                         </g>
@@ -110,11 +113,11 @@
 </template>
 <script>
 import { arc, pie } from 'd3-shape';
-
+import { useDataStore } from "../stores/counter";
 
 export default {
     name: "APP",
-    props: [""],
+    props: ["groupData"],
     data () {
         return {
             elWidth: 1000,
@@ -125,55 +128,60 @@ export default {
             groupSet: [1, 2, 3, 4, 5, 6],
             monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            monthDay: {
+                2021: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+                2022: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+            },
             monthArc: [],
             mainInnerArc: [],
             mainArc: [],
             innerArc: [],
             axisName: ['F1', 'F3', 'Imp', 'F2'],
             colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"],
-            groupData: [{
-                "group": 1,
-                "num_projects": 25,
-                "ave_impact": 60,
-                "sum_len": 12,
-                "len": [3, 2, 5, 2]
-            }, {
-                "group": 2,
-                "num_projects": 25,
-                "ave_impact": 60,
-                "sum_len": 10,
-                "len": [2, 2, 3, 3]
-            }, {
-                "group": 3,
-                "num_projects": 25,
-                "ave_impact": 60,
-                "sum_len": 10,
-                "len": [2, 5, 3]
-            }, {
-                "group": 4,
-                "num_projects": 25,
-                "ave_impact": 60,
-                "sum_len": 6,
-                "len": [3, 3]
-            }, {
-                "group": 5,
-                "num_projects": 25,
-                "ave_impact": 60,
-                "sum_len": 2,
-                "len": [1, 1]
-            }, {
-                "group": 6,
-                "num_projects": 25,
-                "ave_impact": 60,
-                "sum_len": 15,
-                "len": [5, 3, 7]
-            }, {
-                "group": 7,
-                "num_projects": 25,
-                "ave_impact": 60,
-                "sum_len": 15,
-                "len": [15]
-            }],
+            // groupData: [{
+            //     "group": 1,
+            //     "num_projects": 25,
+            //     "ave_impact": 60,
+            //     "sum_len": 12,
+            //     "len": [3, 2, 5, 2]
+            // }, {
+            //     "group": 2,
+            //     "num_projects": 25,
+            //     "ave_impact": 60,
+            //     "sum_len": 10,
+            //     "len": [2, 2, 3, 3]
+            // }, {
+            //     "group": 3,
+            //     "num_projects": 25,
+            //     "ave_impact": 60,
+            //     "sum_len": 10,
+            //     "len": [2, 5, 3]
+            // }, {
+            //     "group": 4,
+            //     "num_projects": 25,
+            //     "ave_impact": 60,
+            //     "sum_len": 6,
+            //     "len": [3, 3]
+            // }, {
+            //     "group": 5,
+            //     "num_projects": 25,
+            //     "ave_impact": 60,
+            //     "sum_len": 2,
+            //     "len": [1, 1]
+            // }, {
+            //     "group": 6,
+            //     "num_projects": 25,
+            //     "ave_impact": 60,
+            //     "sum_len": 15,
+            //     "len": [5, 3, 7]
+            // }, {
+            //     "group": 7,
+            //     "num_projects": 25,
+            //     "ave_impact": 60,
+            //     "sum_len": 15,
+            //     "len": [15]
+            // }],
+            groupTag: -1,
             outerArc: [],
             groupArc: []
         };
@@ -182,16 +190,45 @@ export default {
         translate (x, y, d) {
             return `translate(${x}, ${y}) rotate(${d})`;
         },
-        calcArc () {
-            let arcs = pie()(this.monthStep);
-            let monthArc = [];
-            for (let d of arcs) {
-                d.innerRadius = this.elWidth / 8 - 30;
-                d.outerRadius = this.elWidth / 8 - 25;
-                let darcs = arc()(d);
-                monthArc.push(darcs);
+        calcTime(timeRange) {
+
+        },
+        calcArc (data) {
+            // console.log(data['start_time'].split('-'));
+            let st = data['start_time'].split('-');
+            let et = data['end_time'].split('-');
+            let SA, SB, EA, EB;
+            let Marc = [];
+            if (st[0] != et[0]) {
+                SA = (parseInt(st[1] - 1) * 30 + 30 * parseInt(st[2]) / this.monthDay[st[0]][st[1] - 1]) * Math.PI / 180;
+                SB = 360 * Math.PI / 180;
+                let sData = [((1 - parseInt(st[2]) / this.monthDay[st[0]][st[1] - 1]) * 20)];
+                for (let i = parseInt(st[1]) + 1; i <= 12; ++i) {
+                    sData.push(20);
+                }
+            
+                EA = 0;
+                EB = (parseInt(et[1] - 1) * 30 + 30 * parseInt(et[2]) / this.monthDay[et[0]][et[1] - 1]) * Math.PI / 180;
+                let eData = [(parseInt(et[2]) / this.monthDay[et[0]][et[1] - 1]) * 20]
+                for (let i = 1; i <= parseInt(et[1] - 1); ++i) {
+                    eData.push(20);
+                }
+                let sArcData = pie().startAngle(SA).endAngle(SB).padAngle(0.006).sortValues((a, b) => a - b)(sData);
+                let eArcData = pie().startAngle(EA).endAngle(EB).padAngle(0.006).sortValues((a, b) => b - a)(eData);
+                
+                
+                for (let i in sArcData) {
+                    let dArc = arc().innerRadius(this.distributionHeight * 0.81 / 2 - 5).outerRadius(this.distributionHeight * 0.77 / 2 - 5)(sArcData[i]);
+                    Marc.push(dArc);
+                }
+
+                for (let i in eArcData) {
+                    let dArc = arc().innerRadius(this.distributionHeight * 0.85 / 2).outerRadius(this.distributionHeight * 0.81 / 2)(eArcData[i]);
+                    Marc.push(dArc);
+                }
+
             }
-            return monthArc;
+            return Marc;
         },
         mainDataProcess () {
             let arcs = pie().padAngle(0.005)(this.monthStep);
@@ -229,7 +266,39 @@ export default {
             return [monthArc, monthInnerArc, innerArc];
         },
         outerArcProgress: function (data) {
-            let outerArcData = pie().sort(null).padAngle(0.005).value(d => d.sum_len)(data);
+            let group = {};
+            let maxGroup = 0;
+            for (let i in data) {
+                if (typeof (group[data[i].Group]) == 'undefined') {
+                    group[data[i].Group] = {
+                        project: [],
+                        sum_len: 0,
+                        len: [],
+                        group: data[i].Group
+                    }
+                    maxGroup = Math.max(maxGroup, parseInt(data[i].Group));
+                }
+                group[data[i].Group].project.push(data[i]);
+                group[data[i].Group].sum_len ++;
+                group[data[i].Group].len.push(parseInt(data[i].n_holder));
+            }
+            // console.log(data.length)
+            if (data.length < 70) {
+                group[maxGroup + 1] = {
+                    sum_len: 70 - data.length,
+                    len: [data.length],
+                    group: maxGroup + 1
+                }
+                this.groupTag = maxGroup + 1;
+                // console.log(this.groupTag)
+            }
+            // console.log(group)
+            let res_group = [];
+            for (let i in group) {
+                res_group.push(group[i]);
+            }
+            // console.log(res_group);
+            let outerArcData = pie().sort(null).padAngle(0.005).value(d => d.sum_len)(res_group);
             let outerArc = [];
             let groupArc = [];
             for (let d of outerArcData) {
@@ -255,7 +324,9 @@ export default {
         this.elWidth = this.$refs.distributionView.offsetWidth;
         this.distributionHeight = this.$refs.distributionView.offsetHeight;
         // console.log(this.elWidth);
-        this.monthArc = this.calcArc();
+        const dataStore = useDataStore();
+        let timeRange = dataStore.timeRange;
+        this.monthArc = this.calcArc(timeRange);
         [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
         // console.log(this.innerArc)
         [this.outerArc, this.groupArc] = this.outerArcProgress(this.groupData);

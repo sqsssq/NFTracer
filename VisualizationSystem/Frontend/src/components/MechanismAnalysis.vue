@@ -137,12 +137,12 @@
                         'Group ' + i
                     }}</text>
                     <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
-
+                        <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'" :fill="colormap[i]"></path>
                         <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
                             :transform="translate(0, 0, 90 * t_i)" :fill="axisColor[t_i]"></path>
                         <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
-                            :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 30)"
-                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 30)" font-size="12" dy="0.3em"
+                            :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 25)"
+                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 25)" font-size="12" dy="0.3em"
                             text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
                         <g :transform="translate(0, 0, 0)">
                             <path stroke-dasharray="5.5"
@@ -164,7 +164,7 @@
                         </g>
                     </g>
 
-                    <g :transform="translate(0, groupHeight - 55, 0)">
+                    <g :transform="translate(0, groupHeight - 65, 0)">
                         <text x="50%" y="20" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
                             'Num_Projects ' + item.num_project }}</text>
                         <text x="50%" y="40" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
@@ -214,6 +214,7 @@ export default {
             filterValue: 'Group',
             filterOptions: ['Group'],
             groupSet: [1, 2, 3, 4, 5, 6],
+            colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"],
             monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
             axisName: ['M1', 'M3', 'IMP', 'M2'],
@@ -254,6 +255,7 @@ export default {
                 if (typeof (group[data[i].Group]) == 'undefined') {
                     group[data[i].Group] = {
                         project: [],
+                        project_holder: [],
                         m1: [],
                         m2: [],
                         m3: [],
@@ -265,10 +267,12 @@ export default {
                     };
                 }
                 group[data[i].Group].project.push(data[i]);
+                group[data[i].Group].project_holder.push(parseInt(data[i].n_holder))
                 group[data[i].Group].m1.push(parseFloat(data[i].M1));
                 group[data[i].Group].m2.push(parseFloat(data[i].M2));
                 group[data[i].Group].m3.push(parseFloat(data[i].M3));
                 group[data[i].Group].imp.push(Math.random());
+                // console.log(data[i].M1);
                 m1.push(parseFloat(data[i].M1));
                 m2.push(parseFloat(data[i].M2));
                 m3.push(parseFloat(data[i].M3));
@@ -302,6 +306,7 @@ export default {
                     w: (this.barWidth - 20) / 20
                 }
             }
+            // console.log(m1)
             for (let i = 0; i < m1.length; i++) {
                 let aa = Math.floor(m1[i] / (1 / 20));
                 if (aa >= 20) aa--;
@@ -361,7 +366,15 @@ export default {
             for (let d in group) {
                 group[d]['area'] = [areaGenerate(group[d].m1Area), areaGenerate(group[d].m3Area), areaGenerate(group[d].impArea), areaGenerate(group[d].m2Area)];
                 group[d]['num_project'] = group[d].project.length;
-                group[d]['ave_impact'] = sum(group[d].imp) / group[d].imp.length;
+                group[d]['ave_impact'] = (sum(group[d].imp) / group[d].imp.length).toFixed(2);
+                group[d]['pie'] = pie().padAngle(0.03)(group[d].project_holder);
+                group[d]['arc'] = [];
+                for (let i in group[d].pie) {
+                    let tArc = arc().cornerRadius(3)
+                        .innerRadius(this.groupWidth / 8 - 42)
+                        .outerRadius(this.groupWidth / 8 - 36)(group[d].pie[i]);
+                    group[d]['arc'].push(tArc);
+                }
                 // console.log(group[d]['ave_impact'])
                 groupSet.push(group[d]);
             }
@@ -373,15 +386,15 @@ export default {
     created () {
     },
     mounted () {
-        console.log
+        // console.log
         this.barHeight = (this.$refs.attr_bar.offsetHeight - 85) / 3;
         this.barWidth = this.$refs.attr_bar.offsetWidth - 15;
         this.groupHeight = this.$refs.groupView.offsetHeight;
         this.groupWidth = this.$refs.groupView.offsetWidth;
 
-        this.monthArc = this.calcArc();
+        // this.monthArc = this.calcArc();
         [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(this.groupData);
-        console.log(this.groupSet);
+        // console.log(this.groupSet);
 
         // console.log(this.groupData);
         // console.log(this.barHeight, this.barWidth)

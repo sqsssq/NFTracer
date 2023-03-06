@@ -46,7 +46,7 @@
         </div>
         <div class="framework" id="ModelExplainer"
             style="position: absolute; left: calc(5px + 20vw + 5px); top: calc(5px); height: calc((67vh) - 10px); width: calc(46.2vw);">
-            <SubstitutionView />
+            <SubstitutionView :groupData="groupData"/>
         </div>
         <div class="framework" id="CorrelationView"
             style="position: absolute; left: calc(66.2vw + 15px);  top: calc(5px); height: calc(95.7vh - 10px); width: calc(100vw - 66.2vw - 20px);">
@@ -85,8 +85,8 @@ export default {
     /* margin: 5px; */
     border: 0px solid rgb(105, 119, 122);
     border-radius: 6.91892px;
-    /* background-color: white; */
-    background-color: #2b2b2b;
+    background-color: white;
+    /* background-color: #2b2b2b; */
 
     /* border-color: rgb(237, 237, 238); */
     /* border-color: ; */
