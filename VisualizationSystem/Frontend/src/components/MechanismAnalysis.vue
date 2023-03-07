@@ -92,8 +92,21 @@
                                 fill="none" stroke="#e0dede"></path>
                         </g>
                     </g>
-                    <g :transform="translate(0, (barHeight + 29), 0)" id="m2Bar">
-                        <text x="5" y="20" fill="#534F4F">[M-2: Recency]</text>
+
+                    <g :transform="translate(0, (barHeight + 29), 0)" id="m3Bar">
+                        <text x="5" y="20" fill="#534F4F">[M-2: Propensity]</text>
+                        <g :transform="translate(5, 25, 0)">
+                            <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                            </rect>
+                            <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
+                                fill="none" stroke="#534f4f">
+                            </path>
+                        </g>
+                    </g>
+
+                    <g :transform="translate(0, 2 * (barHeight + 29), 0)" id="m2Bar">
+                        <text x="5" y="20" fill="#534F4F">[M-3: Recency]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
@@ -106,17 +119,6 @@
                         </g>
                     </g>
 
-                    <g :transform="translate(0, 2 * (barHeight + 29), 0)" id="m3Bar">
-                        <text x="5" y="20" fill="#534F4F">[M-3: Propensity]</text>
-                        <g :transform="translate(5, 25, 0)">
-                            <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
-                            </rect>
-                            <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
-                                fill="none" stroke="#534f4f">
-                            </path>
-                        </g>
-                    </g>
                 </svg>
             </div>
             <!-- <div ref="groupPie" style="width: 70.3%; height: 100%; float: right;">

@@ -32,7 +32,7 @@ export const useDataStore = defineStore("dataStore", {
       model: null,
       timeRange: {
         'start_time': '2021-10-21',
-        'end_time': '2022-10-22'
+        'end_time': '2022-10-1'
       }
     }
   },

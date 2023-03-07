@@ -40,13 +40,13 @@
                     <span class="php">16 projects</span> from <span class="php">55 results</span>
                 </span>
                 <div style="height: calc(100% - 0px); width: 100%;">
-                    <svg width="100%" height="100%">
+                <svg width="100%" height="100%">
                         <g :transform="translate(elWidth / 2, (distributionHeight) / 2, 0)">
                             <g>
                                 <path v-for="(arc_item, arc_i) in mainArc" :key="'arc' + arc_i" :d="arc_item"
                                     stroke="#C6BCBC" fill="none"></path>
                                 <!-- <path v-for="(arc_item, arc_i) in mainInnerArc" :key="'arc' + arc_i" :d="arc_item"
-                                    stroke="#C6BCBC" fill="none"></path> -->
+                                                                    stroke="#C6BCBC" fill="none"></path> -->
                                 <text x="0" :y="-(distributionHeight * 0.9 / 2)" dy="0.5em" font-size="14"
                                     text-anchor="middle" fill="#534F4F" font-weight="bold">{{ '2022' }}</text>
                                 <text x="0" :y="-(distributionHeight * 0.75 / 2 - 3)" dy="0.5em" font-size="14"
@@ -65,7 +65,8 @@
                                     stroke="#C6BCBC" :fill="arc_i == 0 ? 'none' : 'none'"></path>
                             </g>
                             <g>
-                                <path v-for="(arc_item, arc_i) in monthArc" :key="'select_time' + arc_i" :d="arc_item" fill="#C6BCBC" stroke="#C6BCBC"></path>
+                                <path v-for="(arc_item, arc_i) in monthArc" :key="'select_time' + arc_i" :d="arc_item"
+                                    fill="#C6BCBC" stroke="#C6BCBC"></path>
                             </g>
 
                             <g>
@@ -78,6 +79,30 @@
                                     :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' Z'"
                                     stroke-dasharray="5.5" stroke="#C6BCBC" fill="none"></path>
 
+                            </g>
+                            <g :transform="translate(0, 0, 0)">
+
+                                <path v-for="(arc_item, arc_i) in outerArc" :key="'arc' + arc_i" :d="arc_item" stroke="none"
+                                    :fill="arc_i == groupTag ? 'none' : colormap[arc_i]"></path>
+
+                                <path v-for="(arc_item, arc_i) in groupArc" :key="'arc' + arc_i" :d="arc_item.arc"
+                                    :fill="arc_item.group == groupTag ? 'white' : colormap[parseInt(arc_item.group)]"
+                                    :stroke="arc_item.group == groupTag ? '#C6BCBC' : colormap[parseInt(arc_item.group)]"
+                                    stroke-width="1"></path>
+                            </g>
+                            <g>
+                                <g v-for="(a_item, a_i) in innerArea" :key="'ia' + a_i" :transform="translate(0, 0, a_i * 12 + 180)">
+                                    <path :d="a_item[innerAreaTag]" fill="#efa566" stroke="#efa566"></path>
+                                </g>
+                            </g>
+
+                            <g>
+                                <circle v-for="(c_item, c_i) in scatterData" :key="'gc' + c_i" :cx="c_item.cx"
+                                    :cy="c_item.cy" :r="5" :fill="colormap[c_item.group]" @mouseenter="msTest(c_item)">
+                                </circle>
+                            </g>
+                            <g>
+                                
                                 <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .53 / 2 + 15))"
                                     :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .53 / 2 + 15))"
                                     font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
@@ -91,16 +116,6 @@
                                     font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">S</text>
                             </g>
-                            <g :transform="translate(0, 0, 0)">
-
-                                <path v-for="(arc_item, arc_i) in outerArc" :key="'arc' + arc_i" :d="arc_item" stroke="none"
-                                    :fill="arc_i == groupTag ? 'none' : colormap[arc_i]"></path>
-
-                                <path v-for="(arc_item, arc_i) in groupArc" :key="'arc' + arc_i" :d="arc_item.arc"
-                                    :fill="arc_item.group ==  groupTag? 'white' : colormap[parseInt(arc_item.group)]"
-                                    :stroke="arc_item.group == groupTag ? '#C6BCBC' : colormap[parseInt(arc_item.group)]"
-                                    stroke-width="1"></path>
-                            </g>
                         </g>
                     </svg>
                 </div>
@@ -112,7 +127,8 @@
     </div>
 </template>
 <script>
-import { arc, pie } from 'd3-shape';
+import { scaleLinear } from 'd3-scale';
+import { arc, area, curveBasis, pie } from 'd3-shape';
 import { useDataStore } from "../stores/counter";
 
 export default {
@@ -120,6 +136,7 @@ export default {
     props: ["groupData"],
     data () {
         return {
+            innerAreaTag: 'm1d',
             elWidth: 1000,
             distributionHeight: 0,
             groupHeight: 0,
@@ -138,60 +155,22 @@ export default {
             innerArc: [],
             axisName: ['F1', 'F3', 'Imp', 'F2'],
             colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"],
-            // groupData: [{
-            //     "group": 1,
-            //     "num_projects": 25,
-            //     "ave_impact": 60,
-            //     "sum_len": 12,
-            //     "len": [3, 2, 5, 2]
-            // }, {
-            //     "group": 2,
-            //     "num_projects": 25,
-            //     "ave_impact": 60,
-            //     "sum_len": 10,
-            //     "len": [2, 2, 3, 3]
-            // }, {
-            //     "group": 3,
-            //     "num_projects": 25,
-            //     "ave_impact": 60,
-            //     "sum_len": 10,
-            //     "len": [2, 5, 3]
-            // }, {
-            //     "group": 4,
-            //     "num_projects": 25,
-            //     "ave_impact": 60,
-            //     "sum_len": 6,
-            //     "len": [3, 3]
-            // }, {
-            //     "group": 5,
-            //     "num_projects": 25,
-            //     "ave_impact": 60,
-            //     "sum_len": 2,
-            //     "len": [1, 1]
-            // }, {
-            //     "group": 6,
-            //     "num_projects": 25,
-            //     "ave_impact": 60,
-            //     "sum_len": 15,
-            //     "len": [5, 3, 7]
-            // }, {
-            //     "group": 7,
-            //     "num_projects": 25,
-            //     "ave_impact": 60,
-            //     "sum_len": 15,
-            //     "len": [15]
-            // }],
             groupTag: -1,
             outerArc: [],
-            groupArc: []
+            groupArc: [],
+            scatterData: [],
+            innerArea: []
         };
     },
     methods: {
         translate (x, y, d) {
             return `translate(${x}, ${y}) rotate(${d})`;
         },
-        calcTime(timeRange) {
+        calcTime (timeRange) {
 
+        },
+        msTest (data) {
+            // console.log(data)
         },
         calcArc (data) {
             // console.log(data['start_time'].split('-'));
@@ -206,7 +185,7 @@ export default {
                 for (let i = parseInt(st[1]) + 1; i <= 12; ++i) {
                     sData.push(20);
                 }
-            
+
                 EA = 0;
                 EB = (parseInt(et[1] - 1) * 30 + 30 * parseInt(et[2]) / this.monthDay[et[0]][et[1] - 1]) * Math.PI / 180;
                 let eData = [(parseInt(et[2]) / this.monthDay[et[0]][et[1] - 1]) * 20]
@@ -215,8 +194,8 @@ export default {
                 }
                 let sArcData = pie().startAngle(SA).endAngle(SB).padAngle(0.006).sortValues((a, b) => a - b)(sData);
                 let eArcData = pie().startAngle(EA).endAngle(EB).padAngle(0.006).sortValues((a, b) => b - a)(eData);
-                
-                
+
+
                 for (let i in sArcData) {
                     let dArc = arc().innerRadius(this.distributionHeight * 0.81 / 2 - 5).outerRadius(this.distributionHeight * 0.77 / 2 - 5)(sArcData[i]);
                     Marc.push(dArc);
@@ -226,9 +205,132 @@ export default {
                     let dArc = arc().innerRadius(this.distributionHeight * 0.85 / 2).outerRadius(this.distributionHeight * 0.81 / 2)(eArcData[i]);
                     Marc.push(dArc);
                 }
+            } else if (st[0] == et[0]) {
+                if (st[1] != et[1]) {
+                    let cnt = 0;
+                    SA = (parseInt(st[1] - 1) * 30 + 30 * parseInt(st[2]) / this.monthDay[st[0]][st[1] - 1]) * Math.PI / 180;
+                    let aData = [{ v: ((1 - parseInt(st[2]) / this.monthDay[st[0]][st[1] - 1]) * 20), id: cnt }];
+                    for (let i = parseInt(st[1]) + 1; i < parseInt(et[1]); ++i) {
+                        cnt++;
+                        aData.push({
+                            v: 20,
+                            id: cnt
+                        })
+                    }
+                    aData.push({
+                        v: (parseInt(et[2]) / this.monthDay[et[0]][et[1] - 1]) * 20,
+                        id: cnt
+                    });
+                    EB = (parseInt(et[1] - 1) * 30 + 30 * parseInt(et[2]) / this.monthDay[et[0]][et[1] - 1]) * Math.PI / 180;
 
+                    let sArcData = pie().startAngle(SA).endAngle(EB).padAngle(0.006).sort((a, b) => a.id - b.id).value(d => d.v)(aData);
+
+
+                    for (let i in sArcData) {
+                        let dArc = arc().innerRadius(st[0] == '2021' ? this.distributionHeight * 0.81 / 2 - 5 : this.distributionHeight * 0.85 / 2).outerRadius(st[0] == '2021' ? this.distributionHeight * 0.77 / 2 - 5 : this.distributionHeight * 0.81 / 2)(sArcData[i]);
+                        Marc.push(dArc);
+                    }
+                } else if (st[1] == et[1]) {
+                    let cnt = 0;
+                    SA = (parseInt(st[1] - 1) * 30 + 30 * parseInt(st[2]) / this.monthDay[st[0]][st[1] - 1]) * Math.PI / 180;
+                    let aData = [{ v: ((parseInt(et[2]) - parseInt(st[2]) / this.monthDay[st[0]][st[1] - 1]) * 20), id: 0 }];
+                    EB = (parseInt(et[1] - 1) * 30 + 30 * parseInt(et[2]) / this.monthDay[et[0]][et[1] - 1]) * Math.PI / 180;
+
+                    let sArcData = pie().startAngle(SA).endAngle(EB).padAngle(0.006).sort((a, b) => a.id - b.id).value(d => d.v)(aData);
+                    // console.log(sArcData);
+
+                    for (let i in sArcData) {
+                        let dArc = arc().innerRadius(st[0] == '2021' ? this.distributionHeight * 0.81 / 2 - 5 : this.distributionHeight * 0.85 / 2).outerRadius(st[0] == '2021' ? this.distributionHeight * 0.77 / 2 - 5 : this.distributionHeight * 0.81 / 2)(sArcData[i]);
+                        Marc.push(dArc);
+                    }
+                }
             }
             return Marc;
+        },
+        calcScatter (data) {
+            let scatterData = [];
+            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)));
+            let areaData = [];
+            for (let i = 0; i < 30; ++i) {
+                areaData.push({
+                    project: [],
+                    m1Area: new Array(5).fill(0),
+                    m2Area: new Array(5).fill(0),
+                    m3Area: new Array(5).fill(0),
+                    impArea: new Array(5).fill(0)
+                })
+            }
+            let m1_max = 0, m2_max = 0, m3_max = 0, imp_max = 0;
+            for (let i in data) {
+                // console.log(data[i]);
+                let tp = {
+                    data: data[i],
+                    group: data[i].Group,
+                    x: (parseFloat(data[i].Holder) + parseFloat(data[i].Buyer) * 2) / Math.sqrt(3),
+                    y: parseFloat(data[i].Holder),
+                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) + (parseFloat(data[i].Holder) + parseFloat(data[i].Buyer) * 2) / Math.sqrt(3) * t_h,
+                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) - parseFloat(data[i].Holder) * t_h
+                };
+                scatterData.push(tp);
+                let t_cnt = (Math.acos(tp.cy / (Math.sqrt(Math.pow(tp.cx, 2) + Math.pow(tp.cy, 2)))) / (Math.PI / 180) + (tp.cx >= 0 ? 0 : 180) - 6) / 12;
+                // console.log(Math.floor(t_cnt));
+
+                let m11 = Math.floor(data[i]['M1'] / (1 / 5));
+                let m22 = Math.floor(data[i]['M2'] / (1 / 5));
+                let m33 = Math.floor(data[i]['M3'] / (1 / 5));
+                let impp = Math.floor((Math.random()) / (1 / 5));
+                m1_max = Math.max(m1_max, m11);
+                m2_max = Math.max(m2_max, m22);
+                m3_max = Math.max(m3_max, m33);
+                imp_max = Math.max(imp_max, impp);
+                m11 = m11 == 5 ? m11 - 1 : m11;
+                m22 = m22 == 5 ? m22 - 1 : m22;
+                m33 = m33 == 5 ? m33 - 1 : m33;
+                impp = impp == 5 ? impp - 1 : impp;
+                areaData[Math.floor(t_cnt)].project.push(data[i]);
+                areaData[Math.floor(t_cnt)].m1Area[m11]++;
+                areaData[Math.floor(t_cnt)].m2Area[m22]++;
+                areaData[Math.floor(t_cnt)].m3Area[m33]++;
+                areaData[Math.floor(t_cnt)].impArea[impp]++;
+            }
+            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .53 / 2 + 15, this.distributionHeight * .71 / 2 - 10]);
+            let m1Scale = scaleLinear([0, m1_max], [0, 25]);
+            let m2Scale = scaleLinear([0, m2_max], [0, 25]);
+            let m3Scale = scaleLinear([0, m3_max], [0, 25]);
+            let impScale = scaleLinear([0, imp_max], [0, 25]);
+            let ag1 = area()
+                .curve(curveBasis)
+                .x0(d => m1Scale(d))
+                .x1(d => -m1Scale(d))
+                .y((d, i) => ayScale(i));
+            let ag2 = area()
+                .curve(curveBasis)
+                .x0(d => m2Scale(d))
+                .x1(d => -m2Scale(d))
+                .y((d, i) => ayScale(i));
+            let ag3 = area()
+                .curve(curveBasis)
+                .x0(d => m3Scale(d))
+                .x1(d => -m3Scale(d))
+                .y((d, i) => ayScale(i));
+            let ag4 = area()
+                .curve(curveBasis)
+                .x0(d => impScale(d))
+                .x1(d => -impScale(d))
+                .y((d, i) => ayScale(i));
+            let res_area = [];
+            for (let i in areaData) {
+                res_area.push({
+                    m1d: ag1(areaData[i].m1Area),
+                    m2d: ag2(areaData[i].m2Area),
+                    m3d: ag3(areaData[i].m3Area),
+                    impd: ag4(areaData[i].impArea)
+                });
+                // break;
+            }
+
+
+            return [scatterData, res_area];
         },
         mainDataProcess () {
             let arcs = pie().padAngle(0.005)(this.monthStep);
@@ -279,7 +381,7 @@ export default {
                     maxGroup = Math.max(maxGroup, parseInt(data[i].Group));
                 }
                 group[data[i].Group].project.push(data[i]);
-                group[data[i].Group].sum_len ++;
+                group[data[i].Group].sum_len++;
                 group[data[i].Group].len.push(parseInt(data[i].n_holder));
             }
             // console.log(data.length)
@@ -330,7 +432,7 @@ export default {
         [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
         // console.log(this.innerArc)
         [this.outerArc, this.groupArc] = this.outerArcProgress(this.groupData);
-
+        [this.scatterData, this.innerArea] = this.calcScatter(this.groupData);
     }
 }
 </script>
