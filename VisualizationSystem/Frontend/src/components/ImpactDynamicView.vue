@@ -44,12 +44,14 @@
                                 <g>
                                     <path v-for="(arc_item, arc_i) in legendArc" :key="'arc' + arc_i" :d="arc_item"
                                         :stroke="'none'"
-                                        :fill="colormap1[arc_i == 0 || arc_i == 1 ? 2 : arc_i == 2 || arc_i == 3 ? 1 : 0]"
-                                        :opacity="arc_i % 2 == 1 ? 1 : 0.5"></path>
-                                    <path d="M 0 -20 L 60 -20" fill="none" stroke="#C6BCBC"></path>
-                                    <path d="M 0 10 L 60 10" fill="none" stroke="#C6BCBC"></path>
-                                    <text x="55" y="-20" dx="0.5em" dy="0.3em" font-size="14">#400</text>
-                                    <text x="55" y="10" dx="0.5em" dy="0.3em" font-size="14">#200</text>
+                                        :fill="colormap1[arc_i == 0 ? 2 : arc_i ==  1 ? 1 : 0]"></path>
+                                    <path v-for="(arc_item, arc_i) in outLegendArc" :key="'arc' + arc_i" :d="arc_item"
+                                        :stroke="'none'" :transform="translate(0, 0, -60)"
+        :fill="arc_i == 0 ? '#a30e24' : arc_i == 1 ? '#2a57f7' : '#fc7b5c'"></path>
+                                    <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
+                                    <path d="M 18 10 L 60 10" fill="none" stroke="#C6BCBC"></path>
+                                    <text x="55" y="-15" dx="0.5em" dy="0.3em" font-size="14">#300</text>
+                                    <text x="55" y="10" dx="0.5em" dy="0.3em" font-size="14">-0.8</text>
                                 </g>
                                 <g :transform="translate(0, 10, 0)">
                                     <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14">Group:</text>
@@ -138,6 +140,7 @@ export default {
             pieLegendData: [90, 135, 135],
             pieLegend: [],
             legendArc: [],
+            outLegendArc: [],
             nftName: ['CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks'],
             lineData: [],
             textPlace: [],
@@ -149,20 +152,29 @@ export default {
         translate (x, y, deg) {
             return `translate(${x}, ${y}) rotate(${deg})`;
         },
-        dataprocess () {
+        dataProcess () {
             let arcs = pie().sort(null)(this.pieLegendData);
+            let outData = [1, 1, 1];
+            let outArcs = pie().padAngle(0.9).sort(null)(outData);
+            // console.log(outArcs);
             let legendArc = [];
             for (let d of arcs) {
-                d.innerRadius = 10;
-                d.outerRadius = 20;
+                // d.innerRadius = 10;
+                // d.outerRadius = 20;
+                // let darcs = arc()(d);
+                // legendArc.push(darcs);
+                d.innerRadius = 0;
+                d.outerRadius = 15;
+                
                 let darcs = arc()(d);
                 legendArc.push(darcs);
-                d.innerRadius = 0;
-                d.outerRadius = 10;
-                darcs = arc()(d);
-                legendArc.push(darcs);
             }
-            return legendArc;
+            let outLegendArc = [];
+            for (let d of outArcs) {
+                let outarc = arc().innerRadius(18).outerRadius(20).cornerRadius(5)(d);
+                outLegendArc.push(outarc);
+            }
+            return [legendArc, outLegendArc];
         },
         calcLine (data) {
             let lineScaleY = scaleLinear([0, data.length - 1], [25, this.cvHeight - 10]);
@@ -198,7 +210,7 @@ export default {
         // this.dataprocess();
         // console.log(this.barHeight, this.barWidth)
 
-        this.legendArc = this.dataprocess();
+        [this.legendArc, this.outLegendArc] = this.dataProcess();
         [this.lineData, this.textPlace] = this.calcLine(this.nftName)
         // console.log(this.legendArc)
 
