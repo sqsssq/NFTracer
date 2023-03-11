@@ -166,14 +166,14 @@
                                         item.name.time }}</text>
                                 </g>
                                 <g>
-                                    <path :d="'M0 ' + (pjHeight / 2 * i) + ' L' + nameWidth + ' ' + (pjHeight / 2 * i)"
+                                    <path :d="'M0 ' + (pjHeight / 2 * (i + 1)) + ' L' + nameWidth + ' ' + (pjHeight / 2 * (i + 1))"
                                         fill="none" stroke="#e0dede"></path>
                                 </g>
                             </g>
                         </svg>
                     </div>
                     <div></div>
-                    <div ref="timeSpace" id="timeSpace" style="float: right; width: 85%; height: 92%; overflow: auto;">
+                    <div ref="timeSpace" id="timeSpace" style="float: right; width: 85%; height: 92%; overflow: auto;" @scroll="sysScroll()">
 
                         <svg :width="pjWidth * 2" :height="pjHeight * projectNum / 2">
                             <g v-for="(item, i) in timeData" :key="'time_x' + i"
@@ -190,19 +190,20 @@
                                 </g>
                                 <g>
 
-                                    <path :d="'M0 ' + (pjHeight / 2 * 0.5) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2 * 0.5)"
+                                    <path
+                                        :d="'M0 ' + (pjHeight / 2 * 0.5) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2 * 0.5)"
                                         fill="none" stroke="#534f4f"></path>
 
-                                    <path :d="'M0 ' + (pjHeight / 2 * 0.9) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2 * 0.9)"
+                                    <path
+                                        :d="'M0 ' + (pjHeight / 2 * 0.9) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2 * 0.9)"
                                         fill="none" stroke="#534f4f"></path>
-                                    <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)" fill="none"
-                                        stroke="#e0dede"></path>
+                                    <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
+                                        fill="none" stroke="#e0dede"></path>
                                 </g>
                             </g>
                         </svg>
                     </div>
-                    <div ref="legendSpace" id="legendSpace"
-                        style="float: right; width: 85%; height: 8%; overflow-x: auto;">
+                    <div ref="legendSpace" id="legendSpace" style="float: right; width: 85%; height: 8%; overflow: auto;">
                         <svg :width="pjWidth * 2" :height="legendHeight">
 
                         </svg>
@@ -217,7 +218,7 @@
 import { scaleLinear } from 'd3-scale';
 // import time from 'd3-scale/src/time';
 import { select } from 'd3-selection';
-import { arc, area, curveBasis, line, pie } from 'd3-shape';
+import { arc, area, curveBasis, curveMonotoneX, line, pie } from 'd3-shape';
 
 export default {
     name: 'APP',
@@ -256,6 +257,11 @@ export default {
         }
     },
     methods: {
+        sysScroll() {
+            // if (this.$refs.timeSpace.scrollTop != this.$refs.nameSpace.scrollTop) {
+                this.$refs.nameSpace.scrollTop = this.$refs.timeSpace.scrollTop
+            // }
+        },
         translate (x, y, deg) {
             return `translate(${x}, ${y}) rotate(${deg})`;
         },
@@ -379,7 +385,7 @@ export default {
                 y: y,
                 outArc: outArc,
                 innerArc: innerArc,
-                link: data.link,
+                link: data.link == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : data.link,
                 img_r: r / 2,
                 name: data.name,
                 time: data.time
@@ -392,10 +398,10 @@ export default {
             // let timeSvg = select('#timeSpace').append('svg').attr('id',  'timeSvg').attr('width', this.pjWidth * 2).attr('height', this.pjHeight * data.length / 2);
             // let legendSvg = select('#legendSpace').append('svg').attr('id', 'legendSvg').attr('width', this.pjWidth * 2).attr('height', this.legendHeight - 15);
             let xScale = scaleLinear([0, 23], [0, this.pjWidth * 2]);
-            let areaScale = scaleLinear([0, 1], [this.pjHeight * 0.5 / 2, 0]);
+            let areaScale = scaleLinear([0, 1], [this.pjHeight * 0.5 / 2, 10]);
             let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.4 / 2, 0]);
-            let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveBasis);
-            let lineGenerate = line().x(d => xScale(d.x)).y(d => lineScale(d.y)).curve(curveBasis);
+            let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
+            let lineGenerate = line().x(d => xScale(d.x)).y(d => lineScale(d.y)).curve(curveMonotoneX);
             let timeData = []
             for (let i in data) {
                 // console.log(data[i])
@@ -411,7 +417,9 @@ export default {
                         M3: 0.5,
                         IMP: 0.2
                     },
-                    link: data[i]['logo_link'],
+
+                    link: data[i]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : data[i]['logo_link'],
+                    // link: data[i]['logo_link'],
                     name: data[i]['﻿Project Name'],
                     time: 'Jan. 20 - Feb. 05'
                 }, this.nameWidth * 0.8 / 2, 0, 0);
@@ -423,7 +431,7 @@ export default {
                     for (let j = 0; j < 24; ++j) {
                         tLineData.push({ x: j, y: Math.random() });
                     }
-                    console.log(tLineData);
+                    // console.log(tLineData);
                     lineData1.push({
                         d: areaGenerate(tLineData),
                         fill: this.colorType[i],
@@ -485,7 +493,7 @@ export default {
                     textPlace.push({
                         rectData: tableRect,
                         name: data[i]['﻿Project Name'],
-                        link: data[i]['logo_link'],
+                        link: data[i]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : data[i]['logo_link'],
                         pos: [lineScaleX(data.length - 1 - i), lineScaleY(i)]
                     });
                 }
@@ -560,7 +568,7 @@ export default {
         //     time: 'Jan. 20 - Feb. 05'
         // }, 50, 100, 100);
         this.timeData = this.calcIndividualProject(group[1]);
-        console.log(this.timeData)
+        // console.log(this.timeData)
     },
 }
 </script>
@@ -581,4 +589,8 @@ export default {
 
 #nameSpace::-webkit-scrollbar {
     display: none;
-}</style>
+}
+#legendSpace::-webkit-scrollbar {
+    display: none;
+}
+</style>

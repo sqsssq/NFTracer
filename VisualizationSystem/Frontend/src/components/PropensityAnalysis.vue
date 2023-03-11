@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div style="height: 100%;">
         <div class="frameworkTitle">
 
             <span class="title">
-                <svg t="1676053010318" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="11810" width="20" height="20">
+                <svg t="1676053010318" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    p-id="11810" width="20" height="20">
                     <path
                         d="M860.444444 298.666667h-384c-66.659556 0-120.888889-54.229333-120.888888-120.888889S409.784889 56.888889 476.444444 56.888889h384c66.659556 0 120.888889 54.229333 120.888889 120.888889S927.104 298.666667 860.444444 298.666667z m-384-184.888889c-35.285333 0-64 28.714667-64 64s28.714667 64 64 64h384c35.285333 0 64-28.714667 64-64S895.729778 113.777778 860.444444 113.777778h-384zM860.444444 967.111111h-384c-66.659556 0-120.888889-54.229333-120.888888-120.888889s54.229333-120.888889 120.888888-120.888889h384c66.659556 0 120.888889 54.229333 120.888889 120.888889S927.104 967.111111 860.444444 967.111111z m-384-184.888889c-35.285333 0-64 28.714667-64 64s28.714667 64 64 64h384c35.285333 0 64-28.714667 64-64S895.729778 782.222222 860.444444 782.222222h-384zM860.444444 640h-384c-66.659556 0-120.888889-54.229333-120.888888-120.888889s54.229333-120.888889 120.888888-120.888889h384c66.659556 0 120.888889 54.229333 120.888889 120.888889S927.104 640 860.444444 640z m-384-184.888889c-35.285333 0-64 28.714667-64 64s28.714667 64 64 64h384c35.285333 0 64-28.714667 64-64S895.729778 455.111111 860.444444 455.111111h-384z"
                         p-id="11811" fill="#534f4f"></path>
@@ -17,9 +17,9 @@
                     Analysis</span></span>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
         </div>
-        <div class="frameworkBody">
-            <div style="margin-top: 5px;">
-                <div>[Contol Panel]</div>
+        <div class="frameworkBody" id="controlPanel" ref="controlPanel">
+            <div style="margin-top: 5px; height: 25%;">
+                <div>[Control Panel]</div>
                 <div style="font-size: 14px;">
                     <div>
                         <span style="position: relative; top: 4px;">TIME SLICE</span>
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
-            <div style="font-size: 14px; margin-top: 5px;">
+            <div style="font-size: 14px; margin-top: 5px; height: 10%;">
                 <div style="margin-top: 0px;">
                     <span style="color: #ABACBE;">
                         Showing <span class="php">55 projects</span> from 70 results
@@ -139,15 +139,89 @@
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <div style="overflow-y: auto; height: calc(55%); margin-top: 10px; margin-bottom: 10px;">
+                <el-table :data="tableData" :show-header="false" style="height: calc(100%); width: 100%;" :row-style="{
+                    height: elHeight / 6 + 'px',
+                    'font-size': '14px',
+                }">
+                    <el-table-column type="expand" width="25" fixed>
+                        <template #default="props">
+                            <div m="4">
+                                <div style="margin-left: 112px; height: 120px;">
+                                    <svg height="100%" :width="elWidth - 24">
+                                        <g v-for="(item, i) in props.row.group" :key="'plg' + i">
+                                            <!-- <g v-for="(l_item, l_i) in item.line" :key="'pllg' + l_i"> -->
+                                            <path :d="item.line.d" :fill="'none'" :stroke="'steelblue'"></path>
+                                            <!-- </g> -->
+
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="Date" prop="groupNum" width="75" fixed/>
+                    <el-table-column label="Name" :width="20 * elWidth / 6">
+                        <template #default="scope">
+                            <div class="tableRow" :style="{
+                                height: (elHeight / 6 - 16) + 'px',
+                                width: '100%',
+                                'overflow-x': 'auto',
+                                overflowY: 'hidden'
+                            }">
+                                <svg :width="scope.row.group.length * (elWidth / 6)" height="100%">
+                                    <g v-for="(item, i) in scope.row.group" :key="'glyP' + i"
+                                        :transform="translate(i * elWidth / 6, 0, 0)">
+                                        <g :transform="translate(elWidth / 12, (elHeight / 6 - 16) / 2, 0)">
+                                            <path v-for="(a_item, a_i) in item.outStroke" :key="'corr_out_' + a_i"
+                                                :d="a_item.d" :fill="'none'" :stroke="'#534f4f'"></path>
+                                            <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i"
+                                                :d="a_item.d" :fill="a_item.fill" :stroke="a_item.fill"></path>
+                                            <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i"
+                                                :d="a_item.d" :fill="a_item.fill"></path>
+
+                                            <clipPath id="clipPath3">
+                                                <circle :cx="item.img_r" :cy="item.img_r" :r="item.img_r">
+                                                </circle>
+                                            </clipPath>
+                                            <g clip-path="url(#clipPath3)"
+                                                :transform="translate(-item.img_r, -item.img_r, 0)">
+                                                <image :href="item.link" x="0" y="0" :height="item.img_r * 2"
+                                                    :width="item.img_r * 2" />
+                                            </g>
+                                        </g>
+
+                                    </g>
+                                </svg>
+                            </div>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <div style="height: 6%;">
+                <div style="margin-top: 10px; float: left;">
+                    Unreleased projects:
+                </div>
+                <div style="overflow-x: auto; overflow-y: hidden; height: 100%;">
+                    <img v-for="(item, i) in unreleasedProject" :src="item" :style="{ position: 'absolute', 
+                    top: '6px', left: (i * 40 + 10) + 'px'}" height="35">
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
+import { arc, line, pie } from 'd3-shape';
+import { scaleLinear } from 'd3-scale';
+
 export default {
     name: 'APP',
-    props: [''],
-    data() {
+    props: ['groupData'],
+    data () {
         return {
+            elHeight: 100,
+            elWidth: 100,
             formData: {
                 checked0: false,
                 checked1: false,
@@ -161,22 +235,159 @@ export default {
                 checked9: false,
             },
             selectSlice: [],
+            unreleasedProject: ['https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384','https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384'],
             groupValue: 6,
             groupOptions: [1, 2, 3, 4, 5, 6],
             rankValue: 'Propensity Value',
             rankOptions: ['Propensity Value'],
-            colormap: ['#440154', '#46327e', '#365c8d', '#277f8e', '#1fa187', '#4ac16d', '#a0da39', '#fde725']
+            colormap: ['#440154', '#46327e', '#365c8d', '#277f8e', '#1fa187', '#4ac16d', '#a0da39', '#fde725'],
+
+            axisColor: { 'M1': '#EA7C16', 'M3': '#61bad6', 'IMP': '#d77a78', 'M2': '#53ad92' },
+            tableData: [],
+            colorType: {
+                seller: '#b69acb',
+                buyer: '#6f319b',
+                holder: '#c9c9c9'
+            }
         }
     },
     methods: {
+        translate (x, y, deg) {
+            return `translate(${x}, ${y}) rotate(${deg})`;
+        },
+        calcTable (data) {
+            let group = {};
+            for (let i in data) {
+                if (typeof (group[data[i].Group]) === 'undefined') {
+                    group[data[i].Group] = {
+                        project: [],
+                        group: [],
+                        groupNum: 'Group ' + data[i].Group.toString()
+                    };
+                }
+                group[data[i].Group].project.push(data[i]);
+            }
+            for (let i in group) {
+                for (let j in group[i].project) {
+                    group[i].group.push(this.calcIndividual({
+                        inner: {
+                            holder: 130,
+                            buyer: 100,
+                            seller: 60
+                        },
+                        outer: {
+                            M1: 0.7,
+                            M2: 0.3,
+                            M3: 0.5,
+                            IMP: 0.2
+                        },
+                        link: group[i].project[j]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : group[i].project[j]['logo_link'],
+                        name: group[i].project[j]['﻿Project Name'],
+                        time: 'Jan. 20 - Feb. 05'
+                    }, (this.elHeight / 6 - 16) * 0.9 / 2, 0, 0))
+                }
+                let xScale = scaleLinear([0, 12], [0, this.elWidth]);
+                let yScale = scaleLinear([0, 1], [100, 0]);
+                let lineGenerate = line().x((d, i) => xScale(i)).y((d) => yScale(d));
+                for (let j in group[i].group) {
+                    group[i].group[j]['line'] = {};
+                    group[i].group[j]['line']['data'] = [];
+                    for (let k = 0; k < 12; ++k)
+                        group[i].group[j]['line']['data'].push(Math.random());
+                    group[i].group[j]['line']['d'] = lineGenerate(group[i].group[j]['line']['data']);
+                }
+            }
+            // console.log(group);
+            let res_data = [];
+            for (let i in group) {
+                res_data.push(group[i]);
+            }
+            console.log(res_data);
+            return res_data;
+        },
+
+        calcIndividual (data, r, x, y) {
+            let tmpData = [];
+            for (let i in data.inner) {
+                tmpData.push({
+                    type: i,
+                    value: data.inner[i]
+                });
+            }
+            let pieData = pie().sort(null).value(d => d.value)(tmpData);
+            let innerArc = [];
+            for (let i in pieData) {
+                innerArc.push({
+                    data: pieData[i].data,
+                    d: arc().innerRadius(0).outerRadius(r - 6)(pieData[i]),
+                    fill: this.colorType[pieData[i].data.type]
+                })
+            }
+            let outArc = [];
+            let angle = 45;
+            let colorScale = scaleLinear([-1, 1], [0, 10]);
+            let cnt = 0;
+            let cOrder = ['M1', 'M3', 'IMP', 'M2'];
+            let outStroke = [];
+            // console.log(data);
+            for (let i in cOrder) {
+                outStroke.push({
+                    d: arc().innerRadius(r - 4).outerRadius(r)({
+                        startAngle: ((cnt * 90)) * Math.PI / 180,
+                        endAngle: ((cnt * 90) + 90) * Math.PI / 180,
+                        index: cnt++,
+                        padAngle: 0,
+                        value: 1
+                    }),
+                    fill: 'none',
+                    type: i,
+                    stroke: 1
+                });
+                outArc.push({
+                    d: arc().innerRadius(r - 3).outerRadius(r)({
+                        startAngle: ((cnt * 90)) * Math.PI / 180,
+                        endAngle: ((cnt * 90) + data.outer[cOrder[i]] * 90) * Math.PI / 180,
+                        index: cnt,
+                        padAngle: 0,
+                        value: 1
+                    }),
+                    fill: this.axisColor[cOrder[i]],
+                    type: i,
+                    stroke: 0
+                });
+            }
+            return {
+                x: x,
+                y: y,
+                outArc: outArc,
+                outStroke: outStroke,
+                innerArc: innerArc,
+                link: data.link,
+                img_r: r / 2,
+                name: data.name,
+                time: data.time
+            }
+        },
     },
-    created() {
+    created () {
     },
-    mounted() {
+    mounted () {
+        // console.log(this.groupData);
+        this.elHeight = this.$refs.controlPanel.offsetHeight * 0.55 - 10;
+        this.elWidth = this.$refs.controlPanel.offsetWidth - 112;
+        this.tableData = this.calcTable(this.groupData);
     },
 }
 </script>
 <style>
+    .tableRow::-webkit-scrollbar {
+        display: none;
+    }
+
+.el-table .el-table__cell {
+    padding: 0px;
+}
+
 .el-checkbox__label {
     padding-left: 3px;
 }
@@ -192,6 +403,10 @@ export default {
 }
 
 .el-input__suffix-inner i {
+    border: 1px solid #dcdfe6;
+}
+
+.el-table__expand-icon i {
     border: 1px solid #dcdfe6;
 }
 

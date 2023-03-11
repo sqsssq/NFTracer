@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-11-20 23:25:35
- * @LastEditTime: 2023-03-02 20:32:09
+ * @LastEditTime: 2023-03-11 17:41:24
 -->
 <template>
     <div id="navBar">
@@ -85,8 +85,8 @@ export default {
     /* margin: 5px; */
     border: 0px solid rgb(105, 119, 122);
     border-radius: 6.91892px;
-    background-color: white;
-    /* background-color: #2b2b2b; */
+    /* background-color: white; */
+    background-color: #2b2b2b;
 
     /* border-color: rgb(237, 237, 238); */
     /* border-color: ; */

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-02-27 11:14:28
+ * @LastEditTime: 2023-03-11 13:47:38
 -->
 <template>
     <div style="height: 100%;">
@@ -28,7 +28,7 @@
                 </svg>
                 Filter by:
                 <el-select v-model="filterValue" class="m-2" placeholder="Select"
-                    style="width: 70px; --el-border-color: white;">
+                    style="width: 50px; --el-border-color: white;">
                     <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
                 </el-select>
             </span>
@@ -140,8 +140,8 @@ export default {
             elWidth: 1000,
             distributionHeight: 0,
             groupHeight: 0,
-            filterValue: "factor1",
-            filterOptions: ["factor1"],
+            filterValue: "M-1",
+            filterOptions: ["M-1", "M-2", "M-3", "IMP"],
             groupSet: [1, 2, 3, 4, 5, 6],
             monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
