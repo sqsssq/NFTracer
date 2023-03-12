@@ -112,9 +112,24 @@
                         </g>
                         <g transform="translate(0, 20)">
                             <!-- <text x="95" y="20" font-size="14">#Holders-#Buyers-#Sellers</text> -->
-                            <text font-size="14" x="45" y="20" text-anchor="middle" fill="#534f4f">#Seller</text>
-                            <text font-size="14" x="135" y="20" text-anchor="middle" fill="#534f4f">#Buyer</text>
-                            <text font-size="14" x="225" y="20" text-anchor="middle" fill="#534f4f">#Holder</text>
+                            <text font-size="14" :x="ctWidth / 3 - ctWidth / 6" y="20" text-anchor="middle"
+                                fill="#534f4f">#Seller</text>
+                            <text font-size="12" x="5" y="45" text-anchor="start" fill="#534f4f"
+                                font-family="sans-serif">0</text>
+                            <text font-size="12" :x="ctWidth / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                font-family="sans-serif">{{ max_people }}</text>
+                            <text font-size="14" :x="ctWidth * 2 / 3 - ctWidth / 6" y="20" text-anchor="middle"
+                                fill="#534f4f">#Buyer</text>
+                            <text font-size="12" :x="ctWidth / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
+                                font-family="sans-serif">0</text>
+                            <text font-size="12" :x="ctWidth * 2 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                font-family="sans-serif">{{ max_people }}</text>
+                            <text font-size="14" :x="ctWidth - ctWidth / 6" y="20" text-anchor="middle"
+                                fill="#534f4f">#Holder</text>
+                            <text font-size="12" :x="ctWidth * 2 / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
+                                font-family="sans-serif">0</text>
+                            <text font-size="12" :x="ctWidth * 3 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                font-family="sans-serif">{{ max_holder }}</text>
                             <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
                             <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
                                 stroke="#C6BCBC"></path>
@@ -245,6 +260,7 @@ import { select } from 'd3-selection';
 import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3-shape';
 import { useDataStore } from '../stores/counter';
 import data from '../assets/data/data.json';
+import { sum } from 'd3-array';
 
 export default {
     name: 'APP',
@@ -282,7 +298,9 @@ export default {
             timeData: [],
             projectNum: 1,
             timeAxis: ['21-1', '21-2', '21-3', '21-4', '21-5', '21-6', '21-7', '21-8', '21-9', '21-10', '21-11', '21-12', '22-1', '22-2', '22-3', '22-4', '22-5', '22-6', '22-7', '22-8', '22-9', '22-10', '22-11', '22-12'],
-            timeSelectionText: ''
+            timeSelectionText: '',
+            max_people: 0,
+            max_holder: 0
         }
     },
     methods: {
@@ -341,7 +359,7 @@ export default {
             for (let i in pieData) {
                 innerArc.push({
                     data: pieData[i].data,
-                    d: arc().innerRadius(0).outerRadius(r)(pieData[i]),
+                    d: arc().innerRadius(0).outerRadius(r - 5)(pieData[i]),
                     fill: this.colorType[pieData[i].data.type]
                 })
             }
@@ -351,7 +369,7 @@ export default {
             let cnt = 0;
             for (let i in data.outer) {
                 outArc.push({
-                    d: arc().innerRadius(r + 3).outerRadius(r + 5).cornerRadius(5)({
+                    d: arc().innerRadius(r - 2).outerRadius(r).cornerRadius(5)({
                         startAngle: ((cnt * 120) - angle / 2) * Math.PI / 180,
                         endAngle: ((cnt * 120) + angle / 2) * Math.PI / 180,
                         index: cnt++,
@@ -515,7 +533,7 @@ export default {
         // calcCorrelationData (data)
         calcLine (table_data, correlation_data, logo_link_set) {
             let data = table_data;
-            console.log(data);
+            // console.log(data);
             let lineScaleY = scaleLinear([-1, data.length], [this.cvHeight - 10 - (this.cvWidth - 3 - 0), this.cvHeight - 10]);
             let lineScaleX = scaleLinear([-1, data.length], [0, this.cvWidth - 3]);
             let lineData = [];
@@ -523,21 +541,47 @@ export default {
             const lineGenerate = line()
                 .x(d => lineScaleX(d[0]))
                 .y(d => lineScaleY(d[1]));
-            function getRandom (n, m) {
-                var num = Math.floor(Math.random() * (m - n + 1) + n)
-                return num
+            let max_people = 0;
+            let max_holder = 0;
+            let max_sum_people = 0;
+            let min_holder = 100000000000000;
+            for (let i = 0; i < data.length; ++i) {
+                let seller = sum(data[i].Seller);
+                let holder = (data[i].Holder[data[i].Holder.length - 1]);
+                let buyer = sum(data[i].Buyer);
+                max_people = Math.max(max_people, seller, buyer);
+                // min_sum_people = Math.min(min_sum_people, seller, buyer);
+                max_holder = Math.max(max_holder, holder);
+                min_holder = Math.min(min_holder, holder);
+                // console.log(seller, holder, buyer);
+                let sum_people = seller + holder + buyer;
+                max_sum_people = Math.max(max_sum_people, sum_people);
+                data[i].sum_people = sum_people;
             }
-            let rectScale = scaleLinear([0, 100], [0, this.ctWidth / 3 - 5]);
+            data.sort((a, b) => b.sum_people - a.sum_people);
+            // console.log(data);
+            // console.log(max_sum_people, max_people);
+            // console.log(min_holder, max_holder);
+            this.max_holder = max_holder;
+            this.max_people = max_people;
+            let rectScale = scaleLinear([0, max_people], [0, this.ctWidth / 3 - 0]);
+            let holderScale = scaleLinear([0, max_holder], [0, this.ctWidth / 3 - 0]);
+            let projectPosition = {};
             for (let i = -1; i < data.length + 1; i++) {
 
                 if (i < data.length && i > -1) {
                     data[i]['logo_link'] = logo_link_set[data[i]['Project Name']];
-                    console.log(data[i]['Project Name'], data[i]['logo_link']);
+                    // console.log(data[i]['Project Name'], data[i]['logo_link']);
                     let cnt_len = 0;
                     let tableRect = []
+                    let typeName = ['Seller', 'Buyer', 'Holder'];
+                    // console.log(data[i]);
+                    for (let j in typeName) {
 
-                    for (let j = 0; j < 3; ++j) {
-                        let rw = rectScale(getRandom(0, 100))
+                        let rw = 0;
+                        if (j != 2)
+                            rw = rectScale(sum(data[i][typeName[j]]));
+                        else rw = holderScale((data[i][typeName[j]][data[i][typeName[j]].length - 1]));
                         tableRect.push({
                             x: cnt_len,
                             w: rw,
@@ -548,9 +592,12 @@ export default {
                         cnt_len += this.ctWidth / 3;
                     }
                     //  console.log(tableRect);
+                    projectPosition[data[i]['Project Name']] = {
+                        pos: [lineScaleX(data.length - 1 - i), lineScaleY(i)]
+                    }
                     textPlace.push({
                         rectData: tableRect,
-                        name: data[i]['﻿Project Name'],
+                        name: data[i]['Project Name'],
                         link: data[i]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : data[i]['logo_link'],
                         pos: [lineScaleX(data.length - 1 - i), lineScaleY(i)]
                     });
@@ -558,7 +605,25 @@ export default {
                 lineData.push(lineGenerate([[i, data.length - 1 - i], [i, data.length]]));
                 lineData.push(lineGenerate([[data.length - i - 1, i], [data.length, i]]));
             }
-            let sizeScale = scaleLinear([0, 1], [0.5, 0.7]);
+            // console.log(projectPosition);
+            let repeat_data = {};
+            let max_co_people = 0;
+            let min_co_people = 1000000000000;
+            let co_data = [];
+
+            for (let i in correlation_data) {
+                if ((repeat_data[correlation_data[i]['Project Name B'] + correlation_data[i]['Project Name A']]) == 1 ||
+                    repeat_data[correlation_data[i]['Project Name A'] + correlation_data[i]['Project Name B']] == 1) {
+                    continue;
+                }
+
+                repeat_data[correlation_data[i]['Project Name A'] + correlation_data[i]['Project Name B']] = 1;
+                co_data.push(correlation_data[i]);
+                let sum_people = correlation_data[i].co_buyer_raw + correlation_data[i].co_holder_raw + correlation_data[i].co_seller_raw;
+                max_co_people = Math.max(max_co_people, sum_people);
+                min_co_people = Math.min(min_co_people, sum_people);
+            }
+            let sizeScale = scaleLinear([min_co_people, max_co_people], [0.5, 0.9]);
             for (let i = 0; i < data.length; i++) {
                 for (let j = data.length - i; j < data.length; j++) {
                     if (Math.random() > 0.8) {
@@ -611,7 +676,7 @@ export default {
             group[this.groupData[i].Group].push(this.groupData[i]);
         }
 
-        [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data,  logo_link_set);
+        [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data, logo_link_set);
         // this.calcIndividual({
         //     inner: {
         //         holder: 130,
@@ -662,5 +727,4 @@ export default {
 
 #legendSpace::-webkit-scrollbar {
     display: none;
-}
-</style>
+}</style>
