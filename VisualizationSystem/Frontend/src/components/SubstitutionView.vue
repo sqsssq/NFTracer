@@ -19,7 +19,7 @@
             </span>
 
             <span style="float: right; position: relative; top: -2px; font-size: 16px;">
-                <svg height="27" width="320" transform="translate(0, 10)">
+                <svg height="27" width="400" transform="translate(0, 10)">
                     <g v-for="(item, i) in colormap" :key="'gcolor' + i">
                         <rect :x="0 + i * 50" :y="2" :width="50" :height="9" :fill="item" :stroke="'#534f4f'"></rect>
                         <text :x="0 + i * 50 + 25" :y="23" font-size="12" text-anchor="middle" fill="#534F4F">{{ 'Group' + i
@@ -154,7 +154,12 @@ export default {
             mainArc: [],
             innerArc: [],
             axisName: ['F1', 'F3', 'Imp', 'F2'],
-            colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"],
+            // colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"],
+            // colormap: ["#DA927C", "#175E7D", "#B1E1E9", "#A6BAA7", "#9B9364", "#C59CA0", "#FFDDB7"],
+            // colormap: ["#F3F0C7", "#BEC68A", "#72926A", "#F7C183", "#FEA541", "#FBC9C6", "#8A8CA8"],
+            // colormap: ["#565C76", "#B06E62", "#66323E", "#90A1B8", "#9D717C", "#838F7E", "#ADA397"],
+            // colormap: ["#8F5362", "#B1818F", "#DFA57C", "#CCAA66", "#A6C9A6", "#6888A5", "#12507B"],
+            colormap: ["#B3AE94", "#C59A81", "#D8876F", "#DDBE8F", "#94A7C7", "#9B8FB7", "#D883AF"],
             groupTag: -1,
             outerArc: [],
             groupArc: [],

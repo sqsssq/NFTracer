@@ -6,7 +6,7 @@
                     p-id="37153" width="20" height="20">
                     <path
                         d="M170.666667 42.666667l682.666667 0q52.992 0 90.496 37.504t37.504 90.496l0 682.666667q0 52.992-37.504 90.496t-90.496 37.504l-682.666667 0q-52.992 0-90.496-37.504t-37.504-90.496l0-682.666667q0-52.992 37.504-90.496t90.496-37.504zM896 742.997333l-213.333333-213.333333-366.336 366.336 537.002667 0q17.664 0 30.165333-12.501333t12.501333-30.165333l0-110.336zM853.333333 128l-682.666667 0q-17.664 0-30.165333 12.501333t-12.501333 30.165333l0 682.666667q0 17.664 12.501333 30.165333t30.165333 12.501333l25.002667 0 486.997333-486.997333 213.333333 213.333333 0-451.669333q0-17.664-12.501333-30.165333t-30.165333-12.501333zM341.333333 213.333333q52.992 0 90.496 37.504t37.504 90.496-37.504 90.496-90.496 37.504-90.496-37.504-37.504-90.496 37.504-90.496 90.496-37.504zM341.333333 298.666667q-17.664 0-30.165333 12.501333t-12.501333 30.165333 12.501333 30.165333 30.165333 12.501333 30.165333-12.501333 12.501333-30.165333-12.501333-30.165333-30.165333-12.501333z"
-                        p-id="37154" font-size="14"></path>
+                        p-id="37154" font-size="14" fill="#534f4f"></path>
                 </svg>
                 &nbsp; Impact Dynamic View
             </span>
@@ -49,16 +49,15 @@
                                         :fill="arc_i == 0 ? '#a30e24' : arc_i == 1 ? '#2a57f7' : '#fc7b5c'"></path>
                                     <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
                                     <path d="M 18 10 L 60 10" fill="none" stroke="#C6BCBC"></path>
-                                    <text x="55" y="-15" dx="0.5em" dy="0.3em" font-size="14">#300</text>
-                                    <text x="55" y="10" dx="0.5em" dy="0.3em" font-size="14">-0.8</text>
+                                    <text x="55" y="-15" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">#300</text>
+                                    <text x="55" y="10" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">-0.8</text>
                                 </g>
                                 <g :transform="translate(0, 10, 0)">
-                                    <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14">Group:</text>
-                                    <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline">1 /
-                                        user selected</text>
-                                    <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14">Time Slot:</text>
+                                    <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Group:</text>
+                                    <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline" fill="#534f4f">1</text>
+                                    <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time Slot:</text>
                                     <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14"
-                                        text-decoration="underline">Jan. 20 - Feb. 05</text>
+                                        text-decoration="underline" fill="#534f4f">Jan. 20 - Feb. 05</text>
                                 </g>
                             </g>
                         </g>
@@ -93,9 +92,9 @@
                     <svg width="100%" height="100%">
                         <g transform="translate(0, 20)">
                             <!-- <text x="95" y="20" font-size="14">#Holders-#Buyers-#Sellers</text> -->
-                            <text font-size="14" x="45" y="20" text-anchor="middle">#Seller</text>
-                            <text font-size="14" x="135" y="20" text-anchor="middle">#Buyer</text>
-                            <text font-size="14" x="225" y="20" text-anchor="middle">#Holder</text>
+                            <text font-size="14" x="45" y="20" text-anchor="middle" fill="#534f4f">#Seller</text>
+                            <text font-size="14" x="135" y="20" text-anchor="middle" fill="#534f4f">#Buyer</text>
+                            <text font-size="14" x="225" y="20" text-anchor="middle" fill="#534f4f">#Holder</text>
                             <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
                             <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
                                 stroke="#C6BCBC"></path>
@@ -140,10 +139,11 @@
                     </span>
                 </div>
                 <div style="height: calc(100% - 35px); width: 100%;">
-                    <div ref="nameSpace" id="nameSpace" style="float: left; width: 15%; height: 92%;overflow-y: auto;">
-                        <svg :width="nameWidth" :height="pjWidth * projectNum / 2">
+                    <div ref="nameSpace" id="nameSpace"
+                        style="float: left; width: calc(15% + 20px); height: 92%;overflow: hidden;">
+                        <svg :width="nameWidth" :height="pjWidth * projectNum / 2" id="nameSpaceSvg">
                             <g v-for="(item, i) in timeData" :key="'time_x' + i">
-                                <g :transform="translate(nameWidth / 2, i * pjHeight / 2 + 100, 0)">
+                                <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 100, 0)">
 
                                     <path v-for="(a_item, a_i) in item.name.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
                                         :fill="a_item.fill" :stroke="a_item.stroke == 1 ? '#534f4f' : 'none'"></path>
@@ -160,26 +160,28 @@
                                     </g>
                                 </g>
 
-                                <g :transform="translate(nameWidth / 2, i * pjHeight / 2 + 200, 0)">
-                                    <text font-size="14" text-anchor="middle">Time Slot: </text>
-                                    <text font-size="14" text-anchor="middle" text-decoration="underline" dy="2em">{{
+                                <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 200, 0)">
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle">Time Slot: </text>
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline" dy="2em">{{
                                         item.name.time }}</text>
                                 </g>
                                 <g>
-                                    <path :d="'M0 ' + (pjHeight / 2 * (i + 1)) + ' L' + nameWidth + ' ' + (pjHeight / 2 * (i + 1))"
+                                    <path
+                                        :d="'M0 ' + (pjHeight / 2 * (i + 1)) + ' L' + nameWidth + ' ' + (pjHeight / 2 * (i + 1))"
                                         fill="none" stroke="#e0dede"></path>
                                 </g>
                             </g>
                         </svg>
                     </div>
                     <div></div>
-                    <div ref="timeSpace" id="timeSpace" style="float: right; width: 85%; height: 92%; overflow: auto;" @scroll="sysScroll()">
+                    <div ref="timeSpace" id="timeSpace"
+                        style="float: right; width: calc(85% - 20px); height: 92%; overflow: auto;" @scroll="sysScroll()">
 
                         <svg :width="pjWidth * 2" :height="pjHeight * projectNum / 2">
                             <g v-for="(item, i) in timeData" :key="'time_x' + i"
                                 :transform="translate(0, pjHeight / 2 * i, 0)">
 
-                                <g :transform="translate(0, pjWidth / 2 * 0.5, 0)">
+                                <g :transform="translate(0, 0, 0)">
                                     <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
                                         :fill="'none'" :stroke="a_item.fill"></path>
                                 </g>
@@ -188,14 +190,18 @@
                                     <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i" :d="a_item.d"
                                         :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill"></path>
                                 </g>
+                                <g :transform="translate(0, 0, 0)">
+                                    <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i" :cx="a_item.x"
+                                        :cy="a_item.y" :r="5" :fill="a_item.fill"></circle>
+                                </g>
                                 <g>
 
                                     <path
-                                        :d="'M0 ' + (pjHeight / 2 * 0.5) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2 * 0.5)"
+                                        :d="'M0 ' + (pjHeight / 2 * 0.6) + ' L' + (pjWidth * 2 - 0) + ' ' + (pjHeight / 2 * 0.6)"
                                         fill="none" stroke="#534f4f"></path>
 
                                     <path
-                                        :d="'M0 ' + (pjHeight / 2 * 0.9) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2 * 0.9)"
+                                        :d="'M0 ' + (pjHeight * 0.45) + ' L' + (pjWidth * 2 - 0) + ' ' + (pjHeight / 2 * 0.9)"
                                         fill="none" stroke="#534f4f"></path>
                                     <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
                                         fill="none" stroke="#e0dede"></path>
@@ -203,9 +209,16 @@
                             </g>
                         </svg>
                     </div>
-                    <div ref="legendSpace" id="legendSpace" style="float: right; width: 85%; height: 8%; overflow: auto;">
+                    <div ref="legendSpace" id="legendSpace"
+                        style="float: right; width: calc(85% - 20px); height: 8%; overflow-y: hidden; overflow-x: hidden;">
                         <svg :width="pjWidth * 2" :height="legendHeight">
-
+                            <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
+                            <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
+                                :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
+                                <path d="M0 0L0 6" fill="none" stroke="#534f4f"></path>
+                                <text :text-anchor="i == 0 ? 'start' : (i == 23 ? 'end' : 'middle')" font-family="sans-serif"
+                                    font-size="12" fill="#534f4f" dy="-0.3em">{{ item }}</text>
+                            </g>
                         </svg>
                     </div>
                 </div>
@@ -215,10 +228,11 @@
     </div>
 </template>
 <script>
+import { axisLeft } from 'd3-axis';
 import { scaleLinear } from 'd3-scale';
 // import time from 'd3-scale/src/time';
 import { select } from 'd3-selection';
-import { arc, area, curveBasis, curveMonotoneX, line, pie } from 'd3-shape';
+import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3-shape';
 
 export default {
     name: 'APP',
@@ -244,23 +258,33 @@ export default {
             textPlace: [],
             colormap1: ['#b69acb', '#6f319b', '#c9c9c9'],
             colorType: {
+                holder: '#c9c9c9',
                 seller: '#b69acb',
                 buyer: '#6f319b',
-                holder: '#c9c9c9'
             },
             colormap2: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#ffffec', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
             correlationData: [],
             axisColor: { 'M1': '#EA7C16', 'M3': '#61bad6', 'IMP': '#d77a78', 'M2': '#53ad92' },
             tableRect: [],
             timeData: [],
-            projectNum: 1
+            projectNum: 1,
+            timeAxis: ['21-1', '21-2', '21-3', '21-4', '21-5', '21-6', '21-7', '21-8', '21-9', '21-10', '21-11', '21-12', '22-1', '22-2', '22-3', '22-4', '22-5', '22-6', '22-7', '22-8', '22-9', '22-10', '22-11', '22-12']
         }
     },
     methods: {
-        sysScroll() {
-            // if (this.$refs.timeSpace.scrollTop != this.$refs.nameSpace.scrollTop) {
+        sysScroll () {
+            if (this.$refs.timeSpace.scrollTop != this.$refs.nameSpace.scrollTop) {
                 this.$refs.nameSpace.scrollTop = this.$refs.timeSpace.scrollTop
-            // }
+            }
+            if (this.$refs.timeSpace.scrollLeft != this.$refs.legendSpace.scrollLeft) {
+                this.$refs.legendSpace.scrollLeft = this.$refs.timeSpace.scrollLeft;
+            }
+        },
+
+        sysScrollL () {
+            if (this.$refs.timeSpace.scrollTop != this.$refs.nameSpace.scrollTop) {
+                this.$refs.timeSpace.scrollTop = this.$refs.nameSpace.scrollTop
+            }
         },
         translate (x, y, deg) {
             return `translate(${x}, ${y}) rotate(${deg})`;
@@ -397,13 +421,16 @@ export default {
             // let nameSvg = select('#nameSpace').append('svg').attr('id', 'nameSvg').attr('width', this.nameWidth).attr('height', this.pjHeight * data.length / 2);
             // let timeSvg = select('#timeSpace').append('svg').attr('id',  'timeSvg').attr('width', this.pjWidth * 2).attr('height', this.pjHeight * data.length / 2);
             // let legendSvg = select('#legendSpace').append('svg').attr('id', 'legendSvg').attr('width', this.pjWidth * 2).attr('height', this.legendHeight - 15);
-            let xScale = scaleLinear([0, 23], [0, this.pjWidth * 2]);
-            let areaScale = scaleLinear([0, 1], [this.pjHeight * 0.5 / 2, 10]);
-            let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.4 / 2, 0]);
-            let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
-            let lineGenerate = line().x(d => xScale(d.x)).y(d => lineScale(d.y)).curve(curveMonotoneX);
+
             let timeData = []
             for (let i in data) {
+                let xScale = scaleLinear([0, 23], [0, this.pjWidth * 2 - 0]);
+                let areaScale = scaleLinear([0, 1], [this.pjHeight * 0.6 / 2, 10]);
+                let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.9 / 2, this.pjHeight * 0.6 / 2 + 20]);
+                let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
+                select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth- 1}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth- 1}, ${this.pjHeight / 2 * i})`);
+                let lineGenerate = line().x(d => xScale(d.x)).y(d => lineScale(d.y)).curve(curveMonotoneX);
                 // console.log(data[i])
                 let nameData = this.calcIndividual({
                     inner: {
@@ -422,9 +449,10 @@ export default {
                     // link: data[i]['logo_link'],
                     name: data[i]['﻿Project Name'],
                     time: 'Jan. 20 - Feb. 05'
-                }, this.nameWidth * 0.8 / 2, 0, 0);
+                }, (this.nameWidth * 0.8 - 20) / 2, 0, 0);
                 let lineData1 = [];
                 let lineData2 = [];
+                let scatter = [];
 
                 for (let i in this.colorType) {
                     let tLineData = [];
@@ -440,19 +468,29 @@ export default {
                 }
                 for (let i in this.axisColor) {
                     let tLineData = [];
+                    let sData = []
                     for (let j = 0; j < 24; ++j) {
-                        tLineData.push({ x: j, y: Math.random() });
+                        let x = j;
+                        let y = Math.random()
+                        tLineData.push({ x: x, y: y });
+                        sData.push({ x: xScale(x), y: lineScale(y), rx: x, ry: y, fill: this.axisColor[i] });
                     }
-                    lineData2.push({
-                        d: lineGenerate(tLineData),
-                        fill: this.axisColor[i],
-                        type: i
-                    })
+                    if (i != 'IMP')
+                        lineData2.push({
+                            d: lineGenerate(tLineData),
+                            fill: this.axisColor[i],
+                            type: i
+                        })
+                    if (i == 'IMP') {
+                        scatter = sData;
+                        console.log(scatter);
+                    }
                 }
                 timeData.push({
                     name: nameData,
                     l1Data: lineData1,
-                    l2Data: lineData2
+                    l2Data: lineData2,
+                    scatter: scatter
                 });
             }
             return timeData;
@@ -590,6 +628,7 @@ export default {
 #nameSpace::-webkit-scrollbar {
     display: none;
 }
+
 #legendSpace::-webkit-scrollbar {
     display: none;
 }

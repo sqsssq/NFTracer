@@ -33,16 +33,20 @@
                         </svg>
                     </span>
                     <span style="margin-right: 20px;">
-                        Select Group:
-                        <el-select v-model="filterValue" class="m-2" placeholder="Select"
+                        Time Slot:
+                        <!-- <el-select v-model="filterValue" class="m-2" placeholder="Select"
                             style="width: 70px; --el-border-color: white;">
                             <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
-                        </el-select>
+                        </el-select> -->
+                        <span style="text-decoration: underline;">
+                            Jan. 20 - Feb. 05
+                        </span>
+
                     </span>
                     <span>
                         Select NFT Project:
                         <el-select v-model="filterValue" class="m-2" placeholder="Select"
-                            style="width: 70px; --el-border-color: white;">
+                            style="width: 140px; --el-border-color: white;">
                             <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
                         </el-select>
                     </span>
