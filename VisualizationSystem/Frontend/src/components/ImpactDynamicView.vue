@@ -168,9 +168,8 @@
                                     <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
                                         dy="2em">{{
                                             timeSelectionText.split('-')[0] }}</text>
-                                    <text fill="#534f4f" font-size="14" text-anchor="middle" 
-                                        dy="3.5em">{{
-                                            '-' }}</text>
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle" dy="3.5em">{{
+                                        '-' }}</text>
                                     <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
                                         dy="5em">{{
                                             timeSelectionText.split('-')[1] }}</text>
@@ -245,6 +244,7 @@ import { scaleLinear } from 'd3-scale';
 import { select } from 'd3-selection';
 import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3-shape';
 import { useDataStore } from '../stores/counter';
+import data from '../assets/data/data.json';
 
 export default {
     name: 'APP',
@@ -513,7 +513,9 @@ export default {
 
         },
         // calcCorrelationData (data)
-        calcLine (data) {
+        calcLine (table_data, correlation_data, logo_link_set) {
+            let data = table_data;
+            console.log(data);
             let lineScaleY = scaleLinear([-1, data.length], [this.cvHeight - 10 - (this.cvWidth - 3 - 0), this.cvHeight - 10]);
             let lineScaleX = scaleLinear([-1, data.length], [0, this.cvWidth - 3]);
             let lineData = [];
@@ -529,6 +531,8 @@ export default {
             for (let i = -1; i < data.length + 1; i++) {
 
                 if (i < data.length && i > -1) {
+                    data[i]['logo_link'] = logo_link_set[data[i]['Project Name']];
+                    console.log(data[i]['Project Name'], data[i]['logo_link']);
                     let cnt_len = 0;
                     let tableRect = []
 
@@ -538,7 +542,7 @@ export default {
                             x: cnt_len,
                             w: rw,
                             h: 25,
-                            y: lineScaleY(i) - 15,
+                            y: lineScaleY(i) - 12.5,
                             fill: this.colormap1[j]
                         })
                         cnt_len += this.ctWidth / 3;
@@ -574,8 +578,6 @@ export default {
                     }
                 }
             }
-
-
             // console.log(lineData);
             return [lineData, textPlace];
 
@@ -595,38 +597,45 @@ export default {
         // this.dataprocess();
         // console.log(this.barHeight, this.barWidth)
 
+        // console.log(data);
+
+        [this.legendArc, this.outLegendArc] = this.dataProcess();
+        // console.log(this.legendArc)
+        let group = {};
+        let logo_link_set = {};
+        for (let i in this.groupData) {
+            if (typeof (group[this.groupData[i].Group]) === 'undefined') {
+                group[this.groupData[i].Group] = [];
+            }
+            logo_link_set[this.groupData[i]['﻿Project Name']] = this.groupData[i]['logo_link'];
+            group[this.groupData[i].Group].push(this.groupData[i]);
+        }
+
+        [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data,  logo_link_set);
+        // this.calcIndividual({
+        //     inner: {
+        //         holder: 130,
+        //         buyer: 100,
+        //         seller: 60
+        //     },
+        //     outer: {
+        //         M1: 0.7,
+        //         M2: 0.3,
+        //         M3: 0.5,
+        //         IMP: 0.2
+        //     },
+        //     link: 'https://lh3.googleusercontent.com/XHZY9623keDQqFSDHKqOdcjD99Y7N82K1egYRM2Mm1Z-Jxn5myrkKiC5NBktWKStVtTzDzwELy9dNpzTWJTIkLsdMIxUHI86jduQ=s120',
+        //     name: 'BAYC',
+        //     time: 'Jan. 20 - Feb. 05'
+        // }, 50, 100, 100);
+        this.timeData = this.calcIndividualProject(group[1]);
+
         // console.log(this.timeData)
         const dataStore = useDataStore();
         dataStore.$subscribe((mutations, state) => {
             this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
 
-            [this.legendArc, this.outLegendArc] = this.dataProcess();
-            // console.log(this.legendArc)
-            let group = {};
-            for (let i in this.groupData) {
-                if (typeof (group[this.groupData[i].Group]) === 'undefined') {
-                    group[this.groupData[i].Group] = [];
-                }
-                group[this.groupData[i].Group].push(this.groupData[i]);
-            }
-            [this.lineData, this.textPlace] = this.calcLine(group[1]);
-            // this.calcIndividual({
-            //     inner: {
-            //         holder: 130,
-            //         buyer: 100,
-            //         seller: 60
-            //     },
-            //     outer: {
-            //         M1: 0.7,
-            //         M2: 0.3,
-            //         M3: 0.5,
-            //         IMP: 0.2
-            //     },
-            //     link: 'https://lh3.googleusercontent.com/XHZY9623keDQqFSDHKqOdcjD99Y7N82K1egYRM2Mm1Z-Jxn5myrkKiC5NBktWKStVtTzDzwELy9dNpzTWJTIkLsdMIxUHI86jduQ=s120',
-            //     name: 'BAYC',
-            //     time: 'Jan. 20 - Feb. 05'
-            // }, 50, 100, 100);
-            this.timeData = this.calcIndividualProject(group[1]);
+
         })
 
     },
@@ -653,4 +662,5 @@ export default {
 
 #legendSpace::-webkit-scrollbar {
     display: none;
-}</style>
+}
+</style>

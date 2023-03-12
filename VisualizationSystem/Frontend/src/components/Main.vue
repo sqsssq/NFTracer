@@ -85,8 +85,8 @@ export default {
     /* margin: 5px; */
     border: 0px solid rgb(105, 119, 122);
     border-radius: 6.91892px;
-    background-color: white;
-    /* background-color: #2b2b2b; */
+    /* background-color: white; */
+    background-color: #2b2b2b;
 
     /* border-color: rgb(237, 237, 238); */
     /* border-color: ; */
