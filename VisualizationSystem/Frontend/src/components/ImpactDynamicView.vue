@@ -618,30 +618,39 @@ export default {
                 }
 
                 repeat_data[correlation_data[i]['Project Name A'] + correlation_data[i]['Project Name B']] = 1;
-                co_data.push(correlation_data[i]);
                 let sum_people = correlation_data[i].co_buyer_raw + correlation_data[i].co_holder_raw + correlation_data[i].co_seller_raw;
                 max_co_people = Math.max(max_co_people, sum_people);
                 min_co_people = Math.min(min_co_people, sum_people);
+                correlation_data[i].co_sum = sum_people;
+                co_data.push(correlation_data[i]);
             }
-            let sizeScale = scaleLinear([min_co_people, max_co_people], [0.5, 0.9]);
-            for (let i = 0; i < data.length; i++) {
-                for (let j = data.length - i; j < data.length; j++) {
-                    if (Math.random() > 0.8) {
+            let sizeScale = scaleLinear([min_co_people, max_co_people], [0.7, 0.9]);
+            console.log(co_data);
+            for (let i = 0; i < co_data.length; i++) {
+                // for (let j = co_data.length - i; j < co_data.length; j++) {
+                    // if (Math.random() > 0.8) {
+                        let x = projectPosition[co_data[i]['Project Name A']].pos[0];
+                        let y = projectPosition[co_data[i]['Project Name B']].pos[1];
+                        if (projectPosition[co_data[i]['Project Name B']].pos[0] > x)
+                        {
+                            x = projectPosition[co_data[i]['Project Name B']].pos[0];
+                            y = projectPosition[co_data[i]['Project Name A']].pos[1];
+                        }
 
                         this.correlationData.push(this.calcCorrelation({
                             inner: {
-                                holder: Math.random(50, 100),
-                                buyer: Math.random(50, 100),
-                                seller: Math.random(50, 100)
+                                holder: co_data[i].co_holder_raw / co_data[i].co_sum,
+                                buyer: co_data[i].co_buyer_raw / co_data[i].co_sum,
+                                seller: co_data[i].co_seller_raw / co_data[i].co_sum
                             },
                             outer: {
-                                c1: Math.random(-1, 1),
-                                c2: Math.random(-1, 1),
-                                c3: Math.random(-1, 1)
+                                c1: co_data[i].buyer_correlation,
+                                c2: co_data[i].seller_correlation,
+                                c3: co_data[i].holder_correlation
                             }
-                        }, sizeScale(Math.random()) * (lineScaleX(1) - lineScaleX(0)) / 2, lineScaleX(i), lineScaleY(j)))
-                    }
-                }
+                        }, sizeScale(Math.random()) * (lineScaleX(1) - lineScaleX(0)) / 2, x, y))
+                    // }
+                // }
             }
             // console.log(lineData);
             return [lineData, textPlace];
