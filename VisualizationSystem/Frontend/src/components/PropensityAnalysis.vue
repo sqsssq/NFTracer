@@ -478,4 +478,17 @@ export default {
 .el-checkbox__inner {
     border-color: #534F4F;
 }
+
+.el-radio__inner {
+    border-color: #534F4F;
+}
+
+el-checkbox__label {
+    color: #94a7c7;
+}
+.el-checkbox {
+    --el-checkbox-checked-bg-color: #94a7c7;
+    --el-checkbox-checked-input-border-color: #94a7c7;
+    --el-checkbox-checked-text-color: #94a7c7;
+}
 </style>
