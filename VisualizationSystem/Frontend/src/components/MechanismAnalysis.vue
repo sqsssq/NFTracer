@@ -13,7 +13,7 @@
             </span>
             <span style="float: right; position: relative; top: 3px; font-size: 16px;">
 
-                <span style="float: right; position: relative; top: 1px;">
+                <span style="float: right;">
                     <span style="margin-right: 20px;">
                         [M-1] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                             xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
@@ -32,27 +32,27 @@
                             <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#d77a78" fill-opacity="0.7" />
                         </svg>
                     </span>
-                    <span style="margin-right: 20px;">
+                    <span style="margin-right: 220px;">
                         Time Slot:
                         <!-- <el-select v-model="filterValue" class="m-2" placeholder="Select"
                             style="width: 70px; --el-border-color: white;">
                             <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
                         </el-select> -->
-                        <span style="text-decoration: underline;">
-                            Jan. 20 - Feb. 05
+                        <span style="text-decoration: underline; width: 200px; position: absolute; left: 90px; top: -3px;">
+                            {{ timeSelectionText }}
                         </span>
 
                     </span>
                     <span>
                         Select NFT Project:
                         <el-select v-model="filterValue" class="m-2" placeholder="Select"
-                            style="width: 140px; --el-border-color: white;">
+                            style="width: 110px; --el-border-color: white;">
                             <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
                         </el-select>
                     </span>
                 </span>
             </span>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
         </div>
         <div class="frameworkBody" style="padding-bottom: 5px;">
             <!-- <div style="width: 100%; height: 26px; margin-top: 5px;">
@@ -82,7 +82,7 @@
             <div ref="attr_bar" style="width: 30%; height: calc(100%); float: left;">
                 <svg id="attr_bar" width="100%" height="calc(100%)">
                     <path :d="'M ' + (barWidth + 12) + ' ' + 10 + ' L ' + (barWidth + 12) + ' ' + (barHeight * 3 + 85)"
-                        fill="none" stroke="#e0dede"></path>
+                        fill="none" stroke="#c6bcbc"></path>
 
                         
                     <g :transform="translate(0, 0, 0)" id="m3Bar">
@@ -94,6 +94,8 @@
                             <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
                                 fill="none" stroke="#534f4f">
                             </path>
+                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
+                                fill="none" stroke="#c6bcbc" stroke-width="1"></path>
                         </g>
                     </g>
                     <g :transform="translate(0, (barHeight + 29), 0)">
@@ -106,7 +108,7 @@
                                 fill="none" stroke="#534f4f">
                             </path>
                             <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
-                                fill="none" stroke="#e0dede"></path>
+                                fill="none" stroke="#c6bcbc"></path>
                         </g>
                     </g>
 
@@ -120,8 +122,6 @@
                             <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
                                 fill="none" stroke="#534f4f">
                             </path>
-                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
-                                fill="none" stroke="#e0dede"></path>
                         </g>
                     </g>
 
@@ -183,7 +183,7 @@
                 <!-- </div> -->
             </div>
 
-            <!-- <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <!-- <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
             <div style="width: 100%; height: calc((100% - 26px) / 3);">
                 [F-2: Recency]
                 <svg width="31.8%" height="calc(100% - 30px)">
@@ -193,7 +193,7 @@
                     <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
                 </svg>
             </div>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
             <div style="width: 100%; height: calc((100% - 26px) / 3);">
                 [F-3: Propensity]
                 <svg width="31.8%" height="calc(100% - 30px)">
@@ -213,13 +213,14 @@ import { arc, area, curveBasis, curveLinear, pie } from 'd3-shape';
 
 import { axisLeft, axisBottom } from 'd3-axis';
 import { sum } from 'd3-array';
+import { useDataStore } from '../stores/counter';
 
 export default {
     name: 'APP',
     props: ['groupData'],
     data () {
         return {
-            filterValue: 'Group',
+            filterValue: 'Project Name',
             filterOptions: ['Group'],
             groupSet: [1, 2, 3, 4, 5, 6],
             // colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"],
@@ -243,7 +244,8 @@ export default {
             groupWidth: 1000,
             groupHeight: 100,
             monthArc: [],
-            clusterData: []
+            clusterData: [],
+            timeSelectionText: ''
         }
     },
     methods: {
@@ -405,8 +407,13 @@ export default {
         this.groupHeight = this.$refs.groupView.offsetHeight;
         this.groupWidth = this.$refs.groupView.offsetWidth;
 
-        // this.monthArc = this.calcArc();
         [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(this.groupData);
+        const dataStore = useDataStore();
+        dataStore.$subscribe((mutations, state) => {
+            this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
+        })
+
+        // this.monthArc = this.calcArc();
         // console.log(this.groupSet);
 
         // console.log(this.groupData);

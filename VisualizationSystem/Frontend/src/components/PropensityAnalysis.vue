@@ -15,7 +15,7 @@
 
                 &nbsp; <span style="position: relative; top: 0px; font-weight: 600;">Propensity
                     Analysis</span></span>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
         </div>
         <div class="frameworkBody" id="controlPanel" ref="controlPanel">
             <div style="margin-top: 5px; height: 29%;">
@@ -25,7 +25,7 @@
                         <span style="position: relative; top: 4px;">TIME SLICE</span>
                         <span style="float: right; width: 65%;">
                             <el-date-picker v-model="selectSlice" type="daterange" range-separator="To"
-                                start-placeholder="Start date" end-placeholder="End date" style="width: 100%" />
+                                start-placeholder="Start date" end-placeholder="End date" style="width: 100%" :default-value="new Date(2021, 0, 1)" />
                         </span>
 
                     </div>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
             <div style="font-size: 14px; margin-top: 5px; height: calc(12% + 10px);">
                 <div style="margin-top: 0px;">
                     <span style="color: #ABACBE;">
@@ -163,7 +163,7 @@
                     </span>
                 </div>
             </div>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
             <div style="overflow-y: auto; height: calc(50%); margin-top: 10px; margin-bottom: 10px;">
                 <el-table class="customer-no-border-table" :data="tableData" :show-header="false"
                     style="height: calc(100% + 0px); width: 100%;" :row-style="{
@@ -225,7 +225,8 @@
                     </el-table-column>
                 </el-table>
             </div>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3); margin-top: -11px;" width="100%" color=#e0dede SIZE=1>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3); margin-top: -10px;" width="100%" color=#c6bcbc
+                SIZE=2>
             <div style="height: 6%;">
                 <div style="margin-top: 10px; float: left;">
                     Unreleased projects:
@@ -243,6 +244,8 @@
 <script>
 import { arc, line, pie } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
+import { useDataStore } from "../stores/counter";
+// import star from 'd3-shape/src/symbol/star';
 
 export default {
     name: 'APP',
@@ -280,7 +283,8 @@ export default {
                 seller: '#b69acb',
                 buyer: '#6f319b',
                 holder: '#c9c9c9'
-            }
+            },
+            monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
         }
     },
     methods: {
@@ -409,6 +413,37 @@ export default {
         this.elWidth = this.$refs.controlPanel.offsetWidth - 112;
         this.tableData = this.calcTable(this.groupData);
     },
+    watch: {
+        selectSlice: {
+            handler: function (newVal, oldVal) {
+                console.log(newVal[0].getUTCDate(), newVal[0].getUTCMonth(), newVal[0].getUTCFullYear(), newVal);
+                let startDate = newVal[0];
+                let endDate = newVal[1];
+                const dataStore = useDataStore();
+                let timeSelection = {
+                    'start_time': startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1)+'-' + (startDate.getUTCDate() + 1),
+                    'end_time': endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1)+'-' + (endDate.getUTCDate() + 1),
+                    'start_format': this.monthName[startDate.getUTCMonth()] + '.' + ((startDate.getUTCDate() + 1) >= 10 ? '' : '0') + (startDate.getUTCDate() + 1) + '.' + startDate.getUTCFullYear(),
+                    'end_format': this.monthName[endDate.getUTCMonth()] + '.' + (endDate.getUTCDate() + 1) + '.' + endDate.getUTCFullYear(),
+                    'start': {
+                        day: '',
+                        month: '',
+                        year: ''
+                    },
+                    'end': {
+                        day: '',
+                        month: '',
+                        year: ''
+                    },
+                }
+                console.log(timeSelection);
+                dataStore.timeRange = timeSelection;
+                // dataStore.$subscribe((mutations, state) => {
+                //     data
+                // })
+            }
+        }
+    }
 }
 </script>
 <style>
@@ -462,13 +497,15 @@ export default {
     /* 去除上边框*/
     border: none;
 }
-.el-table::before{
-  /* 去除下边框 */
-  height: 0;
+
+.el-table::before {
+    /* 去除下边框 */
+    height: 0;
 }
-.el-table__row td{
-  /* 去除表格线 */
-  /* border: 10px solid white; */
+
+.el-table__row td {
+    /* 去除表格线 */
+    /* border: 10px solid white; */
 }
 
 .el-button {
@@ -486,9 +523,19 @@ export default {
 el-checkbox__label {
     color: #94a7c7;
 }
+
 .el-checkbox {
     --el-checkbox-checked-bg-color: #94a7c7;
     --el-checkbox-checked-input-border-color: #94a7c7;
     --el-checkbox-checked-text-color: #94a7c7;
+}
+
+.el-radio__input.is-checked+.el-radio__label {
+    color: #94a7c7;
+}
+
+.el-radio__input.is-checked .el-radio__inner {
+    border-color: #94a7c7;
+    background-color: #94a7c7;
 }
 </style>

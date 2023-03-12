@@ -24,7 +24,7 @@
                     </g>
                 </svg>
             </span>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
         </div>
         <div class="frameworkBody">
             <div style="width: 100%; height: 46%; margin-top: 5px;">
@@ -54,10 +54,12 @@
                                 </g>
                                 <g :transform="translate(0, 10, 0)">
                                     <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Group:</text>
-                                    <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline" fill="#534f4f">1</text>
-                                    <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time Slot:</text>
-                                    <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14"
-                                        text-decoration="underline" fill="#534f4f">Jan. 20 - Feb. 05</text>
+                                    <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
+                                        fill="#534f4f">1</text>
+                                    <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time
+                                        Slot:</text>
+                                    <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
+                                        fill="#534f4f">{{ timeSelectionText }}</text>
                                 </g>
                             </g>
                         </g>
@@ -90,22 +92,7 @@
                 <div ref="correlationTable"
                     style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%);">
                     <svg width="100%" height="100%">
-                        <g transform="translate(0, 20)">
-                            <!-- <text x="95" y="20" font-size="14">#Holders-#Buyers-#Sellers</text> -->
-                            <text font-size="14" x="45" y="20" text-anchor="middle" fill="#534f4f">#Seller</text>
-                            <text font-size="14" x="135" y="20" text-anchor="middle" fill="#534f4f">#Buyer</text>
-                            <text font-size="14" x="225" y="20" text-anchor="middle" fill="#534f4f">#Holder</text>
-                            <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
-                                stroke="#C6BCBC"></path>
-                            <path :d="'M 0 30 L 0 ' + (ctHeight - 40)" fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 40)"
-                                fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 40)"
-                                fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 40)"
-                                fill="none" stroke="#C6BCBC"></path>
-                        </g>
+
                         <g>
                             <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
                                 :transform="translate(0, item.pos[1] + 25, 0)">
@@ -123,10 +110,26 @@
                                 </text> -->
                             </g>
                         </g>
+                        <g transform="translate(0, 20)">
+                            <!-- <text x="95" y="20" font-size="14">#Holders-#Buyers-#Sellers</text> -->
+                            <text font-size="14" x="45" y="20" text-anchor="middle" fill="#534f4f">#Seller</text>
+                            <text font-size="14" x="135" y="20" text-anchor="middle" fill="#534f4f">#Buyer</text>
+                            <text font-size="14" x="225" y="20" text-anchor="middle" fill="#534f4f">#Holder</text>
+                            <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
+                                stroke="#C6BCBC"></path>
+                            <path :d="'M 0 30 L 0 ' + (ctHeight - 40)" fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 40)"
+                                fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 40)"
+                                fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 40)"
+                                fill="none" stroke="#C6BCBC"></path>
+                        </g>
                     </svg>
                 </div>
             </div>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#e0dede SIZE=1>
+            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
             <div style="width: 100%; height: 54%; margin-top: 5px;">
                 <div style="height: 35px;">
                     [Impact dynamics of individual NFT project]
@@ -162,8 +165,16 @@
 
                                 <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 200, 0)">
                                     <text fill="#534f4f" font-size="14" text-anchor="middle">Time Slot: </text>
-                                    <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline" dy="2em">{{
-                                        item.name.time }}</text>
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
+                                        dy="2em">{{
+                                            timeSelectionText.split('-')[0] }}</text>
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle" 
+                                        dy="3.5em">{{
+                                            '-' }}</text>
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
+                                        dy="5em">{{
+                                            timeSelectionText.split('-')[1] }}</text>
+
                                 </g>
                                 <g>
                                     <path
@@ -216,8 +227,8 @@
                             <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
                                 :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
                                 <path d="M0 0L0 6" fill="none" stroke="#534f4f"></path>
-                                <text :text-anchor="i == 0 ? 'start' : (i == 23 ? 'end' : 'middle')" font-family="sans-serif"
-                                    font-size="12" fill="#534f4f" dy="-0.3em">{{ item }}</text>
+                                <text :text-anchor="i == 0 ? 'start' : (i == 23 ? 'end' : 'middle')"
+                                    font-family="sans-serif" font-size="12" fill="#534f4f" dy="-0.3em">{{ item }}</text>
                             </g>
                         </svg>
                     </div>
@@ -233,6 +244,7 @@ import { scaleLinear } from 'd3-scale';
 // import time from 'd3-scale/src/time';
 import { select } from 'd3-selection';
 import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3-shape';
+import { useDataStore } from '../stores/counter';
 
 export default {
     name: 'APP',
@@ -253,6 +265,7 @@ export default {
             pieLegend: [],
             legendArc: [],
             outLegendArc: [],
+            monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
             nftName: ['CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks'],
             lineData: [],
             textPlace: [],
@@ -268,7 +281,8 @@ export default {
             tableRect: [],
             timeData: [],
             projectNum: 1,
-            timeAxis: ['21-1', '21-2', '21-3', '21-4', '21-5', '21-6', '21-7', '21-8', '21-9', '21-10', '21-11', '21-12', '22-1', '22-2', '22-3', '22-4', '22-5', '22-6', '22-7', '22-8', '22-9', '22-10', '22-11', '22-12']
+            timeAxis: ['21-1', '21-2', '21-3', '21-4', '21-5', '21-6', '21-7', '21-8', '21-9', '21-10', '21-11', '21-12', '22-1', '22-2', '22-3', '22-4', '22-5', '22-6', '22-7', '22-8', '22-9', '22-10', '22-11', '22-12'],
+            timeSelectionText: ''
         }
     },
     methods: {
@@ -428,8 +442,8 @@ export default {
                 let areaScale = scaleLinear([0, 1], [this.pjHeight * 0.6 / 2, 10]);
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.9 / 2, this.pjHeight * 0.6 / 2 + 20]);
                 let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
-                select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth- 1}, ${this.pjHeight / 2 * i})`);
-                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth- 1}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
                 let lineGenerate = line().x(d => xScale(d.x)).y(d => lineScale(d.y)).curve(curveMonotoneX);
                 // console.log(data[i])
                 let nameData = this.calcIndividual({
@@ -448,7 +462,9 @@ export default {
                     link: data[i]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : data[i]['logo_link'],
                     // link: data[i]['logo_link'],
                     name: data[i]['﻿Project Name'],
-                    time: 'Jan. 20 - Feb. 05'
+                    timeS: this.timeSelectionText.split('-')[0],
+                    timeM: '-',
+                    timeE: this.timeSelectionText.split('-')[1]
                 }, (this.nameWidth * 0.8 - 20) / 2, 0, 0);
                 let lineData1 = [];
                 let lineData2 = [];
@@ -483,7 +499,7 @@ export default {
                         })
                     if (i == 'IMP') {
                         scatter = sData;
-                        console.log(scatter);
+                        // console.log(scatter);
                     }
                 }
                 timeData.push({
@@ -579,34 +595,40 @@ export default {
         // this.dataprocess();
         // console.log(this.barHeight, this.barWidth)
 
-        [this.legendArc, this.outLegendArc] = this.dataProcess();
-        // console.log(this.legendArc)
-        let group = {};
-        for (let i in this.groupData) {
-            if (typeof (group[this.groupData[i].Group]) === 'undefined') {
-                group[this.groupData[i].Group] = [];
-            }
-            group[this.groupData[i].Group].push(this.groupData[i]);
-        }
-        [this.lineData, this.textPlace] = this.calcLine(group[1]);
-        // this.calcIndividual({
-        //     inner: {
-        //         holder: 130,
-        //         buyer: 100,
-        //         seller: 60
-        //     },
-        //     outer: {
-        //         M1: 0.7,
-        //         M2: 0.3,
-        //         M3: 0.5,
-        //         IMP: 0.2
-        //     },
-        //     link: 'https://lh3.googleusercontent.com/XHZY9623keDQqFSDHKqOdcjD99Y7N82K1egYRM2Mm1Z-Jxn5myrkKiC5NBktWKStVtTzDzwELy9dNpzTWJTIkLsdMIxUHI86jduQ=s120',
-        //     name: 'BAYC',
-        //     time: 'Jan. 20 - Feb. 05'
-        // }, 50, 100, 100);
-        this.timeData = this.calcIndividualProject(group[1]);
         // console.log(this.timeData)
+        const dataStore = useDataStore();
+        dataStore.$subscribe((mutations, state) => {
+            this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
+
+            [this.legendArc, this.outLegendArc] = this.dataProcess();
+            // console.log(this.legendArc)
+            let group = {};
+            for (let i in this.groupData) {
+                if (typeof (group[this.groupData[i].Group]) === 'undefined') {
+                    group[this.groupData[i].Group] = [];
+                }
+                group[this.groupData[i].Group].push(this.groupData[i]);
+            }
+            [this.lineData, this.textPlace] = this.calcLine(group[1]);
+            // this.calcIndividual({
+            //     inner: {
+            //         holder: 130,
+            //         buyer: 100,
+            //         seller: 60
+            //     },
+            //     outer: {
+            //         M1: 0.7,
+            //         M2: 0.3,
+            //         M3: 0.5,
+            //         IMP: 0.2
+            //     },
+            //     link: 'https://lh3.googleusercontent.com/XHZY9623keDQqFSDHKqOdcjD99Y7N82K1egYRM2Mm1Z-Jxn5myrkKiC5NBktWKStVtTzDzwELy9dNpzTWJTIkLsdMIxUHI86jduQ=s120',
+            //     name: 'BAYC',
+            //     time: 'Jan. 20 - Feb. 05'
+            // }, 50, 100, 100);
+            this.timeData = this.calcIndividualProject(group[1]);
+        })
+
     },
 }
 </script>
@@ -631,5 +653,4 @@ export default {
 
 #legendSpace::-webkit-scrollbar {
     display: none;
-}
-</style>
+}</style>
