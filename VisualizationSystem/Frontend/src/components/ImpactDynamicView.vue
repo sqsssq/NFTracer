@@ -624,8 +624,8 @@ export default {
                 correlation_data[i].co_sum = sum_people;
                 co_data.push(correlation_data[i]);
             }
-            let sizeScale = scaleLinear([min_co_people, max_co_people], [0.7, 0.9]);
-            console.log(co_data);
+            let sizeScale = scaleLinear([min_co_people, max_co_people], [0.5, 0.9]);
+            // console.log(co_data);
             for (let i = 0; i < co_data.length; i++) {
                 // for (let j = co_data.length - i; j < co_data.length; j++) {
                     // if (Math.random() > 0.8) {
@@ -644,11 +644,11 @@ export default {
                                 seller: co_data[i].co_seller_raw / co_data[i].co_sum
                             },
                             outer: {
-                                c1: co_data[i].buyer_correlation,
-                                c2: co_data[i].seller_correlation,
-                                c3: co_data[i].holder_correlation
+                                c1: co_data[i].holder_correlation,
+                                c2: co_data[i].buyer_correlation,
+                                c3: co_data[i].seller_correlation
                             }
-                        }, sizeScale(Math.random()) * (lineScaleX(1) - lineScaleX(0)) / 2, x, y))
+                        }, sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2, x, y))
                     // }
                 // }
             }

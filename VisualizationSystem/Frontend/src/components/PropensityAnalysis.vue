@@ -188,7 +188,7 @@
                         </template>
                     </el-table-column>
                     <el-table-column label="Date" prop="groupNum" width="75" fixed />
-                    <el-table-column label="Name" :width="20 * elWidth / 6">
+                    <el-table-column label="Name" :width="(maxGroupNum + 3) * elWidth / 6">
                         <template #default="scope">
                             <div class="tableRow" :style="{
                                 height: (elHeight / 6 - 16) + 'px',
@@ -249,7 +249,7 @@ import { useDataStore } from "../stores/counter";
 
 export default {
     name: 'APP',
-    props: ['groupData'],
+    props: ['groupData', 'cpData'],
     data () {
         return {
             elHeight: 100,
@@ -270,7 +270,7 @@ export default {
             },
             clusterRadio: '0',
             selectSlice: [],
-            unreleasedProject: ['https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384', 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384'],
+            unreleasedProject: [],
             groupValue: 6,
             groupOptions: [1, 2, 3, 4, 5, 6],
             rankValue: 'Propensity Value',
@@ -285,6 +285,7 @@ export default {
                 holder: '#c9c9c9'
             },
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            maxGroupNum: 0
         }
     },
     methods: {
@@ -302,23 +303,26 @@ export default {
                     };
                 }
                 group[data[i].Group].project.push(data[i]);
+                this.maxGroupNum = Math.max(this.maxGroupNum, group[data[i].Group].project.length);
             }
+            console.log(group);
             for (let i in group) {
                 for (let j in group[i].project) {
+                    // console.log(group[i].project[j]);
                     group[i].group.push(this.calcIndividual({
                         inner: {
-                            holder: 130,
-                            buyer: 100,
-                            seller: 60
+                            holder: group[i].project[j].Holder,
+                            buyer: group[i].project[j].Buyer,
+                            seller: group[i].project[j].Seller
                         },
                         outer: {
-                            M1: 0.7,
-                            M2: 0.3,
-                            M3: 0.5,
-                            IMP: 0.2
+                            M1: group[i].project[j].M1,
+                            M2: group[i].project[j].M2,
+                            M3: group[i].project[j].M3,
+                            IMP: group[i].project[j].IMP
                         },
                         link: group[i].project[j]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : group[i].project[j]['logo_link'],
-                        name: group[i].project[j]['﻿Project Name'],
+                        name: group[i].project[j]['Project Name'],
                         time: 'Jan. 20 - Feb. 05'
                     }, (this.elHeight / 6 - 16) * 0.9 / 2, 0, 0))
                 }
@@ -411,7 +415,8 @@ export default {
         // console.log(this.groupData);
         this.elHeight = this.$refs.controlPanel.offsetHeight * 0.50;
         this.elWidth = this.$refs.controlPanel.offsetWidth - 112;
-        this.tableData = this.calcTable(this.groupData);
+        this.tableData = this.calcTable(this.cpData.data);
+        console.log(this.cpData)
     },
     watch: {
         selectSlice: {

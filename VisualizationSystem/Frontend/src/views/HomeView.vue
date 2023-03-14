@@ -2,12 +2,12 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-09-17 23:36:36
- * @LastEditTime: 2023-03-02 20:48:00
+ * @LastEditTime: 2023-03-14 12:34:21
 -->
 <template>
   <div class="common-layout" style="width: 100%; height: 100vh; background-color: rgb(238, 236, 236);"
     v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
-    <Main :groupData="groupData" />
+    <Main :groupData="groupData" :cpData="cpData" />
   </div>
 </template>
 
@@ -19,20 +19,22 @@ import timeData from '../assets/sn_d_tot.json'
 import basicData from '../assets/data_view.json';
 import sliceData from '../assets/slice_info.json';
 import nftData from '../assets/data.csv';
+import cpData from '../assets/data/control_panel.json';
 export default {
   name: "home_view",
   data () {
     return {
       msgH: null,
-      groupData: null
+      groupData: null,
+      cpData: null,
     };
   },
   computed: {
     initSign () {
       // return this.msgH == null;
       this.groupData = nftData;
-
-      return this.groupData != null;
+      this.cpData = cpData;
+      return this.groupData != null && this.cpData!= null;
     },
     loadingText () {
       return "Loading"

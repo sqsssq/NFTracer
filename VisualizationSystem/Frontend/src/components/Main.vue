@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-11-20 23:25:35
- * @LastEditTime: 2023-03-11 17:41:24
+ * @LastEditTime: 2023-03-14 12:35:01
 -->
 <template>
     <div id="navBar">
@@ -38,7 +38,7 @@
     <div style="height: calc(95.7vh - 0px); width: calc(100% - 0px); background-color: #E0DEDE;">
         <div class="framework" id="PropensityAnalysis"
             style="position: absolute; left: calc(5px); top: calc(5px); height: calc(67vh - 10px); width: calc(20%);">
-            <PropensityAnalysis :groupData="groupData" />
+            <PropensityAnalysis :groupData="groupData" :cpData="cpData" />
         </div>
         <div class="framework" id="MechanismAnalysis"
             style="position: absolute; left: calc(5px); top: calc(67vh); height: calc(95.7vh - 5px - 67vh); width: calc(66.2vw + 5px);">
@@ -51,7 +51,7 @@
         <div class="framework" id="CorrelationView"
             style="position: absolute; left: calc(66.2vw + 15px);  top: calc(5px); height: calc(95.7vh - 10px); width: calc(100vw - 66.2vw - 20px);">
 
-            <ImpactDynamicView :groupData="groupData" />
+            <ImpactDynamicView :groupData="groupData"  />
         </div>
     </div>
 </template>
@@ -64,7 +64,7 @@ import SubstitutionView from './SubstitutionView.vue';
 import ImpactDynamicView from './ImpactDynamicView.vue';
 export default {
     name: "APP",
-    props: ["groupData"],
+    props: ["groupData", "cpData"],
     data () {
         return {
             msg1: "Hello, main!"
