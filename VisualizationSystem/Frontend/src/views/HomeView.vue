@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-09-17 23:36:36
- * @LastEditTime: 2023-03-14 12:34:21
+ * @LastEditTime: 2023-03-14 23:28:33
 -->
 <template>
   <div class="common-layout" style="width: 100%; height: 100vh; background-color: rgb(238, 236, 236);"
@@ -32,9 +32,10 @@ export default {
   computed: {
     initSign () {
       // return this.msgH == null;
-      this.groupData = nftData;
+      this.groupData = nftData;``
       this.cpData = cpData;
-      return this.groupData != null && this.cpData!= null;
+      console.log(this.cpData)
+      return this.cpData != null;
     },
     loadingText () {
       return "Loading"

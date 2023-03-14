@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-11-20 23:25:35
- * @LastEditTime: 2023-03-14 12:35:01
+ * @LastEditTime: 2023-03-15 00:40:14
 -->
 <template>
     <div id="navBar">
@@ -75,7 +75,7 @@ export default {
     },
     mounted () {
         // console.log("groupData", this.groupData);
-
+        // console.log("cpData", this.cpData);
     },
     components: { PropensityAnalysis, MechanismAnalysis, SubstitutionView, ImpactDynamicView }
 }

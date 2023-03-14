@@ -25,7 +25,7 @@
                         <span style="position: relative; top: 4px;">TIME SLICE</span>
                         <span style="float: right; width: 65%;">
                             <el-date-picker v-model="selectSlice" type="daterange" range-separator="To"
-                                start-placeholder="Start date" end-placeholder="End date" style="width: 100%" :default-value="new Date(2021, 0, 1)" />
+                                start-placeholder="Start date" end-placeholder="End date" style="width: 100%" :default-value="new Date(2021, 5, 1)" />
                         </span>
 
                     </div>
@@ -232,7 +232,7 @@
                     Unreleased projects:
                 </div>
                 <div style="overflow-x: auto; overflow-y: hidden; height: 100%;">
-                    <img v-for="(item, i) in unreleasedProject" :src="item" :style="{
+                    <img v-for="(item, i) in unreleasedProject" :src="item.logo_link" :style="{
                         position: 'absolute',
                         top: '6px', left: (i * 40 + 10) + 'px'
                     }" height="35">
@@ -245,6 +245,7 @@
 import { arc, line, pie } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 import { useDataStore } from "../stores/counter";
+import { max, min } from 'd3-array';
 // import star from 'd3-shape/src/symbol/star';
 
 export default {
@@ -292,8 +293,16 @@ export default {
         translate (x, y, deg) {
             return `translate(${x}, ${y}) rotate(${deg})`;
         },
+        calcUnreleasedProject(data) {
+            let res_data = [];
+            for (let i in data) {
+                res_data.push(data[i]);
+            }
+        },
         calcTable (data) {
             let group = {};
+            let max_m1 = 0, max_m2 = 0, max_m3 = 0, max_imp = 0;
+            let min_m1 = 99999, min_m2 = 99999, min_m3 = 99999, min_imp = 99999;
             for (let i in data) {
                 if (typeof (group[data[i].Group]) === 'undefined') {
                     group[data[i].Group] = {
@@ -302,10 +311,18 @@ export default {
                         groupNum: 'Group ' + data[i].Group.toString()
                     };
                 }
+                max_m1 = Math.max(max_m1, data[i].M1)
+                max_m2 = Math.max(max_m2, data[i].M2)
+                max_m3 = Math.max(max_m3, data[i].M3)
+                max_imp = Math.max(max_imp, data[i].IMP);
+                min_m1 = Math.min(min_m1, data[i].M1);
+                min_m2 = Math.min(min_m2, data[i].M2);
+                min_m3 = Math.min(min_m3, data[i].M3);
+                min_imp = Math.min(min_imp, data[i].IMP);
                 group[data[i].Group].project.push(data[i]);
                 this.maxGroupNum = Math.max(this.maxGroupNum, group[data[i].Group].project.length);
             }
-            console.log(group);
+            
             for (let i in group) {
                 for (let j in group[i].project) {
                     // console.log(group[i].project[j]);
@@ -316,10 +333,10 @@ export default {
                             seller: group[i].project[j].Seller
                         },
                         outer: {
-                            M1: group[i].project[j].M1,
-                            M2: group[i].project[j].M2,
-                            M3: group[i].project[j].M3,
-                            IMP: group[i].project[j].IMP
+                            M1: (group[i].project[j].M1 - min_m1) / (max_m1 - min_m1),
+                            M2: (group[i].project[j].M2 - min_m2) / (max_m2 - min_m2),
+                            M3: (group[i].project[j].M3 - min_m3) / (max_m3 - min_m3),
+                            IMP: (group[i].project[j].IMP - min_imp) / (max_imp - min_imp)
                         },
                         link: group[i].project[j]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : group[i].project[j]['logo_link'],
                         name: group[i].project[j]['Project Name'],
@@ -413,10 +430,12 @@ export default {
     },
     mounted () {
         // console.log(this.groupData);
+        console.log(this.cpData)
         this.elHeight = this.$refs.controlPanel.offsetHeight * 0.50;
         this.elWidth = this.$refs.controlPanel.offsetWidth - 112;
         this.tableData = this.calcTable(this.cpData.data);
-        console.log(this.cpData)
+        this.unreleasedProject = this.calcUnreleasedProject(this.cpData.unClusterProject);
+        // console.log(this.cpData)
     },
     watch: {
         selectSlice: {
