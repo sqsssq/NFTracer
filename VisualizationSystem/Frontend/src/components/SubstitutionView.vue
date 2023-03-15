@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-03-11 13:47:38
+ * @LastEditTime: 2023-03-15 03:13:11
 -->
 <template>
     <div style="height: 100%;">
@@ -144,7 +144,7 @@ import { useDataStore } from "../stores/counter";
 
 export default {
     name: "APP",
-    props: ["groupData"],
+    props: ["groupData", 'cpData'],
     data () {
         return {
             innerAreaTag: 'm1d',
@@ -267,6 +267,7 @@ export default {
         },
         calcScatter (data) {
             let scatterData = [];
+            console.log(data)
             let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)));
             let areaData = [];
             for (let i = 0; i < 30; ++i) {
@@ -284,10 +285,10 @@ export default {
                 let tp = {
                     data: data[i],
                     group: data[i].Group,
-                    x: (parseFloat(data[i].Holder) + parseFloat(data[i].Buyer) * 2) / Math.sqrt(3),
+                    x: (parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) + parseFloat(data[i].Buyer) * 2 / (data[i].Holder + data[i].Seller + data[i].Buyer)) / Math.sqrt(3),
                     y: parseFloat(data[i].Holder),
-                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) + (parseFloat(data[i].Holder) + parseFloat(data[i].Buyer) * 2) / Math.sqrt(3) * t_h,
-                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) - parseFloat(data[i].Holder) * t_h
+                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) + (parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) + parseFloat(data[i].Buyer / (data[i].Holder + data[i].Seller + data[i].Buyer)) * 2) / Math.sqrt(3) * t_h,
+                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) - parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) * t_h
                 };
                 scatterData.push(tp);
                 let t_cnt = (Math.acos(tp.cy / (Math.sqrt(Math.pow(tp.cx, 2) + Math.pow(tp.cy, 2)))) / (Math.PI / 180) + (tp.cx >= 0 ? 0 : 180) - 6) / 12;
@@ -305,12 +306,13 @@ export default {
                 m22 = m22 == 5 ? m22 - 1 : m22;
                 m33 = m33 == 5 ? m33 - 1 : m33;
                 impp = impp == 5 ? impp - 1 : impp;
-                areaData[Math.floor(t_cnt)].project.push(data[i]);
-                areaData[Math.floor(t_cnt)].m1Area[m11]++;
-                areaData[Math.floor(t_cnt)].m2Area[m22]++;
-                areaData[Math.floor(t_cnt)].m3Area[m33]++;
-                areaData[Math.floor(t_cnt)].impArea[impp]++;
+                // areaData[Math.floor(t_cnt)].project.push(data[i]);
+                // areaData[Math.floor(t_cnt)].m1Area[m11]++;
+                // areaData[Math.floor(t_cnt)].m2Area[m22]++;
+                // areaData[Math.floor(t_cnt)].m3Area[m33]++;
+                // areaData[Math.floor(t_cnt)].impArea[impp]++;
             }
+            console.log(scatterData)
             let ayScale = scaleLinear([0, 4], [this.distributionHeight * .53 / 2 + 15, this.distributionHeight * .71 / 2 - 10]);
             let m1Scale = scaleLinear([0, m1_max], [0, 25]);
             let m2Scale = scaleLinear([0, m2_max], [0, 25]);
@@ -400,7 +402,7 @@ export default {
                 }
                 group[data[i].Group].project.push(data[i]);
                 group[data[i].Group].sum_len++;
-                group[data[i].Group].len.push(parseInt(data[i].n_holder));
+                group[data[i].Group].len.push(parseInt(data[i].Holder));
             }
             // console.log(data.length)
             if (data.length < 70) {
@@ -454,8 +456,9 @@ export default {
         this.monthArc = this.calcArc(timeRange);
         [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
         // console.log(this.innerArc)
-        [this.outerArc, this.groupArc] = this.outerArcProgress(this.groupData);
-        [this.scatterData, this.innerArea] = this.calcScatter(this.groupData);
+        // console.log(this.cpData);
+        [this.outerArc, this.groupArc] = this.outerArcProgress(this.cpData.data);
+        [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data);
         dataStore.$subscribe((mutations, state) => {
         })
 

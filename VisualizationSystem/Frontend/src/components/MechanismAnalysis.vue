@@ -85,8 +85,8 @@
                         fill="none" stroke="#c6bcbc"></path>
 
                         
-                    <g :transform="translate(0, 0, 0)" id="m3Bar">
-                        <text x="5" y="20" fill="#534F4F">[M-1: Propensity]</text>
+                    <g :transform="translate(0, 2 * (barHeight + 29), 0)" id="m3Bar">
+                        <text x="5" y="20" fill="#534F4F">[M-3: Propensity]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
@@ -113,8 +113,8 @@
                     </g>
 
 
-                    <g :transform="translate(0, 2 * (barHeight + 29), 0)" id="m2Bar">
-                        <text x="5" y="20" fill="#534F4F">[M-3: Recency]</text>
+                    <g :transform="translate(0, 0, 0)" id="m2Bar">
+                        <text x="5" y="20" fill="#534F4F">[M-1: Recency]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
@@ -217,7 +217,7 @@ import { useDataStore } from '../stores/counter';
 
 export default {
     name: 'APP',
-    props: ['groupData'],
+    props: ['groupData', 'cpData'],
     data () {
         return {
             filterValue: 'Project Name',
@@ -265,6 +265,8 @@ export default {
         },
         dataProcess (data) {
             let m1 = [], m2 = [], m3 = [], group = {};
+            let max_m1 = 0, max_m2 = 0, max_m3 = 0, max_imp = 0;
+            let min_m1 = 99999, min_m2 = 99999, min_m3 = 99999, min_imp = 99999;
             let groupSet = [];
             for (let i in data) {
                 if (typeof (group[data[i].Group]) == 'undefined') {
@@ -282,15 +284,23 @@ export default {
                     };
                 }
                 group[data[i].Group].project.push(data[i]);
-                group[data[i].Group].project_holder.push(parseInt(data[i].n_holder))
+                group[data[i].Group].project_holder.push(parseInt(data[i].Holder))
                 group[data[i].Group].m1.push(parseFloat(data[i].M1));
                 group[data[i].Group].m2.push(parseFloat(data[i].M2));
                 group[data[i].Group].m3.push(parseFloat(data[i].M3));
-                group[data[i].Group].imp.push(Math.random());
+                group[data[i].Group].imp.push(parseFloat(data[i].IMP));
                 // console.log(data[i].M1);
                 m1.push(parseFloat(data[i].M1));
                 m2.push(parseFloat(data[i].M2));
                 m3.push(parseFloat(data[i].M3));
+                max_m1 = Math.max(max_m1, data[i].M1)
+                max_m2 = Math.max(max_m2, data[i].M2)
+                max_m3 = Math.max(max_m3, data[i].M3)
+                max_imp = Math.max(max_imp, data[i].IMP);
+                min_m1 = Math.min(min_m1, data[i].M1);
+                min_m2 = Math.min(min_m2, data[i].M2);
+                min_m3 = Math.min(min_m3, data[i].M3);
+                min_imp = Math.min(min_imp, data[i].IMP);
             }
             // const hBin = bin().threshold(20).domain([0, 1]);
             // console.log(new Array(10));
@@ -323,11 +333,11 @@ export default {
             }
             // console.log(m1)
             for (let i = 0; i < m1.length; i++) {
-                let aa = Math.floor(m1[i] / (1 / 20));
-                if (aa >= 20) aa--;
-                let rr = Math.floor(m2[i] / (1 / 20));
+                let rr = Math.floor(((m1[i] - min_m1) / (max_m1 - min_m1)) / (1 / 20));
                 if (rr >= 20) rr--;
-                let pp = Math.floor(m3[i] / (1 / 20));
+                let aa = Math.floor(((m2[i] - min_m2) / (max_m2 - min_m2)) / (1 / 20));
+                if (aa >= 20) aa--;
+                let pp = Math.floor(((m3[i] - min_m3) / (max_m3 - min_m3)) / (1 / 20));
                 if (pp >= 20) pp--;
 
                 a[aa].v++;
@@ -341,10 +351,10 @@ export default {
 
             for (let i in group) {
                 for (let j in group[i].m1) {
-                    let m11 = Math.floor(group[i].m1[j] / (1 / 10));
-                    let m22 = Math.floor(group[i].m2[j] / (1 / 10));
-                    let m33 = Math.floor(group[i].m3[j] / (1 / 10));
-                    let impp = Math.floor(group[i].imp[j] / (1 / 10));
+                    let m11 = Math.floor(((group[i].m1[j] - min_m1) / (max_m1 - min_m1)) / (1 / 10));
+                    let m22 = Math.floor(((group[i].m2[j] - min_m2) / (max_m2 - min_m2)) / (1 / 10));
+                    let m33 = Math.floor(((group[i].m3[j] - min_m3) / (max_m3 - min_m3)) / (1 / 10));
+                    let impp = Math.floor(((group[i].imp[j] - min_imp) / (max_imp - min_imp)) / (1 / 10));
                     m11 = m11 == 10 ? m11 - 1 : m11;
                     m22 = m22 == 10 ? m22 - 1 : m22;
                     m33 = m33 == 10 ? m33 - 1 : m33;
@@ -357,7 +367,7 @@ export default {
                 }
             }
 
-            let gXScale = scaleLinear([0, max_g], [0, 20]);
+            let gXScale = scaleLinear([0, max_g], [0, 40]);
             let gYScale = scaleLinear([0, 1], [-15, -(this.groupWidth / 8 - 38)])
             let yAScale = scaleLinear([0, maxA], [this.barHeight - 3, 10]);
             let yRScale = scaleLinear([0, maxR], [this.barHeight - 3, 10]);
@@ -406,8 +416,9 @@ export default {
         this.barWidth = this.$refs.attr_bar.offsetWidth - 15;
         this.groupHeight = this.$refs.groupView.offsetHeight;
         this.groupWidth = this.$refs.groupView.offsetWidth;
+        // console.log(this.cpData)
 
-        [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(this.groupData);
+        [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(this.cpData.data);
         const dataStore = useDataStore();
         dataStore.$subscribe((mutations, state) => {
             this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;

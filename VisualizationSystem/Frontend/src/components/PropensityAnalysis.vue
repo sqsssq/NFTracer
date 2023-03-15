@@ -430,7 +430,7 @@ export default {
     },
     mounted () {
         // console.log(this.groupData);
-        console.log(this.cpData)
+        // console.log(this.cpData)
         this.elHeight = this.$refs.controlPanel.offsetHeight * 0.50;
         this.elWidth = this.$refs.controlPanel.offsetWidth - 112;
         this.tableData = this.calcTable(this.cpData.data);
