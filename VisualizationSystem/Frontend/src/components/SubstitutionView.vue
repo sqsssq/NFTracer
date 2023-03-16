@@ -42,6 +42,9 @@
                         <p style="cursor:pointer; margin-top: 10px;">
                             <svg t="1678613511201" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5014" width="25" height="25"><path d="M580.76 908.62a53.366667 53.366667 0 0 1-46.28-26.666667L404.1 656.133333l-154.666667 148.586667A21.333333 21.333333 0 0 1 213.333333 789.333333V106.666667a21.333333 21.333333 0 0 1 6.706667-15.526667c5.333333-5.02 15.26-8.74 25.72-2.7l91.946667 53.086667 498.833333 288a21.333333 21.333333 0 0 1-4.733333 38.966666l-206 59.64 130.386666 225.826667a53.333333 53.333333 0 0 1-19.526666 72.86l-129.333334 74.666667a53.02 53.02 0 0 1-26.573333 7.133333zM408.953333 600.546667a20.666667 20.666667 0 0 1 3 0.213333 21.333333 21.333333 0 0 1 15.48 10.453333l144 249.413334a10.666667 10.666667 0 0 0 14.566667 3.906666l129.333333-74.666666a10.666667 10.666667 0 0 0 3.906667-14.573334l-144-249.413333a21.333333 21.333333 0 0 1 12.546667-31.16l184.053333-53.286667L256 143.62v595.633333l138.18-132.76a21.333333 21.333333 0 0 1 14.773333-5.946666z" fill="#5C5C66" p-id="5015"></path></svg></p>
                             <p style="cursor:pointer; margin-top: 10px;">
+                                <svg t="1678908588773" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2763" width="25" height="25"><path d="M999.15093333 997.57321482H648.6546963v-77.6722963h272.82394073V648.41197037h77.6722963zM99.85137778 372.67531852h-77.6722963V23.63543703h350.49623704v77.6722963H99.85137778z" p-id="2764" fill="#777777"></path><path d="M53.30504059 108.18294518l54.92159526-54.92159526 353.64681956 353.64681956-54.92159526 54.92159527zM562.35349333 617.21440711l54.92159526-54.92280889L991.51720297 936.53492622l-54.92159527 54.92159526zM999.15093333 374.13167408h-77.6722963V101.30773333H650.11105185v-77.6722963h349.03988148zM371.21896297 997.57321482H22.17908148V647.07697778h77.6722963v272.82394074H371.21896297z" p-id="2765" fill="#777777"></path><path d="M60.58196385 908.09472948L406.73826133 562.23213037l54.8985363 54.94586785L115.48292741 963.04059733zM562.38019318 406.71277511l367.72006874-367.72128236 54.9228089 54.92280888L617.30178845 461.63437037z" p-id="2766" fill="#777777"></path></svg>
+                            </p>
+                            <p style="cursor:pointer; margin-top: 10px;">
                                 <svg t="1678615963305" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8533" width="25" height="25"><path d="M1017.6 492.8C1011.2 480 787.2 192 512 192 236.8 192 12.8 480 6.4 492.8c-6.4 12.8-6.4 25.6 0 38.4C12.8 544 236.8 832 512 832c275.2 0 499.2-288 505.6-300.8 6.4-12.8 6.4-25.6 0-38.4zM512 768c-204.8 0-384-192-441.6-256C128 448 307.2 256 512 256s384 192 441.6 256c-57.6 64-236.8 256-441.6 256z" fill="#5C5C66" p-id="8534"></path><path d="M512 352C422.4 352 352 422.4 352 512s70.4 160 160 160 160-70.4 160-160S601.6 352 512 352z m0 256c-51.2 0-96-44.8-96-96S460.8 416 512 416s96 44.8 96 96S563.2 608 512 608z" fill="#5C5C66" p-id="8535"></path></svg>
                             </p>
                             <p style="cursor:pointer; margin-top: 10px;">
@@ -80,13 +83,13 @@
                             </g>
 
                             <g>
-                                <circle cx="0" cy="0" :r="distributionHeight * .53 / 2" fill="none" stroke="#534F4F"
+                                <circle cx="0" cy="0" :r="distributionHeight * .57 / 2" fill="none" stroke="#534F4F"
                                     stroke-width="1"></circle>
                                 <path v-for="item in 30" :key="'path' + item"
-                                    :d="'M 0 0 L ' + (Math.sin(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' ' + (Math.cos(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2))"
+                                    :d="'M 0 0 L ' + (Math.sin(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (Math.cos(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2))"
                                     stroke="#534F4F" stroke-width="0.5"></path>
                                 <path
-                                    :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .53 / 2 - 2)) + ' Z'"
+                                    :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .56 / 2 - 2)) + ' Z'"
                                     stroke-dasharray="5.5" stroke="#C6BCBC" fill="none"></path>
 
                             </g>
@@ -114,16 +117,16 @@
                             </g>
                             <g>
 
-                                <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .53 / 2 + 15))"
-                                    :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .53 / 2 + 15))"
+                                <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
+                                    :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
                                     font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">H</text>
-                                <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .53 / 2 + 15))"
-                                    :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .53 / 2 + 15))"
+                                <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
+                                    :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
                                     font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">B</text>
-                                <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .53 / 2 + 15))"
-                                    :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .53 / 2 + 15))"
+                                <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
+                                    :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
                                     font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">S</text>
                             </g>
@@ -267,8 +270,20 @@ export default {
         },
         calcScatter (data) {
             let scatterData = [];
-            console.log(data)
-            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)));
+            // console.log(data)
+            let max_m1 = 0, max_m2 = 0, max_m3 = 0, max_imp = 0;
+            let min_m1 = 99999, min_m2 = 99999, min_m3 = 99999, min_imp = 99999;
+            for (let i in data) {
+                max_m1 = Math.max(max_m1, data[i].M1)
+                max_m2 = Math.max(max_m2, data[i].M2)
+                max_m3 = Math.max(max_m3, data[i].M3)
+                max_imp = Math.max(max_imp, data[i].IMP);
+                min_m1 = Math.min(min_m1, data[i].M1);
+                min_m2 = Math.min(min_m2, data[i].M2);
+                min_m3 = Math.min(min_m3, data[i].M3);
+                min_imp = Math.min(min_imp, data[i].IMP);
+            }
+            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2 )) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)));
             let areaData = [];
             for (let i = 0; i < 30; ++i) {
                 areaData.push({
@@ -287,17 +302,24 @@ export default {
                     group: data[i].Group,
                     x: (parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) + parseFloat(data[i].Buyer) * 2 / (data[i].Holder + data[i].Seller + data[i].Buyer)) / Math.sqrt(3),
                     y: parseFloat(data[i].Holder),
-                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) + (parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) + parseFloat(data[i].Buyer / (data[i].Holder + data[i].Seller + data[i].Buyer)) * 2) / Math.sqrt(3) * t_h,
-                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .53 / 2 + 15)) - parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) * t_h
+                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) + (parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) + parseFloat(data[i].Buyer / (data[i].Holder + data[i].Seller + data[i].Buyer)) * 2) / Math.sqrt(3) * t_h,
+                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) - parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) * t_h
                 };
                 scatterData.push(tp);
-                let t_cnt = (Math.acos(tp.cy / (Math.sqrt(Math.pow(tp.cx, 2) + Math.pow(tp.cy, 2)))) / (Math.PI / 180) + (tp.cx >= 0 ? 0 : 180) - 6) / 12;
+                
+                let t_cnt = (Math.acos(tp.cy / (Math.sqrt(Math.pow(tp.cx, 2) + Math.pow(tp.cy, 2)))) / (Math.PI / 180))
+                if (tp.cx > 0)
+                    t_cnt = 360 - t_cnt - 6;
+                else
+                t_cnt = t_cnt - 6;
+                t_cnt = (Math.floor(t_cnt / 12) + 31) % 30
+                // if (t_cnt == -1) t_cnt++;
                 // console.log(Math.floor(t_cnt));
 
-                let m11 = Math.floor(data[i]['M1'] / (1 / 5));
-                let m22 = Math.floor(data[i]['M2'] / (1 / 5));
-                let m33 = Math.floor(data[i]['M3'] / (1 / 5));
-                let impp = Math.floor((Math.random()) / (1 / 5));
+                let m11 = Math.floor((data[i]['M1'] - min_m1) / (max_m1 - min_m1) / (1 / 5));
+                let m22 = Math.floor((data[i]['M2'] - min_m2) / (max_m2 - min_m2) / (1 / 5));
+                let m33 = Math.floor((data[i]['M3'] - min_m3) / (max_m3 - min_m3) / (1 / 5));
+                let impp = Math.floor((data[i]['IMP'] - min_imp) / (max_imp - min_imp) / (1 / 5));
                 m1_max = Math.max(m1_max, m11);
                 m2_max = Math.max(m2_max, m22);
                 m3_max = Math.max(m3_max, m33);
@@ -306,18 +328,20 @@ export default {
                 m22 = m22 == 5 ? m22 - 1 : m22;
                 m33 = m33 == 5 ? m33 - 1 : m33;
                 impp = impp == 5 ? impp - 1 : impp;
-                // areaData[Math.floor(t_cnt)].project.push(data[i]);
-                // areaData[Math.floor(t_cnt)].m1Area[m11]++;
-                // areaData[Math.floor(t_cnt)].m2Area[m22]++;
-                // areaData[Math.floor(t_cnt)].m3Area[m33]++;
+                areaData[Math.floor(t_cnt)].project.push(data[i]);
+                areaData[Math.floor(t_cnt)].m1Area[m11]++;
+                areaData[Math.floor(t_cnt)].m2Area[m22]++;
+                areaData[Math.floor(t_cnt)].m3Area[m33]++;
+                // if (i == 10)
+                // break;
                 // areaData[Math.floor(t_cnt)].impArea[impp]++;
             }
-            console.log(scatterData)
-            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .53 / 2 + 15, this.distributionHeight * .71 / 2 - 10]);
-            let m1Scale = scaleLinear([0, m1_max], [0, 25]);
-            let m2Scale = scaleLinear([0, m2_max], [0, 25]);
-            let m3Scale = scaleLinear([0, m3_max], [0, 25]);
-            let impScale = scaleLinear([0, imp_max], [0, 25]);
+            // console.log(scatterData)
+            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .57 / 2 + 15, this.distributionHeight * .71 / 2 - 2]);
+            let m1Scale = scaleLinear([0, m1_max], [0, 4]);
+            let m2Scale = scaleLinear([0, m2_max], [0, 4]);
+            let m3Scale = scaleLinear([0, m3_max], [0, 4]);
+            let impScale = scaleLinear([0, imp_max], [0, 4]);
             let ag1 = area()
                 .curve(curveBasis)
                 .x0(d => m1Scale(d))
@@ -346,6 +370,7 @@ export default {
                     m3d: ag3(areaData[i].m3Area),
                     impd: ag4(areaData[i].impArea)
                 });
+                // if (i == 2)
                 // break;
             }
 
@@ -362,7 +387,7 @@ export default {
             let innerArcData = pie().padAngle(0.007)(innerData);
             for (let d of innerArcData) {
                 d.innerRadius = this.distributionHeight * .71 / 2 + 5;
-                d.outerRadius = this.distributionHeight * .53 / 2 + 7;
+                d.outerRadius = this.distributionHeight * .57 / 2 + 7;
                 let darcs = arc()(d);
                 innerArc.push(darcs);
             }

@@ -34,7 +34,7 @@ export default {
       // return this.msgH == null;
       this.groupData = nftData;``
       this.cpData = cpData;
-      console.log(this.cpData)
+      // console.log(this.cpData)
       return this.cpData != null;
     },
     loadingText () {

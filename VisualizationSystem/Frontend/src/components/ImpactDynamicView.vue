@@ -273,7 +273,7 @@ import { select } from 'd3-selection';
 import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3-shape';
 import { useDataStore } from '../stores/counter';
 import data from '../assets/data/data.json';
-import projectData from '../assets/data/impact_dynamics.json';
+import projectData from '../assets/data/impact_dynamics_new.json';
 import { extent, sum } from 'd3-array';
 
 export default {
@@ -307,7 +307,7 @@ export default {
                 seller: '#b69acb',
                 buyer: '#6f319b',
             },
-            colormap2: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#ffffec', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
+            colormap2: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#f4d58d', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
             correlationData: [],
             axisColor: { 'M1': '#EA7C16', 'M3': '#61bad6', 'IMP': '#d77a78', 'M2': '#53ad92' },
             tableRect: [],
@@ -440,7 +440,7 @@ export default {
                 min_m2 = 99999,
                 min_m3 = 99999,
                 min_imp = 99999;
-            console.log(data3);
+            // console.log(data3);
             for (let i in data3) {
                 max_m1 = Math.max(max_m1, data3[i].M1)
                 max_m2 = Math.max(max_m2, data3[i].M2)
@@ -471,8 +471,14 @@ export default {
                 let m2_range = extent(data[i]['M2Line'], d => d.value);
                 let m3_range = extent(data[i]['M3Line'], d => d.value);
                 let imp_range = extent(data[i]['IMPLine'], d => d.value);
-                let xScale = scaleLinear([0, data[i]['M1Line'].length - 1], [0, this.pjWidth * 2 - 0]);
-                let areaScale = scaleLinear([0, 1], [this.pjHeight * 0.6 / 2, 10]);
+                let holder_range = extent(data[i]['HolderLine'], d => d.value);
+                let seller_range = extent(data[i]['SellerLine'], d => d.value);
+                let buyer_range = extent(data[i]['BuyerLine'], d => d.value);
+                let max_n_range = Math.max(holder_range[1], seller_range[1], buyer_range[1]);
+                // let min_n_range = Math.min(holder_range[0], seller_range[0], buyer_range[0]);
+                let min_n_range = 0;
+                let xScale = scaleLinear([0, data[i]['M1Line'].length - 1], [0, this.pjWidth - 0]);
+                let areaScale = scaleLinear([min_n_range, max_n_range], [this.pjHeight * 0.6 / 2, 10]);
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.9 / 2, this.pjHeight * 0.6 / 2 + 20]);
                 let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
                 select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
@@ -503,11 +509,19 @@ export default {
                 let lineData1 = [];
                 let lineData2 = [];
                 let scatter = [];
+                // console.log(data[i]);
 
                 for (let k in this.colorType) {
                     let tLineData = [];
-                    for (let j = 0; j < 24; ++j) {
-                        tLineData.push({ x: j, y: Math.random() });
+                    let sel_name = '';
+                    if (k == 'holder')
+                    sel_name = 'HolderLine';
+                    else if (k == 'buyer')
+                    sel_name = 'BuyerLine';
+                    else if (k =='seller')
+                    sel_name = 'SellerLine';
+                    for (let j = 0; j < data[i][sel_name].length; ++j) {
+                        tLineData.push({ x: j, y: data[i][sel_name][j].value });
                     }
                     // console.log(tLineData);
                     lineData1.push({
@@ -902,7 +916,7 @@ export default {
         //     name: 'BAYC',
         //     time: 'Jan. 20 - Feb. 05'
         // }, 50, 100, 100);
-        console.log(this.cpData)
+        // console.log(this.cpData)
         this.timeData = this.calcIndividualProject(data.nft_project_table, projectData, this.cpData.data);
         // console.log(projectData);
 

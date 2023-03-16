@@ -58,7 +58,7 @@
                             </div>
                             <div style="height: 25px;">
                                 <span style="position: relative; left: 0px;">
-                                    <el-checkbox v-model="formData.checked6" label="Num_buyers" />
+                                    <el-checkbox v-model="formData.checked6" label="Num_Buyers" />
                                 </span>
                                 <span style="position: absolute; left: calc(51% + 3px);">
                                     <el-checkbox v-model="formData.checked7" label="Num_Sellers" />
@@ -100,7 +100,7 @@
             <div style="font-size: 14px; margin-top: 5px; height: calc(12% + 10px);">
                 <div style="margin-top: 0px;">
                     <span style="color: #ABACBE;">
-                        Showing <span class="php">55 projects</span> from 70 results
+                        Showing <span class="php">{{ select_project_num }} projects</span> from 70 results
                     </span>
                     <span style="float: right; position: relative; top: -4px;">
                         Group
@@ -151,14 +151,14 @@
                         Rank by:
                         <el-select v-model="rankValue" class="m-2" placeholder="Select"
                             style="width: 130px; --el-border-color: white;">
-                            <el-option v-for="item in rankOptions" :key="item" :label="item" :value="item" />
+                            <el-option v-for="item in rankOptions" :key="item" :label="item.label" :value="item.value" />
                         </el-select>
                     </span>
                     <span style="float: right; position: relative; top: -4px;">
                         Filter:
-                        <el-select v-model="rankValue" class="m-2" placeholder="Select"
+                        <el-select v-model="attributeValue" class="m-2" placeholder="Select"
                             style="width: 130px; --el-border-color: white;">
-                            <el-option v-for="item in rankOptions" :key="item" :label="item" :value="item" />
+                            <el-option v-for="item in attributeOption" :key="item" :label="item.label" :value="item.value" />
                         </el-select>
                     </span>
                 </div>
@@ -255,6 +255,7 @@ export default {
         return {
             elHeight: 100,
             elWidth: 100,
+            select_project_num: 0,
             formData: {
                 checked0: false,
                 checked1: false,
@@ -274,8 +275,10 @@ export default {
             unreleasedProject: [],
             groupValue: 6,
             groupOptions: [1, 2, 3, 4, 5, 6],
-            rankValue: 'Propensity Value',
-            rankOptions: ['Propensity Value'],
+            attributeOption: [],
+            attributeValue: '',
+            rankValue: 'M3',
+            rankOptions: [{label: 'Recency', value: 'M1'}, {label: 'Preferential attachment', value: 'M2'}, {label: 'Propensity',  value: 'M3'}],
             colormap: ['#440154', '#46327e', '#365c8d', '#277f8e', '#1fa187', '#4ac16d', '#a0da39', '#fde725'],
 
             axisColor: { 'M1': '#EA7C16', 'M3': '#61bad6', 'IMP': '#d77a78', 'M2': '#53ad92' },
@@ -286,6 +289,20 @@ export default {
                 holder: '#c9c9c9'
             },
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            attributeMap: {
+                'polarity': 'Social Polarity',
+                'popularity': 'Social Popularity',
+                'floor_price': 'Floor Price',
+                'average_price': 'Ave Price',
+                'eth_volume': 'ETH_Volume',
+                'whale_num': 'Num_Whales',
+                'holder_num': 'Num_Holders',
+                'buyer_num': 'Num_Buyers',
+                'seller_num': 'Num_Sellers',
+                'transfer_num': 'Num_Transfers',
+                'liquidity': 'Liquidity',
+                'ales': 'Sales Volume'
+            },
             maxGroupNum: 0
         }
     },
@@ -300,6 +317,14 @@ export default {
             }
         },
         calcTable (data) {
+            this.select_project_num = data.length;
+            // console.log(data[0])
+            for (let i in data[0].attributeLine) {
+                this.attributeOption.push({label: this.attributeMap[i],value: i});
+            }
+            this.attributeValue = this.attributeOption[0].value;
+            // console.log(this.attributeValue);
+
             let group = {};
             let max_m1 = 0, max_m2 = 0, max_m3 = 0, max_imp = 0;
             let min_m1 = 99999, min_m2 = 99999, min_m3 = 99999, min_imp = 99999;
