@@ -25,7 +25,8 @@
                         <span style="position: relative; top: 4px;">TIME SLICE</span>
                         <span style="float: right; width: 65%;">
                             <el-date-picker v-model="selectSlice" type="daterange" range-separator="To"
-                                start-placeholder="Start date" end-placeholder="End date" style="width: 100%" :default-value="new Date(2021, 5, 1)" />
+                                start-placeholder="Start date" end-placeholder="End date" style="width: 100%"
+                                :default-value="new Date(2021, 5, 1)" />
                         </span>
 
                     </div>
@@ -158,7 +159,8 @@
                         Filter:
                         <el-select v-model="attributeValue" class="m-2" placeholder="Select"
                             style="width: 130px; --el-border-color: white;">
-                            <el-option v-for="item in attributeOption" :key="item" :label="item.label" :value="item.value" />
+                            <el-option v-for="item in attributeOption" :key="item" :label="item.label"
+                                :value="item.value" />
                         </el-select>
                     </span>
                 </div>
@@ -178,7 +180,7 @@
                                     <svg height="100%" :width="elWidth - 24">
                                         <g v-for="(item, i) in props.row.group" :key="'plg' + i">
                                             <!-- <g v-for="(l_item, l_i) in item.line" :key="'pllg' + l_i"> -->
-                                            <path :d="item.line.d" :fill="'none'" :stroke="'steelblue'"></path>
+                                            <path :d="item.line[attributeValue].d" :class="item.line[attributeValue].class" :id="item.line[attributeValue].id" :fill="'none'" :stroke="item.line[attributeValue].color"></path>
                                             <!-- </g> -->
 
                                         </g>
@@ -214,7 +216,7 @@
                                             <g clip-path="url(#clipPath3)"
                                                 :transform="translate(-item.img_r, -item.img_r, 0)">
                                                 <image :href="item.link" x="0" y="0" :height="item.img_r * 2"
-                                                    :width="item.img_r * 2" />
+                                                    :width="item.img_r * 2"  @mouseenter="overGlyph(item.line[attributeValue].id, item.line[attributeValue].class, item.line[attributeValue].color)" @mouseout="outGlyph(item.line[attributeValue].group)" />
                                             </g>
                                         </g>
 
@@ -245,7 +247,9 @@
 import { arc, line, pie } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 import { useDataStore } from "../stores/counter";
-import { max, min } from 'd3-array';
+import { extent, max, min } from 'd3-array';
+import { interpolateViridis } from 'd3';
+import { select, selectAll } from 'd3-selection';
 // import star from 'd3-shape/src/symbol/star';
 
 export default {
@@ -278,8 +282,9 @@ export default {
             attributeOption: [],
             attributeValue: '',
             rankValue: 'M3',
-            rankOptions: [{label: 'Recency', value: 'M1'}, {label: 'Preferential attachment', value: 'M2'}, {label: 'Propensity',  value: 'M3'}],
-            colormap: ['#440154', '#46327e', '#365c8d', '#277f8e', '#1fa187', '#4ac16d', '#a0da39', '#fde725'],
+            rankOptions: [{ label: 'Recency', value: 'M1' }, { label: 'Preferential attachment', value: 'M2' }, { label: 'Propensity', value: 'M3' }, { label: 'Impact dynamic', value: 'IMP' }],
+            // colormap: ['#440154', '#46327e', '#365c8d', '#277f8e', '#1fa187', '#4ac16d', '#a0da39', '#fde725'],
+            colormap:["#f6cba2","#f2b67d","#eea158","#eb8c33","#e98120","#d7771d","#b46318","#905014"],
 
             axisColor: { 'M1': '#EA7C16', 'M3': '#61bad6', 'IMP': '#d77a78', 'M2': '#53ad92' },
             tableData: [],
@@ -307,10 +312,19 @@ export default {
         }
     },
     methods: {
+        overGlyph(sel_id, sel_class, sel_color) {
+            selectAll('.' + sel_class).attr('stroke', '#777').attr('opacity', 0.1);
+            select('#' + sel_id).attr('stroke', sel_color).attr('opacity', 1)
+        },
+        outGlyph(cnt) {
+            for (let i in this.tableData[cnt].group) {
+                select('#' + this.tableData[cnt].group[i].line[this.attributeValue].id).attr('stroke', this.tableData[cnt].group[i].line[this.attributeValue].color).attr('opacity',1)
+            }
+        },
         translate (x, y, deg) {
             return `translate(${x}, ${y}) rotate(${deg})`;
         },
-        calcUnreleasedProject(data) {
+        calcUnreleasedProject (data) {
             let res_data = [];
             for (let i in data) {
                 res_data.push(data[i]);
@@ -319,8 +333,10 @@ export default {
         calcTable (data) {
             this.select_project_num = data.length;
             // console.log(data[0])
+            let lineDataRange = {};
             for (let i in data[0].attributeLine) {
-                this.attributeOption.push({label: this.attributeMap[i],value: i});
+                lineDataRange[i] = [];
+                this.attributeOption.push({ label: this.attributeMap[i], value: i });
             }
             this.attributeValue = this.attributeOption[0].value;
             // console.log(this.attributeValue);
@@ -347,7 +363,7 @@ export default {
                 group[data[i].Group].project.push(data[i]);
                 this.maxGroupNum = Math.max(this.maxGroupNum, group[data[i].Group].project.length);
             }
-            
+
             for (let i in group) {
                 for (let j in group[i].project) {
                     // console.log(group[i].project[j]);
@@ -368,23 +384,53 @@ export default {
                         time: 'Jan. 20 - Feb. 05'
                     }, (this.elHeight / 6 - 16) * 0.9 / 2, 0, 0))
                 }
-                let xScale = scaleLinear([0, 12], [0, this.elWidth]);
-                let yScale = scaleLinear([0, 1], [100, 0]);
-                let lineGenerate = line().x((d, i) => xScale(i)).y((d) => yScale(d));
+                // console.log(group[i].group);
+                for (let j in lineDataRange) {
+                    lineDataRange[j] = [0, 0, 0];
+                }
+                for (let j in group[i].group) {
+                    // console.log(group[i].project[j]);
+                    group[i].group[j]['attributeLine'] = group[i].project[j]['attributeLine'];
+                    for (let k in group[i].project[j]['attributeLine']) {
+                        lineDataRange[k][0] = Math.min(lineDataRange[k][0], min(group[i].project[j]['attributeLine'][k], d => d.value));
+                        lineDataRange[k][1] = Math.max(lineDataRange[k][1], max(group[i].project[j]['attributeLine'][k], d => d.value));
+                        lineDataRange[k][2] = Math.max(lineDataRange[k][2], group[i].project[j]['attributeLine'][k].length);
+                        // console.log(lineDataRange)
+                    }
+                    // group[i].group[j]['line'] = {};
+                    // group[i].group[j]['line']['data'] = [];
+                    // for (let k = 0; k < 12; ++k)
+                    //     group[i].group[j]['line']['data'].push(Math.random());
+                    // group[i].group[j]['line']['d'] = lineGenerate(group[i].group[j]['line']['data']);
+                }
+                let colorScale =interpolateViridis;
                 for (let j in group[i].group) {
                     group[i].group[j]['line'] = {};
-                    group[i].group[j]['line']['data'] = [];
-                    for (let k = 0; k < 12; ++k)
-                        group[i].group[j]['line']['data'].push(Math.random());
-                    group[i].group[j]['line']['d'] = lineGenerate(group[i].group[j]['line']['data']);
+                    for (let k in group[i].group[j]['attributeLine']) {
+                        let xScale = scaleLinear([0, lineDataRange[k][2] - 1], [0, this.elWidth]);
+                        let yScale = scaleLinear([lineDataRange[k][0], lineDataRange[k][1]], [100, 0]);
+                        let lineGenerate = line().x((d, i) => xScale(i)).y((d) => yScale(d.value));
+                        group[i].group[j]['line'][k] = {
+                            d: lineGenerate(group[i].group[j]['attributeLine'][k]),
+                            color: this.colormap[Math.floor((group[i].group[j].M1 * 8) == 8 ? 7 : Math.floor((group[i].group[j].M1 * 8)))],
+                            id: 'sel' + j + '_' + i,
+                            class:  'group' + i,
+                            group: i
+                        }
+                    }
                 }
             }
             // console.log(group);
             let res_data = [];
+            console.log(group);
             for (let i in group) {
+                group[i].group.sort((a, b) => {
+                    return b.M3 - a.M3
+                });
+
                 res_data.push(group[i]);
             }
-            console.log(res_data);
+            // console.log(res_data);
             return res_data;
         },
 
@@ -427,8 +473,8 @@ export default {
                 });
                 outArc.push({
                     d: arc().innerRadius(r - 3).outerRadius(r)({
-                        startAngle: ((cnt * 90)) * Math.PI / 180,
-                        endAngle: ((cnt * 90) + data.outer[cOrder[i]] * 90) * Math.PI / 180,
+                        startAngle: ((cnt * 90) - 90) * Math.PI / 180,
+                        endAngle: ((cnt * 90) - 90 + data.outer[cOrder[i]] * 90) * Math.PI / 180,
                         index: cnt,
                         padAngle: 0,
                         value: 1
@@ -447,7 +493,12 @@ export default {
                 link: data.link,
                 img_r: r / 2,
                 name: data.name,
-                time: data.time
+                time: data.time,
+                data: data,
+                M1: data.outer.M1,
+                M2: data.outer.M2,
+                M3: data.outer.M3,
+                IMP: data.outer.IMP
             }
         },
     },
@@ -463,6 +514,18 @@ export default {
         // console.log(this.cpData)
     },
     watch: {
+        rankValue: {
+            handler: function (newVal, oldVal) {
+                console.log(newVal, oldVal);
+                console.log(this.tableData);
+                for (let i in this.tableData) {
+                    this.tableData[i].group.sort((a, b) => {
+                        return b[newVal] - a[newVal];
+                    })
+                }
+            },
+            deep: true
+        },
         selectSlice: {
             handler: function (newVal, oldVal) {
                 console.log(newVal[0].getUTCDate(), newVal[0].getUTCMonth(), newVal[0].getUTCFullYear(), newVal);
@@ -470,8 +533,8 @@ export default {
                 let endDate = newVal[1];
                 const dataStore = useDataStore();
                 let timeSelection = {
-                    'start_time': startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1)+'-' + (startDate.getUTCDate() + 1),
-                    'end_time': endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1)+'-' + (endDate.getUTCDate() + 1),
+                    'start_time': startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' + (startDate.getUTCDate() + 1),
+                    'end_time': endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' + (endDate.getUTCDate() + 1),
                     'start_format': this.monthName[startDate.getUTCMonth()] + '.' + ((startDate.getUTCDate() + 1) >= 10 ? '' : '0') + (startDate.getUTCDate() + 1) + '.' + startDate.getUTCFullYear(),
                     'end_format': this.monthName[endDate.getUTCMonth()] + '.' + (endDate.getUTCDate() + 1) + '.' + endDate.getUTCFullYear(),
                     'start': {

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-11-20 23:25:35
- * @LastEditTime: 2023-03-15 23:58:17
+ * @LastEditTime: 2023-03-15 02:52:37
 -->
 <template>
     <div id="navBar">
@@ -51,7 +51,7 @@
         <div class="framework" id="CorrelationView"
             style="position: absolute; left: calc(66.2vw + 15px);  top: calc(5px); height: calc(95.7vh - 10px); width: calc(100vw - 66.2vw - 20px);">
 
-            <ImpactDynamicView :groupData="groupData" :cpData="cpData"  />
+            <ImpactDynamicView :groupData="groupData"  :cpData="cpData"/>
         </div>
     </div>
 </template>
