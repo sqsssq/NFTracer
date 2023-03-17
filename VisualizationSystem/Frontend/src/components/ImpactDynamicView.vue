@@ -179,7 +179,7 @@
                 </div>
                 <div style="height: calc(100% - 35px); width: 100%;">
                     <div ref="nameSpace" id="nameSpace"
-                        style="float: left; width: calc(100%); height: 92%; overflow: auto;">
+                        style="float: left; width: calc(100%); height: 94%; overflow: auto;">
                         <svg width="100%" :height="pjWidth * projectNum / 2" id="nameSpaceSvg">
                             <g v-for="(item, i) in timeData" :key="'time_x' + i">
                                 <g :transform="translate((nameWidth) / 2 - 10, i * pjHeight / 2 + 100, 0)">
@@ -236,17 +236,16 @@
                                     </g>
                                     <g>
 
-
                                         <path
-                                            :d="'M0 ' + (pjHeight / 2 * 0.35) + ' L' + (pjWidth * 2 - 0) + ' ' + (pjHeight / 2 * 0.35)"
+                                            :d="'M0 ' + (pjHeight / 2 * 0.35) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.35)"
                                             fill="none" stroke="#534f4f"></path>
 
                                         <path
-                                            :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (pjWidth * 2 - 0) + ' ' + (pjHeight / 2 * 0.65 + 10)"
+                                            :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.65 + 10)"
                                             fill="none" stroke="#534f4f"></path>
 
                                         <path
-                                            :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (pjWidth * 2 - 0) + ' ' + (pjHeight / 2 * 0.95)"
+                                            :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.95)"
                                             fill="none" stroke="#534f4f"></path>
                                         <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
                                             fill="none" stroke="#e0dede"></path>
@@ -291,15 +290,15 @@
                         </svg>
                     </div> -->
                     <div ref="legendSpace" id="legendSpace"
-                        style="float: right; width: calc(85% - 20px); height: 8%; overflow-y: hidden; overflow-x: hidden;">
-                        <svg :width="pjWidth * 2" :height="legendHeight">
-                            <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
+                        style="float: right; width: calc(85% - 0px); height: 6%; overflow-y: hidden; overflow-x: hidden;">
+                        <svg width="100%" :height="legendHeight" id="xAxisLegend">
+                            <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
                             <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
                                 :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
                                 <path d="M0 0L0 6" fill="none" stroke="#534f4f"></path>
                                 <text :text-anchor="i == 0 ? 'start' : (i == 23 ? 'end' : 'middle')"
                                     font-family="sans-serif" font-size="12" fill="#534f4f" dy="-0.3em">{{ item }}</text>
-                            </g>
+                            </g> -->
                         </svg>
                     </div>
                 </div>
@@ -310,8 +309,8 @@
 </template>
 
 <script>
-import { axisLeft } from 'd3-axis';
-import { scaleLinear } from 'd3-scale';
+import { axisBottom, axisLeft } from 'd3-axis';
+import { scaleLinear, scaleUtc } from 'd3-scale';
 // import time from 'd3-scale/src/time';
 import { select } from 'd3-selection';
 import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3-shape';
@@ -486,6 +485,22 @@ export default {
                 min_m2 = 99999,
                 min_m3 = 99999,
                 min_imp = 99999;
+
+            let margin = {
+                left: 10,
+                right: 20,
+                bottom: -15,
+            }
+            // console.log(data2[data1[0]['Project Name']]);
+            let selectTimeData = data2[data1[0]['Project Name']]['HolderLine'];
+            // console.log(extent(selectTimeData, d => d.time))
+            let timeX = scaleUtc()
+            .domain(extent(selectTimeData, d => new Date(d.time)))
+            .range([margin.left, this.pjWidth - margin.right]);
+            let timeXAxis = (g, x, height) => g
+    .attr("transform", `translate(20,${height - margin.bottom})`)
+    .call(axisBottom(x).ticks(this.pjWidth / 80).tickSizeOuter(0))
+    select('#xAxisLegend').append('g').call(timeXAxis, timeX, 0)
             // console.log(data3);
             for (let i in data3) {
                 max_m1 = Math.max(max_m1, data3[i].M1)
@@ -523,19 +538,20 @@ export default {
                 let max_n_range = 0;
                 for (let j in data[i]['SellerLine']) {
                     max_n_range = Math.max(max_n_range, data[i]['SellerLine'][j].value + data[i]['BuyerLine'][j].value);
-                    console.log(data[i]['SellerLine'][j].value, data[i]['BuyerLine'][j].value, max_n_range);
+                    // console.log(data[i]['SellerLine'][j].value, data[i]['BuyerLine'][j].value, max_n_range);
                 }
                 // let min_n_range = Math.min(holder_range[0], seller_range[0], buyer_range[0]);
                 let min_n_range = 0;
-                let xScale = scaleLinear([0, data[i]['M1Line'].length - 1], [11, this.pjWidth - 0]);
+                let rxScale = scaleLinear([0, data[i]['M1Line'].length], [margin.left, this.pjWidth - margin.right]);
+                let xScale = scaleLinear([0, data[i]['M1Line'].length - 1], [margin.left, this.pjWidth - margin.right]);
                 let areaScale = scaleLinear([min_n_range, max_n_range], [this.pjHeight * 0.35 / 2, 10]);
                 let areaScale2 = scaleLinear(holder_range, [this.pjHeight * .65 / 2 + 10, this.pjHeight * 0.35 / 2 + 10]);
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.95 / 2, this.pjHeight * 0.65 / 2 + 20]);
                 let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
                 let areaGenerate2 = area().x(d => xScale(d.x)).y1(d => areaScale2(d.y)).y0(areaScale2(holder_range[0])).curve(curveMonotoneX);
-                select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth + 10}, ${this.pjHeight / 2 * i})`);
-                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth + 10}, ${this.pjHeight / 2 * i})`);
-                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale2).ticks(3)).attr('transform', `translate(${this.nameWidth + 10}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth + margin.left}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth + margin.left}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale2).ticks(3)).attr('transform', `translate(${this.nameWidth + margin.left}, ${this.pjHeight / 2 * i})`);
                 let lineGenerate = line().x(d => xScale(d.x)).y(d => lineScale(d.y)).curve(curveMonotoneX);
                 // console.log(data[i])
                 // console.log(min_m1, max_m1, data[i].M1, (data[i]['M1'] - min_m1) / (max_m1 - min_m1))
@@ -567,17 +583,17 @@ export default {
 
                 for (let j in data[i]['SellerLine']) {
                     // max_n_range = Math.max(max_n_range, data[i]['SellerLine'][j].value + data[i]['BuyerLine'][j].value);
-                    console.log(data[i]['SellerLine'][j].value, data[i]['BuyerLine'][j].value, max_n_range, i);
+                    // console.log(data[i]['SellerLine'][j].value, data[i]['BuyerLine'][j].value, max_n_range, i);
                     rectData.push({
-                        x: xScale(j),
-                        w: xScale(1) - xScale(0),
+                        x: rxScale(j),
+                        w: rxScale(1) - rxScale(0),
                         y: areaScale(data[i]['BuyerLine'][j].value),
                         h: -areaScale(data[i]['BuyerLine'][j].value) + areaScale(0),
                         color: this.colorType['buyer']
                     });
                     rectData.push({
-                        x: xScale(j),
-                        w: xScale(1) - xScale(0),
+                        x: rxScale(j),
+                        w: rxScale(1) - rxScale(0),
                         y: areaScale(data[i]['BuyerLine'][j].value + data[i]['SellerLine'][j].value),
                         h: -areaScale(data[i]['SellerLine'][j].value) + areaScale(0),
                         color: this.colorType['seller']

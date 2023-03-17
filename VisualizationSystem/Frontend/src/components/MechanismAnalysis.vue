@@ -1,215 +1,217 @@
 <template>
     <div style="height: 100%">
         <div class="frameworkTitle">
-
+    
             <span class="title" style="float: left;">
-                <svg t="1676053486623" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                    p-id="36215" width="20" height="20">
-                    <path
-                        d="M743.232 210.837333c144.896 144.896 149.781333 376.789333 14.656 527.573334l160.32 160.298666a8.533333 8.533333 0 0 1 0 12.074667l-33.173333 33.173333a8.533333 8.533333 0 0 1-12.074667 0l-161.557333-161.557333c-150.762667 120.746667-371.477333 111.253333-511.232-28.501333-149.973333-149.973333-149.973333-393.109333 0-543.061334 149.973333-149.973333 393.088-149.973333 543.061333 0z m-497.813333 45.248c-124.970667 124.970667-124.970667 327.594667 0 452.565334 124.970667 124.949333 327.594667 124.949333 452.565333 0 124.949333-124.970667 124.949333-327.594667 0-452.565334-124.970667-124.970667-327.594667-124.970667-452.565333 0z"
-                        fill="#534f4f" p-id="36216"></path>
-                </svg>
-                &nbsp; <span style="position: relative; top: 0px; font-weight: 600;">Mechanism Analysis</span>
+                            <svg t="1676053486623" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                p-id="36215" width="20" height="20">
+                                <path
+                                    d="M743.232 210.837333c144.896 144.896 149.781333 376.789333 14.656 527.573334l160.32 160.298666a8.533333 8.533333 0 0 1 0 12.074667l-33.173333 33.173333a8.533333 8.533333 0 0 1-12.074667 0l-161.557333-161.557333c-150.762667 120.746667-371.477333 111.253333-511.232-28.501333-149.973333-149.973333-149.973333-393.109333 0-543.061334 149.973333-149.973333 393.088-149.973333 543.061333 0z m-497.813333 45.248c-124.970667 124.970667-124.970667 327.594667 0 452.565334 124.970667 124.949333 327.594667 124.949333 452.565333 0 124.949333-124.970667 124.949333-327.594667 0-452.565334-124.970667-124.970667-327.594667-124.970667-452.565333 0z"
+                                    fill="#534f4f" p-id="36216"></path>
+                            </svg>
+                            &nbsp; <span style="position: relative; top: 0px; font-weight: 600;">Mechanism Analysis</span>
             </span>
             <span style="float: right; position: relative; top: 3px; font-size: 16px;">
-
-                <span style="float: right;">
-                    <span style="margin-right: 20px;">
-                        [M-1] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
-                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
-                        </svg> &nbsp;
-                        [M-2] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
-                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#53ad92" fill-opacity="0.7" />
-                        </svg> &nbsp;
-                        [M-3] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
-                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#61bad6" fill-opacity="0.7" />
-                        </svg>&nbsp;
-                        [IMP] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
-                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
-                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#d77a78" fill-opacity="0.7" />
-                        </svg>
-                    </span>
-                    <span style="margin-right: 220px;">
-                        Time Slot:
-                        <!-- <el-select v-model="filterValue" class="m-2" placeholder="Select"
-                            style="width: 70px; --el-border-color: white;">
-                            <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
-                        </el-select> -->
-                        <span style="text-decoration: underline; width: 200px; position: absolute; left: 90px; top: -3px;">
-                            {{ timeSelectionText }}
-                        </span>
-
-                    </span>
-                    <span>
-                        Select NFT Project:
-                        <el-select v-model="filterValue" class="m-2" placeholder="Select"
-                            style="width: 110px; --el-border-color: white;">
-                            <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
-                        </el-select>
-                    </span>
-                </span>
+            
+                            <span style="float: right;">
+                                <span style="margin-right: 20px;">
+                                    [M-1] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
+                                    </svg> &nbsp;
+                                    [M-2] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#53ad92" fill-opacity="0.7" />
+                                    </svg> &nbsp;
+                                    [M-3] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#61bad6" fill-opacity="0.7" />
+                                    </svg>&nbsp;
+                                    [IMP] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                                        <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#d77a78" fill-opacity="0.7" />
+                                    </svg>
+                                </span>
+            <span style="margin-right: 220px;">
+                                    Time Slot:
+                                    <!-- <el-select v-model="filterValue" class="m-2" placeholder="Select"
+                                        style="width: 70px; --el-border-color: white;">
+                                        <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
+                                    </el-select> -->
+                                    <span style="text-decoration: underline; width: 200px; position: absolute; left: 90px; top: -3px;">
+                                        {{ timeSelectionText }}
+                                    </span>
+    
+            </span>
+            <span>
+                                    Select NFT Project:
+                                    <el-select v-model="filterValue" class="m-2" placeholder="Select"
+                                        style="width: 110px; --el-border-color: white;">
+                                        <el-option v-for="item in filterOptions" :key="item.value" :label="item.label" :value="item.value" />
+                                    </el-select>
+                                </span>
+            </span>
             </span>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
         </div>
         <div class="frameworkBody" style="padding-bottom: 5px;">
             <!-- <div style="width: 100%; height: 26px; margin-top: 5px;">
-                <span style="font-size: 12px;">
-                    [F-1] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,1.5)">
-                        <rect x="0" y="0" width="10" height="10" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
-                    </svg> &nbsp;
-                    [F-2] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,1.5)">
-                        <rect x="0" y="0" width="10" height="10" rx="1.29984" fill="#53ad92" fill-opacity="0.7" />
-                    </svg> &nbsp;
-                    [F-3] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" transform="translate(0,1.5)">
-                        <rect x="0" y="0" width="10" height="10" rx="1.29984" fill="#61bad6" fill-opacity="0.7" />
-                    </svg>
-                </span>
-                <span style="float: right; position: relative; top: 1px;">
-                    Filter by:
-                    <el-select v-model="filterValue" class="m-2" placeholder="Select"
-                        style="width: 70px; --el-border-color: white;">
-                        <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
-                    </el-select>
-                </span>
-            </div> -->
-
+                            <span style="font-size: 12px;">
+                                [F-1] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" transform="translate(0,1.5)">
+                                    <rect x="0" y="0" width="10" height="10" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
+                                </svg> &nbsp;
+                                [F-2] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" transform="translate(0,1.5)">
+                                    <rect x="0" y="0" width="10" height="10" rx="1.29984" fill="#53ad92" fill-opacity="0.7" />
+                                </svg> &nbsp;
+                                [F-3] &nbsp; <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" transform="translate(0,1.5)">
+                                    <rect x="0" y="0" width="10" height="10" rx="1.29984" fill="#61bad6" fill-opacity="0.7" />
+                                </svg>
+                            </span>
+                            <span style="float: right; position: relative; top: 1px;">
+                                Filter by:
+                                <el-select v-model="filterValue" class="m-2" placeholder="Select"
+                                    style="width: 70px; --el-border-color: white;">
+                                    <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
+                                </el-select>
+                            </span>
+                        </div> -->
+    
             <div ref="attr_bar" style="width: 30%; height: calc(100%); float: left;">
                 <svg id="attr_bar" width="100%" height="calc(100%)">
-                    <path :d="'M ' + (barWidth + 12) + ' ' + 10 + ' L ' + (barWidth + 12) + ' ' + (barHeight * 3 + 85)"
-                        fill="none" stroke="#c6bcbc"></path>
-
-                        
-                    <g :transform="translate(0, 2 * (barHeight + 29), 0)" id="m3Bar">
-                        <text x="5" y="20" fill="#534F4F">[M-3: Propensity]</text>
-                        <g :transform="translate(5, 25, 0)">
-                            <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
-                            </rect>
-                            <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
-                                fill="none" stroke="#534f4f">
-                            </path>
-                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
-                                fill="none" stroke="#c6bcbc" stroke-width="1"></path>
-                        </g>
-                    </g>
-                    <g :transform="translate(0, (barHeight + 29), 0)">
-                        <text x="5" y="20" fill="#534F4F">[M-2: Preferential attachment]</text>
-                        <g :transform="translate(5, 25, 0)" id="m1Bar">
-                            <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
-                            </rect>
-                            <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
-                                fill="none" stroke="#534f4f">
-                            </path>
-                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
-                                fill="none" stroke="#c6bcbc"></path>
-                        </g>
-                    </g>
-
-
-                    <g :transform="translate(0, 0, 0)" id="m2Bar">
-                        <text x="5" y="20" fill="#534F4F">[M-1: Recency]</text>
-                        <g :transform="translate(5, 25, 0)">
-                            <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
-                            </rect>
-                            <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
-                                fill="none" stroke="#534f4f">
-                            </path>
-                        </g>
-                    </g>
-
-                </svg>
+                                <path :d="'M ' + (barWidth + 12) + ' ' + 10 + ' L ' + (barWidth + 12) + ' ' + (barHeight * 3 + 85)"
+                                    fill="none" stroke="#c6bcbc"></path>
+            
+                                    
+                                <g :transform="translate(0, 2 * (barHeight + 29), 0)" id="m3Bar">
+                                    <text x="5" y="20" fill="#534F4F">[M-3: Propensity]</text>
+                                    <g :transform="translate(5, 25, 0)">
+                                        <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                            :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                                        </rect>
+                                        <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
+                                            fill="none" stroke="#534f4f">
+                                        </path>
+                                        <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
+                                            fill="none" stroke="#c6bcbc" stroke-width="1"></path>
+                                    </g>
+                                </g>
+                                <g :transform="translate(0, (barHeight + 29), 0)">
+                                    <text x="5" y="20" fill="#534F4F">[M-2: Preferential attachment]</text>
+                                    <g :transform="translate(5, 25, 0)" id="m1Bar">
+                                        <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                            :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                                        </rect>
+                                        <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
+                                            fill="none" stroke="#534f4f">
+                                        </path>
+                                        <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
+                                            fill="none" stroke="#c6bcbc"></path>
+                                    </g>
+                                </g>
+            
+            
+                                <g :transform="translate(0, 0, 0)" id="m2Bar">
+                                    <text x="5" y="20" fill="#534F4F">[M-1: Recency]</text>
+                                    <g :transform="translate(5, 25, 0)">
+                                        <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                            :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                                        </rect>
+                                        <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
+                                            fill="none" stroke="#534f4f">
+                                        </path>
+                                    </g>
+                                </g>
+            
+                            </svg>
             </div>
             <!-- <div ref="groupPie" style="width: 70.3%; height: 100%; float: right;">
-                <svg id="groupPie" width="100%" height="calc(100%)"></svg>
-            </div> -->
-            <div style="height: 100%; width: 70%; float: right; overflow-x: scroll; overflow-y: hidden; white-space: nowrap"
-                ref="groupView">
+                            <svg id="groupPie" width="100%" height="calc(100%)"></svg>
+                        </div> -->
+            <div style="height: 100%; width: 70%; float: right; overflow-x: scroll; overflow-y: hidden; white-space: nowrap" ref="groupView">
                 <!-- <div v-for="(item, i) in groupSet" :key="'group' + i" :style="{
-                    'width': groupWidth / 4 + 'px',
-                    'height': '100%',
-                    'padding': '0px 5px 5px 5px',
-                    'border': '1px solid purple',
-                    'display': 'inline-block'
-                }"> -->
+                                'width': groupWidth / 4 + 'px',
+                                'height': '100%',
+                                'padding': '0px 5px 5px 5px',
+                                'border': '1px solid purple',
+                                'display': 'inline-block'
+                            }"> -->
                 <svg v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
-                    <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
-                    <text x="50%" y="20" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
-                        'Group ' + i
-                    }}</text>
-                    <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
-                        <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'" :fill="colormap[i]"></path>
-                        <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
-                            :transform="translate(0, 0, 90 * t_i)" :fill="axisColor[t_i]"></path>
-                        <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
-                            :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 25)"
-                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 25)" font-size="12" dy="0.3em"
-                            text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
-                        <g :transform="translate(0, 0, 0)">
-                            <path stroke-dasharray="5.5"
-                                :d="'M 0 ' + -(groupWidth / 8 - 48) + ' L 0 ' + ((groupWidth / 8 - 48))" fill="none"
-                                stroke="#D9D9D9"></path>
-                            <path stroke-dasharray="5.5"
-                                :d="'M ' + -(groupWidth / 8 - 48) + ' 0 L ' + ((groupWidth / 8 - 48)) + ' 0'" fill="none"
-                                stroke="#D9D9D9"></path>
-                            <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) + 15" fill="none" stroke="#D9D9D9"
-                                stroke-dasharray="5.5"></circle>
-                            <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) * 2 / 3 + 15" fill="none" stroke="#D9D9D9"
-                                stroke-dasharray="5.5"></circle>
-                            <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) * 1 / 3 + 15" fill="none" stroke="#D9D9D9"
-                                stroke-dasharray="5.5"></circle>
-
-                            <circle x="0" y="0" :r="15" fill="white" stroke="#D9D9D9" stroke-dasharray="5.5"></circle>
-                            <!-- <path v-for="(arc_item, arc_i) in monthArc" :key="'arc' + arc_i" :d="arc_item" stroke="#D9D9D9"
-                                fill="none"></path> -->
-                        </g>
-                    </g>
-
-                    <g :transform="translate(0, groupHeight - 65, 0)">
-                        <text x="50%" y="20" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
-                            'Num_Projects ' + item.num_project }}</text>
-                        <text x="50%" y="40" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
-                            'Ave_Impact ' + (item.ave_impact)
-                        }}</text>
-                    </g>
-                </svg>
+                                <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
+                                <text x="50%" y="20" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                                    'Group ' + i
+                                }}</text>
+                                <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
+                                    <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'" :fill="colormap[i]"></path>
+                                    <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
+                                        :transform="translate(0, 0, 90 * t_i)" :fill="axisColor[t_i]"></path>
+                                    <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
+                                        :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 25)"
+                                        :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 25)" font-size="12" dy="0.3em"
+                                        text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
+                                    <g :transform="translate(0, 0, 0)">
+                                        <path stroke-dasharray="5.5"
+                                            :d="'M 0 ' + -(groupWidth / 8 - 48) + ' L 0 ' + ((groupWidth / 8 - 48))" fill="none"
+                                            stroke="#D9D9D9"></path>
+                                        <path stroke-dasharray="5.5"
+                                            :d="'M ' + -(groupWidth / 8 - 48) + ' 0 L ' + ((groupWidth / 8 - 48)) + ' 0'" fill="none"
+                                            stroke="#D9D9D9"></path>
+                                        <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) + 15" fill="none" stroke="#D9D9D9"
+                                            stroke-dasharray="5.5"></circle>
+                                        <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) * 2 / 3 + 15" fill="none" stroke="#D9D9D9"
+                                            stroke-dasharray="5.5"></circle>
+                                        <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) * 1 / 3 + 15" fill="none" stroke="#D9D9D9"
+                                            stroke-dasharray="5.5"></circle>
+            
+                                        <circle x="0" y="0" :r="15" fill="white" stroke="#D9D9D9" stroke-dasharray="5.5"></circle>
+                                        <!-- <path v-for="(arc_item, arc_i) in monthArc" :key="'arc' + arc_i" :d="arc_item" stroke="#D9D9D9"
+                                            fill="none"></path> -->
+                                    </g>
+            
+                                    <path v-for="(t_item, t_i) in item['projectLine']" :key="'pL' + t_i" :d="t_item.d" :fill="'none'" :stroke="'#534F4F'" :class="t_item.class" :id="'g_' + t_item.group + '_' + t_item.id" :opacity="filterValue == t_item.id ? 1 : 0"></path>
+                                </g>
+            
+                                <g :transform="translate(0, groupHeight - 65, 0)">
+                                    <text x="50%" y="20" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                                        'Num_Projects ' + item.num_project }}</text>
+                                    <text x="50%" y="40" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                                        'Ave_Impact ' + (item.ave_impact)
+                                    }}</text>
+                                </g>
+                            </svg>
                 <!-- </div> -->
             </div>
-
+    
             <!-- <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
-            <div style="width: 100%; height: calc((100% - 26px) / 3);">
-                [F-2: Recency]
-                <svg width="31.8%" height="calc(100% - 30px)">
-                    <rect v-for="(item, i) in recencyData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
-                        :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9">
-                    </rect>
-                    <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
-                </svg>
-            </div>
-            <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
-            <div style="width: 100%; height: calc((100% - 26px) / 3);">
-                [F-3: Propensity]
-                <svg width="31.8%" height="calc(100% - 30px)">
-                    <rect v-for="(item, i) in propensityData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
-                        :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9">
-                    </rect>
-                    <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
-                </svg>
-            </div> -->
+                        <div style="width: 100%; height: calc((100% - 26px) / 3);">
+                            [F-2: Recency]
+                            <svg width="31.8%" height="calc(100% - 30px)">
+                                <rect v-for="(item, i) in recencyData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
+                                    :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9">
+                                </rect>
+                                <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
+                            </svg>
+                        </div>
+                        <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
+                        <div style="width: 100%; height: calc((100% - 26px) / 3);">
+                            [F-3: Propensity]
+                            <svg width="31.8%" height="calc(100% - 30px)">
+                                <rect v-for="(item, i) in propensityData" :key="'bar' + i" :x="5 + i * (barWidth - 5) / 20"
+                                    :y="barHeight - item" :height="item" :width="(barWidth - 5) / 20" stroke="#D9D9D9" fill="#D9D9D9">
+                                </rect>
+                                <path :d="'M 5 ' + barHeight + ' L ' + barWidth + ' ' + barHeight" fill="none" stroke="#534f4f"></path>
+                            </svg>
+                        </div> -->
         </div>
     </div>
 </template>
+
 <script>
 import { scaleLinear } from 'd3-scale';
 import { select, selectAll } from 'd3-selection';
-import { arc, area, curveBasis, curveLinear, pie } from 'd3-shape';
+import { arc, area, curveBasis, curveLinear, line, pie } from 'd3-shape';
 
 import { axisLeft, axisBottom } from 'd3-axis';
 import { sum } from 'd3-array';
@@ -218,10 +220,11 @@ import { useDataStore } from '../stores/counter';
 export default {
     name: 'APP',
     props: ['groupData', 'cpData'],
-    data () {
+    data() {
         return {
-            filterValue: 'Project Name',
-            filterOptions: ['Group'],
+            filterValue: '',
+            filterOptions: [],
+            projectMap: {},
             groupSet: [1, 2, 3, 4, 5, 6],
             // colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"],
             // colormap: ["#DA927C", "#175E7D", "#B1E1E9", "#A6BAA7", "#9B9364", "#C59CA0", "#FFDDB7"],
@@ -249,10 +252,10 @@ export default {
         }
     },
     methods: {
-        translate (x, y, deg) {
+        translate(x, y, deg) {
             return 'translate(' + x + ',' + y + ') rotate(' + deg + ')';
         },
-        calcArc () {
+        calcArc() {
             let arcs = pie()(this.monthStep);
             let monthArc = [];
             for (let d of arcs) {
@@ -263,13 +266,37 @@ export default {
             }
             return monthArc;
         },
-        dataProcess (data) {
-            let m1 = [], m2 = [], m3 = [], group = {};
-            let max_m1 = 0, max_m2 = 0, max_m3 = 0, max_imp = 0;
-            let min_m1 = 99999, min_m2 = 99999, min_m3 = 99999, min_imp = 99999;
+        dataProcess(data) {
+            let projectName = [];
+            let projectMap = {};
+            for (let i in data) {
+                projectName.push({
+                    label: data[i]['Project Name'],
+                    value: i
+                });
+                projectMap[data[i]['Project Name']] = {
+                    id: i,
+                    group: data[i]['Group']
+                };
+            }
+            this.projectMap = projectMap;
+            // console.log(projectName);
+            this.filterOptions = projectName;
+            let m1 = [],
+                m2 = [],
+                m3 = [],
+                group = {};
+            let max_m1 = 0,
+                max_m2 = 0,
+                max_m3 = 0,
+                max_imp = 0;
+            let min_m1 = 99999,
+                min_m2 = 99999,
+                min_m3 = 99999,
+                min_imp = 99999;
             let groupSet = [];
             for (let i in data) {
-                if (typeof (group[data[i].Group]) == 'undefined') {
+                if (typeof(group[data[i].Group]) == 'undefined') {
                     group[data[i].Group] = {
                         project: [],
                         project_holder: [],
@@ -281,6 +308,7 @@ export default {
                         m2Area: new Array(10).fill(0),
                         m3Area: new Array(10).fill(0),
                         impArea: new Array(10).fill(0),
+                        projectLine: []
                     };
                 }
                 group[data[i].Group].project.push(data[i]);
@@ -310,7 +338,9 @@ export default {
             let maxP = 0;
 
             let xScale = scaleLinear([0, 20], [22, this.barWidth - 15])
-            let a = new Array(20), r = new Array(20), p = new Array(20);
+            let a = new Array(20),
+                r = new Array(20),
+                p = new Array(20);
             for (let i = 0; i < 20; i++) {
                 a[i] = {
                     x: xScale(i),
@@ -350,6 +380,7 @@ export default {
             let max_g = 0;
 
             for (let i in group) {
+                // console.log(group[i]);
                 for (let j in group[i].m1) {
                     let m11 = Math.floor(((group[i].m1[j] - min_m1) / (max_m1 - min_m1)) / (1 / 10));
                     let m22 = Math.floor(((group[i].m2[j] - min_m2) / (max_m2 - min_m2)) / (1 / 10));
@@ -364,6 +395,29 @@ export default {
                     group[i].m3Area[m33]++;
                     group[i].impArea[impp]++;
                     max_g = Math.max(max_g, group[i].m1Area[m11], group[i].m2Area[m22], group[i].m3Area[m33], group[i].impArea[impp]);
+
+                    let lineYScale = scaleLinear([0, 1], [-15, -(this.groupWidth / 8 - 38)])
+
+                    let projectLineData = [
+                        [0, lineYScale(m11 / 10)],
+                        [-lineYScale(m33 / 10), 0],
+                        [0, -lineYScale(impp / 10)],
+                        [lineYScale(m22 / 10), 0],
+                        [0, lineYScale(m11 / 10)],
+
+                    ];
+                    let projectLineGenerate = line().x(d => d[0]).y(d => d[1]);
+                    // if (j == 0 && i == 0) {
+                        // console.log(m11, m22, m33, impp);
+                        // console.log(projectLineData);
+                        group[i].projectLine.push({
+                            d: projectLineGenerate(projectLineData),
+                            project: group[i].project[j]['Project Name'],
+                            id: projectMap[group[i].project[j]['Project Name']].id,
+                            group: i,
+                            class: 'projectRadar'
+                        });
+                    // }
                 }
             }
 
@@ -392,7 +446,7 @@ export default {
                 group[d]['area'] = [areaGenerate(group[d].m1Area), areaGenerate(group[d].m3Area), areaGenerate(group[d].impArea), areaGenerate(group[d].m2Area)];
                 group[d]['num_project'] = group[d].project.length;
                 group[d]['ave_impact'] = (sum(group[d].imp) / group[d].imp.length).toFixed(2);
-                group[d]['pie'] = pie().padAngle(0.03)(group[d].project_holder);
+                group[d]['pie'] = pie().padAngle(0.01)(group[d].project_holder);
                 group[d]['arc'] = [];
                 for (let i in group[d].pie) {
                     let tArc = arc().cornerRadius(3)
@@ -403,14 +457,13 @@ export default {
                 // console.log(group[d]['ave_impact'])
                 groupSet.push(group[d]);
             }
-            // console.log([a, r, p]);
+            // console.log(groupSet);
             return [a, r, p, groupSet];
             // // console.log(this.attachmentData)
         }
     },
-    created () {
-    },
-    mounted () {
+    created() {},
+    mounted() {
         // console.log
         this.barHeight = (this.$refs.attr_bar.offsetHeight - 85) / 3;
         this.barWidth = this.$refs.attr_bar.offsetWidth - 15;
@@ -432,13 +485,13 @@ export default {
     },
 }
 </script>
+
 <style>
 .el-input__suffix-inner i {
     border: 1px solid #dcdfe6;
 }
 
 .el-input__inner {
-
     text-decoration: underline;
 }
 
@@ -447,26 +500,29 @@ export default {
     padding-right: 0px;
 }
 
-
 /*chrome--------------------------------------------start*/
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
 /* Track */
+
 ::-webkit-scrollbar-track {
     background: #ffffff;
     border-radius: 8px;
 }
 
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
     background: rgb(201, 201, 202);
     border-radius: 8px;
 }
 
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(162, 162, 163);
 }
