@@ -18,8 +18,11 @@ import { useDataStore } from "../stores/counter";
 import timeData from '../assets/sn_d_tot.json'
 import basicData from '../assets/data_view.json';
 import sliceData from '../assets/slice_info.json';
-import nftData from '../assets/data.csv';
-import cpData from '../assets/data/control_panel.json';
+// import nftData from '../assets/data.csv';
+// import cpData from '../assets/data/control_panel.json';
+import nftData from '../assets/run_full_1/preferential_attachment_bak.json';
+import cpData from '../assets/run_full_1/control_panel.json';
+
 export default {
   name: "home_view",
   data () {

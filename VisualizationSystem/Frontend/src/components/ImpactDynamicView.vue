@@ -315,7 +315,9 @@ import { scaleLinear, scaleUtc } from 'd3-scale';
 import { select } from 'd3-selection';
 import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3-shape';
 import { useDataStore } from '../stores/counter';
-import data from '../assets/data/data.json';
+// import data from '../assets/data/data.json';
+
+import data from '../assets/run_full_1/preferential_attachment_bak.json';
 import projectData from '../assets/data/impact_dynamics_new.json';
 import { extent, sum } from 'd3-array';
 
@@ -333,7 +335,7 @@ export default {
             pjHeight: 0,
             legendHeight: 0,
             sortValue: 'longevity',
-            sortOptions: [{ label: 'Longevity', value: 'longevity' }, { label: 'Impact dynamic', value: 'IMP' }, { label: 'Total traders', value: 'sumPeople' }],
+            sortOptions: [{ label: 'Longevity', value: 'longevity' }, { label: 'Impact dynamic', value: 'IMP' }, { label: 'Total stakeholders', value: 'sumPeople' }],
             pieLegendData: [90, 135, 135],
             pieLegend: [],
             legendArc: [],
