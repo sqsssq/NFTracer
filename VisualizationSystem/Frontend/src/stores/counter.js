@@ -30,6 +30,7 @@ export const useDataStore = defineStore("dataStore", {
     return {
       msg: 'Hello, Vue SQ',
       model: null,
+      selectGroup: -1,
       timeRange: {
         'start_time': '2021-10-21',
         'end_time': '2022-10-1',

@@ -94,7 +94,7 @@
                                             <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
                                                 </rect>
-                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0">
+                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0" :id="'sel_m3' + r_i">
                                             <rect v-for="(item, i) in groupSet[r_i].m3Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#61bad6">
                                             </rect>
@@ -113,7 +113,7 @@
                                             <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
                                             </rect>
-                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0">
+                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0" :id="'sel_m2' + r_i">
                                             <rect v-for="(item, i) in groupSet[r_i].m2Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#53ad92">
                                             </rect>
@@ -133,7 +133,7 @@
                                             <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
                                             </rect>
-                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0">
+                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0" :id="'sel_m1' + r_i">
                                             <rect v-for="(item, i) in groupSet[r_i].m1Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#EA7C16">
                                             </rect>
@@ -246,7 +246,7 @@ export default {
             filterValue: '',
             filterOptions: [],
             projectMap: {},
-            groupSet: [1, 2, 3, 4, 5, 6],
+            groupSet: [0, 1, 2, 3, 4, 5],
             // colormap: ["#fff2cc", "#ffe699", "#ffd966", "#ffc000", "#bf9000", "#7f6000"],
             // colormap: ["#DA927C", "#175E7D", "#B1E1E9", "#A6BAA7", "#9B9364", "#C59CA0", "#FFDDB7"],
             // colormap: ["#F3F0C7", "#BEC68A", "#72926A", "#F7C183", "#FEA541", "#FBC9C6", "#8A8CA8"],

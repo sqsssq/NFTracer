@@ -236,8 +236,9 @@
                 <div style="overflow-x: auto; overflow-y: hidden; height: 100%;">
                     <img v-for="(item, i) in unreleasedProject" :src="item.logo_link" :style="{
                         position: 'absolute',
-                        top: '6px', left: (i * 40 + 10) + 'px'
-                    }" height="35">
+                        top: '6px', left: (i * 40 + 10) + 'px',
+                        'border-radius': '50%'
+                    }" height="35" >
                 </div>
             </div>
         </div>
@@ -329,6 +330,7 @@ export default {
             for (let i in data) {
                 res_data.push(data[i]);
             }
+            return res_data;
         },
         calcTable (data) {
             this.select_project_num = data.length;
@@ -355,18 +357,18 @@ export default {
                 max_m1 = Math.max(max_m1, data[i].M1)
                 max_m2 = Math.max(max_m2, data[i].M2)
                 max_m3 = Math.max(max_m3, data[i].M3)
-                // max_imp = Math.max(max_imp, data[i].IMP);
+                max_imp = Math.max(max_imp, data[i].IMP);
                 min_m1 = Math.min(min_m1, data[i].M1);
                 min_m2 = Math.min(min_m2, data[i].M2);
                 min_m3 = Math.min(min_m3, data[i].M3);
-                // min_imp = Math.min(min_imp, data[i].IMP);
+                min_imp = Math.min(min_imp, data[i].IMP);
                 group[data[i].Group].project.push(data[i]);
                 this.maxGroupNum = Math.max(this.maxGroupNum, group[data[i].Group].project.length);
             }
-            for (let i in data) {
-                max_imp = Math.max(max_imp, ((data[i].M1- min_m1) / (max_m1 - min_m1)) * ((data[i].M2 - min_m2) / (max_m2 - min_m2)) * ((data[i].M3 - min_m3) / (max_m3 - min_m3)) * data[i].Holder);
-                min_imp = Math.min(min_imp, ((data[i].M1- min_m1) / (max_m1 - min_m1)) * ((data[i].M2 - min_m2) / (max_m2 - min_m2)) * ((data[i].M3 - min_m3) / (max_m3 - min_m3)) * data[i].Holder);
-            }
+            // for (let i in data) {
+            //     max_imp = Math.max(max_imp, ((data[i].M1- min_m1) / (max_m1 - min_m1)) * ((data[i].M2 - min_m2) / (max_m2 - min_m2)) * ((data[i].M3 - min_m3) / (max_m3 - min_m3)) * data[i].Holder);
+            //     min_imp = Math.min(min_imp, ((data[i].M1- min_m1) / (max_m1 - min_m1)) * ((data[i].M2 - min_m2) / (max_m2 - min_m2)) * ((data[i].M3 - min_m3) / (max_m3 - min_m3)) * data[i].Holder);
+            // }
 
             for (let i in group) {
                 for (let j in group[i].project) {
@@ -381,8 +383,8 @@ export default {
                             M1: (group[i].project[j].M1 - min_m1) / (max_m1 - min_m1),
                             M2: (group[i].project[j].M2 - min_m2) / (max_m2 - min_m2),
                             M3: (group[i].project[j].M3 - min_m3) / (max_m3 - min_m3),
-                            // IMP: (group[i].project[j].IMP - min_imp) / (max_imp - min_imp)
-                            IMP: ((group[i].project[j].M1 - min_m1) / (max_m1 - min_m1) * (group[i].project[j].M2 - min_m2) / (max_m2 - min_m2) * (group[i].project[j].M3 - min_m3) / (max_m3 - min_m3) * group[i].project[j].Holder - min_imp) / (max_imp - min_imp)
+                            IMP: (group[i].project[j].IMP - min_imp) / (max_imp - min_imp)
+                            // IMP: ((group[i].project[j].M1 - min_m1) / (max_m1 - min_m1) * (group[i].project[j].M2 - min_m2) / (max_m2 - min_m2) * (group[i].project[j].M3 - min_m3) / (max_m3 - min_m3) * group[i].project[j].Holder - min_imp) / (max_imp - min_imp)
                         },
                         link: group[i].project[j]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : group[i].project[j]['logo_link'],
                         name: group[i].project[j]['Project Name'],
@@ -515,6 +517,7 @@ export default {
         this.elHeight = this.$refs.controlPanel.offsetHeight * 0.50;
         this.elWidth = this.$refs.controlPanel.offsetWidth - 112;
         this.tableData = this.calcTable(this.cpData.data);
+        // console.log(this.cpData.unClusterProject);
         this.unreleasedProject = this.calcUnreleasedProject(this.cpData.unClusterProject);
         // console.log(this.cpData)
     },
