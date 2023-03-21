@@ -353,7 +353,7 @@ import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3
 import { useDataStore } from '../stores/counter';
 // import data from '../assets/data/data.json';
 
-import data from '../assets/run_full_1/preferential_attachment_bak.json';
+import data from '../assets/run_full_1/preferential_attachment.json';
 import projectData from '../assets/run_full_1/impact_dynamics.json';
 import { extent, sum } from 'd3-array';
 import { objectToString } from '@vue/shared';
@@ -1051,6 +1051,10 @@ export default {
             return [lineData, textPlace];
 
         },
+        getDay() {
+            const dataStore = useDataStore();
+            
+        }
     },
     created() {},
 
