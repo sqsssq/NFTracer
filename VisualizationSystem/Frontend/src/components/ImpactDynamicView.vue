@@ -182,13 +182,14 @@
                                             <path v-for="(a_item, a_i) in item.name.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
                                                 :fill="a_item.fill"></path>
         
-                                            <clipPath id="clipPath2">
-                                                <circle :cx="item.name.img_r" :cy="item.name.img_r" :r="item.name.img_r"></circle>
+                                            <clipPath id="clipPath20">
+                                                <circle :cx="item.name.img_r * 0.75" :cy="item.name.img_r * 0.75" :r="item.name.img_r / 2"></circle>
                                             </clipPath>
-                                            <g clip-path="url(#clipPath2)"
-                                                :transform="translate(-item.name.img_r, -item.name.img_r, 0)">
-                                                <image :href="item.name.link" x="0" y="0" :height="item.name.img_r * 2"
-                                                    :width="item.name.img_r * 2" />
+                                            
+                                            <g clip-path="url(#clipPath20)"
+                                                :transform="translate(-item.name.img_r*0.75 , -item.name.img_r* 0.75, 0)">
+                                                <image :href="item.name.link" x="0" y="0" :height="item.name.img_r * 1.5"
+                                                    :width="item.name.img_r * 1.5" />
                                             </g>
                                         </g>
         
@@ -478,7 +479,7 @@ export default {
                 outArc: outArc,
                 innerArc: innerArc,
                 link: data.link == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : data.link,
-                img_r: r / 2,
+                img_r: r,
                 name: data.name,
                 time: data.time,
                 IMP: data.outer['IMP'],
