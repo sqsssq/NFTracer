@@ -152,7 +152,7 @@
                             </defs>
                                                         <g>
                                                             
-                                                            <circle v-for="(c_item, c_i) in scatterData" :key="'gc' + c_i" :cx="c_item.cx"
+                                                            <circle v-for="(c_item, c_i) in scatterData" :key="'gc' + c_i" :id="'pro_cir' + c_item.id_cnt" :class="'all_pro_cir'" :cx="c_item.cx"
                                                                 :cy="c_item.cy" :r="5" :fill="(selectGroup == -1 && ProjectClickSta == 0) ? colormap[c_item.group] : '#c0c0c0'" :opacity="(selectGroup == -1 && ProjectClickSta == 0) ?  1:  0.3" @mouseenter="msTest(c_item)">
                                                             </circle>
                                                         </g>
@@ -425,6 +425,14 @@ export default {
                 .style('opacity', 1)
                 .style('left', event.layerX + 20 + 'px')
                 .style('top', event.layerY - 15 + 'px')
+            let id_cnt = -1;
+            for (let i in this.scatterData) {
+                if (this.scatterData[i].name == data['Project Name']) {
+                    id_cnt = this.scatterData[i].id_cnt;
+                    break;
+                }
+            }
+            select('#pro_cir' + id_cnt).attr('r', 15).attr('stroke', 'red');
             // selectAll('.groupArc').attr('opacity', d => {
             //     // console.log(d);
             //     return 0.2});
@@ -434,6 +442,8 @@ export default {
             select('.tooltip').style('opacity', 0)
                 .style('left', '-1000px')
                 .style('top', '0px')
+
+            selectAll('.all_pro_cir').attr('r', 5).attr('stroke', 'none');
             // if (this.projectSelectSta == 0) return;
             // if (this.ProjectClickSta == 1) return;
             // selectAll('.groupArc').attr('opacity', 1);
@@ -680,6 +690,7 @@ export default {
             }
             let xScale = scaleLinear([minx, maxx], [0.5 - Math.sqrt(2) / 4, 0.5 + Math.sqrt(2) / 4]);
             let yScale = scaleLinear([miny, maxy], [0.5 - Math.sqrt(2) / 4, 0.5 + Math.sqrt(2) / 4]);
+            let pro_cnt = 0;
             for (let i in data) {
                 // console.log(data[i]);
                 let sx = (parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) + parseFloat(data[i].Buyer) * 2 / (data[i].Holder + data[i].Seller + data[i].Buyer)) / Math.sqrt(3);
@@ -707,7 +718,7 @@ export default {
                 //     }
                 //     cnt++;
                 // }
-                console.log(sx, sy);
+                // console.log(sx, sy);
                 // console.log(data[i])
                 let tp = {
                     name: data[i]['Project Name'],
@@ -718,7 +729,8 @@ export default {
                     rx: sx * t_h,
                     ry: sy * t_h,
                     cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) + sx * t_h,
-                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) - sy * t_h
+                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) - sy * t_h,
+                    id_cnt: pro_cnt++
                 };
                 // console.log(tp);
                 scatterData.push(tp);

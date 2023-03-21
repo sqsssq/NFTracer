@@ -1050,7 +1050,7 @@ export default {
             // console.log(textPlace)
             return [lineData, textPlace];
 
-        }
+        },
     },
     created() {},
 
