@@ -313,7 +313,7 @@
 import { axisBottom, axisLeft } from 'd3-axis';
 import { scaleLinear, scaleUtc } from 'd3-scale';
 // import time from 'd3-scale/src/time';
-import { select } from 'd3-selection';
+import { select, selectAll } from 'd3-selection';
 import { arc, area, curveBasis, curveBumpX, curveMonotoneX, line, pie } from 'd3-shape';
 import { useDataStore } from '../stores/counter';
 // import data from '../assets/data/data.json';
@@ -372,12 +372,17 @@ export default {
             },
             selectGroupTag: 1,
             allDay: 0,
-            barWidth: 15
+            barWidth: 15,
+            pre_select_corr: -1
         }
     },
     methods: {
         clickCorrelation(cnt) {
+            if (this.pre_select_corr != -1) {
+                this.correlationData[this.pre_select_corr].opacity = 0;
+            }
             this.correlationData[cnt].opacity = 1;
+            this.pre_select_corr = cnt;
         },
         dateFormat (date) {
             date = new Date(date);
@@ -568,7 +573,8 @@ export default {
             // let timeSvg = select('#timeSpace').append('svg').attr('id',  'timeSvg').attr('width', this.pjWidth * 2).attr('height', this.pjHeight * data.length / 2);
             // let legendSvg = select('#legendSpace').append('svg').attr('id', 'legendSvg').attr('width', this.pjWidth * 2).attr('height', this.legendHeight - 15);
 
-            let timeData = []
+            let timeData = [];
+            let pro_id_cnt = 0;
             for (let i in data) {
                 // console.log(data[i]);
                 let m1_range = extent(data[i]['M1Line'], d => d.value);
@@ -592,9 +598,11 @@ export default {
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.95 / 2, this.pjHeight * 0.65 / 2 + 20]);
                 let areaGenerate = area().x(d => timeX(new Date(d.x))).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
                 let areaGenerate2 = area().x(d => timeX(new Date(d.x))).y1(d => areaScale2(d.y)).y0(areaScale2(holder_range[0])).curve(curveMonotoneX);
-                select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
-                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
-                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale2).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
+                selectAll('#vAxis' + pro_id_cnt).remove();
+                select('#nameSpaceSvg').append('g').attr('id', 'vAxis' + pro_id_cnt).call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').attr('id', 'vAxis' + pro_id_cnt).call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').attr('id', 'vAxis' + pro_id_cnt).call(axisLeft(areaScale2).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
+                pro_id_cnt++;
                 let lineGenerate = line().x(d => timeX(new Date(d.x))).y(d => lineScale(d.y)).curve(curveMonotoneX);
                 // console.log(data[i])
                 // console.log(min_m1, max_m1, data[i].M1, (data[i]['M1'] - min_m1) / (max_m1 - min_m1))
@@ -968,7 +976,7 @@ export default {
                                     }
                                 }, sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2, 0, 0, rectScale, holderScale, y1, y2, (lineScaleX(1) - lineScaleX(0)) / 2, this.group_colormap[group_num])
                             }
-                            this.legendData.push(legend_data);
+                            this.legendData= [(legend_data)];
                         }
                     } else {
                         if (co_data[i].co_sum == max_co_people) {
@@ -995,7 +1003,7 @@ export default {
                                     }
                                 }, sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2, 0, 0, rectScale, holderScale, y1, y2, (lineScaleX(1) - lineScaleX(0)) / 2, this.group_colormap[group_num])
                             }
-                            this.legendData.push(legend_data);
+                            this.legendData = [(legend_data)];
                         }
                     }
                     // console.log(this.legendData);
