@@ -94,7 +94,7 @@
                                             <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
                                                 </rect>
-                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0" :id="'sel_m3' + r_i">
+                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="r_i == selectGroupTag ? 1: 0" :id="'sel_m3' + r_i">
                                             <rect v-for="(item, i) in groupSet[r_i].m3Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#61bad6">
                                             </rect>
@@ -113,7 +113,7 @@
                                             <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
                                             </rect>
-                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0" :id="'sel_m2' + r_i">
+                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="r_i == selectGroupTag ? 1: 0" :id="'sel_m2' + r_i">
                                             <rect v-for="(item, i) in groupSet[r_i].m2Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#53ad92">
                                             </rect>
@@ -133,7 +133,7 @@
                                             <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
                                             </rect>
-                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="0" :id="'sel_m1' + r_i">
+                                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i" :opacity="r_i == selectGroupTag ? 1: 0" :id="'sel_m1' + r_i">
                                             <rect v-for="(item, i) in groupSet[r_i].m1Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#EA7C16">
                                             </rect>
@@ -161,7 +161,7 @@
                                 }"> -->
                 <svg v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
                                     <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
-                                    <text x="50%" y="20" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                                    <text x="50%" y="20" font-size="16" text-anchor="middle" :fill="i != selectGroupTag ? '#534F4F' : colormap[i]" font-weight="bold" style="font-weight: 600;">{{
                                         'Group ' + i
                                     }}</text>
                                     <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
@@ -240,7 +240,7 @@ import { useDataStore } from '../stores/counter';
 
 export default {
     name: 'APP',
-    props: ['groupData', 'cpData'],
+    props: ['cpData'],
     data() {
         return {
             filterValue: '',
@@ -269,7 +269,8 @@ export default {
             groupHeight: 100,
             monthArc: [],
             clusterData: [],
-            timeSelectionText: ''
+            timeSelectionText: '',
+            selectGroupTag: -1
         }
     },
     methods: {
@@ -293,7 +294,8 @@ export default {
             for (let i in data) {
                 projectName.push({
                     label: data[i]['Project Name'],
-                    value: i
+                    value: i,
+                    group: data[i]['Group']
                 });
                 projectMap[data[i]['Project Name']] = {
                     id: i,
@@ -525,7 +527,8 @@ export default {
             // console.log(groupSet);
             return [a, r, p, groupSet];
             // // console.log(this.attachmentData)
-        }
+        },
+        // calcFilter (data) {}
     },
     created() {},
     mounted() {
@@ -537,17 +540,26 @@ export default {
         // console.log(this.cpData)
 
         [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(this.cpData.data);
-        console.log(this.groupSet)
         const dataStore = useDataStore();
         dataStore.$subscribe((mutations, state) => {
             this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
+
+            if (dataStore.selectGroup != -1) {
+                this.selectGroupTag = dataStore.selectGroup;
+                this.$refs.groupView.scrollLeft = (dataStore.selectGroup + 1 - 4) * this.groupWidth / 4;
+                let project_name = [];
+                // for ()
+                for (let i in this.cpData.data) {
+                    if (this.cpData.data[i]['Group'] == dataStore.selectGroup || dataStore.selectGroup == -2)
+                    project_name.push({
+                        label: this.cpData.data[i]['Project Name'],
+                        value: i
+                    })
+                }
+                this.filterValue = '';
+                this.filterOptions = project_name;
+            }
         })
-
-        // this.monthArc = this.calcArc();
-        // console.log(this.groupSet);
-
-        // console.log(this.groupData);
-        // console.log(this.barHeight, this.barWidth)
     },
 }
 </script>

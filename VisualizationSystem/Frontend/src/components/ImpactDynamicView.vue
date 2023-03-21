@@ -166,9 +166,9 @@
                                 </el-select>
                             </span>
                 </div>
-                <div style="height: calc(100% - 35px); width: 100%;">
+                <div style="height: calc(100% - 35px); width: 100%;" >
                     <div ref="nameSpace" id="nameSpace" style="float: left; width: calc(15% + 30px); height: 93%; overflow: hidden;">
-                        <svg width="100%" :height="pjWidth * projectNum / 2- 1" id="nameSpaceSvg">
+                        <svg width="100%"  v-show="selectGroupTag != -1" :height="pjWidth * projectNum / 2- 1" id="nameSpaceSvg">
                                     <g v-for="(item, i) in timeData" :key="'time_x' + i">
                                         <g :transform="translate((nameWidth) / 2 - 10, i * pjHeight / 2 + 100, 0)">
         
@@ -249,7 +249,7 @@
                     <div ref="timeSpace" id="timeSpace"
                                 style="float: right; width: calc(85% - 30px); height: 93%; overflow: auto;" @scroll="sysScroll()">
         
-                                <svg :width="barWidth * allDay" :height="pjHeight * projectNum / 2">
+                                <svg :width="barWidth * allDay" :height="pjHeight * projectNum / 2"  v-show="selectGroupTag != -1">
 
                                     <g v-for="(item, i) in timeData" :key="'time_x' + i">
                                         <g :transform="translate(0, i * pjHeight / 2, 0)">
@@ -268,7 +268,7 @@
                                             </g>
                                             <g :transform="translate(0, 0, 0)">
                                                 <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
-                                                    :cx="a_item.x" :cy="a_item.y" :r="2" :fill="a_item.fill"></circle>
+                                                    :cx="a_item.x" :cy="a_item.y" :r="4" :fill="a_item.fill"></circle>
                                             </g>
                                             <g>
         
@@ -292,7 +292,7 @@
                                 </svg>
                             </div>
                     <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 30px); height: 6%; overflow: auto; margin-top: 0.5%;">
-                        <svg height="legendHeight" id="xAxisLegend" :width="allDay * barWidth">
+                        <svg :height="legendHeight" id="xAxisLegend" :width="allDay * barWidth"  v-show="selectGroupTag != -1">
                                     <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
                                     <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
                                         :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
@@ -325,7 +325,7 @@ import { objectToString } from '@vue/shared';
 
 export default {
     name: 'APP',
-    props: ['groupData', 'cpData'],
+    props: ['cpData'],
     data() {
         return {
             cvHeight: 0,
@@ -335,7 +335,7 @@ export default {
             nameWidth: 0,
             pjWidth: 100,
             pjHeight: 0,
-            legendHeight: 0,
+            legendHeight: 100,
             sortValue: 'longevity',
             sortOptions: [{ label: 'Longevity', value: 'longevity' }, { label: 'Impact dynamic', value: 'IMP' }, { label: 'Total stakeholders', value: 'sumPeople' }],
             pieLegendData: [90, 135, 135],
@@ -370,7 +370,7 @@ export default {
                 r: 0,
                 stroke: 'none'
             },
-            selectGroupTag: 1,
+            selectGroupTag: -1,
             allDay: 0,
             barWidth: 15,
             pre_select_corr: -1
@@ -558,7 +558,8 @@ export default {
             let timeXAxis = (g, x, height) => g
                 .attr("transform", `translate(0,${height - margin.bottom})`)
                 .call(axisBottom(x).ticks(this.barWidth * this.allDay / 80).tickSizeOuter(0))
-            select('#xAxisLegend').append('g').call(timeXAxis, timeX, 0)
+            selectAll('timeAxis_g').remove();
+            select('#xAxisLegend').append('g').attr('id', 'timeAxis_g').call(timeXAxis, timeX, 0)
             // console.log(data3);
             let data = [];
             for (let i in data1) {
@@ -1089,18 +1090,14 @@ export default {
         // console.log(data);
         [this.allDay, this.barWidth] = this.getDay();
 
-        // // [this.legendArc, this.outLegendArc] = this.dataProcess();
-        [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data, this.cpData.data, 1);
-
-        this.timeData = this.calcIndividualProject(data.nft_project_table, projectData, this.cpData.data, 1);
-        // console.log(projectData);
-
-        // console.log(this.timeData)
         const dataStore = useDataStore();
 
         dataStore.$subscribe((mutations, state) => {
-            // this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
-            if (dataStore.selectGroup != -1) {
+            console.log(dataStore.selectGroup);
+            if (dataStore.selectGroup == -2) {
+                this.selectGroupTag = -1;
+            }
+            else if (dataStore.selectGroup != -1) {
                 this.selectGroupTag = dataStore.selectGroup;
                 [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data, this.cpData.data, dataStore.selectGroup);
 

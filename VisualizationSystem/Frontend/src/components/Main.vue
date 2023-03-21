@@ -38,20 +38,20 @@
     <div style="height: calc(95.7vh - 0px); width: calc(100% - 0px); background-color: #E0DEDE;">
         <div class="framework" id="PropensityAnalysis"
             style="position: absolute; left: calc(5px); top: calc(5px); height: calc(67vh - 10px); width: calc(20%);">
-            <PropensityAnalysis :groupData="groupData" :cpData="cpData" />
+            <PropensityAnalysis  :cpData="cpData" />
         </div>
         <div class="framework" id="MechanismAnalysis"
             style="position: absolute; left: calc(5px); top: calc(67vh); height: calc(95.7vh - 5px - 67vh); width: calc(66.2vw + 5px);">
-            <MechanismAnalysis :groupData="groupData" :cpData="cpData" />
+            <MechanismAnalysis  :cpData="cpData" />
         </div>
         <div class="framework" id="ModelExplainer"
             style="position: absolute; left: calc(5px + 20vw + 5px); top: calc(5px); height: calc((67vh) - 10px); width: calc(46.2vw);">
-            <SubstitutionView :groupData="groupData" :cpData="cpData"/>
+            <SubstitutionView  :cpData="cpData"/>
         </div>
         <div class="framework" id="CorrelationView"
             style="position: absolute; left: calc(66.2vw + 15px);  top: calc(5px); height: calc(95.7vh - 10px); width: calc(100vw - 66.2vw - 20px);">
 
-            <ImpactDynamicView :groupData="groupData"  :cpData="cpData"/>
+            <ImpactDynamicView   :cpData="cpData"/>
         </div>
     </div>
 </template>
@@ -64,7 +64,7 @@ import SubstitutionView from './SubstitutionView.vue';
 import ImpactDynamicView from './ImpactDynamicView.vue';
 export default {
     name: "APP",
-    props: ["groupData", "cpData"],
+    props: ["cpData"],
     data () {
         return {
             msg1: "Hello, main!"
