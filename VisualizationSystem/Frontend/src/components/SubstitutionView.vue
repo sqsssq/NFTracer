@@ -118,10 +118,7 @@
                                                             <path v-for="item in 30" :key="'path' + item"
                                                                 :d="'M 0 0 L ' + (Math.sin(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (Math.cos(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2))"
                                                                 stroke="#534F4F" stroke-width="0.5"></path>
-                                                            <path
-                                                                :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .56 / 2 - 2)) + ' Z'"
-                                                                stroke-dasharray="5.5" stroke="#C6BCBC" fill="none"></path>
-                            
+                                                            
                                                         </g>
                                                         <g :transform="translate(0, 0, 0)">
                             
@@ -129,7 +126,7 @@
                                                                 :fill="arc_i == groupTag ? 'none' : colormap[arc_i]" @mouseenter="mouseoverGroup(arc_item.group)" @mouseout="mouseoutGroup()"
                                                                 @click="clickGroup(arc_item.group)"></path>
                             
-                                                            <path v-for="(arc_item, arc_i) in groupArc" :key="'arc' + arc_i" :d="arc_item.arc" :id="'GroupArc' + arc_item.group + ' pro_' + arc_i"
+                                                            <path v-for="(arc_item, arc_i) in groupArc" :key="'arc' + arc_i" :d="arc_item.arc" :id="'GroupArc' + arc_item.group"
                                                                 :fill="arc_item.group == groupTag ? 'white' : colormap[parseInt(arc_item.group)]" :class="'groupArc'"
                                                                 :stroke="arc_item.group == groupTag ? '#C6BCBC' : colormap[parseInt(arc_item.group)]" 
                                                                 stroke-width="1" @mouseenter="mouseoverProject($event, arc_item, arc_i)" @mouseout="mouseoutProject()"
@@ -161,14 +158,17 @@
                                                         </g>
                                                         <g>
     
-                                                            <path v-for="(p_item, p_i) in projectFlow" :key="'flow' + p_i" :d="p_item.d" :fill="'none'" :stroke="'grey'" :stroke-width="p_item.w"></path>
+                                                            <path v-for="(p_item, p_i) in projectFlow" :key="'flow' + p_i" :d="p_item.d" :fill="'none'" :stroke="'grey'" :stroke-width="p_item.w" opacity="0.5"></path>
                                                         </g>
                                                         <g>
 
                                                             <circle v-for="(c_item, c_i) in projectSelect" :key="'gc' + c_i" :cx="c_item.x"
                                                                 :cy="c_item.y" :r="5" :fill="colormap[c_item.group]" :opacity="1"></circle>
                                                         </g>
-                                                        <g>
+                                                        <g v-show="showHSB">
+                                                            <path
+                                                                :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .56 / 2 - 2)) + ' Z'"
+                                                                stroke-dasharray="5.5" stroke="#C6BCBC" fill="none"></path>
                             
                                                             <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
                                                                 :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
@@ -207,6 +207,7 @@ export default {
     props: ["groupData", 'cpData'],
     data() {
         return {
+            showHSB: 1,
             groupSelect: 0,
             groupClick: 0,
             projectSelectSta: 0,
@@ -276,9 +277,18 @@ export default {
         zoomBtn() {
             this.zoomTag = !this.zoomTag;
             if (this.zoomTag) {
-
+                this.showHSB = 0;
                 [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 2);
+                if (this.ProjectClickSta) {
+
+            [this.projectFlow, this.projectSelect] = this.calcProjFlow(flow_data, this.ProjectClickName);
+                }
+                if (this.groupClick) {
+
+            this.calcFlowData(this.selectGroup);
+                }
             } else {
+                this.showHSB = 1;
 
                 [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1);
             }
@@ -659,6 +669,17 @@ export default {
                 m3_max = 0,
                 imp_max = 0;
             let cnt = 0;
+            let minx = 999, maxx = -1, miny = 999, maxy = -1;
+            for (let i in data) {
+                let sx = (parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) + parseFloat(data[i].Buyer) * 2 / (data[i].Holder + data[i].Seller + data[i].Buyer)) / Math.sqrt(3);
+                let sy = parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer));
+                minx = Math.min(minx, sx);
+                maxx = Math.max(maxx, sx);
+                miny = Math.min(miny, sy);
+                maxy = Math.max(maxy, sy);
+            }
+            let xScale = scaleLinear([minx, maxx], [0.5 - Math.sqrt(2) / 4, 0.5 + Math.sqrt(2) / 4]);
+            let yScale = scaleLinear([miny, maxy], [0.5 - Math.sqrt(2) / 4, 0.5 + Math.sqrt(2) / 4]);
             for (let i in data) {
                 // console.log(data[i]);
                 let sx = (parseFloat(data[i].Holder / (data[i].Holder + data[i].Seller + data[i].Buyer)) + parseFloat(data[i].Buyer) * 2 / (data[i].Holder + data[i].Seller + data[i].Buyer)) / Math.sqrt(3);
@@ -666,22 +687,26 @@ export default {
                 let ss = parseFloat(data[i].Seller / (data[i].Holder + data[i].Seller + data[i].Buyer));
                 let sb = parseFloat(data[i].Buyer / (data[i].Holder + data[i].Seller + data[i].Buyer));
                 if (powIndex != 1) {
-                    if (sx > 0.5) {
-                        // if (cnt % 2 == 0) {
-                        // sx += (1 - ss) * ss * Math.sqrt(3) / 2;
-                        // sy += (1 - ss) * ss / 2;
-
-                        sx += (ss - Math.atan(ss)) * 12 * Math.sqrt(3) / 2;
-                        sy += (ss - Math.atan(ss)) * 12 * ss / 2;
-                    } else {
-                        // sx -= (1 - sb) * sb * Math.sqrt(3) / 2;
-                        // sy -= (1 - sb) * sb / 2;
-
-                        sx -= (sb - Math.atan(sb)) * 12 * Math.sqrt(3) / 2;
-                        sy -= (sb - Math.atan(sb)) * 12 * sb / 2;
-                    }
-                    cnt++;
+                    sx = xScale(sx);
+                    sy = yScale(sy);
                 }
+                // if (powIndex != 1) {
+                //     if (sx > 0.5) {
+                //         // if (cnt % 2 == 0) {
+                //         // sx += (1 - ss) * ss * Math.sqrt(3) / 2;
+                //         // sy += (1 - ss) * ss / 2;
+
+                //         sx += (ss - Math.atan(ss)) * 12 * Math.sqrt(3) / 2;
+                //         sy += (ss - Math.atan(ss)) * 12 * ss / 2;
+                //     } else {
+                //         // sx -= (1 - sb) * sb * Math.sqrt(3) / 2;
+                //         // sy -= (1 - sb) * sb / 2;
+
+                //         sx -= (sb - Math.atan(sb)) * 12 * Math.sqrt(3) / 2;
+                //         sy -= (sb - Math.atan(sb)) * 12 * sb / 2;
+                //     }
+                //     cnt++;
+                // }
                 console.log(sx, sy);
                 // console.log(data[i])
                 let tp = {
