@@ -270,7 +270,7 @@ export default {
         },
         translate(x, y, d) {
             return `translate(${x}, ${y}) rotate(${d})`;
-        },
+        },  
         groupSelectBtn() {
             this.groupSelect = !this.groupSelect;
         },
@@ -399,8 +399,8 @@ export default {
         mouseoverProject(event, p_data, id) {
             // console.log(data, id);
             let data = p_data.project;
-            if (this.projectSelectSta == 0) return;
-            if (this.ProjectClickSta == 1) return;
+            // if (this.projectSelectSta == 0) return;
+            // if (this.ProjectClickSta == 1) return;
 
             this.glyphData = [{
                 name: this.calcIndividual({

@@ -32,8 +32,8 @@ export const useDataStore = defineStore("dataStore", {
       model: null,
       selectGroup: -1,
       timeRange: {
-        'start_time': '2021-10-21',
-        'end_time': '2022-10-1',
+        'start_time': '2021-08-15',
+        'end_time': '2022-03-10',
         'start_format': '',
         'end_format': '',
         'start': {

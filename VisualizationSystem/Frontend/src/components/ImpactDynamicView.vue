@@ -230,7 +230,7 @@
                                             </g>
                                             <g :transform="translate(0, 0, 0)">
                                                 <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
-                                                    :cx="a_item.x" :cy="a_item.y" :r="5" :fill="a_item.fill"></circle>
+                                                    :cx="a_item.x" :cy="a_item.y" :r="2" :fill="a_item.fill"></circle>
                                             </g>
                                             <g>
         
@@ -526,10 +526,12 @@ export default {
                 bottom: -15,
             }
             // console.log(data2[data1[0]['Project Name']]);
-            let selectTimeData = data2[data1[0]['Project Name']]['HolderLine'];
+            // let selectTimeData = data2[data1[0]['Project Name']]['HolderLine'];
+            let dataStore = useDataStore();
+            let timeRange = [new Date(dataStore.timeRange.start_time), new Date(dataStore.timeRange.end_time)];
             // console.log(extent(selectTimeData, d => d.time))
             let timeX = scaleUtc()
-                .domain(extent(selectTimeData, d => new Date(d.time)))
+                .domain(timeRange)
                 .range([margin.left, this.pjWidth - margin.right]);
             let timeXAxis = (g, x, height) => g
                 .attr("transform", `translate(20,${height - margin.bottom})`)
@@ -1040,9 +1042,9 @@ export default {
         // console.log(data);
 
         // // [this.legendArc, this.outLegendArc] = this.dataProcess();
-        // [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data, this.cpData.data, 1);
+        [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data, this.cpData.data, 1);
 
-        // this.timeData = this.calcIndividualProject(data.nft_project_table, projectData, this.cpData.data, 1);
+        this.timeData = this.calcIndividualProject(data.nft_project_table, projectData, this.cpData.data, 1);
         // console.log(projectData);
 
         // console.log(this.timeData)
