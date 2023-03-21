@@ -292,8 +292,8 @@
                                         </g>
                                 </svg>
                             </div>
-                    <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 30px); height: 6%; overflow-y: hidden; overflow-x: hidden; margin-top: 0.5%;">
-                        <svg width="100%" :height="legendHeight" id="xAxisLegend" :width="allDay * barWidth">
+                    <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 30px); height: 6%; overflow: auto; margin-top: 0.5%;">
+                        <svg height="legendHeight" id="xAxisLegend" :width="allDay * barWidth">
                                     <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
                                     <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
                                         :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
@@ -385,15 +385,16 @@ export default {
                 this.$refs.nameSpace.scrollTop = this.$refs.timeSpace.scrollTop
             }
             if (this.$refs.timeSpace.scrollLeft != this.$refs.legendSpace.scrollLeft) {
+                console.log(111);
                 this.$refs.legendSpace.scrollLeft = this.$refs.timeSpace.scrollLeft;
             }
         },
 
-        sysScrollL() {
-            if (this.$refs.timeSpace.scrollTop != this.$refs.nameSpace.scrollTop) {
-                this.$refs.timeSpace.scrollTop = this.$refs.nameSpace.scrollTop
-            }
-        },
+        // sysScrollL() {
+        //     if (this.$refs.timeSpace.scrollTop != this.$refs.nameSpace.scrollTop) {
+        //         this.$refs.timeSpace.scrollTop = this.$refs.nameSpace.scrollTop
+        //     }
+        // },
         translate(x, y, deg) {
             return `translate(${x}, ${y}) rotate(${deg})`;
         },
@@ -542,7 +543,7 @@ export default {
                 .range([margin.left, this.barWidth * this.allDay - margin.right]);
             let timeXAxis = (g, x, height) => g
                 .attr("transform", `translate(0,${height - margin.bottom})`)
-                .call(axisBottom(x).ticks(this.nameWidth / 80).tickSizeOuter(0))
+                .call(axisBottom(x).ticks(this.barWidth * this.allDay / 80).tickSizeOuter(0))
             select('#xAxisLegend').append('g').call(timeXAxis, timeX, 0)
             // console.log(data3);
             let data = [];
