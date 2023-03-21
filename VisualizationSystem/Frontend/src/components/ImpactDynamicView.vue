@@ -177,7 +177,7 @@
                             </span>
                 </div>
                 <div style="height: calc(100% - 35px); width: 100%;">
-                    <div ref="nameSpace" id="nameSpace" style="float: left; width: calc(100%); height: 94%; overflow: auto;">
+                    <div ref="nameSpace" id="nameSpace" style="float: left; width: calc(15% + 30px); height: 94%; overflow: hidden;">
                         <svg width="100%" :height="pjWidth * projectNum / 2- 1" id="nameSpaceSvg">
                                     <g v-for="(item, i) in timeData" :key="'time_x' + i">
                                         <g :transform="translate((nameWidth) / 2 - 10, i * pjHeight / 2 + 100, 0)">
@@ -215,7 +215,7 @@
                                                 fill="none" stroke="#e0dede"></path>
                                         </g>
         
-                                        <g :transform="translate(nameWidth, pjHeight / 2 * i, 0)">
+                                        <!-- <g :transform="translate(nameWidth, pjHeight / 2 * i, 0)">
                                             <g :transform="translate(0, 0, 0)">
                                                 <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
                                                     :fill="'none'" :stroke="a_item.fill"></path>
@@ -248,15 +248,15 @@
                                                 <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
                                                     fill="none" stroke="#e0dede"></path>
                                             </g>
-                                        </g>
+                                        </g> -->
                                     </g>
                                 </svg>
                     </div>
-                    <!-- <div ref="timeSpace" id="timeSpace"
-                                style="float: right; width: calc(85% - 20px); height: 92%; overflow: auto;" @scroll="sysScroll()">
+                    <div ref="timeSpace" id="timeSpace"
+                                style="float: right; width: calc(85% - 30px); height: 92%; overflow: auto;" @scroll="sysScroll()">
         
                                 <svg :width="pjWidth * 2" :height="pjHeight * projectNum / 2">
-                                    <g v-for="(item, i) in timeData" :key="'time_x' + i"
+                                    <!-- <g v-for="(item, i) in timeData" :key="'time_x' + i"
                                         :transform="translate(0, pjHeight / 2 * i, 0)">
         
                                         <g :transform="translate(0, 0, 0)">
@@ -284,9 +284,48 @@
                                             <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
                                                 fill="none" stroke="#e0dede"></path>
                                         </g>
-                                    </g>
+                                    </g> -->
+
+                                    <g v-for="(item, i) in timeData" :key="'time_x' + i">
+                                        <g :transform="translate(0, i * pjHeight / 2, 0)">
+                                    <g :transform="translate(0, 0, 0)">
+                                            <g :transform="translate(0, 0, 0)">
+                                                <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                    :fill="'none'" :stroke="a_item.fill"></path>
+                                            </g>
+                                            <g>
+        
+                                                <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                    :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill"></path>
+                                            </g>
+                                            <g>
+                                                <rect v-for="(a_item, a_i) in item.rectData" :key="'corr_out_' + a_i" :x="a_item.x" :y="a_item.y" :height="a_item.h" :width="a_item.w" :fill="a_item.color" :stroke="'white'"></rect>
+                                            </g>
+                                            <g :transform="translate(0, 0, 0)">
+                                                <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
+                                                    :cx="a_item.x" :cy="a_item.y" :r="2" :fill="a_item.fill"></circle>
+                                            </g>
+                                            <g>
+        
+                                                <path
+                                                    :d="'M0 ' + (pjHeight / 2 * 0.35) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.35)"
+                                                    fill="none" stroke="#534f4f"></path>
+        
+                                                <path
+                                                    :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.65 + 10)"
+                                                    fill="none" stroke="#534f4f"></path>
+        
+                                                <path
+                                                    :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.95)"
+                                                    fill="none" stroke="#534f4f"></path>
+                                                <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
+                                                    fill="none" stroke="#e0dede"></path>
+                                            </g>
+                                            </g>
+                                            </g>
+                                        </g>
                                 </svg>
-                            </div> -->
+                            </div>
                     <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 0px); height: 6%; overflow-y: hidden; overflow-x: hidden;">
                         <svg width="100%" :height="legendHeight" id="xAxisLegend">
                                     <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
@@ -366,7 +405,7 @@ export default {
                 r: 0,
                 stroke: 'none'
             },
-            selectGroupTag: -1
+            selectGroupTag: 1
         }
     },
     methods: {
@@ -535,7 +574,7 @@ export default {
                 .range([margin.left, this.pjWidth - margin.right]);
             let timeXAxis = (g, x, height) => g
                 .attr("transform", `translate(20,${height - margin.bottom})`)
-                .call(axisBottom(x).ticks(this.pjWidth / 80).tickSizeOuter(0))
+                .call(axisBottom(x).ticks(this.nameWidth / 80).tickSizeOuter(0))
             select('#xAxisLegend').append('g').call(timeXAxis, timeX, 0)
             // console.log(data3);
             let data = [];
@@ -1032,10 +1071,12 @@ export default {
         this.cvWidth = this.$refs.correlationView.offsetWidth;
         this.ctHeight = this.$refs.correlationTable.offsetHeight;
         this.ctWidth = this.$refs.correlationTable.offsetWidth;
-        this.pjHeight = this.$refs.nameSpace.offsetHeight;
-        this.pjWidth = this.$refs.nameSpace.offsetWidth * .85 - 20;
+        // this.pjHeight = this.$refs.nameSpace.offsetHeight;
+        // this.pjWidth = this.$refs.nameSpace.offsetWidth * .85 - 20;
         this.legendHeight = this.$refs.legendSpace.offsetHeight;
-        this.nameWidth = this.$refs.nameSpace.offsetWidth * .15 + 20;
+        this.nameWidth = this.$refs.nameSpace.offsetWidth;
+        this.pjHeight = this.$refs.timeSpace.offsetHeight;
+        this.pjWidth = this.$refs.timeSpace.offsetWidth;
         // this.dataprocess();
         // console.log(this.barHeight, this.barWidth)
 
@@ -1078,11 +1119,11 @@ export default {
     padding-right: 0px;
 }
 
-/* #nameSpace::-webkit-scrollbar {
+#nameSpace::-webkit-scrollbar {
     display: none;
 }
 
 #legendSpace::-webkit-scrollbar {
     display: none;
-} */
+}
 </style>
