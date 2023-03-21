@@ -156,14 +156,17 @@
                                                         <g>
                                                             
                                                             <circle v-for="(c_item, c_i) in scatterData" :key="'gc' + c_i" :cx="c_item.cx"
-                                                                :cy="c_item.cy" :r="5" :fill="selectGroup == -1 ? colormap[c_item.group]: c_item.group == selectGroup ? colormap[c_item.group] : '#c0c0c0'" :opacity="selectGroup == -1 ?  1: c_item.group == selectGroup ? 1: 0.3" @mouseenter="msTest(c_item)">
+                                                                :cy="c_item.cy" :r="5" :fill="(selectGroup == -1 && ProjectClickSta == 0) ? colormap[c_item.group] : '#c0c0c0'" :opacity="(selectGroup == -1 && ProjectClickSta == 0) ?  1:  0.3" @mouseenter="msTest(c_item)">
                                                             </circle>
                                                         </g>
                                                         <g>
     
                                                             <path v-for="(p_item, p_i) in projectFlow" :key="'flow' + p_i" :d="p_item.d" :fill="'none'" :stroke="'grey'" :stroke-width="p_item.w"></path>
-                                                            <circle v-for="(c_item, c_i) in projectSelect" :key="'gc' + c_i" :cx="c_item.cx"
-                                                                :cy="c_item.cy" :r="5" :fill="colormap[c_item.group]" :opacity="1"></circle>
+                                                        </g>
+                                                        <g>
+
+                                                            <circle v-for="(c_item, c_i) in projectSelect" :key="'gc' + c_i" :cx="c_item.x"
+                                                                :cy="c_item.y" :r="5" :fill="colormap[c_item.group]" :opacity="1"></circle>
                                                         </g>
                                                         <g>
                             
@@ -208,6 +211,7 @@ export default {
             groupClick: 0,
             projectSelectSta: 0,
             ProjectClickSta: 0,
+            ProjectClickName:'',
             zoomTag: 0,
             select_project_num: 0,
             allProject_num: 0,
@@ -425,7 +429,61 @@ export default {
             // selectAll('.groupArc').attr('opacity', 1);
         },
         clickProject(data) {
-
+            this.ProjectClickSta = 1;
+            let name = data.project['Project Name'];
+            let namespace = {};
+            namespace[name] = 1;
+            this.ProjectClickName = namespace;
+            [this.projectFlow, this.projectSelect] = this.calcProjFlow(flow_data, namespace);
+            // console.log(this.projectFlow, this.projectSelect);
+        },
+        calcProjFlow (data, sel_id) {
+            // console.log(sel_id);
+            let repeat_data = {};
+            let fl_data = data.data;
+            let res_data = [];
+            let new_sel = {};
+            for (let i in fl_data) {
+                if (sel_id[fl_data[i]['Project Name From']] == 1 || sel_id[fl_data[i]['Project Name To']] == 1) {
+                    if (repeat_data[fl_data[i]['Project Name From'] + fl_data[i]['Project Name To']] == 1 || repeat_data[fl_data[i]['Project Name To'] + fl_data[i]['Project Name From']] == 1) {
+                        continue;
+                    }
+                    new_sel[fl_data[i]['Project Name From']] = 1;
+                    new_sel[fl_data[i]['Project Name To']] = 1;
+                    repeat_data[fl_data[i]['Project Name From'] + fl_data[i]['Project Name To']] = 1;
+                    repeat_data[fl_data[i]['Project Name To'] + fl_data[i]['Project Name From']] = 1;
+                    res_data.push({
+                        p1: fl_data[i]['Project Name From'],
+                        p2: fl_data[i]['Project Name To'],
+                        v: fl_data[i]['SubstitutionFlow']
+                    });
+                }
+            }
+            let extentData = extent(res_data, d => d.v);
+            let wScale = scaleLinear(extentData, [0.1, 10]);
+            let pos_data = {};
+            // console.log(this.scatterData)
+            let projectSelect = [];
+            for (let i in this.scatterData) {
+                pos_data[this.scatterData[i]['name']] = {
+                    x: this.scatterData[i]['cx'],
+                    y: this.scatterData[i]['cy'],
+                    group: this.scatterData[i]['group']
+                }
+            }
+            for (let i in new_sel) {
+                projectSelect.push(pos_data[i]);
+            }
+            // console.log(pos_data);
+            for (let i in res_data) {
+                res_data[i]['d'] = this.linkArc({
+                    source: pos_data[res_data[i].p1],
+                    target: pos_data[res_data[i].p2]
+                });
+                res_data[i]['w'] = wScale(res_data[i].v);
+            }
+            // console.log(res_data);
+            return [res_data, projectSelect];
         },
         calcFlowData(group) {
 
@@ -460,7 +518,7 @@ export default {
                 }
             }
             let extentData = extent(res_data, d => d.v);
-            let wScale = scaleLinear(extentData, [1, 5]);
+            let wScale = scaleLinear(extentData, [0.1, 10]);
             let pos_data = {};
             // console.log(this.scatterData)
             let projectSelect = [];
@@ -624,7 +682,7 @@ export default {
                     }
                     cnt++;
                 }
-                // console.log(sx, sy);
+                console.log(sx, sy);
                 // console.log(data[i])
                 let tp = {
                     name: data[i]['Project Name'],
