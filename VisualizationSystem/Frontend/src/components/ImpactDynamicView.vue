@@ -250,36 +250,7 @@
                     <div ref="timeSpace" id="timeSpace"
                                 style="float: right; width: calc(85% - 30px); height: 93%; overflow: auto;" @scroll="sysScroll()">
         
-                                <svg :width="10 * allDay" :height="pjHeight * projectNum / 2">
-                                    <!-- <g v-for="(item, i) in timeData" :key="'time_x' + i"
-                                        :transform="translate(0, pjHeight / 2 * i, 0)">
-        
-                                        <g :transform="translate(0, 0, 0)">
-                                            <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                :fill="'none'" :stroke="a_item.fill"></path>
-                                        </g>
-                                        <g>
-        
-                                            <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill"></path>
-                                        </g>
-                                        <g :transform="translate(0, 0, 0)">
-                                            <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i" :cx="a_item.x"
-                                                :cy="a_item.y" :r="5" :fill="a_item.fill"></circle>
-                                        </g>
-                                        <g>
-        
-                                            <path
-                                                :d="'M0 ' + (pjHeight / 2 * 0.6) + ' L' + (pjWidth * 2 - 0) + ' ' + (pjHeight / 2 * 0.6)"
-                                                fill="none" stroke="#534f4f"></path>
-        
-                                            <path
-                                                :d="'M0 ' + (pjHeight * 0.45) + ' L' + (pjWidth * 2 - 0) + ' ' + (pjHeight / 2 * 0.9)"
-                                                fill="none" stroke="#534f4f"></path>
-                                            <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
-                                                fill="none" stroke="#e0dede"></path>
-                                        </g>
-                                    </g> -->
+                                <svg :width="barWidth * allDay" :height="pjHeight * projectNum / 2">
 
                                     <g v-for="(item, i) in timeData" :key="'time_x' + i">
                                         <g :transform="translate(0, i * pjHeight / 2, 0)">
@@ -303,17 +274,17 @@
                                             <g>
         
                                                 <path
-                                                    :d="'M0 ' + (pjHeight / 2 * 0.35 + 0.7) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.35 + 0.7)"
+                                                    :d="'M0 ' + (pjHeight / 2 * 0.35 + 0.7) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.35 + 0.7)"
                                                     fill="none" stroke="#534f4f"></path>
         
                                                 <path
-                                                    :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.65 + 10)"
+                                                    :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.65 + 10)"
                                                     fill="none" stroke="#534f4f"></path>
         
                                                 <path
-                                                    :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.95)"
+                                                    :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.95)"
                                                     fill="none" stroke="#534f4f"></path>
-                                                <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
+                                                <path :d="'M0 ' + (pjHeight / 2) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2)"
                                                     fill="none" stroke="#e0dede"></path>
                                             </g>
                                             </g>
@@ -322,7 +293,7 @@
                                 </svg>
                             </div>
                     <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 30px); height: 6%; overflow-y: hidden; overflow-x: hidden; margin-top: 0.5%;">
-                        <svg width="100%" :height="legendHeight" id="xAxisLegend">
+                        <svg width="100%" :height="legendHeight" id="xAxisLegend" :width="allDay * barWidth">
                                     <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
                                     <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
                                         :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
@@ -401,7 +372,8 @@ export default {
                 stroke: 'none'
             },
             selectGroupTag: 1,
-            allDay: 0
+            allDay: 0,
+            barWidth: 15
         }
     },
     methods: {
@@ -556,8 +528,8 @@ export default {
             
 
             let margin = {
-                left: 10,
-                right: 10,
+                left: 0,
+                right: 0,
                 bottom: -15,
             }
             // console.log(data2[data1[0]['Project Name']]);
@@ -567,9 +539,9 @@ export default {
             // console.log(extent(selectTimeData, d => d.time))
             let timeX = scaleUtc()
                 .domain(timeRange)
-                .range([margin.left, this.pjWidth - margin.right]);
+                .range([margin.left, this.barWidth * this.allDay - margin.right]);
             let timeXAxis = (g, x, height) => g
-                .attr("transform", `translate(20,${height - margin.bottom})`)
+                .attr("transform", `translate(0,${height - margin.bottom})`)
                 .call(axisBottom(x).ticks(this.nameWidth / 80).tickSizeOuter(0))
             select('#xAxisLegend').append('g').call(timeXAxis, timeX, 0)
             // console.log(data3);
@@ -608,12 +580,12 @@ export default {
                 let areaScale = scaleLinear([min_n_range, max_n_range], [this.pjHeight * 0.35 / 2, 10]);
                 let areaScale2 = scaleLinear(holder_range, [this.pjHeight * .65 / 2 + 10, this.pjHeight * 0.35 / 2 + 10]);
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.95 / 2, this.pjHeight * 0.65 / 2 + 20]);
-                let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
-                let areaGenerate2 = area().x(d => xScale(d.x)).y1(d => areaScale2(d.y)).y0(areaScale2(holder_range[0])).curve(curveMonotoneX);
+                let areaGenerate = area().x(d => timeX(new Date(d.x))).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
+                let areaGenerate2 = area().x(d => timeX(new Date(d.x))).y1(d => areaScale2(d.y)).y0(areaScale2(holder_range[0])).curve(curveMonotoneX);
                 select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
                 select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
                 select('#nameSpaceSvg').append('g').call(axisLeft(areaScale2).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
-                let lineGenerate = line().x(d => xScale(d.x)).y(d => lineScale(d.y)).curve(curveMonotoneX);
+                let lineGenerate = line().x(d => timeX(new Date(d.x))).y(d => lineScale(d.y)).curve(curveMonotoneX);
                 // console.log(data[i])
                 // console.log(min_m1, max_m1, data[i].M1, (data[i]['M1'] - min_m1) / (max_m1 - min_m1))
                 let nameData = this.calcIndividual({
@@ -645,16 +617,17 @@ export default {
                 for (let j in data[i]['SellerLine']) {
                     // max_n_range = Math.max(max_n_range, data[i]['SellerLine'][j].value + data[i]['BuyerLine'][j].value);
                     // console.log(data[i]['SellerLine'][j].value, data[i]['BuyerLine'][j].value, max_n_range, i);
+                    // console.log(data[i]['BuyerLine'][j].time)
                     rectData.push({
-                        x: rxScale(j),
-                        w: rxScale(1) - rxScale(0),
+                        x: timeX(new Date(data[i]['BuyerLine'][j].time)),
+                        w: this.barWidth,
                         y: areaScale(data[i]['BuyerLine'][j].value),
                         h: -areaScale(data[i]['BuyerLine'][j].value) + areaScale(0),
                         color: this.colorType['buyer']
                     });
                     rectData.push({
-                        x: rxScale(j),
-                        w: rxScale(1) - rxScale(0),
+                        x: timeX(new Date(data[i]['SellerLine'][j].time)),
+                        w: this.barWidth,
                         y: areaScale(data[i]['BuyerLine'][j].value + data[i]['SellerLine'][j].value),
                         h: -areaScale(data[i]['SellerLine'][j].value) + areaScale(0),
                         color: this.colorType['seller']
@@ -674,9 +647,10 @@ export default {
                     else if (k == 'seller')
                         sel_name = 'SellerLine';
                     for (let j = 0; j < data[i][sel_name].length; ++j) {
-                        tLineData.push({ x: j, y: data[i][sel_name][j].value });
+                        // console.log(data[i][sel_name]);
+                        tLineData.push({ x: data[i][sel_name][j].time, y: data[i][sel_name][j].value });
                     }
-                    // console.log(tLineData);
+                    console.log(tLineData);
                     lineData1.push({
                         d: k == 'holder' ? areaGenerate2(tLineData) : areaGenerate(tLineData),
                         fill: this.colorType[k],
@@ -687,7 +661,7 @@ export default {
                     let tLineData = [];
                     let sData = []
                     for (let j = 0; j < data[i][k + 'Line'].length; ++j) {
-                        let x = j;
+                        let x = data[i][k + 'Line'][j].time;
                         let y = data[i][k + 'Line'][j].value;
                         if (k == 'M1') {
                             y = (y - m1_range[0]) / (m1_range[1] - m1_range[0]);
@@ -699,7 +673,7 @@ export default {
                             y = (y - imp_range[0]) / (imp_range[1] - imp_range[0]);
                         }
                         tLineData.push({ x: x, y: y });
-                        sData.push({ x: xScale(x), y: lineScale(y), rx: x, ry: y, fill: this.axisColor[k] });
+                        sData.push({ x: timeX(new Date(x)), y: lineScale(y), rx: x, ry: y, fill: this.axisColor[k] });
                     }
                     if (k != 'IMP')
                         lineData2.push({
@@ -1052,7 +1026,16 @@ export default {
             let start_day = new Date(dataStore.timeRange.start_time);
             let end_day = new Date(dataStore.timeRange.end_time);
             let day = (end_day - start_day) / (1000 * 60 * 60 * 24);
-            return day;
+            let margin = {
+                left: 0,
+                right: 0,
+                bottom: -15,
+            }
+            let barWidth = 15
+            if (day * 15 < this.pjWidth - margin.left - margin.right) {
+                barWidth = (this.pjWidth - margin.left - margin.right) / day;
+            }
+            return [day, barWidth];
         }
     },
     created() {},
@@ -1084,7 +1067,7 @@ export default {
         // console.log(this.barHeight, this.barWidth)
 
         // console.log(data);
-        this.allDay = this.getDay();
+        [this.allDay, this.barWidth] = this.getDay();
 
         // // [this.legendArc, this.outLegendArc] = this.dataProcess();
         [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data, this.cpData.data, 1);
