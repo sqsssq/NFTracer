@@ -20,7 +20,7 @@ import basicData from '../assets/data_view.json';
 import sliceData from '../assets/slice_info.json';
 // import nftData from '../assets/data.csv';
 // import cpData from '../assets/data/control_panel.json';
-import nftData from '../assets/run_full_1/preferential_attachment_bak.json';
+import nftData from '../assets/run_full_1/preferential_attachment.json';
 import cpData from '../assets/run_full_1/control_panel.json';
 
 export default {

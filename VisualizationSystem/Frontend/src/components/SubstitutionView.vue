@@ -59,7 +59,7 @@
                     </div>
                     <div v-for="(item, i) in glyphData" style="width: 200px;">
                         <div style="text-align: center;">{{ item.name.name }}</div>
-                        <div style="text-align: center;">{{ item.name.sumPeople }}</div>
+                        <div style="text-align: center;">{{ item.name.holder }}</div>
                     </div>
                 </div>
                 <span style="position: absolute; top: 0px; color: #ABACBE; font-size: 14px;z-index: 100;">Selecting
@@ -392,6 +392,7 @@ export default {
                 name: data.name,
                 time: data.time,
                 IMP: data.outer['IMP'],
+                holder: data.inner['holder'],
                 sumPeople: data.inner.holder + data.inner.seller + data.inner.buyer,
             }
         },

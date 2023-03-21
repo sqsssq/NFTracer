@@ -107,11 +107,6 @@
                                 <g>
                                     <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
                                         :transform="translate(0, item.pos[1] + 25, 0)">
-                                        <!-- <g clip-path="url(#clipPath)" :transform="translate(-120, -20, 0)">
-                                                                                <image
-                                                                                    xlink:href="https://img0.baidu.com/it/u=546973192,19042771&fm=253&fmt=auto&app=120&f=PNG?w=500&h=500"
-                                                                                    x="0" y="0" height="30" width="30" />
-                                                                            </g> -->
                                         <g>
                                             <rect v-for="(r_item, r_i) in item.rectData" :key="'pro_bar_' + r_i" :x="r_item.x"
                                                 :y="-12.5" :width="r_item.w" :height="r_item.h" :fill="r_item.fill"></rect>
@@ -177,7 +172,7 @@
                             </span>
                 </div>
                 <div style="height: calc(100% - 35px); width: 100%;">
-                    <div ref="nameSpace" id="nameSpace" style="float: left; width: calc(15% + 30px); height: 94%; overflow: hidden;">
+                    <div ref="nameSpace" id="nameSpace" style="float: left; width: calc(15% + 30px); height: 93%; overflow: hidden;">
                         <svg width="100%" :height="pjWidth * projectNum / 2- 1" id="nameSpaceSvg">
                                     <g v-for="(item, i) in timeData" :key="'time_x' + i">
                                         <g :transform="translate((nameWidth) / 2 - 10, i * pjHeight / 2 + 100, 0)">
@@ -253,9 +248,9 @@
                                 </svg>
                     </div>
                     <div ref="timeSpace" id="timeSpace"
-                                style="float: right; width: calc(85% - 30px); height: 92%; overflow: auto;" @scroll="sysScroll()">
+                                style="float: right; width: calc(85% - 30px); height: 93%; overflow: auto;" @scroll="sysScroll()">
         
-                                <svg :width="pjWidth * 2" :height="pjHeight * projectNum / 2">
+                                <svg :width="10 * allDay" :height="pjHeight * projectNum / 2">
                                     <!-- <g v-for="(item, i) in timeData" :key="'time_x' + i"
                                         :transform="translate(0, pjHeight / 2 * i, 0)">
         
@@ -308,7 +303,7 @@
                                             <g>
         
                                                 <path
-                                                    :d="'M0 ' + (pjHeight / 2 * 0.35) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.35)"
+                                                    :d="'M0 ' + (pjHeight / 2 * 0.35 + 0.7) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.35 + 0.7)"
                                                     fill="none" stroke="#534f4f"></path>
         
                                                 <path
@@ -326,7 +321,7 @@
                                         </g>
                                 </svg>
                             </div>
-                    <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 0px); height: 6%; overflow-y: hidden; overflow-x: hidden;">
+                    <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 30px); height: 6%; overflow-y: hidden; overflow-x: hidden; margin-top: 0.5%;">
                         <svg width="100%" :height="legendHeight" id="xAxisLegend">
                                     <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
                                     <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
@@ -405,7 +400,8 @@ export default {
                 r: 0,
                 stroke: 'none'
             },
-            selectGroupTag: 1
+            selectGroupTag: 1,
+            allDay: 0
         }
     },
     methods: {
@@ -556,12 +552,12 @@ export default {
                     data2[i] = data22[i];
                 }
             }
-            console.log(data1, data2, data3)
+            // console.log(data1, data2, data3)
             
 
             let margin = {
                 left: 10,
-                right: 20,
+                right: 10,
                 bottom: -15,
             }
             // console.log(data2[data1[0]['Project Name']]);
@@ -614,9 +610,9 @@ export default {
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.95 / 2, this.pjHeight * 0.65 / 2 + 20]);
                 let areaGenerate = area().x(d => xScale(d.x)).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
                 let areaGenerate2 = area().x(d => xScale(d.x)).y1(d => areaScale2(d.y)).y0(areaScale2(holder_range[0])).curve(curveMonotoneX);
-                select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth + margin.left}, ${this.pjHeight / 2 * i})`);
-                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth + margin.left}, ${this.pjHeight / 2 * i})`);
-                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale2).ticks(3)).attr('transform', `translate(${this.nameWidth + margin.left}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
+                select('#nameSpaceSvg').append('g').call(axisLeft(areaScale2).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
                 let lineGenerate = line().x(d => xScale(d.x)).y(d => lineScale(d.y)).curve(curveMonotoneX);
                 // console.log(data[i])
                 // console.log(min_m1, max_m1, data[i].M1, (data[i]['M1'] - min_m1) / (max_m1 - min_m1))
@@ -851,9 +847,9 @@ export default {
             let max_sum_people = 0;
             let min_holder = 100000000000000;
             for (let i = 0; i < data.length; ++i) {
-                let seller = sum(data[i].Seller);
-                let holder = (data[i].Holder[data[i].Holder.length - 1]);
-                let buyer = sum(data[i].Buyer);
+                let seller = sum(data[i].Seller, d => d.value);
+                let holder = (data[i].Holder[data[i].Holder.length - 1].value);
+                let buyer = sum(data[i].Buyer, d => d.value);
                 max_people = Math.max(max_people, seller, buyer);
                 // min_sum_people = Math.min(min_sum_people, seller, buyer);
                 max_holder = Math.max(max_holder, holder);
@@ -882,11 +878,11 @@ export default {
                     let typeName = ['Seller', 'Buyer', 'Holder'];
                     // console.log(data[i]);
                     for (let j in typeName) {
-
+                        // console.log(sum(data[i][typeName[j]], d => d.value));
                         let rw = 0;
                         if (j != 2)
-                            rw = rectScale(sum(data[i][typeName[j]]));
-                        else rw = holderScale((data[i][typeName[j]][data[i][typeName[j]].length - 1]));
+                            rw = rectScale(sum(data[i][typeName[j]], d => d.value));
+                        else rw = holderScale((data[i][typeName[j]][data[i][typeName[j]].length - 1].value));
                         tableRect.push({
                             x: cnt_len,
                             w: rw,
@@ -1053,7 +1049,10 @@ export default {
         },
         getDay() {
             const dataStore = useDataStore();
-            
+            let start_day = new Date(dataStore.timeRange.start_time);
+            let end_day = new Date(dataStore.timeRange.end_time);
+            let day = (end_day - start_day) / (1000 * 60 * 60 * 24);
+            return day;
         }
     },
     created() {},
@@ -1085,6 +1084,7 @@ export default {
         // console.log(this.barHeight, this.barWidth)
 
         // console.log(data);
+        this.allDay = this.getDay();
 
         // // [this.legendArc, this.outLegendArc] = this.dataProcess();
         [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data, this.cpData.data, 1);
