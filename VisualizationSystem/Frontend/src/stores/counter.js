@@ -47,6 +47,13 @@ export const useDataStore = defineStore("dataStore", {
           year: ''
         },
         
+      },
+      allData: {
+        tag: 0,
+        data: null, // preferential_attachment
+        flow_data: null, // substitution_flow
+        cpData: null, // control_panel
+        projectData: null // impact_dynamics
       }
     }
   },

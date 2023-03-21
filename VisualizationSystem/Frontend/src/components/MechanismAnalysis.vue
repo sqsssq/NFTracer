@@ -80,7 +80,7 @@
                             </div> -->
     
             <div ref="attr_bar" style="width: 30%; height: calc(100%); float: left;">
-                <svg id="attr_bar" width="100%" height="calc(100%)">
+                <svg v-show="showTag" id="attr_bar" width="100%" height="calc(100%)">
                                     <path :d="'M ' + (barWidth + 12) + ' ' + 10 + ' L ' + (barWidth + 12) + ' ' + (barHeight * 3 + 85)"
                                         fill="none" stroke="#c6bcbc"></path>
                 
@@ -159,7 +159,7 @@
                                     'border': '1px solid purple',
                                     'display': 'inline-block'
                                 }"> -->
-                <svg v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
+                <svg v-show="showTag" v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
                                     <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
                                     <text x="50%" y="20" font-size="16" text-anchor="middle" :fill="i != selectGroupTag ? '#534F4F' : colormap[i]" font-weight="bold" style="font-weight: 600;">{{
                                         'Group ' + i
@@ -244,6 +244,7 @@ export default {
     data() {
         return {
             filterValue: '',
+            showTag: 0,
             filterOptions: [],
             projectMap: {},
             groupSet: [0, 1, 2, 3, 4, 5],
@@ -539,10 +540,15 @@ export default {
         this.groupWidth = this.$refs.groupView.offsetWidth;
         // console.log(this.cpData)
 
-        [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(this.cpData.data);
+        // [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(this.cpData.data);
         const dataStore = useDataStore();
         dataStore.$subscribe((mutations, state) => {
-            this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
+            if (dataStore.allData.tag == 1) {
+                this.showTag = 1;
+                this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
+
+                [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(dataStore.allData.cpData.data);
+            }
 
             if (dataStore.selectGroup != -1) {
                 this.selectGroupTag = dataStore.selectGroup;

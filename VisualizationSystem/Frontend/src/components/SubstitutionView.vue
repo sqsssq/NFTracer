@@ -20,7 +20,7 @@
     
             <span style="float: right; position: relative; top: -2px; font-size: 16px;">
                                                     <svg height="27" width="400" transform="translate(0, 10)">
-                                                        <g v-for="(item, i) in (all_group_num  + 1)" :key="'gcolor' + i">
+                                                        <g v-for="(item, i) in (all_group_num)" :key="'gcolor' + i">
                                                             <rect :x="0 + i * 50" :y="2" :width="50" :height="9" :fill="colormap[item]" :stroke="'#534f4f'"></rect>
                                                             <text :x="0 + i * 50 + 25" :y="23" font-size="12" text-anchor="middle" fill="#534F4F">{{ 'Group' + i
                                                             }}</text>
@@ -905,7 +905,7 @@ export default {
                 group[data[i].Group].sum_len++;
                 group[data[i].Group].len.push(parseInt(data[i].Holder));
             }
-            this.all_group_num = maxGroup;
+            this.all_group_num = maxGroup + 1;
             // console.log(data.length)
             if (data.length < 70) {
                 group[maxGroup + 1] = {
@@ -995,20 +995,31 @@ export default {
 
 
         const dataStore = useDataStore();
-        this.showTag = 1;
-        this.allProject_num = this.cpData.data.length;
-        let timeRange = dataStore.timeRange;
-        // console.log(timeRange);
+        // this.showTag = 1;
+        // this.allProject_num = this.cpData.data.length;
+        // let timeRange = dataStore.timeRange;
+        // // console.log(timeRange);
 
-        this.monthArc = this.calcArc(timeRange);
-        [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
-        // console.log(this.innerArc)
-        // console.log(this.cpData);
-        [this.outerArc, this.groupArc, this.allGroupArc] = this.outerArcProgress(this.cpData.data);
-        [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1);
+        // this.monthArc = this.calcArc(timeRange);
+        // [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
+        // // console.log(this.innerArc)
+        // // console.log(this.cpData);
+        // [this.outerArc, this.groupArc, this.allGroupArc] = this.outerArcProgress(this.cpData.data);
+        // [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1);
 
         // console.log(this.projectFlow);
-        dataStore.$subscribe((mutations, state) => {})
+        dataStore.$subscribe((mutations, state) => {
+            if (dataStore.allData.tag == 1) {
+        this.showTag = 1;
+        this.allProject_num = dataStore.allData.cpData.data.length;
+        let timeRange = dataStore.timeRange;
+        this.monthArc = this.calcArc(timeRange);
+        [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
+        [this.outerArc, this.groupArc, this.allGroupArc] = this.outerArcProgress(dataStore.allData.cpData.data);
+        [this.scatterData, this.innerArea] = this.calcScatter(dataStore.allData.cpData.data, 1);
+                
+            }
+        })
 
     }
 }
