@@ -42,11 +42,6 @@
                                 <g :transform="translate(30, 50, 0)">
                                     <g>
                                         <g>
-                                            <!-- <path v-for="(arc_item, arc_i) in legendArc" :key="'arc' + arc_i" :d="arc_item"
-                                                                                    :stroke="'none'" :fill="colormap1[arc_i == 0 ? 2 : arc_i == 1 ? 1 : 0]"></path>
-                                                                                <path v-for="(arc_item, arc_i) in outLegendArc" :key="'arc' + arc_i" :d="arc_item"
-                                                                                    :stroke="'none'" :transform="translate(0, 0, -60)"
-                                                                                    :fill="arc_i == 0 ? '#a30e24' : arc_i == 1 ? '#2a57f7' : '#fc7b5c'"></path> -->
                                             <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i">
                                                 <path v-for="(a_item, a_i) in item.arc_data.outArc" :key="'corr_out_' + a_i"
                                                     :d="a_item.d" :fill="a_item.fill"></path>
@@ -192,17 +187,20 @@
                                                     :width="item.name.img_r * 1.5" />
                                             </g>
                                         </g>
-        
+                                        <!-- <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 180, 0)">
+                                            
+                                            <text fill="#534f4f" font-size="16" text-anchor="middle">{{ item.name.name }}</text>
+                                        </g> -->
                                         <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 200, 0)">
                                             <text fill="#534f4f" font-size="14" text-anchor="middle">Time Slot: </text>
                                             <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
                                                 dy="2em">{{
-                                                    timeSelectionText.split('-')[0] }}</text>
+                                                    item.name.timeS }}</text>
                                             <text fill="#534f4f" font-size="14" text-anchor="middle" dy="3.5em">{{
                                                 '-' }}</text>
                                             <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
                                                 dy="5em">{{
-                                                    timeSelectionText.split('-')[1] }}</text>
+                                                    item.name.timeE }}</text>
         
                                         </g>
                                         <g>
@@ -381,6 +379,11 @@ export default {
         clickCorrelation(cnt) {
             this.correlationData[cnt].opacity = 1;
         },
+        dateFormat (date) {
+            date = new Date(date);
+            let monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+            return monthName[date.getUTCMonth()] + '.' + ((date.getUTCDate() + 1) >= 10 ? '' : '0') + (date.getUTCDate() + 1) + '.' + date.getUTCFullYear()
+        },
         sysScroll() {
             if (this.$refs.timeSpace.scrollTop != this.$refs.nameSpace.scrollTop) {
                 this.$refs.nameSpace.scrollTop = this.$refs.timeSpace.scrollTop
@@ -482,11 +485,16 @@ export default {
                 img_r: r,
                 name: data.name,
                 time: data.time,
+                timeS: data.timeS,
+                timeE: data.timeE,
                 IMP: data.outer['IMP'],
                 sumPeople: data.inner.holder + data.inner.seller + data.inner.buyer,
             }
         },
         calcIndividualProject(data11, data22, data33, groupNum) {
+            const dataStore = useDataStore();
+            let end_time = dataStore.timeRange.end_format;
+
             let data1 = new Array();
             let data2 = {};
             let data3 = new Array();
@@ -536,7 +544,7 @@ export default {
             }
             // console.log(data2[data1[0]['Project Name']]);
             // let selectTimeData = data2[data1[0]['Project Name']]['HolderLine'];
-            let dataStore = useDataStore();
+            // let dataStore = useDataStore();
             let timeRange = [new Date(dataStore.timeRange.start_time), new Date(dataStore.timeRange.end_time)];
             // console.log(extent(selectTimeData, d => d.time))
             let timeX = scaleUtc()
@@ -606,9 +614,9 @@ export default {
                     link: data[i]['Project Name'] == "Moonbirds" ? 'https://i.seadn.io/gae/H-eyNE1MwL5ohL-tCfn_Xa1Sl9M9B4612tLYeUlQubzt4ewhr4huJIR5OLuyO3Z5PpJFSwdm7rq-TikAh7f5eUw338A2cy6HRH75?auto=format&w=256' : data[i]['logo_link'] == 'https://storage.opensea.io/files/397bdae98431df0a88659333a82a8c89.jpg' ? 'https://i.seadn.io/gae/ZRDm3mVwUwMPyfx3NzXJG-Vq1vt9YCVMcnTLiXkRLqBAFBNUxPp0MRjstkHi_59M3FLpOm7LPTBbPzDFNpg_wN-C0hk356TyGICRJQ?auto=format&w=384' : data[i]['logo_link'],
                     // link: data[i]['logo_link'],
                     name: data[i]['Project Name'],
-                    timeS: this.timeSelectionText.split('-')[0],
+                    timeS: this.dateFormat(data[i]['create_time']),
                     timeM: '-',
-                    timeE: this.timeSelectionText.split('-')[1]
+                    timeE: (data[i]['cease_time'] == "" ? end_time : this.dateFormat(data[i]['cease_time']))
                 }, (this.nameWidth * 0.8 - 20) / 2, 0, 0);
                 let lineData1 = [];
                 let lineData2 = [];
@@ -797,6 +805,8 @@ export default {
             }
         },
         calcLine(table_data, correlation_data, project_data, group_num) {
+            const dataStore = useDataStore();
+            this.timeSelectionText = dataStore.timeRange.start_format + '-' + dataStore.timeRange.end_format;
             let data = [];
             // console.log(logo_link_set);
             let logo_link_set = {};
