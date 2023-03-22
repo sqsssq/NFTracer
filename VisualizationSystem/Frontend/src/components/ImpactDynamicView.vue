@@ -27,6 +27,10 @@
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
         </div>
         <div class="frameworkBody">
+            <div class="tooltipName" style="opacity: 0; background-color: white; border: solid; border-width: 2px; border-radius: 5px; padding: 5px; position: absolute; z-index: 100; left: -1000px; width: 150px; text-align: center;">
+                <div>#Project Name</div>
+                <div>{{ mouseoverProjectName }}</div>
+                </div>
             <div style="width: 100%; height: 46%; margin-top: 5px;">
                 <div>
                     [Preferential attachment view]
@@ -86,7 +90,7 @@
                                 <g>
                                     <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
                                         :transform="translate(item.pos[0], item.pos[1], 0)">
-                                        <g clip-path="url(#clipPath)" :transform="translate(-40, -15, 0)">
+                                        <g clip-path="url(#clipPath)" :transform="translate(-40, -15, 0)" @mouseenter="mouseoverName($event, item.name)" @mouseout="mouseoutName">
                                             <image :href="item.link" x="0" y="0" height="30" width="30" />
                                         </g>
                                         <!-- <text :x="0" :y="0" font-size="14" text-anchor="end" dx="-0.5em" dy="-0.5em">
@@ -182,7 +186,7 @@
                                             </clipPath>
                                             
                                             <g clip-path="url(#clipPath20)"
-                                                :transform="translate(-item.name.img_r*0.75 , -item.name.img_r* 0.75, 0)">
+                                                :transform="translate(-item.name.img_r*0.75 , -item.name.img_r* 0.75, 0)"  >
                                                 <image :href="item.name.link" x="0" y="0" :height="item.name.img_r * 1.5"
                                                     :width="item.name.img_r * 1.5" />
                                             </g>
@@ -328,6 +332,7 @@ export default {
     props: ['cpData'],
     data() {
         return {
+            mouseoverProjectName: '',
             cvHeight: 0,
             cvWidth: 0,
             ctHeight: 0,
@@ -377,6 +382,20 @@ export default {
         }
     },
     methods: {
+        mouseoverName (event, name) {
+            this.mouseoverProjectName = name;
+            select('.tooltipName')
+                .style('opacity', 1)
+                .style('left', event.layerX + 20 + 'px')
+                .style('top', event.layerY - 15 + 'px')
+        },
+        mouseoutName () {
+
+            select('.tooltipName').style('opacity', 0)
+                .style('left', '-1000px')
+                .style('top', '0px')
+
+        },
         clickCorrelation(cnt) {
             if (this.pre_select_corr != -1) {
                 this.correlationData[this.pre_select_corr].opacity = 0;

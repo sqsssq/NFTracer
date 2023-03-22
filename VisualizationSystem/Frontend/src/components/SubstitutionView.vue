@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-03-22 14:21:16
+ * @LastEditTime: 2023-03-22 14:48:20
 -->
 <template>
     <div style="height: 100%;">
@@ -21,7 +21,7 @@
             <span style="float: right; position: relative; top: -2px; font-size: 16px;">
                                                     <svg height="27" width="400" transform="translate(0, 10)">
                                                         <g v-for="(item, i) in (all_group_num)" :key="'gcolor' + i">
-                                                            <rect :x="0 + i * 50" :y="2" :width="50" :height="9" :fill="colormap[item]" :stroke="'#534f4f'"></rect>
+                                                            <rect :x="0 + i * 50" :y="2" :width="50" :height="9" :fill="colormap[i]" :stroke="'#534f4f'"></rect>
                                                             <text :x="0 + i * 50 + 25" :y="23" font-size="12" text-anchor="middle" fill="#534F4F">{{ 'Group' + i
                                                             }}</text>
                                                         </g>
@@ -905,7 +905,7 @@ export default {
                 group[data[i].Group].sum_len++;
                 group[data[i].Group].len.push(parseInt(data[i].Holder));
             }
-            this.all_group_num = maxGroup;
+            this.all_group_num = maxGroup + 1;
             // console.log(data.length)
             if (data.length < 70) {
                 group[maxGroup + 1] = {
