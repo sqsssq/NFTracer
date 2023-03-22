@@ -552,6 +552,7 @@ export default {
             // let dataStore = useDataStore();
             let timeRange = [new Date(dataStore.timeRange.start_time), new Date(dataStore.timeRange.end_time)];
             // console.log(extent(selectTimeData, d => d.time))
+            console.log(timeRange);
             let timeX = scaleUtc()
                 .domain(timeRange)
                 .range([margin.left, this.barWidth * this.allDay - margin.right]);
@@ -1099,9 +1100,9 @@ export default {
             }
             else if (dataStore.selectGroup != -1) {
                 this.selectGroupTag = dataStore.selectGroup;
-                [this.lineData, this.textPlace] = this.calcLine(data.nft_project_table, data.correlation_data, this.cpData.data, dataStore.selectGroup);
+                [this.lineData, this.textPlace] = this.calcLine(dataStore.allData.data.nft_project_table, dataStore.allData.data.correlation_data, dataStore.allData.cpData.data, dataStore.selectGroup);
 
-                this.timeData = this.calcIndividualProject(data.nft_project_table, projectData, this.cpData.data, dataStore.selectGroup);
+                this.timeData = this.calcIndividualProject(dataStore.allData.data.nft_project_table, dataStore.allData.projectData, dataStore.allData.cpData.data, dataStore.selectGroup);
             }
         })
 

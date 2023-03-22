@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-03-21 05:32:01
+ * @LastEditTime: 2023-03-22 14:21:16
 -->
 <template>
     <div style="height: 100%;">
@@ -905,7 +905,7 @@ export default {
                 group[data[i].Group].sum_len++;
                 group[data[i].Group].len.push(parseInt(data[i].Holder));
             }
-            this.all_group_num = maxGroup + 1;
+            this.all_group_num = maxGroup;
             // console.log(data.length)
             if (data.length < 70) {
                 group[maxGroup + 1] = {
