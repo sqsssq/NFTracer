@@ -324,7 +324,7 @@ export default {
         },
         mouseoverFlow(event, data, cnt) {
             this.lineHover = cnt;
-            // console.log(data)
+            console.log(data)
             let s, t;
             if (data.dir == 1) {
                 s = data.p1;
@@ -349,7 +349,7 @@ export default {
                     tdata['val'] = data.val;
                 }
             }
-            this.flowHoverVal = sdata.val;
+            this.flowHoverVal = parseFloat(sdata.val).toFixed(2);
             this.flowHoverData = [sdata, tdata];
             console.log(this.flowHoverData);
 
@@ -1317,7 +1317,7 @@ export default {
         const dataStore = useDataStore();
 
         
-        this.showTag = 1;
+        // this.showTag = 1;
         // this.cpData = cpData;
         // // this.showTag = 1;
         //         // this.cpData = dataStore.allData.cpData;
@@ -1326,7 +1326,7 @@ export default {
         //             max_m2 = 0,
         //             max_m3 = 0,
         //             max_imp = 0;
-        //         let min_m1 = 99999,
+        //         let min_m1 = 99999,  
         //             min_m2 = 99999,
         //             min_m3 = 99999,
         //             min_imp = 99999;

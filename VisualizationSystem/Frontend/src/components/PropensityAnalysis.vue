@@ -87,11 +87,14 @@
                     <div style="height: 25px; margin-top: 3px;">
 
                         <span style="position: relative; left: 0px;">
+
+                            <el-radio-group v-model="clusterRadio" class="ml-4">
                             <el-radio label="1" style="position: absolute;">Gaussian Mixture Model</el-radio>
-                                                </span>
-                        <span style="position: absolute; left: calc(51% + 20px);">
+                                                <!-- </span>
+                        <span style="position: absolute; left: calc(51% + 20px);"> -->
                                                     
-                            <el-radio label="2" style="position: absolute; left: 0px;">K-Means</el-radio>
+                            <el-radio label="2" style="position: absolute; left: 165px;">K-Means</el-radio>
+                                            </el-radio-group>
                                                 </span>
                     </div>
                     <div style="height: 25px; margin-top: 0px;">
