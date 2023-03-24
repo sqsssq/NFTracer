@@ -7,7 +7,7 @@
 <template>
   <div class="common-layout" style="width: 100%; height: 100vh; background-color: rgb(238, 236, 236);"
     v-loading="!initSign" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 0.8)">
-    <Main :cpData="cpData" />
+    <Main />
   </div>
 </template>
 

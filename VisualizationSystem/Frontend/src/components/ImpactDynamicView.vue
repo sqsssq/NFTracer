@@ -329,7 +329,7 @@ import { objectToString } from '@vue/shared';
 
 export default {
     name: 'APP',
-    props: ['cpData'],
+    props: [],
     data() {
         return {
             mouseoverProjectName: '',

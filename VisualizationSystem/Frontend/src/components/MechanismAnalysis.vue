@@ -240,9 +240,10 @@ import { useDataStore } from '../stores/counter';
 
 export default {
     name: 'APP',
-    props: ['cpData'],
+    props: [],
     data() {
         return {
+            cpData: {},
             filterValue: '',
             showTag: 0,
             filterOptions: [],
@@ -545,6 +546,7 @@ export default {
         dataStore.$subscribe((mutations, state) => {
             if (dataStore.allData.tag == 1) {
                 this.showTag = 1;
+                this.cpData = dataStore.allData.cpData;
                 this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
 
                 [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(dataStore.allData.cpData.data);

@@ -275,7 +275,7 @@ import { select, selectAll } from 'd3-selection';
 
 export default {
     name: 'APP',
-    props: ['cpData'],
+    props: [],
     data() {
         return {
             elHeight: 100,
