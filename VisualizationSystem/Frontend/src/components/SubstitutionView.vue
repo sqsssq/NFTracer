@@ -105,15 +105,16 @@
                 <span>
                                                                     <p style="cursor:pointer; margin-top: 10px; width: 30px; height: 30px;" @click="groupSelectBtn">
                                                                         <svg v-if="
-                                                                        groupSelect == 0" t="1678613511201" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5014" width="25" height="25"><path d="M580.76 908.62a53.366667 53.366667 0 0 1-46.28-26.666667L404.1 656.133333l-154.666667 148.586667A21.333333 21.333333 0 0 1 213.333333 789.333333V106.666667a21.333333 21.333333 0 0 1 6.706667-15.526667c5.333333-5.02 15.26-8.74 25.72-2.7l91.946667 53.086667 498.833333 288a21.333333 21.333333 0 0 1-4.733333 38.966666l-206 59.64 130.386666 225.826667a53.333333 53.333333 0 0 1-19.526666 72.86l-129.333334 74.666667a53.02 53.02 0 0 1-26.573333 7.133333zM408.953333 600.546667a20.666667 20.666667 0 0 1 3 0.213333 21.333333 21.333333 0 0 1 15.48 10.453333l144 249.413334a10.666667 10.666667 0 0 0 14.566667 3.906666l129.333333-74.666666a10.666667 10.666667 0 0 0 3.906667-14.573334l-144-249.413333a21.333333 21.333333 0 0 1 12.546667-31.16l184.053333-53.286667L256 143.62v595.633333l138.18-132.76a21.333333 21.333333 0 0 1 14.773333-5.946666z" fill="#5C5C66" p-id="5015"></path></svg>
-                                                                        <svg v-else t="1679354194696" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3683" width="25" height="25"><path d="M630.57970569 637.6867208l110.35938764 236.66748681c6.20083831 13.29490805 0.44014302 29.08827497-12.84181964 35.28911328l-96.26186588 44.88164187c-13.29490805 6.20083831-29.08827497 0.45308839-35.28911329-12.84181965l-112.87079191-242.05276602-138.77450271 138.77450272c-10.36925155 10.36925155-27.17235831 10.36925155-37.54160987 0.01294537a26.56392533 26.56392533 0 0 1-7.78017501-18.78375032V147.18616969c0-14.66711861 11.88386133-26.55097995 26.55097995-26.55097996 6.60214518 0 12.97127348 2.45962272 17.86462814 6.89988899l494.18998519 449.26950715c10.84823072 9.86438163 11.65084445 26.65454302 1.78646281 37.50277374a26.56004172 26.56004172 0 0 1-17.6057205 8.6086795L630.57970569 637.6867208z" p-id="3684" fill="#5C5C66"></path></svg>
+                                                                        groupSelect == 0" t="1678613511201" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5014" width="25" height="25"><path d="M580.76 908.62a53.366667 53.366667 0 0 1-46.28-26.666667L404.1 656.133333l-154.666667 148.586667A21.333333 21.333333 0 0 1 213.333333 789.333333V106.666667a21.333333 21.333333 0 0 1 6.706667-15.526667c5.333333-5.02 15.26-8.74 25.72-2.7l91.946667 53.086667 498.833333 288a21.333333 21.333333 0 0 1-4.733333 38.966666l-206 59.64 130.386666 225.826667a53.333333 53.333333 0 0 1-19.526666 72.86l-129.333334 74.666667a53.02 53.02 0 0 1-26.633333 7.133333zM408.953333 600.546667a20.666667 20.666667 0 0 1 3 0.213333 21.333333 21.333333 0 0 1 15.48 10.453333l144 249.413334a10.666667 10.666667 0 0 0 14.566667 3.906666l129.333333-74.666666a10.666667 10.666667 0 0 0 3.906667-14.633334l-144-249.413333a21.333333 21.333333 0 0 1 12.546667-31.16l184.053333-53.286667L256 143.62v595.633333l138.18-132.76a21.333333 21.333333 0 0 1 14.773333-5.946666z" fill="#5C5C66" p-id="5015"></path></svg>
+                                                                        <svg v-else t="1679354194696" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3683" width="25" height="25"><path d="M630.63970569 637.6867208l110.35938764 236.66748681c6.20083831 13.29490805 0.44014302 29.08827497-12.84181964 35.28911328l-96.26186588 44.88164187c-13.29490805 6.20083831-29.08827497 0.45308839-35.28911329-12.84181965l-112.87079191-242.05276602-138.77450271 138.77450272c-10.36925155 10.36925155-27.17235831 10.36925155-37.54160987 0.01294537a26.56392533 26.56392533 0 0 1-7.78017501-18.78375032V147.18616969c0-14.66711861 11.88386133-26.55097995 26.55097995-26.55097996 6.60214518 0 12.97127348 2.45962272 17.86462814 6.89988899l494.18998519 449.26950715c10.84823072 9.86438163 11.65084445 26.65454302 1.78646281 37.50277374a26.56004172 26.56004172 0 0 1-17.6057205 8.6086795L630.63970569 637.6867208z" p-id="3684" fill="#5C5C66"></path></svg>
                                                                     </p>
-                                                                        <p style="cursor:pointer; margin-top: 10px;width: 30px; height: 30px;" @click="zoomBtn">
-                                                                            <svg t="1678908588773" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2763" width="25" height="25"><path d="M999.15093333 997.57321482H648.6546963v-77.6722963h272.82394073V648.41197037h77.6722963zM99.85137778 372.67531852h-77.6722963V23.63543703h350.49623704v77.6722963H99.85137778z" p-id="2764" fill="#777777"></path><path d="M53.30504059 108.18294518l54.92159526-54.92159526 353.64681956 353.64681956-54.92159526 54.92159527zM562.35349333 617.21440711l54.92159526-54.92280889L991.51720297 936.53492622l-54.92159527 54.92159526zM999.15093333 374.13167408h-77.6722963V101.30773333H650.11105185v-77.6722963h349.03988148zM371.21896297 997.57321482H22.17908148V647.07697778h77.6722963v272.82394074H371.21896297z" p-id="2765" fill="#777777"></path><path d="M60.58196385 908.09472948L406.73826133 562.23213037l54.8985363 54.94586785L115.48292741 963.04059733zM562.38019318 406.71277511l367.72006874-367.72128236 54.9228089 54.92280888L617.30178845 461.63437037z" p-id="2766" fill="#777777"></path></svg>
-                                                                        </p>
-                                                                        <p style="cursor:pointer; margin-top: 10px;width: 30px; height: 30px;" @click="projectSelectBtn">
+
+                                                                    <p style="cursor:pointer; margin-top: 10px;width: 30px; height: 30px;" @click="projectSelectBtn">
                                                                             <svg v-if="projectSelectSta == 0" t="1679354394057" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4906" width="25" height="25"><path d="M512 896C192 896 12.8 546.133333 4.266667 529.066667c-4.266667-12.8-4.266667-25.6 0-38.4C12.8 477.866667 192 128 512 128s499.2 349.866667 507.733333 366.933333c4.266667 12.8 4.266667 25.6 0 38.4-8.533333 12.8-187.733333 362.666667-507.733333 362.666667z m-422.4-384c38.4 68.266667 192 298.666667 422.4 298.666667s379.733333-230.4 422.4-298.666667c-38.4-68.266667-192-298.666667-422.4-298.666667s-379.733333 230.4-422.4 298.666667z" p-id="4907" fill="#5C5C66"></path><path d="M512 682.666667c-93.866667 0-170.666667-76.8-170.666667-170.666667s76.8-170.666667 170.666667-170.666667 170.666667 76.8 170.666667 170.666667-76.8 170.666667-170.666667 170.666667z m0-256c-46.933333 0-85.333333 38.4-85.333333 85.333333s38.4 85.333333 85.333333 85.333333 85.333333-38.4 85.333333-85.333333-38.4-85.333333-85.333333-85.333333z" p-id="4908" fill="#5C5C66"></path></svg>
-                                                                            <svg v-else t="1679354463560" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5146" width="25" height="25"><path d="M379.428571 512a128 128 0 1 0 256 0 128 128 0 1 0-256 0z m624.228572-29.485714C895.314286 254.285714 731.542857 139.428571 512 139.428571c-219.657143 0-383.314286 114.857143-491.657143 343.2a68.914286 68.914286 0 0 0 0 58.857143C128.685714 769.714286 292.457143 884.571429 512 884.571429c219.657143 0 383.314286-114.857143 491.657143-343.2 8.8-18.514286 8.8-40 0-58.857143zM507.428571 713.142857c-111.085714 0-201.142857-90.057143-201.142857-201.142857s90.057143-201.142857 201.142857-201.142857 201.142857 90.057143 201.142858 201.142857-90.057143 201.142857-201.142858 201.142857z" p-id="5147" fill="#5c5c66"></path></svg>
+                                                                            <svg v-else t="1679354463560" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5146" width="25" height="25"><path d="M379.428571 512a128 128 0 1 0 256 0 128 128 0 1 0-256 0z m624.228572-29.485714C895.314286 254.285714 731.542857 139.428571 512 139.428571c-219.657143 0-383.314286 114.857143-491.657143 343.2a68.914286 68.914286 0 0 0 0 58.857143C128.685714 769.714286 292.457143 884.631429 512 884.631429c219.657143 0 383.314286-114.857143 491.657143-343.2 8.8-18.514286 8.8-40 0-58.857143zM507.428571 713.142857c-111.085714 0-201.142857-90.057143-201.142857-201.142857s90.057143-201.142857 201.142857-201.142857 201.142857 90.057143 201.142858 201.142857-90.057143 201.142857-201.142858 201.142857z" p-id="5147" fill="#5c5c66"></path></svg>
+                                                                        </p>
+                                                                        <p style="cursor:pointer; margin-top: 10px;width: 30px; height: 30px;" @click="zoomBtn">
+                                                                            <svg t="1678908588773" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2763" width="25" height="25"><path d="M999.15093333 997.63321482H648.6546963v-77.6722963h272.82394073V648.41197037h77.6722963zM99.85137778 372.67531852h-77.6722963V23.63543703h350.49623704v77.6722963H99.85137778z" p-id="2764" fill="#777777"></path><path d="M53.30504059 108.18294518l54.92159526-54.92159526 353.64681956 353.64681956-54.92159526 54.92159527zM562.35349333 617.21440711l54.92159526-54.92280889L991.51720297 936.53492622l-54.92159527 54.92159526zM999.15093333 374.13167408h-77.6722963V101.30773333H650.11105185v-77.6722963h349.03988148zM371.21896297 997.63321482H22.17908148V647.07697778h77.6722963v272.82394074H371.21896297z" p-id="2765" fill="#777777"></path><path d="M60.58196385 908.09472948L406.73826133 562.23213037l54.8985363 54.94586785L115.48292741 963.04059733zM562.38019318 406.71277511l367.72006874-367.72128236 54.9228089 54.92280888L617.30178845 461.63437037z" p-id="2766" fill="#777777"></path></svg>
                                                                         </p>
                                                                         <p style="cursor:pointer; margin-top: 10px;width: 30px; height: 30px;" @click="refreshBtn">
                                                                             <svg t="1678616026391" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9500" width="25" height="25"><path d="M935.161672 427.51891c-14.511505-11.744485-37.643342-9.155521-49.1627 5.403057l-12.9438 16.20917c-0.926092-5.842055-1.995447-11.625782-3.158946-17.325597C831.326792 245.594511 666.360623 110.434182 477.668077 110.434182c-27.455305 0-55.099922 2.885723-82.198094 8.562003C179.036629 164.405397 39.60195 378.546545 84.655052 596.34499c38.522362 186.222285 203.488531 321.383638 392.229173 321.383638 27.430746 0 55.076386-2.873444 82.174558-8.549723 75.144444-15.746636 144.18589-53.508681 198.288089-108.002806l1.87572-1.662873c1.757017-1.74576 2.778276-3.432169 2.588965-3.443425l1.781576-2.387373c2.137687-3.527336 4.65502-9.191336 4.65502-16.173354 0-17.361413-14.035668-31.479969-31.326473-31.479969-4.275373 0-8.454556 0.914836-12.325723 2.612501l-1.90028-1.318018-8.644891 8.65717c-46.359864 46.478568-104.261599 78.042447-167.484525 91.283006-22.657023 4.750187-45.766346 7.160073-68.684312 7.160073-157.818375 0-295.733445-113.073288-327.96145-268.87268-37.738509-182.291766 78.849836-361.484961 259.918751-399.448598 22.657023-4.750187 45.766346-7.160073 68.708871-7.160073 157.793816 0 295.709909 113.061009 327.96145 268.860401 0.427742 2.101871 0.855484 4.227278 1.258667 6.364965l-13.751189-11.091616c-14.511505-11.768021-37.59627-9.1678-49.1627 5.390777-12.017708 15.056927-9.619078 37.156248 5.343705 49.269124l78.089519 63.1032c0.14224 0.106424 0.285502 0.213871 0.427742 0.332575l3.491521 2.814092 0.712221 0c6.483668 3.657296 15.770172 4.964058 21.065781 4.322445 9.475815-0.890276 17.954931-5.485945 23.940249-12.93152l62.723553-78.659501C952.498526 461.635939 950.052824 439.560154 935.161672 427.51891z" fill="#5C5C66" p-id="9501"></path></svg>
@@ -149,12 +150,16 @@
                                                                             <path v-for="(arc_item, arc_i) in monthArc" :key="'select_time' + arc_i" :d="arc_item"
                                                                                 fill="#C6BCBC" stroke="#C6BCBC"></path>
                                                                         </g>
+
+                                                                <clipPath id="clipPathNetwork">
+                                                                    <circle :cx="0" :cy="0" :r="distributionHeight * .63 / 2"></circle>
+                                                                </clipPath>
                                             
-                                                                        <g>
-                                                                            <circle cx="0" cy="0" :r="distributionHeight * .57 / 2" fill="none" stroke="#534F4F"
+                                                                        <g clip-path="url(#clipPathNetwork)">
+                                                                            <circle cx="0" cy="0" :r="distributionHeight * .63 / 2" fill="none" stroke="#534F4F"
                                                                                 stroke-width="1"></circle>
                                                                             <path v-for="item in 30" :key="'path' + item"
-                                                                                :d="'M 0 0 L ' + (Math.sin(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (Math.cos(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2))"
+                                                                                :d="'M 0 0 L ' + (Math.sin(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .63 / 2 - 2)) + ' ' + (Math.cos(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .63 / 2 - 2))"
                                                                                 stroke="#534F4F" stroke-width="0.5"></path>
                                                                             
                                                                         </g>
@@ -213,19 +218,19 @@
             <path v-for="(p_item, p_i) in projectFlow" :key="'flow' + p_i" :d="p_item.d" :fill="'none'" :stroke="lineHover == p_i || lineHover == -1 ? (p_item.dir == 1 ? '#181CF7' : '#A50021') : '#777'" :id="'flow_line' + p_i" :class="'all_flow_line'" :stroke-width="p_item.w" :marker-end="lineHover == p_i && p_item.dir == 1 ?'url(#arrow)':''" :marker-start="lineHover == p_i && p_item.dir == 0 ?'url(#arrow)':''" :opacity="lineHover == -1 ? 0.5 : (lineHover == p_i ? 1 : 0.2)" @mouseenter="mouseoverFlow($event, p_item, p_i)" @mouseout="mouseoutFlow()"></path>
         </g>
         <g v-show="showHSB">
-            <path :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .57 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .56 / 2 - 2)) + ' Z'"
+            <path :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .63 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .63 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .63 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .63 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .63 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .56 / 2 - 2)) + ' Z'"
                                                                                 stroke-dasharray="5.5" stroke="#C6BCBC" fill="none"></path>
                                             
-                                                                            <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
-                                                                                :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
+                                                                            <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .63 / 2 + 15))"
+                                                                                :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .63 / 2 + 15))"
                                                                                 font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                                                                 font-weight="bold">H</text>
-                                                                            <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
-                                                                                :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
+                                                                            <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .63 / 2 + 15))"
+                                                                                :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .63 / 2 + 15))"
                                                                                 font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                                                                 font-weight="bold">B</text>
-                                                                            <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
-                                                                                :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .57 / 2 + 15))"
+                                                                            <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .63 / 2 + 15))"
+                                                                                :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .63 / 2 + 15))"
                                                                                 font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                                                                 font-weight="bold">S</text>
                                                                         </g>
@@ -367,7 +372,7 @@ export default {
                 this.zoomTag = 0;
                 this.showHSB = 1;
 
-                [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1);
+                [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1, this.projectSelect);
 
             }
             this.groupSelect = 0,
@@ -398,7 +403,7 @@ export default {
             this.zoomTag = !this.zoomTag;
             if (this.zoomTag) {
                 this.showHSB = 0;
-                [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 2);
+                [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 2, this.projectSelect);
                 if (this.ProjectClickSta) {
 
                     [this.projectFlow, this.projectSelect] = this.calcProjFlow(flow_data, this.ProjectClickName);
@@ -410,7 +415,7 @@ export default {
             } else {
                 this.showHSB = 1;
 
-                [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1);
+                [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1, this.projectSelect);
                 if (this.ProjectClickSta) {
 
                     [this.projectFlow, this.projectSelect] = this.calcProjFlow(flow_data, this.ProjectClickName);
@@ -527,7 +532,7 @@ export default {
 
         mouseoverProject(event, p_data) {
             // console.log(data, id);
-            console.log(p_data);
+            // console.log(p_data);
             let data = p_data;
             // if (this.projectSelectSta == 0) return;
             // if (this.ProjectClickSta == 1) return;
@@ -626,6 +631,7 @@ export default {
                     y: this.scatterData[i]['cy'],
                     group: this.scatterData[i]['group'],
                     data: this.scatterData[i]['data'],
+                    name: this.scatterData[i]['name'],
                     sel: 0
                 }
             }
@@ -690,7 +696,9 @@ export default {
                     x: this.scatterData[i]['cx'],
                     y: this.scatterData[i]['cy'],
                     group: this.scatterData[i]['group'],
-                    data: this.scatterData[i]['data']
+                    data: this.scatterData[i]['data'],
+                    name: this.scatterData[i]['name'],
+                    sel: 0
                 }
             }
             for (let i in sel_id) {
@@ -809,7 +817,7 @@ export default {
         //         min_m3 = Math.min(min_m3, data[i].M3);
         //         min_imp = Math.min(min_imp, data[i].IMP);
         //     }
-        //     let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)));
+        //     let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)));
         //     let areaData = [];
         //     for (let i = 0; i < 30; ++i) {
         //         areaData.push({
@@ -879,11 +887,11 @@ export default {
         //             ry: sy * t_h,
         //             t_h: t_h,
         //             center: {
-        //                 x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)),
-        //                 y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2))
+        //                 x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)),
+        //                 y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2))
         //             },
-        //             cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) + sx * t_h,
-        //             cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) - sy * t_h,
+        //             cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)) + sx * t_h,
+        //             cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)) - sy * t_h,
         //             id_cnt: pro_cnt++
         //         };
         //         // console.log(tp);
@@ -919,7 +927,7 @@ export default {
         //         areaData[Math.floor(t_cnt)].impArea[impp]++;
         //     }
         //     // console.log(scatterData)
-        //     let ayScale = scaleLinear([0, 4], [this.distributionHeight * .57 / 2 + 15, this.distributionHeight * .71 / 2 - 2]);
+        //     let ayScale = scaleLinear([0, 4], [this.distributionHeight * .63 / 2 + 15, this.distributionHeight * .71 / 2 - 2]);
         //     let m1Scale = scaleLinear([0, m1_max], [0, 4]);
         //     let m2Scale = scaleLinear([0, m2_max], [0, 4]);
         //     let m3Scale = scaleLinear([0, m3_max], [0, 4]);
@@ -961,7 +969,22 @@ export default {
         //     return [scatterData, res_area];
         // },
 
-        calcScatter(data, powIndex) {
+        calcScatter(pre_data, powIndex, namespace) {
+            let data = [];
+            if (namespace.length == 0) {
+                data = pre_data;
+            } else {
+                let namespaceX = {};
+                for (let i in namespace) {
+                    namespaceX[namespace[i]['name']] = 1;
+                }
+                for (let i in pre_data) {
+                    if (namespaceX[pre_data[i]['Project Name']] == 1) {
+                        data.push(pre_data[i]);
+                    }
+                }
+            }
+            console.log(data);
             let scatterData = [];
             // console.log(data)
             let max_m1 = 0,
@@ -982,8 +1005,8 @@ export default {
                 min_m3 = Math.min(min_m3, data[i].M3);
                 min_imp = Math.min(min_imp, data[i].IMP);
             }
-            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)));
-            console.log(t_h);
+            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)));
+            // console.log(t_h);
             let areaData = [];
             for (let i = 0; i < 30; ++i) {
                 areaData.push({
@@ -1053,19 +1076,76 @@ export default {
                     ry: sy * t_h,
                     t_h: t_h,
                     center: {
-                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)),
-                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2))
+                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)),
+                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2))
                     },
-                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) + sx * t_h,
-                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .57 / 2)) - sy * t_h,
+                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)) + sx * t_h,
+                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)) - sy * t_h,
                     // cx: sx * t_h,
                     // cy: sy * t_h,
-                    rr: this.distributionHeight * .57,
+                    rr: this.distributionHeight * .63,
                     id_cnt: pro_cnt++
                 };
                 // console.log(tp);
                 scatterData.push(tp);
 
+            }
+            let allScatterData = [];
+            if (powIndex == 2 || powIndex == 1) {
+
+            for (let i in pre_data) {
+                // console.log(data[i]);
+                let sx = (parseFloat(pre_data[i].Holder / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer)) + parseFloat(pre_data[i].Buyer) * 2 / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer)) / Math.sqrt(3);
+                let sy = parseFloat(pre_data[i].Holder / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer));
+                if (powIndex == 2) {
+                    sx = xScale(sx);
+                    sy = yScale(sy);
+                }
+                // if (powIndex != 1) {
+                //     if (sx > 0.5) {
+                //         // if (cnt % 2 == 0) {
+                //         // sx += (1 - ss) * ss * Math.sqrt(3) / 2;
+                //         // sy += (1 - ss) * ss / 2;
+
+                //         sx += (ss - Math.atan(ss)) * 12 * Math.sqrt(3) / 2;
+                //         sy += (ss - Math.atan(ss)) * 12 * ss / 2;
+                //     } else {
+                //         // sx -= (1 - sb) * sb * Math.sqrt(3) / 2;
+                //         // sy -= (1 - sb) * sb / 2;
+
+                //         sx -= (sb - Math.atan(sb)) * 12 * Math.sqrt(3) / 2;
+                //         sy -= (sb - Math.atan(sb)) * 12 * sb / 2;
+                //     }
+                //     cnt++;
+                // }
+                // console.log(sx, sy);
+                // console.log(data[i])
+                let tp = {
+                    name: pre_data[i]['Project Name'],
+                    data: pre_data[i],
+                    group: pre_data[i].Group,
+                    x: sx,
+                    y: sy,
+                    rx: sx * t_h,
+                    ry: sy * t_h,
+                    t_h: t_h,
+                    center: {
+                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)),
+                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2))
+                    },
+                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)) + sx * t_h,
+                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .63 / 2)) - sy * t_h,
+                    // cx: sx * t_h,
+                    // cy: sy * t_h,
+                    rr: this.distributionHeight * .63,
+                    id_cnt: pro_cnt++
+                };
+                // console.log(tp);
+                allScatterData.push(tp);
+
+            }
+            } else {
+                allScatterData = scatterData;
             }
             // console.log(scatterData)
 
@@ -1148,7 +1228,7 @@ export default {
                 // break;
                 areaData[Math.floor(t_cnt)].impArea[impp]++;
             }
-            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .57 / 2 + 15, this.distributionHeight * .71 / 2 - 2]);
+            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .63 / 2 + 15, this.distributionHeight * .71 / 2 - 2]);
             let m1Scale = scaleLinear([0, m1_max], [0, 4]);
             let m2Scale = scaleLinear([0, m2_max], [0, 4]);
             let m3Scale = scaleLinear([0, m3_max], [0, 4]);
@@ -1187,7 +1267,8 @@ export default {
             }
 
 
-            return [scatterData, res_area];
+            // return [scatterData, res_area];
+            return [allScatterData, res_area];
         },
         mainDataProcess() {
             let arcs = pie().padAngle(0.005)(this.monthStep);
@@ -1200,7 +1281,7 @@ export default {
             // let cnt = 0;
             for (let d of innerArcData) {
                 d.innerRadius = this.distributionHeight * .71 / 2 + 5;
-                d.outerRadius = this.distributionHeight * .57 / 2 + 7;
+                d.outerRadius = this.distributionHeight * .63 / 2 + 7;
                 let darcs = arc()(d);
                 innerArc.push(darcs);
                 // // break
@@ -1317,47 +1398,47 @@ export default {
         const dataStore = useDataStore();
 
         
+        this.showTag = 1;
+        this.cpData = cpData;
         // this.showTag = 1;
-        // this.cpData = cpData;
-        // // this.showTag = 1;
-        //         // this.cpData = dataStore.allData.cpData;
+                // this.cpData = dataStore.allData.cpData;
 
-        //         let max_m1 = 0,
-        //             max_m2 = 0,
-        //             max_m3 = 0,
-        //             max_imp = 0;
-        //         let min_m1 = 99999,  
-        //             min_m2 = 99999,
-        //             min_m3 = 99999,
-        //             min_imp = 99999;
-        //         let data33 = this.cpData.data;
-        //         for (let i in data33) {
-        //             max_m1 = Math.max(max_m1, data33[i].M1)
-        //             max_m2 = Math.max(max_m2, data33[i].M2)
-        //             max_m3 = Math.max(max_m3, data33[i].M3)
-        //             max_imp = Math.max(max_imp, data33[i].IMP);
-        //             min_m1 = Math.min(min_m1, data33[i].M1);
-        //             min_m2 = Math.min(min_m2, data33[i].M2);
-        //             min_m3 = Math.min(min_m3, data33[i].M3);
-        //             min_imp = Math.min(min_imp, data33[i].IMP);
-        //         }
-        //         this.valueRange = {
-        //             m1: [min_m1, max_m1],
-        //             m2: [min_m2, max_m2],
-        //             m3: [min_m3, max_m3],
-        //             imp: [min_imp, max_imp]
-        //         }
+                let max_m1 = 0,
+                    max_m2 = 0,
+                    max_m3 = 0,
+                    max_imp = 0;
+                let min_m1 = 99999,  
+                    min_m2 = 99999,
+                    min_m3 = 99999,
+                    min_imp = 99999;
+                let data33 = this.cpData.data;
+                for (let i in data33) {
+                    max_m1 = Math.max(max_m1, data33[i].M1)
+                    max_m2 = Math.max(max_m2, data33[i].M2)
+                    max_m3 = Math.max(max_m3, data33[i].M3)
+                    max_imp = Math.max(max_imp, data33[i].IMP);
+                    min_m1 = Math.min(min_m1, data33[i].M1);
+                    min_m2 = Math.min(min_m2, data33[i].M2);
+                    min_m3 = Math.min(min_m3, data33[i].M3);
+                    min_imp = Math.min(min_imp, data33[i].IMP);
+                }
+                this.valueRange = {
+                    m1: [min_m1, max_m1],
+                    m2: [min_m2, max_m2],
+                    m3: [min_m3, max_m3],
+                    imp: [min_imp, max_imp]
+                }
         // console.log(this.cpData);
-        // this.allProject_num = this.cpData.data.length;
-        // let timeRange = dataStore.timeRange;
-        // // console.log(timeRange);
+        this.allProject_num = this.cpData.data.length;
+        let timeRange = dataStore.timeRange;
+        // console.log(timeRange);
 
-        // this.monthArc = this.calcArc(timeRange);
-        // [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
-        // // console.log(this.innerArc)
-        // // console.log(this.cpData);
-        // [this.outerArc, this.groupArc, this.allGroupArc] = this.outerArcProgress(this.cpData.data);
-        // [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1);
+        this.monthArc = this.calcArc(timeRange);
+        [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
+        // console.log(this.innerArc)
+        // console.log(this.cpData);
+        [this.outerArc, this.groupArc, this.allGroupArc] = this.outerArcProgress(this.cpData.data);
+        [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1, this.projectSelect);
 
         // console.log(this.projectFlow);
         dataStore.$subscribe((mutations, state) => {
@@ -1395,7 +1476,7 @@ export default {
                 this.monthArc = this.calcArc(timeRange);
                 [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
                 [this.outerArc, this.groupArc, this.allGroupArc] = this.outerArcProgress(dataStore.allData.cpData.data);
-                [this.scatterData, this.innerArea] = this.calcScatter(dataStore.allData.cpData.data, 1);
+                [this.scatterData, this.innerArea] = this.calcScatter(dataStore.allData.cpData.data, 1, this.projectSelect);
 
             }
         })
