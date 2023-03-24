@@ -94,7 +94,7 @@
                             <el-radio label="2" style="position: absolute; left: 0px;">K-Means</el-radio>
                                                 </span>
                     </div>
-                    <div style="height: 25px; margin-top: 3px;">
+                    <div style="height: 25px; margin-top: 0px;">
 
 <span style="position: relative; left: 0px;">
                         </span>
@@ -111,7 +111,7 @@
                 </div>
     
                 <div>
-                    <span style="float: right; width: 65%; margin-bottom: 5px; margin-top: 15px;">
+                    <span style="float: right; width: 65%; margin-bottom: 5px; margin-top: 2px;">
                                             <div>
                                                 <span style="position: relative; left: 0px;">
                                                     <el-button style="width:100px" @click="run()">RUN</el-button>
@@ -186,7 +186,7 @@
         </div>
     </div>
     <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
-    <div style="overflow-y: auto; height: calc(50%); margin-top: 10px; margin-bottom: 10px;">
+    <div style="overflow-y: auto; height: calc(50% - 10px); margin-top: 10px; margin-bottom: 10px;">
         <el-table class="customer-no-border-table" :data="tableData" :show-header="false" style="height: calc(100% + 0px); width: 100%;" :row-style="{
                                         height: elHeight / 6 + 'px',
                                         'font-size': '14px',
