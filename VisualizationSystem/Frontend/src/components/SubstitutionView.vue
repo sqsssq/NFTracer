@@ -152,7 +152,7 @@
                                                                         </g>
 
                                                                 <clipPath id="clipPathNetwork">
-                                                                    <circle :cx="0" :cy="0" :r="distributionHeight * .63 / 2"></circle>
+                                                                    <circle :cx="0" :cy="0" :r="distributionHeight * .63 / 2 + 10"></circle>
                                                                 </clipPath>
                                             
                                                                         <g clip-path="url(#clipPathNetwork)">
@@ -188,14 +188,14 @@
                                                                                 <path :d="a_item[filterValue]" :fill="axisColorA[filterValue]" :stroke="axisColorA[filterValue]" :opacity="a_item.cnt == 0 ? 0 : 1"></path>
                                                                             </g>
                                                                         </g>
-                                                                        <g>
+                                                                        <g clip-path="url(#clipPathNetwork)">
                                                                             
                                                                             <circle v-for="(c_item, c_i) in scatterData" :key="'gc' + c_i" :id="'pro_cir' + c_item.id_cnt" :class="'all_pro_cir'" :cx="c_item.cx"
                                                                                 :cy="c_item.cy" :r="5" :fill="(selectGroup == -1 && ProjectClickSta == 0) ? colormap[c_item.group] : '#c0c0c0'" :opacity="(selectGroup == -1 && ProjectClickSta == 0) ?  1:  0.3" @mouseenter="ProjectClickSta == 0 ? mouseoverProject($event, c_item.data): null" @mouseout="mouseoutProject"
                                                                                 @click="clickProject(c_item.data)">
                                                                             </circle>
                                                                         </g>
-                                                                        <g>
+                                                                        <g  clip-path="url(#clipPathNetwork)">
                 
                                                                             <circle v-for="(c_item, c_i) in projectSelect" :key="'gc' + c_i" :cx="c_item.x"
                                                                                 :cy="c_item.y" :r="c_item.sel == 1 ? 8 : 5" :stroke-width="c_item.sel == 1 ? 3 : 0" :stroke="c_item.sel == 1 ? 'black' : 'none'" :fill="colormap[c_item.group]" :opacity="1" @mouseenter="mouseoverProject($event, c_item.data)" @mouseout="mouseoutProject"></circle>
@@ -204,17 +204,10 @@
                                                                         <g>
                                                                             <defs>
             <!-- A marker to be used as an arrowhead -->
-            <marker
-              id="arrow"
-              viewBox="0 0 10 10"
-              refX="5"
-              refY="5"
-              markerWidth="6"
-              markerHeight="6"
-              orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10" stroke-width="100" />
+            <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10" stroke-width="100" />
             </marker>
-          </defs>
+        </defs>
             <path v-for="(p_item, p_i) in projectFlow" :key="'flow' + p_i" :d="p_item.d" :fill="'none'" :stroke="lineHover == p_i || lineHover == -1 ? (p_item.dir == 1 ? '#181CF7' : '#A50021') : '#777'" :id="'flow_line' + p_i" :class="'all_flow_line'" :stroke-width="p_item.w" :marker-end="lineHover == p_i && p_item.dir == 1 ?'url(#arrow)':''" :marker-start="lineHover == p_i && p_item.dir == 0 ?'url(#arrow)':''" :opacity="lineHover == -1 ? 0.5 : (lineHover == p_i ? 1 : 0.2)" @mouseenter="mouseoverFlow($event, p_item, p_i)" @mouseout="mouseoutFlow()"></path>
         </g>
         <g v-show="showHSB">
@@ -1228,7 +1221,7 @@ export default {
                 // break;
                 areaData[Math.floor(t_cnt)].impArea[impp]++;
             }
-            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .63 / 2 + 15, this.distributionHeight * .71 / 2 - 2]);
+            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .63 / 2 + 10, this.distributionHeight * .71 / 2 ]);
             let m1Scale = scaleLinear([0, m1_max], [0, 4]);
             let m2Scale = scaleLinear([0, m2_max], [0, 4]);
             let m3Scale = scaleLinear([0, m3_max], [0, 4]);
