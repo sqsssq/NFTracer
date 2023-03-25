@@ -1403,48 +1403,48 @@ export default {
         const dataStore = useDataStore();
 
         
-        this.showTag = 1;
-        this.cpData = cpData;
-        this.flow_data = flow_data;
         // this.showTag = 1;
-                // this.cpData = dataStore.allData.cpData;
+        // this.cpData = cpData;
+        // this.flow_data = flow_data;
+        // // this.showTag = 1;
+        //         // this.cpData = dataStore.allData.cpData;
 
-                let max_m1 = 0,
-                    max_m2 = 0,
-                    max_m3 = 0,
-                    max_imp = 0;
-                let min_m1 = 99999,  
-                    min_m2 = 99999,
-                    min_m3 = 99999,
-                    min_imp = 99999;
-                let data33 = this.cpData.data;
-                for (let i in data33) {
-                    max_m1 = Math.max(max_m1, data33[i].M1)
-                    max_m2 = Math.max(max_m2, data33[i].M2)
-                    max_m3 = Math.max(max_m3, data33[i].M3)
-                    max_imp = Math.max(max_imp, data33[i].IMP);
-                    min_m1 = Math.min(min_m1, data33[i].M1);
-                    min_m2 = Math.min(min_m2, data33[i].M2);
-                    min_m3 = Math.min(min_m3, data33[i].M3);
-                    min_imp = Math.min(min_imp, data33[i].IMP);
-                }
-                this.valueRange = {
-                    m1: [min_m1, max_m1],
-                    m2: [min_m2, max_m2],
-                    m3: [min_m3, max_m3],
-                    imp: [min_imp, max_imp]
-                }
-        // console.log(this.cpData);
-        this.allProject_num = this.cpData.data.length;
-        let timeRange = dataStore.timeRange;
-        // console.log(timeRange);
+        //         let max_m1 = 0,
+        //             max_m2 = 0,
+        //             max_m3 = 0,
+        //             max_imp = 0;
+        //         let min_m1 = 99999,  
+        //             min_m2 = 99999,
+        //             min_m3 = 99999,
+        //             min_imp = 99999;
+        //         let data33 = this.cpData.data;
+        //         for (let i in data33) {
+        //             max_m1 = Math.max(max_m1, data33[i].M1)
+        //             max_m2 = Math.max(max_m2, data33[i].M2)
+        //             max_m3 = Math.max(max_m3, data33[i].M3)
+        //             max_imp = Math.max(max_imp, data33[i].IMP);
+        //             min_m1 = Math.min(min_m1, data33[i].M1);
+        //             min_m2 = Math.min(min_m2, data33[i].M2);
+        //             min_m3 = Math.min(min_m3, data33[i].M3);
+        //             min_imp = Math.min(min_imp, data33[i].IMP);
+        //         }
+        //         this.valueRange = {
+        //             m1: [min_m1, max_m1],
+        //             m2: [min_m2, max_m2],
+        //             m3: [min_m3, max_m3],
+        //             imp: [min_imp, max_imp]
+        //         }
+        // // console.log(this.cpData);
+        // this.allProject_num = this.cpData.data.length;
+        // let timeRange = dataStore.timeRange;
+        // // console.log(timeRange);
 
-        this.monthArc = this.calcArc(timeRange);
-        [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
-        // console.log(this.innerArc)
-        // console.log(this.cpData);
-        [this.outerArc, this.groupArc, this.allGroupArc] = this.outerArcProgress(this.cpData.data);
-        [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1, this.projectSelect);
+        // this.monthArc = this.calcArc(timeRange);
+        // [this.mainArc, this.mainInnerArc, this.innerArc] = this.mainDataProcess();
+        // // console.log(this.innerArc)
+        // // console.log(this.cpData);
+        // [this.outerArc, this.groupArc, this.allGroupArc] = this.outerArcProgress(this.cpData.data);
+        // [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1, this.projectSelect);
 
         // console.log(this.projectFlow);
         dataStore.$subscribe((mutations, state) => {
