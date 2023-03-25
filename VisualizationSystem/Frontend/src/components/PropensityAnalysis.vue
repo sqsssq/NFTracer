@@ -373,6 +373,7 @@ export default {
             if (selectFile == 1) {
                 let file_cnt = 0;
                 for (let i in importData) {
+                    console.log(i);
                     if (file_cnt == 0) {
                         dataStore.allData.cpData = importData[i]['default'];
                     } else if (file_cnt == 1) {

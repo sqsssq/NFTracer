@@ -664,7 +664,7 @@ export default {
                     namespace[this.cpData.data[i]['Project Name']] = 1;
                 }
             }
-
+            console.log(this.flow_data);
             [this.projectFlow, this.projectSelect] = this.calcFlow(this.flow_data, namespace);
 
         },
@@ -1452,6 +1452,7 @@ export default {
                 this.showTag = 1;
                 this.cpData = dataStore.allData.cpData;
                 this.flow_data = dataStore.allData.flow_data;
+                console.log(this.flow_data);
 
                 let max_m1 = 0,
                     max_m2 = 0,
