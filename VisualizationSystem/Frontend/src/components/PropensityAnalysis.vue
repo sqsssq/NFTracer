@@ -93,7 +93,7 @@
                                                 <!-- </span>
                         <span style="position: absolute; left: calc(51% + 20px);"> -->
                                                     
-                            <el-radio label="2" style="position: absolute; left: 165px;">K-Means</el-radio>
+                            <el-radio label="2" style="position: absolute; left: 185px;">K-Means</el-radio>
                                             </el-radio-group>
                                                 </span>
                     </div>

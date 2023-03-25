@@ -30,8 +30,7 @@
             </div>
             <div style="height: 100%;float: right;">
 
-                <span style="position: relative; top: -3px;">Visual Analytics for substitutive system in NFT
-                    marketspace</span>
+                <span style="position: relative; top: -3px;">Tracing NFT Impact Dynamics in Transaction-flow Substitutive Systems with Visual Analytics</span>
             </div>
         </div>
     </div>
