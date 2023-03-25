@@ -2,28 +2,28 @@
     <div style="height: 100%">
         <div class="frameworkTitle">
             <span class="title" style="float: left;">
-                            <svg t="1676053813985" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                p-id="37153" width="20" height="20">
-                                <path
-                                    d="M170.666667 42.666667l682.666667 0q52.992 0 90.496 37.504t37.504 90.496l0 682.666667q0 52.992-37.504 90.496t-90.496 37.504l-682.666667 0q-52.992 0-90.496-37.504t-37.504-90.496l0-682.666667q0-52.992 37.504-90.496t90.496-37.504zM896 742.997333l-213.333333-213.333333-366.336 366.336 537.002667 0q17.664 0 30.165333-12.501333t12.501333-30.165333l0-110.336zM853.333333 128l-682.666667 0q-17.664 0-30.165333 12.501333t-12.501333 30.165333l0 682.666667q0 17.664 12.501333 30.165333t30.165333 12.501333l25.002667 0 486.997333-486.997333 213.333333 213.333333 0-451.669333q0-17.664-12.501333-30.165333t-30.165333-12.501333zM341.333333 213.333333q52.992 0 90.496 37.504t37.504 90.496-37.504 90.496-90.496 37.504-90.496-37.504-37.504-90.496 37.504-90.496 90.496-37.504zM341.333333 298.666667q-17.664 0-30.165333 12.501333t-12.501333 30.165333 12.501333 30.165333 30.165333 12.501333 30.165333-12.501333 12.501333-30.165333-12.501333-30.165333-30.165333-12.501333z"
-                                    p-id="37154" font-size="14" fill="#534f4f"></path>
-                            </svg>
-                            &nbsp; Impact Dynamic View
-                        </span>
+                                    <svg t="1676053813985" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                        p-id="37153" width="20" height="20">
+                                        <path
+                                            d="M170.666667 42.666667l682.666667 0q52.992 0 90.496 37.504t37.504 90.496l0 682.666667q0 52.992-37.504 90.496t-90.496 37.504l-682.666667 0q-52.992 0-90.496-37.504t-37.504-90.496l0-682.666667q0-52.992 37.504-90.496t90.496-37.504zM896 742.997333l-213.333333-213.333333-366.336 366.336 537.002667 0q17.664 0 30.165333-12.501333t12.501333-30.165333l0-110.336zM853.333333 128l-682.666667 0q-17.664 0-30.165333 12.501333t-12.501333 30.165333l0 682.666667q0 17.664 12.501333 30.165333t30.165333 12.501333l25.002667 0 486.997333-486.997333 213.333333 213.333333 0-451.669333q0-17.664-12.501333-30.165333t-30.165333-12.501333zM341.333333 213.333333q52.992 0 90.496 37.504t37.504 90.496-37.504 90.496-90.496 37.504-90.496-37.504-37.504-90.496 37.504-90.496 90.496-37.504zM341.333333 298.666667q-17.664 0-30.165333 12.501333t-12.501333 30.165333 12.501333 30.165333 30.165333 12.501333 30.165333-12.501333 12.501333-30.165333-12.501333-30.165333-30.165333-12.501333z"
+                                            p-id="37154" font-size="14" fill="#534f4f"></path>
+                                    </svg>
+                                    &nbsp; Impact Dynamic View
+                                </span>
             <span style="float: right; position: relative; top: -2px; font-size: 16px;">
-                            <svg height="27" width="260" transform="translate(0, 10)">
-                                <g v-for="(item, i) in colormap1" :key="'icolor' + i" :transform="translate(20, 0, 0)">
-                                    <rect :x="0 + i * 40" :y="2" :width="9" :height="9" :fill="item" :stroke="'#534f4f'"></rect>
-                                    <text :x="0 + i * 40 + 4.5" :y="23" font-size="12" text-anchor="middle">{{ i == 0 ? 'Sell' : i
-                                        == 1 ? 'Buy' : 'Hold' }}</text>
-                                </g>
-                                <g v-for="(item, i) in colormap2" :key="'icolor' + i" :transform="translate(140, 0, 0)">
-                                    <rect :x="0 + i * 11" :y="1" :width="11" :height="11" :fill="item" :stroke="'none'"></rect>
-                                    <text v-if="i == 0 || i == 5 || i == 10" :x="0 + i * 11 + 5.5" :y="23" font-size="12"
-                                        text-anchor="middle">{{ i == 0 ? '-1' : i == 5 ? '0' : '+1' }}</text>
-                                </g>
-                            </svg>
-                        </span>
+                                    <svg height="27" width="260" transform="translate(0, 10)">
+                                        <g v-for="(item, i) in colormap1" :key="'icolor' + i" :transform="translate(20, 0, 0)">
+                                            <rect :x="0 + i * 40" :y="2" :width="9" :height="9" :fill="item" :stroke="'#534f4f'"></rect>
+                                            <text :x="0 + i * 40 + 4.5" :y="23" font-size="12" text-anchor="middle">{{ i == 0 ? 'Sell' : i
+                                                == 1 ? 'Buy' : 'Hold' }}</text>
+                                        </g>
+                                        <g v-for="(item, i) in colormap2" :key="'icolor' + i" :transform="translate(140, 0, 0)">
+                                            <rect :x="0 + i * 11" :y="1" :width="11" :height="11" :fill="item" :stroke="'none'"></rect>
+                                            <text v-if="i == 0 || i == 5 || i == 10" :x="0 + i * 11 + 5.5" :y="23" font-size="12"
+                                                text-anchor="middle">{{ i == 0 ? '-1' : i == 5 ? '0' : '+1' }}</text>
+                                        </g>
+                                    </svg>
+                                </span>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
         </div>
         <div class="frameworkBody">
@@ -37,125 +37,125 @@
                 </div>
                 <div ref="correlationView" style="position: relative; left: 0px; width: 65%; height: calc(100% - 35px)">
                     <svg width="100%" height="100%" v-show="selectGroupTag != -1">
-                                    <defs>
-                                        <clipPath id="clipPath">
-                                            <circle :cx="15" :cy="15" :r="15"></circle>
-                                        </clipPath>
-                                    </defs>
-            
-                                    <g :transform="translate(30, 50, 0)">
-                                        <g>
-                                            <g>
-                                                <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i">
-                                                    <path v-for="(a_item, a_i) in item.arc_data.outArc" :key="'corr_out_' + a_i"
-                                                        :d="a_item.d" :fill="a_item.fill"></path>
-                                                    <path v-for="(a_item, a_i) in item.arc_data.innerArc" :key="'corr_out_' + a_i"
-                                                        :d="a_item.d" :fill="a_item.fill"></path>
-                                                    <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
-                                                    <path d="M 18 10 L 60 10" fill="none" stroke="#C6BCBC"></path>
-                                                    <text x="55" y="-15" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">#{{
-                                                        item.co_sum }}</text>
-                                                    <text x="55" y="10" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">{{
-                                                        item.buyer_pre }}</text>
+                                            <defs>
+                                                <clipPath id="clipPath">
+                                                    <circle :cx="15" :cy="15" :r="15"></circle>
+                                                </clipPath>
+                                            </defs>
+                    
+                                            <g :transform="translate(30, 50, 0)">
+                                                <g>
+                                                    <g>
+                                                        <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i">
+                                                            <path v-for="(a_item, a_i) in item.arc_data.outArc" :key="'corr_out_' + a_i"
+                                                                :d="a_item.d" :fill="a_item.fill"></path>
+                                                            <path v-for="(a_item, a_i) in item.arc_data.innerArc" :key="'corr_out_' + a_i"
+                                                                :d="a_item.d" :fill="a_item.fill"></path>
+                                                            <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
+                                                            <path d="M 18 10 L 60 10" fill="none" stroke="#C6BCBC"></path>
+                                                            <text x="55" y="-15" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">#{{
+                                                                item.co_sum }}</text>
+                                                            <text x="55" y="10" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">{{
+                                                                item.buyer_pre }}</text>
+                                                        </g>
+                                                    </g>
+                                                    <g :transform="translate(0, 10, 0)">
+                                                        <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Group:</text>
+                                                        <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
+                                                            fill="#534f4f">{{ selectGroupTag }}</text>
+                                                        <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time
+                                                            Slot:</text>
+                                                        <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
+                                                            fill="#534f4f">{{ timeSelectionText }}</text>
+                                                    </g>
                                                 </g>
                                             </g>
-                                            <g :transform="translate(0, 10, 0)">
-                                                <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Group:</text>
-                                                <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
-                                                    fill="#534f4f">{{ selectGroupTag }}</text>
-                                                <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time
-                                                    Slot:</text>
-                                                <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
-                                                    fill="#534f4f">{{ timeSelectionText }}</text>
+                                            <g>
+                                                <path v-for="(item, i) in lineData" :key="'cross_line' + i" :d="item" fill="none"
+                                                    stroke="#C6BCBC"></path>
                                             </g>
-                                        </g>
-                                    </g>
-                                    <g>
-                                        <path v-for="(item, i) in lineData" :key="'cross_line' + i" :d="item" fill="none"
-                                            stroke="#C6BCBC"></path>
-                                    </g>
-                                    <g>
-                                        <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i"
-                                            :transform="translate(item.x, item.y, 0)" @click="clickCorrelation(i, item.projectA, item.projectB)">
-                                            <circle :x="0" :y="0" :fill="'white'" :stroke="item.circleData.stroke"
-                                                :r="item.circleData.r" :opacity="item.opacity" :stroke-width="2"></circle>
-            
-                                            <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                :fill="a_item.fill"></path>
-                                            <!-- <circle :x="0" :y="0" :r="item.circleData.r + item.circleData.r > 8 ? (-8) : 0" :fill="'none'" :stroke="'white'"></circle> -->
-                                            <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                :fill="a_item.fill"></path>
-                                        </g>
-                                    </g>
-                                    <g>
-                                        <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
-                                            :transform="translate(item.pos[0], item.pos[1], 0)">
-                                            <g clip-path="url(#clipPath)" :transform="translate(-40, -15, 0)" @mouseenter="mouseoverName($event, item.name)" @mouseout="mouseoutName">
-                                                <image :href="item.link" x="0" y="0" height="30" width="30" />
+                                            <g>
+                                                <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i"
+                                                    :transform="translate(item.x, item.y, 0)" @click="clickCorrelation(i, item.projectA, item.projectB)">
+                                                    <circle :x="0" :y="0" :fill="'white'" :stroke="item.circleData.stroke"
+                                                        :r="item.circleData.r" :opacity="item.opacity" :stroke-width="2"></circle>
+                    
+                                                    <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                        :fill="a_item.fill"></path>
+                                                    <!-- <circle :x="0" :y="0" :r="item.circleData.r + item.circleData.r > 8 ? (-8) : 0" :fill="'none'" :stroke="'white'"></circle> -->
+                                                    <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                        :fill="a_item.fill"></path>
+                                                </g>
                                             </g>
-                                            <!-- <text :x="0" :y="0" font-size="14" text-anchor="end" dx="-0.5em" dy="-0.5em">
-                                                                                    {{ item.name }}
-                                                                                </text> -->
-                                        </g>
-                                    </g>
-                                </svg>
+                                            <g>
+                                                <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
+                                                    :transform="translate(item.pos[0], item.pos[1], 0)">
+                                                    <g clip-path="url(#clipPath)" :transform="translate(-40, -15, 0)" @mouseenter="mouseoverName($event, item.name)" @mouseout="mouseoutName">
+                                                        <image :href="item.link" x="0" y="0" height="30" width="30" />
+                                                    </g>
+                                                    <!-- <text :x="0" :y="0" font-size="14" text-anchor="end" dx="-0.5em" dy="-0.5em">
+                                                                                            {{ item.name }}
+                                                                                        </text> -->
+                                                </g>
+                                            </g>
+                                        </svg>
                 </div>
                 <div ref="correlationTable" style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%);">
                     <svg width="100%" height="100%" v-show="selectGroupTag != -1">
-            
-                                    <g>
-                                        <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
-                                            :transform="translate(0, item.pos[1] + 25, 0)">
+                    
                                             <g>
-                                                <rect v-for="(r_item, r_i) in item.rectData" :key="'pro_bar_' + r_i" :x="r_item.x"
-                                                    :y="-12.5" :width="r_item.w" :height="r_item.h" :fill="r_item.fill"></rect>
+                                                <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
+                                                    :transform="translate(0, item.pos[1] + 25, 0)">
+                                                    <g>
+                                                        <rect v-for="(r_item, r_i) in item.rectData" :key="'pro_bar_' + r_i" :x="r_item.x"
+                                                            :y="-12.5" :width="r_item.w" :height="r_item.h" :fill="r_item.fill"></rect>
+                                                    </g>
+                                                    <!-- <text :x="0" :y="0" font-size="14" text-anchor="start" dx="-0.5em" dy="0.5em">
+                                                                                            {{ item.name }}
+                                                                                        </text> -->
+                                                </g>
                                             </g>
-                                            <!-- <text :x="0" :y="0" font-size="14" text-anchor="start" dx="-0.5em" dy="0.5em">
-                                                                                    {{ item.name }}
-                                                                                </text> -->
-                                        </g>
-                                    </g>
-            
-                                    <g>
-                                        <g v-for="(item, i) in correlationData" :key="'selectKey' + i">
-                                            <path v-for="(p_item, p_i) in item.lineData" :key="'select_line_' + p_i"
-                                                :transform="translate(0, 25, 0)"
-                                                :d="'M' + (p_item.x + p_item.rw) + ',' + p_item.y + 'L' + (p_item.x + p_item.rw) + ',' + (p_item.y + p_item.h)"
-                                                :fill="'none'" :stroke="p_item.stroke" :stroke-width="3" :opacity="item.opacity"></path>
-                                        </g>
-                                    </g>
-                                    <g transform="translate(0, 20)">
-                                        <!-- <text x="95" y="20" font-size="14">#Holders-#Buyers-#Sellers</text> -->
-                                        <text font-size="14" :x="ctWidth / 3 - ctWidth / 6" y="20" text-anchor="middle"
-                                            fill="#534f4f">#Seller</text>
-                                        <text font-size="12" x="5" y="45" text-anchor="start" fill="#534f4f"
-                                            font-family="sans-serif">0</text>
-                                        <text font-size="12" :x="ctWidth / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
-                                            font-family="sans-serif">{{ max_people }}</text>
-                                        <text font-size="14" :x="ctWidth * 2 / 3 - ctWidth / 6" y="20" text-anchor="middle"
-                                            fill="#534f4f">#Buyer</text>
-                                        <text font-size="12" :x="ctWidth / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
-                                            font-family="sans-serif">0</text>
-                                        <text font-size="12" :x="ctWidth * 2 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
-                                            font-family="sans-serif">{{ max_people }}</text>
-                                        <text font-size="14" :x="ctWidth - ctWidth / 6" y="20" text-anchor="middle"
-                                            fill="#534f4f">#Holder</text>
-                                        <text font-size="12" :x="ctWidth * 2 / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
-                                            font-family="sans-serif">0</text>
-                                        <text font-size="12" :x="ctWidth * 3 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
-                                            font-family="sans-serif">{{ max_holder }}</text>
-                                        <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
-                                        <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
-                                            stroke="#C6BCBC"></path>
-                                        <path :d="'M 0 30 L 0 ' + (ctHeight - 40)" fill="none" stroke="#C6BCBC"></path>
-                                        <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 40)"
-                                            fill="none" stroke="#C6BCBC"></path>
-                                        <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 40)"
-                                            fill="none" stroke="#C6BCBC"></path>
-                                        <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 40)"
-                                            fill="none" stroke="#C6BCBC"></path>
-                                    </g>
-                                </svg>
+                    
+                                            <g>
+                                                <g v-for="(item, i) in correlationData" :key="'selectKey' + i">
+                                                    <path v-for="(p_item, p_i) in item.lineData" :key="'select_line_' + p_i"
+                                                        :transform="translate(0, 25, 0)"
+                                                        :d="'M' + (p_item.x + p_item.rw) + ',' + p_item.y + 'L' + (p_item.x + p_item.rw) + ',' + (p_item.y + p_item.h)"
+                                                        :fill="'none'" :stroke="p_item.stroke" :stroke-width="3" :opacity="item.opacity"></path>
+                                                </g>
+                                            </g>
+                                            <g transform="translate(0, 20)">
+                                                <!-- <text x="95" y="20" font-size="14">#Holders-#Buyers-#Sellers</text> -->
+                                                <text font-size="14" :x="ctWidth / 3 - ctWidth / 6" y="20" text-anchor="middle"
+                                                    fill="#534f4f">#Seller</text>
+                                                <text font-size="12" x="5" y="45" text-anchor="start" fill="#534f4f"
+                                                    font-family="sans-serif">0</text>
+                                                <text font-size="12" :x="ctWidth / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                                    font-family="sans-serif">{{ max_people }}</text>
+                                                <text font-size="14" :x="ctWidth * 2 / 3 - ctWidth / 6" y="20" text-anchor="middle"
+                                                    fill="#534f4f">#Buyer</text>
+                                                <text font-size="12" :x="ctWidth / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
+                                                    font-family="sans-serif">0</text>
+                                                <text font-size="12" :x="ctWidth * 2 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                                    font-family="sans-serif">{{ max_people }}</text>
+                                                <text font-size="14" :x="ctWidth - ctWidth / 6" y="20" text-anchor="middle"
+                                                    fill="#534f4f">#Holder</text>
+                                                <text font-size="12" :x="ctWidth * 2 / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
+                                                    font-family="sans-serif">0</text>
+                                                <text font-size="12" :x="ctWidth * 3 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                                    font-family="sans-serif">{{ max_holder }}</text>
+                                                <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
+                                                <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
+                                                    stroke="#C6BCBC"></path>
+                                                <path :d="'M 0 30 L 0 ' + (ctHeight - 40)" fill="none" stroke="#C6BCBC"></path>
+                                                <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 40)"
+                                                    fill="none" stroke="#C6BCBC"></path>
+                                                <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 40)"
+                                                    fill="none" stroke="#C6BCBC"></path>
+                                                <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 40)"
+                                                    fill="none" stroke="#C6BCBC"></path>
+                                            </g>
+                                        </svg>
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
@@ -163,147 +163,147 @@
                 <div style="height: 35px;">
                     [Impact dynamics of individual NFT project]
                     <span style="float: right; position: relative; top: 1px;">
-                                    Sort by:
-                                    <el-select v-model="sortValue" class="m-2" placeholder="Select"
-                                        style="width: 85px; --el-border-color: white;">
-                                        <el-option v-for="item in sortOptions" :key="item" :label="item.label" :value="item.value" />
-                                    </el-select>
-                                </span>
+                                            Sort by:
+                                            <el-select v-model="sortValue" class="m-2" placeholder="Select"
+                                                style="width: 85px; --el-border-color: white;">
+                                                <el-option v-for="item in sortOptions" :key="item" :label="item.label" :value="item.value" />
+                                            </el-select>
+                                        </span>
                 </div>
                 <div style="height: calc(100% - 35px); width: 100%;">
                     <div ref="nameSpace" id="nameSpace" style="float: left; width: calc(15% + 30px); height: 93%; overflow: hidden;">
                         <svg width="100%" v-show="selectGroupTag != -1" :height="pjWidth * projectNum / 2- 1" id="nameSpaceSvg">
-                                        <g v-for="(item, i) in timeData" :key="'time_x' + i">
-                                            <g :transform="translate((nameWidth) / 2 - 10, i * pjHeight / 2 + 100, 0)">
-            
-                                                <path v-for="(a_item, a_i) in item.name.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                    :fill="a_item.fill" :stroke="a_item.stroke == 1 ? '#534f4f' : 'none'"></path>
-                                                <path v-for="(a_item, a_i) in item.name.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                    :fill="a_item.fill"></path>
-            
-                                                <clipPath id="clipPath20">
-                                                    <circle :cx="item.name.img_r * 0.75" :cy="item.name.img_r * 0.75" :r="item.name.img_r / 2"></circle>
-                                                </clipPath>
-                                                
-                                                <g clip-path="url(#clipPath20)"
-                                                    :transform="translate(-item.name.img_r*0.75 , -item.name.img_r* 0.75, 0)"  >
-                                                    <image :href="item.name.link" x="0" y="0" :height="item.name.img_r * 1.5"
-                                                        :width="item.name.img_r * 1.5" />
+                                                <g v-for="(item, i) in timeData" :key="'time_x' + i">
+                                                    <g :transform="translate((nameWidth) / 2 - 10, i * pjHeight / 2 + 100, 0)">
+                    
+                                                        <path v-for="(a_item, a_i) in item.name.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                            :fill="a_item.fill" :stroke="a_item.stroke == 1 ? '#534f4f' : 'none'"></path>
+                                                        <path v-for="(a_item, a_i) in item.name.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                            :fill="a_item.fill"></path>
+                    
+                                                        <clipPath id="clipPath20">
+                                                            <circle :cx="item.name.img_r * 0.75" :cy="item.name.img_r * 0.75" :r="item.name.img_r / 2"></circle>
+                                                        </clipPath>
+                                                        
+                                                        <g clip-path="url(#clipPath20)"
+                                                            :transform="translate(-item.name.img_r*0.75 , -item.name.img_r* 0.75, 0)"  >
+                                                            <image :href="item.name.link" x="0" y="0" :height="item.name.img_r * 1.5"
+                                                                :width="item.name.img_r * 1.5" />
+                                                        </g>
+                                                    </g>
+                                                    <!-- <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 180, 0)">
+                                                        
+                                                        <text fill="#534f4f" font-size="16" text-anchor="middle">{{ item.name.name }}</text>
+                                                    </g> -->
+                                                    <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 200, 0)">
+                                                        <text fill="#534f4f" font-size="14" text-anchor="middle">Time Slot: </text>
+                                                        <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
+                                                            dy="2em">{{
+                                                                item.name.timeS }}</text>
+                                                        <text fill="#534f4f" font-size="14" text-anchor="middle" dy="3.5em">{{
+                                                            '-' }}</text>
+                                                        <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
+                                                            dy="5em">{{
+                                                                item.name.timeE }}</text>
+                    
+                                                    </g>
+                                                    <g>
+                                                        <path
+                                                            :d="'M0 ' + (pjHeight / 2 * (i + 1)) + ' L' + nameWidth + ' ' + (pjHeight / 2 * (i + 1))"
+                                                            fill="none" stroke="#e0dede"></path>
+                                                    </g>
+                    
+                                                    <!-- <g :transform="translate(nameWidth, pjHeight / 2 * i, 0)">
+                                                        <g :transform="translate(0, 0, 0)">
+                                                            <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                                :fill="'none'" :stroke="a_item.fill"></path>
+                                                        </g>
+                                                        <g>
+                    
+                                                            <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                                :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill"></path>
+                                                        </g>
+                                                        <g>
+                                                            <rect v-for="(a_item, a_i) in item.rectData" :key="'corr_out_' + a_i" :x="a_item.x" :y="a_item.y" :height="a_item.h" :width="a_item.w" :fill="a_item.color" :stroke="'white'"></rect>
+                                                        </g>
+                                                        <g :transform="translate(0, 0, 0)">
+                                                            <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
+                                                                :cx="a_item.x" :cy="a_item.y" :r="2" :fill="a_item.fill"></circle>
+                                                        </g>
+                                                        <g>
+                    
+                                                            <path
+                                                                :d="'M0 ' + (pjHeight / 2 * 0.35) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.35)"
+                                                                fill="none" stroke="#534f4f"></path>
+                    
+                                                            <path
+                                                                :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.65 + 10)"
+                                                                fill="none" stroke="#534f4f"></path>
+                    
+                                                            <path
+                                                                :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.95)"
+                                                                fill="none" stroke="#534f4f"></path>
+                                                            <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
+                                                                fill="none" stroke="#e0dede"></path>
+                                                        </g>
+                                                    </g> -->
                                                 </g>
-                                            </g>
-                                            <!-- <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 180, 0)">
-                                                
-                                                <text fill="#534f4f" font-size="16" text-anchor="middle">{{ item.name.name }}</text>
-                                            </g> -->
-                                            <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 200, 0)">
-                                                <text fill="#534f4f" font-size="14" text-anchor="middle">Time Slot: </text>
-                                                <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
-                                                    dy="2em">{{
-                                                        item.name.timeS }}</text>
-                                                <text fill="#534f4f" font-size="14" text-anchor="middle" dy="3.5em">{{
-                                                    '-' }}</text>
-                                                <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
-                                                    dy="5em">{{
-                                                        item.name.timeE }}</text>
-            
-                                            </g>
-                                            <g>
-                                                <path
-                                                    :d="'M0 ' + (pjHeight / 2 * (i + 1)) + ' L' + nameWidth + ' ' + (pjHeight / 2 * (i + 1))"
-                                                    fill="none" stroke="#e0dede"></path>
-                                            </g>
-            
-                                            <!-- <g :transform="translate(nameWidth, pjHeight / 2 * i, 0)">
-                                                <g :transform="translate(0, 0, 0)">
-                                                    <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                        :fill="'none'" :stroke="a_item.fill"></path>
-                                                </g>
-                                                <g>
-            
-                                                    <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                        :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill"></path>
-                                                </g>
-                                                <g>
-                                                    <rect v-for="(a_item, a_i) in item.rectData" :key="'corr_out_' + a_i" :x="a_item.x" :y="a_item.y" :height="a_item.h" :width="a_item.w" :fill="a_item.color" :stroke="'white'"></rect>
-                                                </g>
-                                                <g :transform="translate(0, 0, 0)">
-                                                    <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
-                                                        :cx="a_item.x" :cy="a_item.y" :r="2" :fill="a_item.fill"></circle>
-                                                </g>
-                                                <g>
-            
-                                                    <path
-                                                        :d="'M0 ' + (pjHeight / 2 * 0.35) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.35)"
-                                                        fill="none" stroke="#534f4f"></path>
-            
-                                                    <path
-                                                        :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.65 + 10)"
-                                                        fill="none" stroke="#534f4f"></path>
-            
-                                                    <path
-                                                        :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (pjWidth - 20) + ' ' + (pjHeight / 2 * 0.95)"
-                                                        fill="none" stroke="#534f4f"></path>
-                                                    <path :d="'M0 ' + (pjHeight / 2) + ' L' + pjWidth * 2 + ' ' + (pjHeight / 2)"
-                                                        fill="none" stroke="#e0dede"></path>
-                                                </g>
-                                            </g> -->
-                                        </g>
-                                    </svg>
+                                            </svg>
                     </div>
                     <div ref="timeSpace" id="timeSpace" style="float: right; width: calc(85% - 30px); height: 93%; overflow: auto;" @scroll="sysScroll()">
     
                         <svg :width="barWidth * allDay" :height="pjHeight * projectNum / 2" v-show="selectGroupTag != -1">
-    
-                                        <g v-for="(item, i) in timeData" :key="'time_x' + i">
-                                            <g :transform="translate(0, i * pjHeight / 2, 0)">
-                                        <g :transform="translate(0, 0, 0)">
+            
+                                                <g v-for="(item, i) in timeData" :key="'time_x' + i">
+                                                    <g :transform="translate(0, i * pjHeight / 2, 0)">
                                                 <g :transform="translate(0, 0, 0)">
-                                                    <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                        :fill="'none'" :stroke="a_item.fill"></path>
-                                                </g>
-                                                <g>
-            
-                                                    <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                        :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill"></path>
-                                                </g>
-                                                <g>
-                                                    <rect v-for="(a_item, a_i) in item.rectData" :key="'corr_out_' + a_i" :x="a_item.x" :y="a_item.y" :height="a_item.h" :width="a_item.w" :fill="a_item.color" :stroke="'white'"></rect>
-                                                </g>
-                                                <g :transform="translate(0, 0, 0)">
-                                                    <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
-                                                        :cx="a_item.x" :cy="a_item.y" :r="4" :fill="a_item.fill"></circle>
-                                                </g>
-                                                <g>
-            
-                                                    <path
-                                                        :d="'M0 ' + (pjHeight / 2 * 0.35 + 0.7) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.35 + 0.7)"
-                                                        fill="none" stroke="#534f4f"></path>
-            
-                                                    <path
-                                                        :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.65 + 10)"
-                                                        fill="none" stroke="#534f4f"></path>
-            
-                                                    <path
-                                                        :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.95)"
-                                                        fill="none" stroke="#534f4f"></path>
-                                                    <path :d="'M0 ' + (pjHeight / 2) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2)"
-                                                        fill="none" stroke="#e0dede"></path>
-                                                </g>
-                                                </g>
-                                                </g>
-                                            </g>
-                                    </svg>
+                                                        <g :transform="translate(0, 0, 0)">
+                                                            <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                                :fill="'none'" :stroke="a_item.fill"></path>
+                                                        </g>
+                                                        <g>
+                    
+                                                            <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i" :d="a_item.d"
+                                                                :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill"></path>
+                                                        </g>
+                                                        <g>
+                                                            <rect v-for="(a_item, a_i) in item.rectData" :key="'corr_out_' + a_i" :x="a_item.x" :y="a_item.y" :height="a_item.h" :width="a_item.w" :fill="a_item.color" :stroke="'white'"></rect>
+                                                        </g>
+                                                        <g :transform="translate(0, 0, 0)">
+                                                            <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
+                                                                :cx="a_item.x" :cy="a_item.y" :r="4" :fill="a_item.fill"></circle>
+                                                        </g>
+                                                        <g>
+                    
+                                                            <path
+                                                                :d="'M0 ' + (pjHeight / 2 * 0.35 + 0.7) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.35 + 0.7)"
+                                                                fill="none" stroke="#534f4f"></path>
+                    
+                                                            <path
+                                                                :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.65 + 10)"
+                                                                fill="none" stroke="#534f4f"></path>
+                    
+                                                            <path
+                                                                :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.95)"
+                                                                fill="none" stroke="#534f4f"></path>
+                                                            <path :d="'M0 ' + (pjHeight / 2) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2)"
+                                                                fill="none" stroke="#e0dede"></path>
+                                                        </g>
+                                                        </g>
+                                                        </g>
+                                                    </g>
+                                            </svg>
                     </div>
                     <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 30px); height: 6%; overflow: auto; margin-top: 0.5%;">
                         <svg :height="legendHeight" id="xAxisLegend" :width="allDay * barWidth" v-show="selectGroupTag != -1">
-                                        <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
-                                        <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
-                                            :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
-                                            <path d="M0 0L0 6" fill="none" stroke="#534f4f"></path>
-                                            <text :text-anchor="i == 0 ? 'start' : (i == 23 ? 'end' : 'middle')"
-                                                font-family="sans-serif" font-size="12" fill="#534f4f" dy="-0.3em">{{ item }}</text>
-                                        </g> -->
-                                    </svg>
+                                                <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
+                                                <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
+                                                    :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
+                                                    <path d="M0 0L0 6" fill="none" stroke="#534f4f"></path>
+                                                    <text :text-anchor="i == 0 ? 'start' : (i == 23 ? 'end' : 'middle')"
+                                                        font-family="sans-serif" font-size="12" fill="#534f4f" dy="-0.3em">{{ item }}</text>
+                                                </g> -->
+                                            </svg>
                     </div>
                 </div>
             </div>
@@ -520,6 +520,35 @@ export default {
         calcIndividualProjectPie(data11, data22, data33, namespaceX) {
             const dataStore = useDataStore();
             let end_time = dataStore.timeRange.end_format;
+            let m1_range = [9999999, -99999999];
+            let m2_range = [9999999, -99999999];
+            let m3_range = [9999999, -99999999];
+            let imp_range = [9999999, -99999999];
+            // console.log(data11, data22, data33);
+            for (let i in data22) {
+                let m11_range = extent(data22[i]['M1Line'], d => d.value);
+                let m22_range = extent(data22[i]['M2Line'], d => d.value);
+                let m33_range = extent(data22[i]['M3Line'], d => d.value);
+                let impp_range = extent(data22[i]['IMPLine'], d => d.value);
+                if (!isNaN(m11_range[0]))
+                m1_range[0] = Math.min(m11_range[0], m1_range[0]);
+                if (!isNaN(m22_range[0]))
+                m2_range[0] = Math.min(m22_range[0], m2_range[0]);
+                if (!isNaN(m33_range[0]))
+                m3_range[0] = Math.min(m33_range[0], m3_range[0]);
+                if (!isNaN(impp_range[0]))
+                imp_range[0] = Math.min(impp_range[0], imp_range[0]);
+                if (!isNaN(m11_range[1]))
+                m1_range[1] = Math.max(m11_range[1], m1_range[1]);
+                if (!isNaN(m22_range[1]))
+                m2_range[1] = Math.max(m22_range[1], m2_range[1]);
+                if (!isNaN(m33_range[1]))
+                m3_range[1] = Math.max(m33_range[1], m3_range[1]);
+                if (!isNaN(impp_range[1]))
+                imp_range[1] = Math.max(impp_range[1], imp_range[1]);
+                // console.log(i, data22[i], m11_range, m1_range, m22_range, m2_range, impp_range, imp_range)
+                
+            }
 
             let data1 = new Array();
             let data2 = {};
@@ -600,10 +629,10 @@ export default {
             let pro_id_cnt = 0;
             for (let i in data) {
                 // console.log(data[i]);
-                let m1_range = extent(data[i]['M1Line'], d => d.value);
-                let m2_range = extent(data[i]['M2Line'], d => d.value);
-                let m3_range = extent(data[i]['M3Line'], d => d.value);
-                let imp_range = extent(data[i]['IMPLine'], d => d.value);
+                // let m1_range = extent(data[i]['M1Line'], d => d.value);
+                // let m2_range = extent(data[i]['M2Line'], d => d.value);
+                // let m3_range = extent(data[i]['M3Line'], d => d.value);
+                // let imp_range = extent(data[i]['IMPLine'], d => d.value);
                 let holder_range = extent(data[i]['HolderLine'], d => d.value);
                 let seller_range = extent(data[i]['SellerLine'], d => d.value);
                 let buyer_range = extent(data[i]['BuyerLine'], d => d.value);
@@ -617,7 +646,7 @@ export default {
                 let rxScale = scaleLinear([0, data[i]['M1Line'].length], [margin.left, this.pjWidth - margin.right]);
                 let xScale = scaleLinear([0, data[i]['M1Line'].length - 1], [margin.left, this.pjWidth - margin.right]);
                 let areaScale = scaleLinear([min_n_range, max_n_range], [this.pjHeight * 0.35 / 2, 10]);
-                let areaScale2 = scaleLinear(holder_range, [this.pjHeight * .65 / 2 + 10, this.pjHeight * 0.35 / 2 + 10]);
+                let areaScale2 = scaleLinear([0, holder_range[1]], [this.pjHeight * .65 / 2 + 10, this.pjHeight * 0.35 / 2 + 10]);
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.95 / 2, this.pjHeight * 0.65 / 2 + 20]);
                 let areaGenerate = area().x(d => timeX(new Date(d.x))).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
                 let areaGenerate2 = area().x(d => timeX(new Date(d.x))).y1(d => areaScale2(d.y)).y0(areaScale2(holder_range[0])).curve(curveMonotoneX);
@@ -746,6 +775,36 @@ export default {
         calcIndividualProject(data11, data22, data33, groupNum) {
             const dataStore = useDataStore();
             let end_time = dataStore.timeRange.end_format;
+            let m1_range = [9999999, -99999999];
+            let m2_range = [9999999, -99999999];
+            let m3_range = [9999999, -99999999];
+            let imp_range = [9999999, -99999999];
+            // console.log(data11, data22, data33);
+            for (let i in data22) {
+                let m11_range = extent(data22[i]['M1Line'], d => d.value);
+                let m22_range = extent(data22[i]['M2Line'], d => d.value);
+                let m33_range = extent(data22[i]['M3Line'], d => d.value);
+                let impp_range = extent(data22[i]['IMPLine'], d => d.value);
+                if (!isNaN(m11_range[0]))
+                m1_range[0] = Math.min(m11_range[0], m1_range[0]);
+                if (!isNaN(m22_range[0]))
+                m2_range[0] = Math.min(m22_range[0], m2_range[0]);
+                if (!isNaN(m33_range[0]))
+                m3_range[0] = Math.min(m33_range[0], m3_range[0]);
+                if (!isNaN(impp_range[0]))
+                imp_range[0] = Math.min(impp_range[0], imp_range[0]);
+                if (!isNaN(m11_range[1]))
+                m1_range[1] = Math.max(m11_range[1], m1_range[1]);
+                if (!isNaN(m22_range[1]))
+                m2_range[1] = Math.max(m22_range[1], m2_range[1]);
+                if (!isNaN(m33_range[1]))
+                m3_range[1] = Math.max(m33_range[1], m3_range[1]);
+                if (!isNaN(impp_range[1]))
+                imp_range[1] = Math.max(impp_range[1], imp_range[1]);
+                // console.log(i, data22[i], m11_range, m1_range, m22_range, m2_range, impp_range, imp_range)
+                
+            }
+
 
             let data1 = new Array();
             let data2 = {};
@@ -825,11 +884,11 @@ export default {
             let timeData = [];
             let pro_id_cnt = 0;
             for (let i in data) {
-                // console.log(data[i]);
-                let m1_range = extent(data[i]['M1Line'], d => d.value);
-                let m2_range = extent(data[i]['M2Line'], d => d.value);
-                let m3_range = extent(data[i]['M3Line'], d => d.value);
-                let imp_range = extent(data[i]['IMPLine'], d => d.value);
+                // // console.log(data[i]);
+                // let m1_range = extent(data[i]['M1Line'], d => d.value);
+                // let m2_range = extent(data[i]['M2Line'], d => d.value);
+                // let m3_range = extent(data[i]['M3Line'], d => d.value);
+                // let imp_range = extent(data[i]['IMPLine'], d => d.value);
                 let holder_range = extent(data[i]['HolderLine'], d => d.value);
                 let seller_range = extent(data[i]['SellerLine'], d => d.value);
                 let buyer_range = extent(data[i]['BuyerLine'], d => d.value);

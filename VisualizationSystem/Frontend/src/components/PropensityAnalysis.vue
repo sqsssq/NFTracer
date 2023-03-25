@@ -623,13 +623,28 @@ export default {
                 let startDate = newVal[0];
                 let endDate = newVal[1];
                 const dataStore = useDataStore();
+                let syear = startDate.getUTCFullYear();
+                let smonth = startDate.getUTCMonth() + 1;
+                let sday = startDate.getUTCDate() + 1;
+                let eyear = endDate.getUTCFullYear();
+                let emonth = endDate.getUTCMonth() + 1;
+                let eday = endDate.getUTCDate() + 1;
+                console.log(smonth, sday, syear);
+                if (smonth == 12 && sday == 32 && syear == 2021) {
+                    syear = 2022;
+                    smonth = 1;
+                    sday = 1;
+                    eyear = 2022;
+                    emonth = 3;
+                    eday = 1;
+                }
                 let selectMonth = startDate.getUTCMonth() + 1;
                 this.selectMonth = selectMonth;
                 let timeSelection = {
-                    'start_time': startDate.getUTCFullYear() + '-' + (startDate.getUTCMonth() + 1) + '-' + (startDate.getUTCDate() + 1),
-                    'end_time': endDate.getUTCFullYear() + '-' + (endDate.getUTCMonth() + 1) + '-' + (endDate.getUTCDate() + 1),
-                    'start_format': this.monthName[startDate.getUTCMonth()] + '.' + ((startDate.getUTCDate() + 1) >= 10 ? '' : '0') + (startDate.getUTCDate() + 1) + '.' + startDate.getUTCFullYear(),
-                    'end_format': this.monthName[endDate.getUTCMonth()] + '.' + (endDate.getUTCDate() + 1) + '.' + endDate.getUTCFullYear(),
+                    'start_time': (syear) + '-' + (smonth) + '-' + (sday),
+                    'end_time': (eyear) + '-' + (emonth) + '-' + (eday),
+                    'start_format': this.monthName[smonth] + '.' + ((sday) >= 10 ? '' : '0') + (sday) + '.' + syear,
+                    'end_format': this.monthName[emonth] + '.' + (eday >= 10 ? '' : '0') + (eday) + '.' + eyear,
                     'start': {
                         day: '',
                         month: '',
