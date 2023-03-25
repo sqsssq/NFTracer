@@ -245,8 +245,6 @@ import { arc, area, curveBasis, pie } from 'd3-shape';
 import { useDataStore } from "../stores/counter";
 import { extent } from 'd3-array';
 
-import flow_data from '../assets/run_full_1/substitution_flow.json';
-import cpData from '../assets/run_full_1/control_panel.json';
 export default {
     name: "APP",
     props: [],
@@ -310,6 +308,7 @@ export default {
                 seller: '#b69acb',
                 buyer: '#6f319b',
             },
+            flow_data: {}
         };
     },
     methods: {
@@ -404,7 +403,7 @@ export default {
                 [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 2, this.projectSelect);
                 if (this.ProjectClickSta) {
 
-                    [this.projectFlow, this.projectSelect] = this.calcProjFlow(flow_data, this.ProjectClickName);
+                    [this.projectFlow, this.projectSelect] = this.calcProjFlow(this.flow_data, this.ProjectClickName);
                 }
                 if (this.groupClick) {
 
@@ -416,7 +415,7 @@ export default {
                 [this.scatterData, this.innerArea] = this.calcScatter(this.cpData.data, 1, this.projectSelect);
                 if (this.ProjectClickSta) {
 
-                    [this.projectFlow, this.projectSelect] = this.calcProjFlow(flow_data, this.ProjectClickName);
+                    [this.projectFlow, this.projectSelect] = this.calcProjFlow(this.flow_data, this.ProjectClickName);
                 }
                 if (this.groupClick) {
 
@@ -582,16 +581,17 @@ export default {
             // selectAll('.groupArc').attr('opacity', 1);
         },
         clickProject(data) {
+            console.log(data);
             this.ProjectClickSta = 1;
             let name = data['Project Name'];
             let namespace = {};
             namespace[name] = 1;
             this.ProjectClickName = namespace;
-            [this.projectFlow, this.projectSelect] = this.calcProjFlow(flow_data, namespace);
+            [this.projectFlow, this.projectSelect] = this.calcProjFlow(this.flow_data, namespace);
             // console.log(this.projectFlow, this.projectSelect);
         },
         calcProjFlow(data, sel_id) {
-            // console.log(sel_id);
+            console.log(sel_id);
             let repeat_data = {};
             let fl_data = data.data;
             let res_data = [];
@@ -661,7 +661,7 @@ export default {
                 }
             }
 
-            [this.projectFlow, this.projectSelect] = this.calcFlow(flow_data, namespace);
+            [this.projectFlow, this.projectSelect] = this.calcFlow(this.flow_data, namespace);
 
         },
         calcFlow(data, sel_id) {
@@ -1443,6 +1443,7 @@ export default {
             if (dataStore.allData.tag == 1) {
                 this.showTag = 1;
                 this.cpData = dataStore.allData.cpData;
+                this.flow_data = dataStore.allData.flow_data;
 
                 let max_m1 = 0,
                     max_m2 = 0,

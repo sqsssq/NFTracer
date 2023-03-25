@@ -514,7 +514,7 @@ export default {
             for (let d in group) {
                 group[d]['area'] = [areaGenerate(group[d].m1Area), areaGenerate(group[d].m3Area), areaGenerate(group[d].impArea), areaGenerate(group[d].m2Area)];
                 group[d]['num_project'] = group[d].project.length;
-                group[d]['ave_impact'] = (sum(group[d].imp) / group[d].imp.length).toFixed(2);
+                group[d]['ave_impact'] = (sum(group[d].imp, d => ((d - min_imp) / (max_imp - min_imp))) / group[d].imp.length).toFixed(2);
                 group[d]['pie'] = pie().padAngle(0.01)(group[d].project_holder);
                 group[d]['arc'] = [];
                 for (let i in group[d].pie) {

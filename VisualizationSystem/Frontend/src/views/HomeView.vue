@@ -15,15 +15,6 @@
 import Main from '../components/Main.vue';
 import { useDataStore } from "../stores/counter";
 
-import timeData from '../assets/sn_d_tot.json'
-import basicData from '../assets/data_view.json';
-import sliceData from '../assets/slice_info.json';
-// import nftData from '../assets/data.csv';
-// import cpData from '../assets/data/control_panel.json';
-import nftData from '../assets/run_full_1/preferential_attachment.json';
-import cpData from '../assets/run_full_1/control_panel.json';
-import flow_data from '../assets/run_full_1/substitution_flow.json';
-
 export default {
   name: "home_view",
   data () {
@@ -36,10 +27,10 @@ export default {
   },
   computed: {
     initSign () {
-      this.cpData = cpData;
-      this.flow_data = flow_data;
+      // this.cpData = cpData;
+      // this.flow_data = flow_data;
       // console.log(this.cpData)
-      return this.cpData != null;
+      return this.cpData == null;
     },
     loadingText () {
       return "Loading"
