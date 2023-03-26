@@ -623,7 +623,7 @@ export default {
             }
             let extentData = extent(res_data, d => Math.abs(d.v));
             // console.log(extentData);
-            let wScale = scaleLinear(extentData, [0.1, 5]);
+            let wScale = scaleLinear(extentData, [1, 5]);
             let pos_data = {};
             // console.log(this.scatterData)
             let projectSelect = [];
@@ -692,7 +692,7 @@ export default {
             }
             // let extentData = extent(res_data, d => Math.abs(d.v));
             // console.log(extentData);
-            let wScale = scaleLinear(extentData, [0.1, 5]);
+            let wScale = scaleLinear(extentData, [1, 5]);
             let pos_data = {};
             // console.log(this.scatterData)
             let projectSelect = [];
