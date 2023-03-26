@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-03-24 02:46:58
+ * @LastEditTime: 2023-03-26 18:26:08
 -->
 <template>
     <div style="height: 100%;">
@@ -152,7 +152,7 @@
                                                                         </g>
 
                                                                 <clipPath id="clipPathNetwork">
-                                                                    <circle :cx="0" :cy="0" :r="distributionHeight * .63 / 2 + 10"></circle>
+                                                                    <circle :cx="0" :cy="0" :r="distributionHeight * .63 / 2 + 3"></circle>
                                                                 </clipPath>
                                             
                                                                         <g clip-path="url(#clipPathNetwork)">
