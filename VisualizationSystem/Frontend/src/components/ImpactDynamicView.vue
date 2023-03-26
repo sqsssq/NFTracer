@@ -775,30 +775,30 @@ export default {
         calcIndividualProject(data11, data22, data33, groupNum) {
             const dataStore = useDataStore();
             let end_time = dataStore.timeRange.end_format;
-            let m1_range = [9999999, -99999999];
-            let m2_range = [9999999, -99999999];
-            let m3_range = [9999999, -99999999];
+            // let m1_range = [9999999, -99999999];
+            // let m2_range = [9999999, -99999999];
+            // let m3_range = [9999999, -99999999];
             let imp_range = [9999999, -99999999];
             // console.log(data11, data22, data33);
             for (let i in data22) {
-                let m11_range = extent(data22[i]['M1Line'], d => d.value);
-                let m22_range = extent(data22[i]['M2Line'], d => d.value);
-                let m33_range = extent(data22[i]['M3Line'], d => d.value);
+                // let m11_range = extent(data22[i]['M1Line'], d => d.value);
+                // let m22_range = extent(data22[i]['M2Line'], d => d.value);
+                // let m33_range = extent(data22[i]['M3Line'], d => d.value);
                 let impp_range = extent(data22[i]['IMPLine'], d => d.value);
-                if (!isNaN(m11_range[0]))
-                m1_range[0] = Math.min(m11_range[0], m1_range[0]);
-                if (!isNaN(m22_range[0]))
-                m2_range[0] = Math.min(m22_range[0], m2_range[0]);
-                if (!isNaN(m33_range[0]))
-                m3_range[0] = Math.min(m33_range[0], m3_range[0]);
+                // if (!isNaN(m11_range[0]))
+                // m1_range[0] = Math.min(m11_range[0], m1_range[0]);
+                // if (!isNaN(m22_range[0]))
+                // m2_range[0] = Math.min(m22_range[0], m2_range[0]);
+                // if (!isNaN(m33_range[0]))
+                // m3_range[0] = Math.min(m33_range[0], m3_range[0]);
                 if (!isNaN(impp_range[0]))
                 imp_range[0] = Math.min(impp_range[0], imp_range[0]);
-                if (!isNaN(m11_range[1]))
-                m1_range[1] = Math.max(m11_range[1], m1_range[1]);
-                if (!isNaN(m22_range[1]))
-                m2_range[1] = Math.max(m22_range[1], m2_range[1]);
-                if (!isNaN(m33_range[1]))
-                m3_range[1] = Math.max(m33_range[1], m3_range[1]);
+                // if (!isNaN(m11_range[1]))
+                // m1_range[1] = Math.max(m11_range[1], m1_range[1]);
+                // if (!isNaN(m22_range[1]))
+                // m2_range[1] = Math.max(m22_range[1], m2_range[1]);
+                // if (!isNaN(m33_range[1]))
+                // m3_range[1] = Math.max(m33_range[1], m3_range[1]);
                 if (!isNaN(impp_range[1]))
                 imp_range[1] = Math.max(impp_range[1], imp_range[1]);
                 // console.log(i, data22[i], m11_range, m1_range, m22_range, m2_range, impp_range, imp_range)
@@ -858,7 +858,7 @@ export default {
             // let dataStore = useDataStore();
             let timeRange = [new Date(dataStore.timeRange.start_time), new Date(dataStore.timeRange.end_time)];
             // console.log(extent(selectTimeData, d => d.time))
-            console.log(timeRange);
+            // console.log(timeRange);
             let timeX = scaleUtc()
                 .domain(timeRange)
                 .range([margin.left, this.barWidth * this.allDay - margin.right]);
@@ -885,9 +885,9 @@ export default {
             let pro_id_cnt = 0;
             for (let i in data) {
                 // // console.log(data[i]);
-                // let m1_range = extent(data[i]['M1Line'], d => d.value);
-                // let m2_range = extent(data[i]['M2Line'], d => d.value);
-                // let m3_range = extent(data[i]['M3Line'], d => d.value);
+                let m1_range = extent(data[i]['M1Line'], d => d.value);
+                let m2_range = extent(data[i]['M2Line'], d => d.value);
+                let m3_range = extent(data[i]['M3Line'], d => d.value);
                 // let imp_range = extent(data[i]['IMPLine'], d => d.value);
                 let holder_range = extent(data[i]['HolderLine'], d => d.value);
                 let seller_range = extent(data[i]['SellerLine'], d => d.value);

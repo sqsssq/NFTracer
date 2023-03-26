@@ -1,34 +1,8 @@
 <!--
- *                        _oo0oo_
- *                       o8888888o
- *                       88" . "88
- *                       (| -_- |)
- *                       0\  =  /0
- *                     ___/`---'\___
- *                   .' \\|     |// '.
- *                  / \\|||  :  |||// \
- *                 / _||||| -:- |||||- \
- *                |   | \\\  - /// |   |
- *                | \_|  ''\---/''  |_/ |
- *                \  .-\__  '-'  ___/-. /
- *              ___'. .'  /--.--\  `. .'___
- *           ."" '<  `.___\_<|>_/___.' >' "".
- *          | | :  `- \`.;`\ _ /`;.`/ - ` : | |
- *          \  \ `_.   \_ __\ /__ _/   .-` /  /
- *      =====`-.____`.___ \_____/___.-`___.-'=====
- *                        `=---='
- * 
- * 
- *      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * 
- *            佛祖保佑     永不宕机     永无BUG
- -->
-
-<!--
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-03-26 18:26:08
+ * @LastEditTime: 2023-03-26 18:48:14
 -->
 <template>
     <div style="height: 100%;">
@@ -629,8 +603,10 @@ export default {
             let select_name = '';
             for (let i in sel_id) {
                 select_name = i;
-            }
+            }let extentData = [9999999, -9999999];
             for (let i in fl_data) {
+                extentData[0] = Math.min(extentData[0], fl_data[i]['SubstitutionFlow']);
+                extentData[1] = Math.max(extentData[1], fl_data[i]['SubstitutionFlow']);
                 // if (sel_id[fl_data[i]['Project Name From']] == 1 || sel_id[fl_data[i]['Project Name To']] == 1) {
                 if (sel_id[fl_data[i]['Project Name From']] == 1) {
                     if (repeat_data[fl_data[i]['Project Name From'] + fl_data[i]['Project Name To']] == 1 || repeat_data[fl_data[i]['Project Name To'] + fl_data[i]['Project Name From']] == 1) {
@@ -647,7 +623,7 @@ export default {
                     });
                 }
             }
-            let extentData = extent(res_data, d => Math.abs(d.v));
+            // let extentData = extent(res_data, d => Math.abs(d.v));
             // console.log(extentData);
             let wScale = scaleLinear(extentData, [1, 5]);
             let pos_data = {};
@@ -702,7 +678,7 @@ export default {
             let extentData = [9999999, -9999999];
             for (let i in fl_data) {
                 extentData[0] = Math.min(extentData[0], fl_data[i]['SubstitutionFlow']);
-                extentData[1] = Math.min(extentData[1], fl_data[i]['SubstitutionFlow']);
+                extentData[1] = Math.max(extentData[1], fl_data[i]['SubstitutionFlow']);
                 if (sel_id[fl_data[i]['Project Name From']] == 1 && sel_id[fl_data[i]['Project Name To']] == 1) {
                     if (repeat_data[fl_data[i]['Project Name From'] + fl_data[i]['Project Name To']] == 1 || repeat_data[fl_data[i]['Project Name To'] + fl_data[i]['Project Name From']] == 1) {
                         continue;
