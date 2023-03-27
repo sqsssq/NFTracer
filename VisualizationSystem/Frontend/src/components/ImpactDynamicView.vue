@@ -976,7 +976,7 @@ export default {
                         // console.log(data[i][sel_name]);
                         tLineData.push({ x: data[i][sel_name][j].time, y: data[i][sel_name][j].value });
                     }
-                    console.log(tLineData);
+                    // console.log(tLineData);
                     lineData1.push({
                         d: k == 'holder' ? areaGenerate2(tLineData) : areaGenerate(tLineData),
                         fill: this.colorType[k],
