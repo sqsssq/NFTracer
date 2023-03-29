@@ -625,10 +625,10 @@ export default {
                 let endDate = newVal[1];
                 const dataStore = useDataStore();
                 let syear = startDate.getUTCFullYear();
-                let smonth = startDate.getUTCMonth() + 1;
+                let smonth = startDate.getUTCMonth();
                 let sday = startDate.getUTCDate() + 1;
                 let eyear = endDate.getUTCFullYear();
-                let emonth = endDate.getUTCMonth() + 1;
+                let emonth = endDate.getUTCMonth();
                 let eday = endDate.getUTCDate() + 1;
                 console.log(smonth, sday, syear);
                 if (smonth == 12 && sday == 32 && syear == 2021) {
