@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-03-29 20:56:21
+ * @LastEditTime: 2023-03-29 20:58:40
 -->
 <template>
     <div style="height: 100%;">
@@ -652,7 +652,7 @@ export default {
                     x: this.scatterData[i]['cx'],
                     y: this.scatterData[i]['cy'],
                     group: this.scatterData[i]['group'],
-                    data: this.scatterData[i]['data'],
+                    data: this.scatterData[i]['data'],  
                     name: this.scatterData[i]['name'],
                     sel: 0
                 }
