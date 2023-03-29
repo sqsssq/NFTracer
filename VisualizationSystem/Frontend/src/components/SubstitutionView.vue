@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-03-27 15:38:08
+ * @LastEditTime: 2023-03-29 19:13:44
 -->
 <template>
     <div style="height: 100%;">
@@ -337,7 +337,7 @@ export default {
         },
         mouseoverFlow(event, data, cnt) {
             this.lineHover = cnt;
-            // console.log(data)
+            console.log(data)
             let s, t;
             if (data.dir == 1) {
                 s = data.p1;
@@ -622,13 +622,14 @@ export default {
             }
             let extentData = [9999999, -9999999];
             for (let i in fl_data) {
-                extentData[0] = Math.min(extentData[0], fl_data[i]['SubstitutionFlow']);
-                extentData[1] = Math.max(extentData[1], fl_data[i]['SubstitutionFlow']);
+                // console.log(extentData);
                 // if (sel_id[fl_data[i]['Project Name From']] == 1 || sel_id[fl_data[i]['Project Name To']] == 1) {
                 if (sel_id[fl_data[i]['Project Name From']] == 1) {
                     if (repeat_data[fl_data[i]['Project Name From'] + fl_data[i]['Project Name To']] == 1 || repeat_data[fl_data[i]['Project Name To'] + fl_data[i]['Project Name From']] == 1) {
                         continue;
                     }
+                extentData[0] = Math.min(extentData[0], fl_data[i]['SubstitutionFlow']);
+                extentData[1] = Math.max(extentData[1], fl_data[i]['SubstitutionFlow']);
                     new_sel[fl_data[i]['Project Name From']] = 1;
                     new_sel[fl_data[i]['Project Name To']] = 1;
                     repeat_data[fl_data[i]['Project Name From'] + fl_data[i]['Project Name To']] = 1;
@@ -671,7 +672,7 @@ export default {
                 res_data[i]['val'] = ((Math.abs(res_data[i].v) - extentData[0]) / (extentData[1] - extentData[0])).toFixed(2);
                 res_data[i]['dir'] = res_data[i].v > 0 ? 1 : 0
             }
-            // console.log(res_data);
+            console.log(res_data);
             return [res_data, projectSelect];
         },
         calcFlowData(group) {
