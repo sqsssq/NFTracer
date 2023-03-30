@@ -631,19 +631,22 @@ export default {
                 let emonth = endDate.getUTCMonth();
                 let eday = endDate.getUTCDate() + 1;
                 console.log(smonth, sday, syear);
-                if (smonth == 12 && sday == 32 && syear == 2021) {
+                let timeTag = 0;
+                if (smonth == 11 && sday == 32 && syear == 2021) {
+                    console.log(smonth, sday, syear)
+                    timeTag = 1;
                     syear = 2022;
-                    smonth = 1;
+                    smonth = 0;
                     sday = 1;
                     eyear = 2022;
-                    emonth = 3;
+                    emonth = 2;
                     eday = 1;
                 }
                 let selectMonth = startDate.getUTCMonth() + 1;
                 this.selectMonth = selectMonth;
                 let timeSelection = {
-                    'start_time': (syear) + '-' + (smonth) + '-' + (sday),
-                    'end_time': (eyear) + '-' + (emonth) + '-' + (eday),
+                    'start_time': (syear) + '-' + (smonth + timeTag) + '-' + (sday),
+                    'end_time': (eyear) + '-' + (emonth + timeTag) + '-' + (eday),
                     'start_format': this.monthName[smonth] + '.' + ((sday) >= 10 ? '' : '0') + (sday) + '.' + syear,
                     'end_format': this.monthName[emonth] + '.' + (eday >= 10 ? '' : '0') + (eday) + '.' + eyear,
                     'start': {
