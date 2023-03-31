@@ -649,7 +649,7 @@ export default {
                 let areaScale2 = scaleLinear([0, holder_range[1]], [this.pjHeight * .65 / 2 + 10, this.pjHeight * 0.35 / 2 + 10]);
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.95 / 2, this.pjHeight * 0.65 / 2 + 20]);
                 let areaGenerate = area().x(d => timeX(new Date(d.x))).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
-                let areaGenerate2 = area().x(d => timeX(new Date(d.x))).y1(d => areaScale2(d.y)).y0(areaScale2(holder_range[0])).curve(curveMonotoneX);
+                let areaGenerate2 = area().x(d => timeX(new Date(d.x))).y1(d => areaScale2(d.y)).y0(areaScale2(0)).curve(curveMonotoneX);
                 selectAll('#vAxis' + pro_id_cnt).remove();
                 select('#nameSpaceSvg').append('g').attr('id', 'vAxis' + pro_id_cnt).call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
                 select('#nameSpaceSvg').append('g').attr('id', 'vAxis' + pro_id_cnt).call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
@@ -902,10 +902,10 @@ export default {
                 let rxScale = scaleLinear([0, data[i]['M1Line'].length], [margin.left, this.pjWidth - margin.right]);
                 let xScale = scaleLinear([0, data[i]['M1Line'].length - 1], [margin.left, this.pjWidth - margin.right]);
                 let areaScale = scaleLinear([min_n_range, max_n_range], [this.pjHeight * 0.35 / 2, 10]);
-                let areaScale2 = scaleLinear(holder_range, [this.pjHeight * .65 / 2 + 10, this.pjHeight * 0.35 / 2 + 10]);
+                let areaScale2 = scaleLinear([0, holder_range[1]], [this.pjHeight * .65 / 2 + 10, this.pjHeight * 0.35 / 2 + 10]);
                 let lineScale = scaleLinear([0, 1], [this.pjHeight * 0.95 / 2, this.pjHeight * 0.65 / 2 + 20]);
                 let areaGenerate = area().x(d => timeX(new Date(d.x))).y1(d => areaScale(d.y)).y0(areaScale(0)).curve(curveMonotoneX);
-                let areaGenerate2 = area().x(d => timeX(new Date(d.x))).y1(d => areaScale2(d.y)).y0(areaScale2(holder_range[0])).curve(curveMonotoneX);
+                let areaGenerate2 = area().x(d => timeX(new Date(d.x))).y1(d => areaScale2(d.y)).y0(areaScale2(0)).curve(curveMonotoneX);
                 selectAll('#vAxis' + pro_id_cnt).remove();
                 select('#nameSpaceSvg').append('g').attr('id', 'vAxis' + pro_id_cnt).call(axisLeft(lineScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
                 select('#nameSpaceSvg').append('g').attr('id', 'vAxis' + pro_id_cnt).call(axisLeft(areaScale).ticks(3)).attr('transform', `translate(${this.nameWidth - 1}, ${this.pjHeight / 2 * i})`);
