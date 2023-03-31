@@ -348,10 +348,30 @@ export default {
                 importData =
                     import.meta.globEager('../assets/NFT_data/1/*.json');
             }
+            if (selectMonth == 3) {
+                selectFile = 1;
+                importData =
+                    import.meta.globEager('../assets/NFT_data/3/*.json');
+            }
             if (selectMonth == 4) {
                 selectFile = 1;
                 importData =
                     import.meta.globEager('../assets/NFT_data/4/*.json');
+            }
+            if (selectMonth == 4) {
+                selectFile = 1;
+                importData =
+                    import.meta.globEager('../assets/NFT_data/4/*.json');
+            }
+            if (selectMonth == 5) {
+                selectFile = 1;
+                importData =
+                    import.meta.globEager('../assets/NFT_data/5/*.json');
+            }
+            if (selectMonth == 6) {
+                selectFile = 1;
+                importData =
+                    import.meta.globEager('../assets/NFT_data/6/*.json');
             }
             if (selectMonth == 7) {
                 selectFile = 1;
