@@ -58,7 +58,7 @@
 import { dataService } from '@/service'
 
 import PropensityAnalysis from './PropensityAnalysis.vue';
-import MechanismAnalysis from './MechanismAnalysis.vue';
+import MechanismAnalysis from './MechanismAnalysis_alternative.vue';
 import SubstitutionView from './SubstitutionView.vue';
 import ImpactDynamicView from './ImpactDynamicView.vue';
 export default {
