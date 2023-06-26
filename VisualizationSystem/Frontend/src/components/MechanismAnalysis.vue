@@ -34,10 +34,6 @@
                                     </span>
             <span style="margin-right: 220px;">
                                         Time Slot:
-                                        <!-- <el-select v-model="filterValue" class="m-2" placeholder="Select"
-                                            style="width: 70px; --el-border-color: white;">
-                                            <el-option v-for="item in filterOptions" :key="item" :label="item" :value="item" />
-                                        </el-select> -->
                                         <span style="text-decoration: underline; width: 200px; position: absolute; left: 90px; top: -3px;">
                                             {{ timeSelectionText }}
                                         </span>

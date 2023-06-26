@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-11-20 23:25:35
- * @LastEditTime: 2023-03-19 23:36:45
+ * @LastEditTime: 2023-06-26 00:12:25
 -->
 <template>
     <div id="navBar">
@@ -58,7 +58,7 @@
 import { dataService } from '@/service'
 
 import PropensityAnalysis from './PropensityAnalysis.vue';
-import MechanismAnalysis from './MechanismAnalysis_alternative.vue';
+import MechanismAnalysis from './MechanismAnalysis.vue';
 import SubstitutionView from './SubstitutionView.vue';
 import ImpactDynamicView from './ImpactDynamicView.vue';
 export default {
