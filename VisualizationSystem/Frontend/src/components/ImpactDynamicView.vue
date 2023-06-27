@@ -2,32 +2,33 @@
     <div style="height: 100%">
         <div class="frameworkTitle">
             <span class="title" style="float: left;">
-                                    <svg t="1676053813985" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                        p-id="37153" width="20" height="20">
-                                        <path
-                                            d="M170.666667 42.666667l682.666667 0q52.992 0 90.496 37.504t37.504 90.496l0 682.666667q0 52.992-37.504 90.496t-90.496 37.504l-682.666667 0q-52.992 0-90.496-37.504t-37.504-90.496l0-682.666667q0-52.992 37.504-90.496t90.496-37.504zM896 742.997333l-213.333333-213.333333-366.336 366.336 537.002667 0q17.664 0 30.165333-12.501333t12.501333-30.165333l0-110.336zM853.333333 128l-682.666667 0q-17.664 0-30.165333 12.501333t-12.501333 30.165333l0 682.666667q0 17.664 12.501333 30.165333t30.165333 12.501333l25.002667 0 486.997333-486.997333 213.333333 213.333333 0-451.669333q0-17.664-12.501333-30.165333t-30.165333-12.501333zM341.333333 213.333333q52.992 0 90.496 37.504t37.504 90.496-37.504 90.496-90.496 37.504-90.496-37.504-37.504-90.496 37.504-90.496 90.496-37.504zM341.333333 298.666667q-17.664 0-30.165333 12.501333t-12.501333 30.165333 12.501333 30.165333 30.165333 12.501333 30.165333-12.501333 12.501333-30.165333-12.501333-30.165333-30.165333-12.501333z"
-                                            p-id="37154" font-size="14" fill="#534f4f"></path>
-                                    </svg>
-                                    &nbsp; Impact Dynamic View
-                                </span>
+                <svg t="1676053813985" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    p-id="37153" width="20" height="20">
+                    <path
+                        d="M170.666667 42.666667l682.666667 0q52.992 0 90.496 37.504t37.504 90.496l0 682.666667q0 52.992-37.504 90.496t-90.496 37.504l-682.666667 0q-52.992 0-90.496-37.504t-37.504-90.496l0-682.666667q0-52.992 37.504-90.496t90.496-37.504zM896 742.997333l-213.333333-213.333333-366.336 366.336 537.002667 0q17.664 0 30.165333-12.501333t12.501333-30.165333l0-110.336zM853.333333 128l-682.666667 0q-17.664 0-30.165333 12.501333t-12.501333 30.165333l0 682.666667q0 17.664 12.501333 30.165333t30.165333 12.501333l25.002667 0 486.997333-486.997333 213.333333 213.333333 0-451.669333q0-17.664-12.501333-30.165333t-30.165333-12.501333zM341.333333 213.333333q52.992 0 90.496 37.504t37.504 90.496-37.504 90.496-90.496 37.504-90.496-37.504-37.504-90.496 37.504-90.496 90.496-37.504zM341.333333 298.666667q-17.664 0-30.165333 12.501333t-12.501333 30.165333 12.501333 30.165333 30.165333 12.501333 30.165333-12.501333 12.501333-30.165333-12.501333-30.165333-30.165333-12.501333z"
+                        p-id="37154" font-size="14" fill="#534f4f"></path>
+                </svg>
+                &nbsp; Impact Dynamic View
+            </span>
             <span style="float: right; position: relative; top: -2px; font-size: 16px;">
-                                    <svg height="27" width="260" transform="translate(0, 10)">
-                                        <g v-for="(item, i) in colormap1" :key="'icolor' + i" :transform="translate(20, 0, 0)">
-                                            <rect :x="0 + i * 40" :y="2" :width="9" :height="9" :fill="item" :stroke="'#534f4f'"></rect>
-                                            <text :x="0 + i * 40 + 4.5" :y="23" font-size="12" text-anchor="middle">{{ i == 0 ? 'Sell' : i
-                                                == 1 ? 'Buy' : 'Hold' }}</text>
-                                        </g>
-                                        <g v-for="(item, i) in colormap2" :key="'icolor' + i" :transform="translate(140, 0, 0)">
-                                            <rect :x="0 + i * 11" :y="1" :width="11" :height="11" :fill="item" :stroke="'none'"></rect>
-                                            <text v-if="i == 0 || i == 5 || i == 10" :x="0 + i * 11 + 5.5" :y="23" font-size="12"
-                                                text-anchor="middle">{{ i == 0 ? '-1' : i == 5 ? '0' : '+1' }}</text>
-                                        </g>
-                                    </svg>
-                                </span>
+                <svg height="27" width="260" transform="translate(0, 10)">
+                    <g v-for="(item, i) in colormap1" :key="'icolor' + i" :transform="translate(20, 0, 0)">
+                        <rect :x="0 + i * 40" :y="2" :width="9" :height="9" :fill="item" :stroke="'#534f4f'"></rect>
+                        <text :x="0 + i * 40 + 4.5" :y="23" font-size="12" text-anchor="middle">{{ i == 0 ? 'Sell' : i
+                            == 1 ? 'Buy' : 'Hold' }}</text>
+                    </g>
+                    <g v-for="(item, i) in colormap2" :key="'icolor' + i" :transform="translate(140, 0, 0)">
+                        <rect :x="0 + i * 11" :y="1" :width="11" :height="11" :fill="item" :stroke="'none'"></rect>
+                        <text v-if="i == 0 || i == 5 || i == 10" :x="0 + i * 11 + 5.5" :y="23" font-size="12"
+                            text-anchor="middle">{{ i == 0 ? '-1' : i == 5 ? '0' : '+1' }}</text>
+                    </g>
+                </svg>
+            </span>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
         </div>
         <div class="frameworkBody">
-            <div class="tooltipName" style="opacity: 0; background-color: white; border: solid; border-width: 2px; border-radius: 5px; padding: 5px; position: absolute; z-index: 100; left: -1000px; width: 150px; text-align: center;">
+            <div class="tooltipName"
+                style="opacity: 0; background-color: white; border: solid; border-width: 2px; border-radius: 5px; padding: 5px; position: absolute; z-index: 100; left: -1000px; width: 150px; text-align: center;">
                 <div>#Project Name</div>
                 <div>{{ mouseoverProjectName }}</div>
             </div>
@@ -37,125 +38,135 @@
                 </div>
                 <div ref="correlationView" style="position: relative; left: 0px; width: 65%; height: calc(100% - 35px)">
                     <svg width="100%" height="100%" v-show="selectGroupTag != -1">
-                                            <defs>
-                                                <clipPath id="clipPath">
-                                                    <circle :cx="15" :cy="15" :r="15"></circle>
-                                                </clipPath>
-                                            </defs>
-                    
-                                            <g :transform="translate(30, 50, 0)">
-                                                <g>
-                                                    <g>
-                                                        <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i">
-                                                            <path v-for="(a_item, a_i) in item.arc_data.outArc" :key="'corr_out_' + a_i"
-                                                                :d="a_item.d" :fill="a_item.fill"></path>
-                                                            <path v-for="(a_item, a_i) in item.arc_data.innerArc" :key="'corr_out_' + a_i"
-                                                                :d="a_item.d" :fill="a_item.fill"></path>
-                                                            <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
-                                                            <path d="M 18 10 L 60 10" fill="none" stroke="#C6BCBC"></path>
-                                                            <text x="55" y="-15" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">#{{
-                                                                item.co_sum }}</text>
-                                                            <text x="55" y="10" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">{{
-                                                                item.buyer_pre }}</text>
-                                                        </g>
-                                                    </g>
-                                                    <g :transform="translate(0, 10, 0)">
-                                                        <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Group:</text>
-                                                        <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
-                                                            fill="#534f4f">{{ selectGroupTag }}</text>
-                                                        <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time
-                                                            Slot:</text>
-                                                        <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
-                                                            fill="#534f4f">{{ timeSelectionText }}</text>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                            <g>
-                                                <path v-for="(item, i) in lineData" :key="'cross_line' + i" :d="item" fill="none"
-                                                    stroke="#C6BCBC"></path>
-                                            </g>
-                                            <g>
-                                                <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i"
-                                                    :transform="translate(item.x, item.y, 0)" @click="clickCorrelation(i, item.projectA, item.projectB)">
-                                                    <circle :x="0" :y="0" :fill="'white'" :stroke="item.circleData.stroke"
-                                                        :r="item.circleData.r" :opacity="item.opacity" :stroke-width="2"></circle>
-                    
-                                                    <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                        :fill="a_item.fill"></path>
-                                                    <!-- <circle :x="0" :y="0" :r="item.circleData.r + item.circleData.r > 8 ? (-8) : 0" :fill="'none'" :stroke="'white'"></circle> -->
-                                                    <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                        :fill="a_item.fill"></path>
-                                                </g>
-                                            </g>
-                                            <g>
-                                                <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
-                                                    :transform="translate(item.pos[0], item.pos[1], 0)">
-                                                    <g clip-path="url(#clipPath)" :transform="translate(-40, -15, 0)" @mouseenter="mouseoverName($event, item.name)" @mouseout="mouseoutName">
-                                                        <image :href="item.link" x="0" y="0" height="30" width="30" />
-                                                    </g>
-                                                    <!-- <text :x="0" :y="0" font-size="14" text-anchor="end" dx="-0.5em" dy="-0.5em">
+                        <defs>
+                            <clipPath id="clipPath">
+                                <circle :cx="15" :cy="15" :r="15"></circle>
+                            </clipPath>
+                        </defs>
+                        
+
+                        <g :transform="translate(30, 50, 0)">
+                            <g>
+                                
+                                <!-- <g :transform="translate(0, -70, 0)">
+                                    <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Group:</text>
+                                    <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
+                                        fill="#534f4f">{{ selectGroupTag }}</text>
+                                    <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time
+                                        Slot:</text>
+                                    <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
+                                        fill="#534f4f">{{ timeSelectionText }}</text>
+                                </g> -->
+                                <g>
+                                    <!-- <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i"> -->
+                                        <g :transform="translate(cvWidth * 0.4, cvWidth * 0.4, 0)">
+                                        <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
+                                            :d="a_item.dLegend" :fill="a_item.fill"></path>
+                                        
+                                        <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
+                                            :d="a_item.dLegend" :fill="a_item.fill"></path>
+                                            <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" :transform="translate(o.textTrans, 0)">
+                                            {{ o.text }}
+                                        </text>
+                                        </g>
+                                        <!-- <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
+                                        <path d="M 18 10 L 60 10" fill="none" stroke="#C6BCBC"></path>
+                                        <text x="55" y="-15" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">#{{
+                                            item.co_sum }}</text>
+                                        <text x="55" y="10" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">{{
+                                            item.buyer_pre }}</text> -->
+                                    <!-- </g> -->
+                                </g>
+                            </g>
+                        </g>
+                        <g>
+                            <path v-for="(item, i) in lineData" :key="'cross_line' + i" :d="item" fill="none"
+                                stroke="#C6BCBC"></path>
+                        </g>
+                        <g>
+                            <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i"
+                                :transform="translate(item.x, item.y, 0)"
+                                @click="clickCorrelation(i, item.projectA, item.projectB)">
+                                <circle :x="0" :y="0" :fill="'white'" :stroke="item.circleData.stroke"
+                                    :r="item.circleData.r" :opacity="item.opacity" :stroke-width="2"></circle>
+
+                                <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                    :fill="a_item.fill"></path>
+                                <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                    :fill="a_item.fill"></path>
+                            </g>
+                        </g>
+                        <g>
+                            <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
+                                :transform="translate(item.pos[0], item.pos[1], 0)">
+                                <g clip-path="url(#clipPath)" :transform="translate(-40, -15, 0)"
+                                    @mouseenter="mouseoverName($event, item.name)" @mouseout="mouseoutName">
+                                    <image :href="item.link" x="0" y="0" height="30" width="30" />
+                                </g>
+                                <!-- <text :x="0" :y="0" font-size="14" text-anchor="end" dx="-0.5em" dy="-0.5em">
                                                                                             {{ item.name }}
                                                                                         </text> -->
-                                                </g>
-                                            </g>
-                                        </svg>
+                            </g>
+                        </g>
+                    </svg>
                 </div>
-                <div ref="correlationTable" style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%);">
+                <div ref="correlationTable"
+                    style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%);">
                     <svg width="100%" height="100%" v-show="selectGroupTag != -1">
-                    
-                                            <g>
-                                                <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
-                                                    :transform="translate(0, item.pos[1] + 25, 0)">
-                                                    <g>
-                                                        <rect v-for="(r_item, r_i) in item.rectData" :key="'pro_bar_' + r_i" :x="r_item.x"
-                                                            :y="-12.5" :width="r_item.w" :height="r_item.h" :fill="r_item.fill"></rect>
-                                                    </g>
-                                                    <!-- <text :x="0" :y="0" font-size="14" text-anchor="start" dx="-0.5em" dy="0.5em">
+
+                        <g>
+                            <g v-for="(item, i) in textPlace" :key="'cross_text' + i"
+                                :transform="translate(0, item.pos[1] + 25, 0)">
+                                <g>
+                                    <rect v-for="(r_item, r_i) in item.rectData" :key="'pro_bar_' + r_i" :x="r_item.x"
+                                        :y="-12.5" :width="r_item.w" :height="r_item.h" :fill="r_item.fill"></rect>
+                                </g>
+                                <!-- <text :x="0" :y="0" font-size="14" text-anchor="start" dx="-0.5em" dy="0.5em">
                                                                                             {{ item.name }}
                                                                                         </text> -->
-                                                </g>
-                                            </g>
-                    
-                                            <g>
-                                                <g v-for="(item, i) in correlationData" :key="'selectKey' + i">
-                                                    <path v-for="(p_item, p_i) in item.lineData" :key="'select_line_' + p_i"
-                                                        :transform="translate(0, 25, 0)"
-                                                        :d="'M' + (p_item.x + p_item.rw) + ',' + p_item.y + 'L' + (p_item.x + p_item.rw) + ',' + (p_item.y + p_item.h)"
-                                                        :fill="'none'" :stroke="p_item.stroke" :stroke-width="3" :opacity="item.opacity"></path>
-                                                </g>
-                                            </g>
-                                            <g transform="translate(0, 20)">
-                                                <!-- <text x="95" y="20" font-size="14">#Holders-#Buyers-#Sellers</text> -->
-                                                <text font-size="14" :x="ctWidth / 3 - ctWidth / 6" y="20" text-anchor="middle"
-                                                    fill="#534f4f">#Seller</text>
-                                                <text font-size="12" x="5" y="45" text-anchor="start" fill="#534f4f"
-                                                    font-family="sans-serif">0</text>
-                                                <text font-size="12" :x="ctWidth / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
-                                                    font-family="sans-serif">{{ max_people }}</text>
-                                                <text font-size="14" :x="ctWidth * 2 / 3 - ctWidth / 6" y="20" text-anchor="middle"
-                                                    fill="#534f4f">#Buyer</text>
-                                                <text font-size="12" :x="ctWidth / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
-                                                    font-family="sans-serif">0</text>
-                                                <text font-size="12" :x="ctWidth * 2 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
-                                                    font-family="sans-serif">{{ max_people }}</text>
-                                                <text font-size="14" :x="ctWidth - ctWidth / 6" y="20" text-anchor="middle"
-                                                    fill="#534f4f">#Holder</text>
-                                                <text font-size="12" :x="ctWidth * 2 / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
-                                                    font-family="sans-serif">0</text>
-                                                <text font-size="12" :x="ctWidth * 3 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
-                                                    font-family="sans-serif">{{ max_holder }}</text>
-                                                <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
-                                                <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
-                                                    stroke="#C6BCBC"></path>
-                                                <path :d="'M 0 30 L 0 ' + (ctHeight - 40)" fill="none" stroke="#C6BCBC"></path>
-                                                <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 40)"
-                                                    fill="none" stroke="#C6BCBC"></path>
-                                                <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 40)"
-                                                    fill="none" stroke="#C6BCBC"></path>
-                                                <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 40)"
-                                                    fill="none" stroke="#C6BCBC"></path>
-                                            </g>
-                                        </svg>
+                            </g>
+                        </g>
+
+                        <g>
+                            <g v-for="(item, i) in correlationData" :key="'selectKey' + i">
+                                <path v-for="(p_item, p_i) in item.lineData" :key="'select_line_' + p_i"
+                                    :transform="translate(0, 25, 0)"
+                                    :d="'M' + (p_item.x + p_item.rw) + ',' + p_item.y + 'L' + (p_item.x + p_item.rw) + ',' + (p_item.y + p_item.h)"
+                                    :fill="'none'" :stroke="p_item.stroke" :stroke-width="3" :opacity="item.opacity"></path>
+                            </g>
+                        </g>
+                        <g transform="translate(0, 20)">
+                            <!-- <text x="95" y="20" font-size="14">#Holders-#Buyers-#Sellers</text> -->
+                            <text font-size="14" :x="ctWidth / 3 - ctWidth / 6" y="20" text-anchor="middle"
+                                fill="#534f4f">#Seller</text>
+                            <text font-size="12" x="5" y="45" text-anchor="start" fill="#534f4f"
+                                font-family="sans-serif">0</text>
+                            <text font-size="12" :x="ctWidth / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                font-family="sans-serif">{{ max_people }}</text>
+                            <text font-size="14" :x="ctWidth * 2 / 3 - ctWidth / 6" y="20" text-anchor="middle"
+                                fill="#534f4f">#Buyer</text>
+                            <text font-size="12" :x="ctWidth / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
+                                font-family="sans-serif">0</text>
+                            <text font-size="12" :x="ctWidth * 2 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                font-family="sans-serif">{{ max_people }}</text>
+                            <text font-size="14" :x="ctWidth - ctWidth / 6" y="20" text-anchor="middle"
+                                fill="#534f4f">#Holder</text>
+                            <text font-size="12" :x="ctWidth * 2 / 3 + 5" y="45" text-anchor="start" fill="#534f4f"
+                                font-family="sans-serif">0</text>
+                            <text font-size="12" :x="ctWidth * 3 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
+                                font-family="sans-serif">{{ max_holder }}</text>
+                            <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
+                                stroke="#C6BCBC"></path>
+                            <path :d="'M 0 30 L 0 ' + (ctHeight - 40)" fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 40)"
+                                fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 40)"
+                                fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 40)"
+                                fill="none" stroke="#C6BCBC"></path>
+                        </g>
+                    </svg>
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
@@ -163,57 +174,60 @@
                 <div style="height: 35px;">
                     [Impact dynamics of individual NFT project]
                     <span style="float: right; position: relative; top: 1px;">
-                                            Sort by:
-                                            <el-select v-model="sortValue" class="m-2" placeholder="Select"
-                                                style="width: 85px; --el-border-color: white;">
-                                                <el-option v-for="item in sortOptions" :key="item" :label="item.label" :value="item.value" />
-                                            </el-select>
-                                        </span>
+                        Sort by:
+                        <el-select v-model="sortValue" class="m-2" placeholder="Select"
+                            style="width: 85px; --el-border-color: white;">
+                            <el-option v-for="item in sortOptions" :key="item" :label="item.label" :value="item.value" />
+                        </el-select>
+                    </span>
                 </div>
                 <div style="height: calc(100% - 35px); width: 100%;">
-                    <div ref="nameSpace" id="nameSpace" style="float: left; width: calc(15% + 30px); height: 93%; overflow: hidden;">
-                        <svg width="100%" v-show="selectGroupTag != -1" :height="pjWidth * projectNum / 2- 1" id="nameSpaceSvg">
-                                                <g v-for="(item, i) in timeData" :key="'time_x' + i">
-                                                    <g :transform="translate((nameWidth) / 2 - 10, i * pjHeight / 2 + 100, 0)">
-                    
-                                                        <path v-for="(a_item, a_i) in item.name.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                            :fill="a_item.fill" :stroke="a_item.stroke == 1 ? '#534f4f' : 'none'"></path>
-                                                        <path v-for="(a_item, a_i) in item.name.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                            :fill="a_item.fill"></path>
-                    
-                                                        <clipPath id="clipPath20">
-                                                            <circle :cx="item.name.img_r * 0.75" :cy="item.name.img_r * 0.75" :r="item.name.img_r / 2"></circle>
-                                                        </clipPath>
-                                                        
-                                                        <g clip-path="url(#clipPath20)"
-                                                            :transform="translate(-item.name.img_r*0.75 , -item.name.img_r* 0.75, 0)"  >
-                                                            <image :href="item.name.link" x="0" y="0" :height="item.name.img_r * 1.5"
-                                                                :width="item.name.img_r * 1.5" />
-                                                        </g>
-                                                    </g>
-                                                    <!-- <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 180, 0)">
+                    <div ref="nameSpace" id="nameSpace"
+                        style="float: left; width: calc(15% + 30px); height: 93%; overflow: hidden;">
+                        <svg width="100%" v-show="selectGroupTag != -1" :height="pjWidth * projectNum / 2 - 1"
+                            id="nameSpaceSvg">
+                            <g v-for="(item, i) in timeData" :key="'time_x' + i">
+                                <g :transform="translate((nameWidth) / 2 - 10, i * pjHeight / 2 + 100, 0)">
+
+                                    <path v-for="(a_item, a_i) in item.name.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                        :fill="a_item.fill" :stroke="a_item.stroke == 1 ? '#534f4f' : 'none'"></path>
+                                    <path v-for="(a_item, a_i) in item.name.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                        :fill="a_item.fill"></path>
+
+                                    <clipPath id="clipPath20">
+                                        <circle :cx="item.name.img_r * 0.75" :cy="item.name.img_r * 0.75"
+                                            :r="item.name.img_r / 2"></circle>
+                                    </clipPath>
+
+                                    <g clip-path="url(#clipPath20)"
+                                        :transform="translate(-item.name.img_r * 0.75, -item.name.img_r * 0.75, 0)">
+                                        <image :href="item.name.link" x="0" y="0" :height="item.name.img_r * 1.5"
+                                            :width="item.name.img_r * 1.5" />
+                                    </g>
+                                </g>
+                                <!-- <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 180, 0)">
                                                         
                                                         <text fill="#534f4f" font-size="16" text-anchor="middle">{{ item.name.name }}</text>
                                                     </g> -->
-                                                    <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 200, 0)">
-                                                        <text fill="#534f4f" font-size="14" text-anchor="middle">Time Slot: </text>
-                                                        <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
-                                                            dy="2em">{{
-                                                                item.name.timeS }}</text>
-                                                        <text fill="#534f4f" font-size="14" text-anchor="middle" dy="3.5em">{{
-                                                            '-' }}</text>
-                                                        <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
-                                                            dy="5em">{{
-                                                                item.name.timeE }}</text>
-                    
-                                                    </g>
-                                                    <g>
-                                                        <path
-                                                            :d="'M0 ' + (pjHeight / 2 * (i + 1)) + ' L' + nameWidth + ' ' + (pjHeight / 2 * (i + 1))"
-                                                            fill="none" stroke="#e0dede"></path>
-                                                    </g>
-                    
-                                                    <!-- <g :transform="translate(nameWidth, pjHeight / 2 * i, 0)">
+                                <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 200, 0)">
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle">Time Slot: </text>
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
+                                        dy="2em">{{
+                                            item.name.timeS }}</text>
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle" dy="3.5em">{{
+                                        '-' }}</text>
+                                    <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
+                                        dy="5em">{{
+                                            item.name.timeE }}</text>
+
+                                </g>
+                                <g>
+                                    <path
+                                        :d="'M0 ' + (pjHeight / 2 * (i + 1)) + ' L' + nameWidth + ' ' + (pjHeight / 2 * (i + 1))"
+                                        fill="none" stroke="#e0dede"></path>
+                                </g>
+
+                                <!-- <g :transform="translate(nameWidth, pjHeight / 2 * i, 0)">
                                                         <g :transform="translate(0, 0, 0)">
                                                             <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
                                                                 :fill="'none'" :stroke="a_item.fill"></path>
@@ -247,67 +261,74 @@
                                                                 fill="none" stroke="#e0dede"></path>
                                                         </g>
                                                     </g> -->
-                                                </g>
-                                            </svg>
+                            </g>
+                        </svg>
                     </div>
-                    <div ref="timeSpace" id="timeSpace" style="float: right; width: calc(85% - 30px); height: 93%; overflow: auto;" @scroll="sysScroll()">
-    
+                    <div ref="timeSpace" id="timeSpace"
+                        style="float: right; width: calc(85% - 30px); height: 93%; overflow: auto;" @scroll="sysScroll()">
+
                         <svg :width="barWidth * allDay" :height="pjHeight * projectNum / 2" v-show="selectGroupTag != -1">
-            
-                                                <g v-for="(item, i) in timeData" :key="'time_x' + i">
-                                                    <g :transform="translate(0, i * pjHeight / 2, 0)">
-                                                <g :transform="translate(0, 0, 0)">
-                                                        <g :transform="translate(0, 0, 0)">
-                                                            <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                                :fill="'none'" :stroke="a_item.fill"></path>
-                                                        </g>
-                                                        <g>
-                    
-                                                            <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i" :d="a_item.d"
-                                                                :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill"></path>
-                                                        </g>
-                                                        <g>
-                                                            <rect v-for="(a_item, a_i) in item.rectData" :key="'corr_out_' + a_i" :x="a_item.x" :y="a_item.y" :height="a_item.h" :width="a_item.w" :fill="a_item.color" :stroke="'white'"></rect>
-                                                        </g>
-                                                        <g :transform="translate(0, 0, 0)">
-                                                            <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
-                                                                :cx="a_item.x" :cy="a_item.y" :r="4" :fill="a_item.fill"></circle>
-                                                        </g>
-                                                        <g>
-                    
-                                                            <path
-                                                                :d="'M0 ' + (pjHeight / 2 * 0.35 + 0.7) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.35 + 0.7)"
-                                                                fill="none" stroke="#534f4f"></path>
-                    
-                                                            <path
-                                                                :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.65 + 10)"
-                                                                fill="none" stroke="#534f4f"></path>
-                    
-                                                            <path
-                                                                :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.95)"
-                                                                fill="none" stroke="#534f4f"></path>
-                                                            <path :d="'M0 ' + (pjHeight / 2) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2)"
-                                                                fill="none" stroke="#e0dede"></path>
-                                                        </g>
-                                                        </g>
-                                                        </g>
-                                                    </g>
-                                            </svg>
+
+                            <g v-for="(item, i) in timeData" :key="'time_x' + i">
+                                <g :transform="translate(0, i * pjHeight / 2, 0)">
+                                    <g :transform="translate(0, 0, 0)">
+                                        <g :transform="translate(0, 0, 0)">
+                                            <path v-for="(a_item, a_i) in item.l2Data" :key="'corr_out_' + a_i"
+                                                :d="a_item.d" :fill="'none'" :stroke="a_item.fill"></path>
+                                        </g>
+                                        <g>
+
+                                            <path v-for="(a_item, a_i) in item.l1Data" :key="'corr_out_' + a_i"
+                                                :d="a_item.d" :fill="a_item.fill" :fill-opacity="0.5" :stroke="a_item.fill">
+                                            </path>
+                                        </g>
+                                        <g>
+                                            <rect v-for="(a_item, a_i) in item.rectData" :key="'corr_out_' + a_i"
+                                                :x="a_item.x" :y="a_item.y" :height="a_item.h" :width="a_item.w"
+                                                :fill="a_item.color" :stroke="'white'"></rect>
+                                        </g>
+                                        <g :transform="translate(0, 0, 0)">
+                                            <circle v-for="(a_item, a_i) in item.scatter" :key="'corr_cir_' + a_i"
+                                                :cx="a_item.x" :cy="a_item.y" :r="4" :fill="a_item.fill"></circle>
+                                        </g>
+                                        <g>
+
+                                            <path
+                                                :d="'M0 ' + (pjHeight / 2 * 0.35 + 0.7) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.35 + 0.7)"
+                                                fill="none" stroke="#534f4f"></path>
+
+                                            <path
+                                                :d="'M0 ' + (pjHeight / 2 * 0.65 + 10) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.65 + 10)"
+                                                fill="none" stroke="#534f4f"></path>
+
+                                            <path
+                                                :d="'M0 ' + (pjHeight / 2 * 0.95) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2 * 0.95)"
+                                                fill="none" stroke="#534f4f"></path>
+                                            <path
+                                                :d="'M0 ' + (pjHeight / 2) + ' L' + (barWidth * allDay) + ' ' + (pjHeight / 2)"
+                                                fill="none" stroke="#e0dede"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
                     </div>
-                    <div ref="legendSpace" id="legendSpace" style="float: right; width: calc(85% - 30px); height: 6%; overflow: auto; margin-top: 0.5%;">
-                        <svg :height="legendHeight" id="xAxisLegend" :width="allDay * barWidth" v-show="selectGroupTag != -1">
-                                                <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
+                    <div ref="legendSpace" id="legendSpace"
+                        style="float: right; width: calc(85% - 30px); height: 6%; overflow: auto; margin-top: 0.5%;">
+                        <svg :height="legendHeight" id="xAxisLegend" :width="allDay * barWidth"
+                            v-show="selectGroupTag != -1">
+                            <!-- <path :d="'M0 38 L ' + (pjWidth * 2 - 0) + ' 38'" fill="none" :stroke="'#534f4f'"></path>
                                                 <g v-for="(item, i) in timeAxis" :key="'timeAxis_' + i"
                                                     :transform="translate(0 + i * (pjWidth * 2 - 0) / 23, 38, 0)">
                                                     <path d="M0 0L0 6" fill="none" stroke="#534f4f"></path>
                                                     <text :text-anchor="i == 0 ? 'start' : (i == 23 ? 'end' : 'middle')"
                                                         font-family="sans-serif" font-size="12" fill="#534f4f" dy="-0.3em">{{ item }}</text>
                                                 </g> -->
-                                            </svg>
+                        </svg>
                     </div>
                 </div>
             </div>
-    
+
         </div>
     </div>
 </template>
@@ -326,7 +347,7 @@ import { objectToString } from '@vue/shared';
 export default {
     name: 'APP',
     props: [],
-    data() {
+    data () {
         return {
             mouseoverProjectName: '',
             cvHeight: 0,
@@ -378,21 +399,21 @@ export default {
         }
     },
     methods: {
-        mouseoverName(event, name) {
+        mouseoverName (event, name) {
             this.mouseoverProjectName = name;
             select('.tooltipName')
                 .style('opacity', 1)
                 .style('left', event.layerX + 20 + 'px')
                 .style('top', event.layerY - 15 + 'px')
         },
-        mouseoutName() {
+        mouseoutName () {
 
             select('.tooltipName').style('opacity', 0)
                 .style('left', '-1000px')
                 .style('top', '0px')
 
         },
-        clickCorrelation(cnt, projectA, projectB) {
+        clickCorrelation (cnt, projectA, projectB) {
             if (this.pre_select_corr != -1) {
                 this.correlationData[this.pre_select_corr].opacity = 0;
             }
@@ -405,12 +426,12 @@ export default {
             console.log(namespace);
             this.timeData = this.calcIndividualProjectPie(dataStore.allData.data.nft_project_table, dataStore.allData.projectData, dataStore.allData.cpData.data, namespace);
         },
-        dateFormat(date) {
+        dateFormat (date) {
             date = new Date(date);
             let monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
             return monthName[date.getUTCMonth()] + '.' + ((date.getUTCDate() + 1) >= 10 ? '' : '0') + (date.getUTCDate() + 1) + '.' + date.getUTCFullYear()
         },
-        sysScroll() {
+        sysScroll () {
             if (this.$refs.timeSpace.scrollTop != this.$refs.nameSpace.scrollTop) {
                 this.$refs.nameSpace.scrollTop = this.$refs.timeSpace.scrollTop
             }
@@ -425,10 +446,10 @@ export default {
         //         this.$refs.timeSpace.scrollTop = this.$refs.nameSpace.scrollTop
         //     }
         // },
-        translate(x, y, deg) {
+        translate (x, y, deg) {
             return `translate(${x}, ${y}) rotate(${deg})`;
         },
-        dataProcess() {
+        dataProcess () {
             let arcs = pie().sort(null)(this.pieLegendData);
             let outData = [1, 1, 1];
             let outArcs = pie().padAngle(0.9).sort(null)(outData);
@@ -453,7 +474,7 @@ export default {
             }
             return [legendArc, outLegendArc];
         },
-        calcIndividual(data, r, x, y) {
+        calcIndividual (data, r, x, y) {
             let tmpData = [];
             for (let i in data.inner) {
                 tmpData.push({
@@ -517,7 +538,7 @@ export default {
                 sumPeople: data.inner.holder + data.inner.seller + data.inner.buyer,
             }
         },
-        calcIndividualProjectPie(data11, data22, data33, namespaceX) {
+        calcIndividualProjectPie (data11, data22, data33, namespaceX) {
             const dataStore = useDataStore();
             let end_time = dataStore.timeRange.end_format;
             // let m1_range = [9999999, -99999999];
@@ -537,7 +558,7 @@ export default {
                 // if (!isNaN(m33_range[0]))
                 // m3_range[0] = Math.min(m33_range[0], m3_range[0]);
                 if (!isNaN(impp_range[0]))
-                imp_range[0] = Math.min(impp_range[0], imp_range[0]);
+                    imp_range[0] = Math.min(impp_range[0], imp_range[0]);
                 // if (!isNaN(m11_range[1]))
                 // m1_range[1] = Math.max(m11_range[1], m1_range[1]);
                 // if (!isNaN(m22_range[1]))
@@ -545,9 +566,9 @@ export default {
                 // if (!isNaN(m33_range[1]))
                 // m3_range[1] = Math.max(m33_range[1], m3_range[1]);
                 if (!isNaN(impp_range[1]))
-                imp_range[1] = Math.max(impp_range[1], imp_range[1]);
+                    imp_range[1] = Math.max(impp_range[1], imp_range[1]);
                 // console.log(i, data22[i], m11_range, m1_range, m22_range, m2_range, impp_range, imp_range)
-                
+
             }
 
             let data1 = new Array();
@@ -772,7 +793,7 @@ export default {
             return timeData;
 
         },
-        calcIndividualProject(data11, data22, data33, groupNum) {
+        calcIndividualProject (data11, data22, data33, groupNum) {
             const dataStore = useDataStore();
             let end_time = dataStore.timeRange.end_format;
             // let m1_range = [9999999, -99999999];
@@ -792,7 +813,7 @@ export default {
                 // if (!isNaN(m33_range[0]))
                 // m3_range[0] = Math.min(m33_range[0], m3_range[0]);
                 if (!isNaN(impp_range[0]))
-                imp_range[0] = Math.min(impp_range[0], imp_range[0]);
+                    imp_range[0] = Math.min(impp_range[0], imp_range[0]);
                 // if (!isNaN(m11_range[1]))
                 // m1_range[1] = Math.max(m11_range[1], m1_range[1]);
                 // if (!isNaN(m22_range[1]))
@@ -800,9 +821,9 @@ export default {
                 // if (!isNaN(m33_range[1]))
                 // m3_range[1] = Math.max(m33_range[1], m3_range[1]);
                 if (!isNaN(impp_range[1]))
-                imp_range[1] = Math.max(impp_range[1], imp_range[1]);
+                    imp_range[1] = Math.max(impp_range[1], imp_range[1]);
                 // console.log(i, data22[i], m11_range, m1_range, m22_range, m2_range, impp_range, imp_range)
-                
+
             }
 
 
@@ -1028,7 +1049,7 @@ export default {
             return timeData;
 
         },
-        calcCorrelation(data, r, x, y, rectScale, holderScale, y1, y2, rr, r_color) {
+        calcCorrelation (data, r, x, y, rectScale, holderScale, y1, y2, rr, r_color) {
             let tmpData = [];
             for (let i in data.inner) {
                 tmpData.push({
@@ -1042,7 +1063,10 @@ export default {
                 innerArc.push({
                     data: pieData[i].data,
                     d: arc().innerRadius(0).outerRadius(r - 5)(pieData[i]),
-                    fill: this.colorType[pieData[i].data.type]
+                    dLegend: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)(pieData[i]),
+                    textTrans: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20).centroid(arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)(pieData[i])),
+                    fill: this.colorType[pieData[i].data.type],
+                    text: tmpData[i].value
                 })
             }
             let outArc = [];
@@ -1058,8 +1082,16 @@ export default {
                         padAngle: 0,
                         value: 1
                     }),
+                    dLegend: arc().innerRadius(this.cvWidth * 0.15 - 5).outerRadius(this.cvWidth * 0.15).cornerRadius(5)({
+                        startAngle: ((cnt * 120) - angle / 2) * Math.PI / 180,
+                        endAngle: ((cnt * 120) + angle / 2) * Math.PI / 180,
+                        index: cnt++,
+                        padAngle: 0,
+                        value: 1
+                    }),
                     fill: this.colormap2[(colorScale(data.outer[i])).toFixed(0)],
-                    type: i
+                    type: i,
+                    text: data.outer[i].toFixed(1)
                 });
             }
             let rectData = [];
@@ -1122,7 +1154,7 @@ export default {
                 projectB: data.projectB
             }
         },
-        calcLine(table_data, correlation_data, project_data, group_num) {
+        calcLine (table_data, correlation_data, project_data, group_num) {
             const dataStore = useDataStore();
             this.timeSelectionText = dataStore.timeRange.start_format + '-' + dataStore.timeRange.end_format;
             let data = [];
@@ -1135,7 +1167,7 @@ export default {
             }
             // console.log(logo_link_set);
             for (let i in table_data) {
-                if (typeof(logo_link_set[table_data[i]['Project Name']]) != 'undefined') {
+                if (typeof (logo_link_set[table_data[i]['Project Name']]) != 'undefined') {
                     data.push(table_data[i]);
                 }
             }
@@ -1223,7 +1255,7 @@ export default {
             let co_data = [];
 
             for (let i in correlation_data) {
-                if (typeof(logo_link_set[correlation_data[i]['Project Name B']]) == 'undefined' || typeof(correlation_data[i]['Project Name A']) == 'undefined') {
+                if (typeof (logo_link_set[correlation_data[i]['Project Name B']]) == 'undefined' || typeof (correlation_data[i]['Project Name A']) == 'undefined') {
                     continue;
                 }
                 if ((repeat_data[correlation_data[i]['Project Name B'] + correlation_data[i]['Project Name A']]) == 1 ||
@@ -1260,72 +1292,67 @@ export default {
                     y2 = projectPosition[co_data[i]['Project Name B']].pos[1];
                 }
 
-                if (legend_data == null) {
-                    if (legend_tag == 1) {
-                        if (sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2 > 25) {
-                            legend_data = {
-                                outer_r: sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2,
-                                inner_r: sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2 - 5,
-                                co_sum: co_data[i].co_sum,
-                                buyer_pre: co_data[i].buyer_correlation.toFixed(1),
-                                arc_data: this.calcCorrelation({
-                                    projectA: co_data[i]['Project Name A'],
-                                    projectB: co_data[i]['Project Name B'],
-                                    raw: {
-                                        holder: co_data[i].co_holder_raw,
-                                        buyer: co_data[i].co_buyer_raw,
-                                        seller: co_data[i].co_seller_raw
-                                    },
-                                    inner: {
-                                        holder: co_data[i].co_holder_raw / co_data[i].co_sum,
-                                        buyer: co_data[i].co_buyer_raw / co_data[i].co_sum,
-                                        seller: co_data[i].co_seller_raw / co_data[i].co_sum
-                                    },
-                                    outer: {
-                                        c1: co_data[i].holder_correlation,
-                                        c2: co_data[i].buyer_correlation,
-                                        c3: co_data[i].seller_correlation
-                                    }
-                                }, sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2, 0, 0, rectScale, holderScale, y1, y2, (lineScaleX(1) - lineScaleX(0)) / 2, this.group_colormap[group_num])
-                            }
-                            this.legendData = [(legend_data)];
-                        }
-                    } else {
-                        if (co_data[i].co_sum == max_co_people) {
-                            legend_data = {
-                                outer_r: sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2,
-                                inner_r: sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2 - 5,
-                                co_sum: co_data[i].co_sum,
-                                buyer_pre: co_data[i].buyer_correlation.toFixed(1),
-                                arc_data: this.calcCorrelation({
-                                    projectA: co_data[i]['Project Name A'],
-                                    projectB: co_data[i]['Project Name B'],
-                                    raw: {
-                                        holder: co_data[i].co_holder_raw,
-                                        buyer: co_data[i].co_buyer_raw,
-                                        seller: co_data[i].co_seller_raw
-                                    },
-                                    inner: {
-                                        holder: co_data[i].co_holder_raw / co_data[i].co_sum,
-                                        buyer: co_data[i].co_buyer_raw / co_data[i].co_sum,
-                                        seller: co_data[i].co_seller_raw / co_data[i].co_sum
-                                    },
-                                    outer: {
-                                        c1: co_data[i].holder_correlation,
-                                        c2: co_data[i].buyer_correlation,
-                                        c3: co_data[i].seller_correlation
-                                    }
-                                }, sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2, 0, 0, rectScale, holderScale, y1, y2, (lineScaleX(1) - lineScaleX(0)) / 2, this.group_colormap[group_num])
-                            }
-                            this.legendData = [(legend_data)];
-                        }
-                    }
-                    // console.log(this.legendData);
-                    // if (legend_data != null) {
-                    //     this.legendData = legend_data;
-                    //     console.log(this.legendData)
-                    // }
-                }
+                // if (legend_data == null) {
+                //     if (legend_tag == 1) {
+                //         if (sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2 > 25) {
+                //             legend_data = {
+                //                 outer_r: sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2,
+                //                 inner_r: sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2 - 5,
+                //                 co_sum: co_data[i].co_sum,
+                //                 buyer_pre: co_data[i].buyer_correlation.toFixed(1),
+                //                 arc_data: this.calcCorrelation({
+                //                     projectA: co_data[i]['Project Name A'],
+                //                     projectB: co_data[i]['Project Name B'],
+                //                     raw: {
+                //                         holder: co_data[i].co_holder_raw,
+                //                         buyer: co_data[i].co_buyer_raw,
+                //                         seller: co_data[i].co_seller_raw
+                //                     },
+                //                     inner: {
+                //                         holder: co_data[i].co_holder_raw / co_data[i].co_sum,
+                //                         buyer: co_data[i].co_buyer_raw / co_data[i].co_sum,
+                //                         seller: co_data[i].co_seller_raw / co_data[i].co_sum
+                //                     },
+                //                     outer: {
+                //                         c1: co_data[i].holder_correlation,
+                //                         c2: co_data[i].buyer_correlation,
+                //                         c3: co_data[i].seller_correlation
+                //                     }
+                //                 }, sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2, 0, 0, rectScale, holderScale, y1, y2, (lineScaleX(1) - lineScaleX(0)) / 2, this.group_colormap[group_num])
+                //             }
+                //             this.legendData = [(legend_data)];
+                //         }
+                //     } else {
+                //         if (co_data[i].co_sum == max_co_people) {
+                //             legend_data = {
+                //                 outer_r: sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2,
+                //                 inner_r: sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2 - 5,
+                //                 co_sum: co_data[i].co_sum,
+                //                 buyer_pre: co_data[i].buyer_correlation.toFixed(1),
+                //                 arc_data: this.calcCorrelation({
+                //                     projectA: co_data[i]['Project Name A'],
+                //                     projectB: co_data[i]['Project Name B'],
+                //                     raw: {
+                //                         holder: co_data[i].co_holder_raw,
+                //                         buyer: co_data[i].co_buyer_raw,
+                //                         seller: co_data[i].co_seller_raw
+                //                     },
+                //                     inner: {
+                //                         holder: co_data[i].co_holder_raw / co_data[i].co_sum,
+                //                         buyer: co_data[i].co_buyer_raw / co_data[i].co_sum,
+                //                         seller: co_data[i].co_seller_raw / co_data[i].co_sum
+                //                     },
+                //                     outer: {
+                //                         c1: co_data[i].holder_correlation,
+                //                         c2: co_data[i].buyer_correlation,
+                //                         c3: co_data[i].seller_correlation
+                //                     }
+                //                 }, sizeScale(co_data[i].co_sum) * (lineScaleX(1) - lineScaleX(0)) / 2, 0, 0, rectScale, holderScale, y1, y2, (lineScaleX(1) - lineScaleX(0)) / 2, this.group_colormap[group_num])
+                //             }
+                //             this.legendData = [(legend_data)];
+                //         }
+                //     }
+                // }
 
                 corr_res_data.push(this.calcCorrelation({
                     projectA: co_data[i]['Project Name A'],
@@ -1351,13 +1378,15 @@ export default {
                 // break;
             }
             this.correlationData = corr_res_data;
+            this.legendData = corr_res_data[0];
+            console.log(this.legendData);
             // console.log(this.correlationData, this.legendData);
             // console.log(lineData);
             // console.log(textPlace)
             return [lineData, textPlace];
 
         },
-        getDay() {
+        getDay () {
             const dataStore = useDataStore();
             let start_day = new Date(dataStore.timeRange.start_time);
             let end_day = new Date(dataStore.timeRange.end_time);
@@ -1374,11 +1403,11 @@ export default {
             return [day, barWidth];
         }
     },
-    created() {},
+    created () { },
 
     watch: {
         sortValue: {
-            handler: function(newVal, oldVal) {
+            handler: function (newVal, oldVal) {
                 if (newVal == 'longevity') {
                     this.timeData.sort((a, b) => a.longevity - b.longevity);
                 } else {
@@ -1388,7 +1417,7 @@ export default {
             deep: true
         },
     },
-    mounted() {
+    mounted () {
         this.cvHeight = this.$refs.correlationView.offsetHeight;
         this.cvWidth = this.$refs.correlationView.offsetWidth;
         this.ctHeight = this.$refs.correlationTable.offsetHeight;
@@ -1443,5 +1472,4 @@ export default {
 
 #legendSpace::-webkit-scrollbar {
     display: none;
-}
-</style>
+}</style>
