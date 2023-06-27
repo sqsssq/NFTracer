@@ -59,15 +59,19 @@
                                 </g> -->
                                 <g>
                                     <!-- <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i"> -->
-                                        <g :transform="translate(cvWidth * 0.4, cvWidth * 0.4, 0)">
+                                        <g :transform="translate(cvWidth * 0.18, cvWidth * 0.18, 0)">
                                         <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
                                             :d="a_item.dLegend" :fill="a_item.fill"></path>
                                         
                                         <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
                                             :d="a_item.dLegend" :fill="a_item.fill"></path>
-                                            <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" :transform="translate(o.textTrans, 0)">
+                                        <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" text-anchor="middle" :transform="translatePos(o.textTrans)" dy="0.5em" font-size="18" fill="white">
                                             {{ o.text }}
                                         </text>
+                                        <text v-for="(o, i) in legendData.outArc" :key="'out_k' + i" :text-anchor="i == 1 ? 'middle': i == 0 ? 'start' : 'end'" :transform="translatePos([(i == 1) ? 0 : (i == 0 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 1 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])" dy="0em" font-size="18" fill="#534f4f">
+                                            {{ o.text }}
+                                        </text>
+                                        
                                         </g>
                                         <!-- <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
                                         <path d="M 18 10 L 60 10" fill="none" stroke="#C6BCBC"></path>
@@ -399,6 +403,9 @@ export default {
         }
     },
     methods: {
+        translatePos(arr) {
+            return `translate(${arr})`;
+        },
         mouseoverName (event, name) {
             this.mouseoverProjectName = name;
             select('.tooltipName')
@@ -1054,7 +1061,8 @@ export default {
             for (let i in data.inner) {
                 tmpData.push({
                     type: i,
-                    value: data.inner[i]
+                    value: data.inner[i],
+                    raw: data.raw[i]
                 });
             }
             let pieData = pie().sort(null).value(d => d.value)(tmpData);
@@ -1064,10 +1072,11 @@ export default {
                     data: pieData[i].data,
                     d: arc().innerRadius(0).outerRadius(r - 5)(pieData[i]),
                     dLegend: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)(pieData[i]),
-                    textTrans: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20).centroid(arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)(pieData[i])),
+                    textTrans: (arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]),
                     fill: this.colorType[pieData[i].data.type],
-                    text: tmpData[i].value
+                    text: pieData[i].data.raw
                 })
+                console.log((arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]), pieData[i])
             }
             let outArc = [];
             let angle = 45;
