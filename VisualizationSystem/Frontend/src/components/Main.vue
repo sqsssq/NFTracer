@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-11-20 23:25:35
- * @LastEditTime: 2023-06-26 00:12:25
+ * @LastEditTime: 2023-07-02 15:11:35
 -->
 <template>
     <div id="navBar">
@@ -30,22 +30,23 @@
             </div>
             <div style="height: 100%;float: right;">
 
-                <span style="position: relative; top: -3px;">Tracing NFT Impact Dynamics in Transaction-flow Substitutive Systems with Visual Analytics</span>
+                <span style="position: relative; top: -3px;">Tracing NFT Impact Dynamics in Transaction-flow Substitutive
+                    Systems with Visual Analytics</span>
             </div>
         </div>
     </div>
     <div style="height: calc(95.7vh - 0px); width: calc(100% - 0px); background-color: #E0DEDE;">
         <div class="framework" id="PropensityAnalysis"
             style="position: absolute; left: calc(5px); top: calc(5px); height: calc(67vh - 10px); width: calc(20%);">
-            <PropensityAnalysis  />
+            <PropensityAnalysis />
         </div>
         <div class="framework" id="MechanismAnalysis"
             style="position: absolute; left: calc(5px); top: calc(67vh); height: calc(95.7vh - 5px - 67vh); width: calc(66.2vw + 5px);">
-            <MechanismAnalysis  />
+            <MechanismAnalysis />
         </div>
         <div class="framework" id="ModelExplainer"
             style="position: absolute; left: calc(5px + 20vw + 5px); top: calc(5px); height: calc((67vh) - 10px); width: calc(46.2vw);">
-            <SubstitutionView  />
+            <SubstitutionView />
         </div>
         <div class="framework" id="CorrelationView"
             style="position: absolute; left: calc(66.2vw + 15px);  top: calc(5px); height: calc(95.7vh - 10px); width: calc(100vw - 66.2vw - 20px);">
