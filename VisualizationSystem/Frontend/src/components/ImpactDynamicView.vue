@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-07-05 14:10:54
+ * @LastEditTime: 2023-07-06 20:23:33
 -->
 <template>
     <div style="height: 100%">
@@ -106,9 +106,9 @@
                         <g>
                             <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i"
                                 :transform="translate(item.x, item.y, 0)" @mouseover="hoverCorrelation(item)"
-                                @mouseout="outCorrelation()" @click="clickCorrelation(i, item.projectA, item.projectB)">
+                                @mouseout="outCorrelation()" @click="clickCorrelation(i, item.projectA, item.projectB, item)">
                                 <circle :x="0" :y="0" :fill="'white'" :stroke="item.circleData.stroke"
-                                    :r="item.circleData.r" :opacity="item.opacity" :stroke-width="2"></circle>
+                                    :r="item.circleData.r" :opacity="item.opacity" :stroke-width="4"></circle>
                                 <!-- <path :d="item.HighlightPath" :stroke="'black'" :stroke-width="4" fill="none" :opacity="item.opacity" :transform="translate(-item.x, -item.y, 0)"></path> -->
 
                                 <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
@@ -192,7 +192,7 @@
             <div style="width: 100%; height: 54%; margin-top: 5px;">
                 <div style="height: 35px;">
                     [Impact dynamics of individual NFT project]
-                    <span style="float: right; position: relative; top: 1px;">
+                    <span style="float: right; position: relative; top: 1px; font-size: 16px;">
                         Sort by:
                         <el-select v-model="sortValue" class="m-2" placeholder="Select"
                             style="width: 85px; --el-border-color: white;">
@@ -445,8 +445,9 @@ export default {
             if (this.legendTag != 2)
             this.legendTag = 0;
         },
-        clickCorrelation (cnt, projectA, projectB) {
+        clickCorrelation (cnt, projectA, projectB, data) {
             this.legendTag = 2;
+            this.legendData = data;
             if (this.pre_select_corr != -1) {
                 this.correlationData[this.pre_select_corr].opacity = 0;
             }
@@ -1114,14 +1115,14 @@ export default {
                     d: arc().innerRadius(r - 2).outerRadius(r).cornerRadius(5)({
                         startAngle: ((cnt * 120) - angle / 2) * Math.PI / 180,
                         endAngle: ((cnt * 120) + angle / 2) * Math.PI / 180,
-                        index: cnt++,
+                        index: cnt,
                         padAngle: 0,
                         value: 1
                     }),
                     dLegend: arc().innerRadius(this.cvWidth * 0.15 - 5).outerRadius(this.cvWidth * 0.15).cornerRadius(5)({
                         startAngle: ((cnt * 120) - angle / 2) * Math.PI / 180,
                         endAngle: ((cnt * 120) + angle / 2) * Math.PI / 180,
-                        index: cnt++,
+                        index: cnt,
                         padAngle: 0,
                         value: 1
                     }),
@@ -1129,6 +1130,7 @@ export default {
                     type: i,
                     text: ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1)
                 });
+                cnt++;
             }
             let rectData = [];
             rectData.push({
@@ -1382,7 +1384,7 @@ export default {
                 // break;
             }
             this.correlationData = corr_res_data;
-            console.log(this.correlationData);
+            // console.log(this.correlationData);
             // this.legendData = corr_res_data[0];
             // console.log(this.legendData);
             // console.log(this.correlationData, this.legendData);
@@ -1411,6 +1413,14 @@ export default {
     created () { },
 
     watch: {
+        selectGroupTag: {
+            handler: function (newVal, oldVal) {
+                if (newVal == -1) {
+                    this.legendTag = 0;
+                }
+            },
+            deep: true
+        },
         sortValue: {
             handler: function (newVal, oldVal) {
                 if (newVal == 'longevity') {

@@ -112,7 +112,7 @@ export default {
 .framework .frameworkBody {
     /* background-color: #000; */
     height: calc(100% - 40px);
-    font-size: 18px;
+    font-size: 20px;
     color: #534F4F;
     font-family: Arial, Helvetica, sans-serif;
     /* width: 100%; */

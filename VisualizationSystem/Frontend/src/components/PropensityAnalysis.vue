@@ -33,7 +33,7 @@
                     <div style="margin-top: 15px;">
                         <span style="position: relative; top: 4px;">ATTRIBUTES</span>
 
-                        <span style="position: absolute; top: 158px; left: 0px">GROUPING BY</span>
+                        <span style="position: absolute; top: 156px; left: 0px">GROUPING BY</span>
                         <span style="float: right; width: 65%;">
                             <div style="height: 25px;">
                                 <span style="position: relative; left: 0px;">
@@ -84,7 +84,7 @@
                                     <el-checkbox v-model="formData.checked11" label="Social Polarity" />
                                 </span>
                             </div>
-                            <div style="height: 25px; margin-top: 3px;">
+                            <div style="height: 25px; margin-top: 0px;">
 
                                 <span style="position: relative; left: 0px;">
 
@@ -97,7 +97,7 @@
                                     </el-radio-group>
                                 </span>
                             </div>
-                            <div style="height: 25px; margin-top: 0px;">
+                            <div style="height: 25px; margin-top: 2px; margin-bottom: 1px;">
 
                                 <span style="position: relative; left: 0px;">
                                 </span>
@@ -189,7 +189,7 @@
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
-            <div style="overflow-y: auto; height: calc(50% - 20px); margin-top: 10px; margin-bottom: 10px; width: calc(100% + 10px);">
+            <div style="overflow-y: auto; height: calc(50% - 25px); margin-top: 10px; margin-bottom: 10px; width: calc(100% + 10px);">
                 <el-table class="customer-no-border-table" :data="tableData" :show-header="false"
                     style="height: calc(100% + 0px); width: calc(100% + 0px);overflow-x: hidden;" :row-style="{
                         height: elHeight / 6 + 'px',
@@ -701,6 +701,7 @@ export default {
 <style>
 .el-radio__label {
     padding-left: 3px;
+    /* font-size: 16px; */
 }
 
 .tableRow::-webkit-scrollbar {
@@ -713,6 +714,7 @@ export default {
 
 .el-checkbox__label {
     padding-left: 3px;
+    /* font-size: 16px; */
 }
 
 .el-button {
