@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2022-11-20 23:25:35
- * @LastEditTime: 2023-07-05 18:19:51
+ * @LastEditTime: 2023-07-06 20:27:25
 -->
 <template>
     <div id="navBar">
