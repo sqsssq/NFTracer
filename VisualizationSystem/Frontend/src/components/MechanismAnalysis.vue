@@ -90,7 +90,7 @@
 
 
                     <g :transform="translate(0, 2 * (barHeight + 29), 0)" id="m3Bar">
-                        <text x="5" y="20" fill="#534F4F">[M-3: Propensity]</text>
+                        <text x="5" y="20" font-size="16" fill="#534F4F">[M-3: Propensity]</text>
                         <g :transform="translate(5, 25, 0)">
 
                             <g>
@@ -113,7 +113,7 @@
                         </g>
                     </g>
                     <g :transform="translate(0, (barHeight + 29), 0)">
-                        <text x="5" y="20" fill="#534F4F">[M-2: Preferential attachment]</text>
+                        <text x="5" y="20" font-size="16" fill="#534F4F">[M-2: Preferential attachment]</text>
                         <g :transform="translate(5, 25, 0)" id="m1Bar">
                             <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
@@ -134,7 +134,7 @@
 
 
                     <g :transform="translate(0, 0, 0)" id="m2Bar">
-                        <text x="5" y="20" fill="#534F4F">[M-1: Recency]</text>
+                        <text x="5" y="20" font-size="16" fill="#534F4F">[M-1: Recency]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                 :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
@@ -169,7 +169,7 @@
                                 }"> -->
                 <svg v-show="showTag" v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
                     <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
-                    <text x="50%" y="20" font-size="16" text-anchor="middle"
+                    <text x="50%" y="20" font-size="18" text-anchor="middle"
                         :fill="i != selectGroupTag ? '#534F4F' : colormap[i]" font-weight="bold"
                         style="font-weight: 600;">{{
                             'Group ' + i
@@ -180,8 +180,8 @@
                         <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
                             :transform="translate(0, 0, 90 * t_i)" :fill="axisColor[t_i]"></path>
                         <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
-                            :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 25)"
-                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 25)" font-size="12" dy="0.3em"
+                            :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 22)"
+                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 22)" font-size="16" dy="0.3em"
                             text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
                         <g :transform="translate(0, 0, 0)">
                             <path stroke-dasharray="5.5"
@@ -199,11 +199,15 @@
 
                             <circle x="0" y="0" :r="15" fill="white" stroke="#7F7F7F" stroke-dasharray="0" stroke-width="2">
                             </circle>
-                            <text font-size="18" x="0" y="0" fill="#534F4F" text-anchor="middle" dy="0.3em">0</text>
-                            <text font-size="18" :x="(groupWidth / 8 - 48 - 15) + 15" y="0" fill="#534F4F" text-anchor="middle" dy="0.8em" dx="-0.5em">1</text>
-                            <text font-size="18" :x="-(groupWidth / 8 - 48 - 15) - 15" y="0" fill="#534F4F" text-anchor="middle" dy="0.8em" dx="0.5em">1</text>
-                            <text font-size="18" :y="(groupWidth / 8 - 48 - 15) + 15" x="0" fill="#534F4F" text-anchor="middle" dy="-0.2em" dx="0.5em">1</text>
-                            <text font-size="18" :y="-(groupWidth / 8 - 48 - 15) - 15" x="0" fill="#534F4F" text-anchor="middle" dy="0.9em" dx="0.5em">1</text>
+                            <text font-size="16" x="0" y="0" fill="#534F4F" text-anchor="middle" dy="0.3em">0</text>
+                            <text font-size="16" :x="(groupWidth / 8 - 48 - 15) + 15" y="0" fill="#534F4F"
+                                text-anchor="middle" dy="0.8em" dx="-0.5em">1</text>
+                            <text font-size="16" :x="-(groupWidth / 8 - 48 - 15) - 15" y="0" fill="#534F4F"
+                                text-anchor="middle" dy="0.8em" dx="0.5em">1</text>
+                            <text font-size="16" :y="(groupWidth / 8 - 48 - 15) + 15" x="0" fill="#534F4F"
+                                text-anchor="middle" dy="-0.2em" dx="0.5em">1</text>
+                            <text font-size="16" :y="-(groupWidth / 8 - 48 - 15) - 15" x="0" fill="#534F4F"
+                                text-anchor="middle" dy="0.9em" dx="0.5em">1</text>
                             <!-- <path v-for="(arc_item, arc_i) in monthArc" :key="'arc' + arc_i" :d="arc_item" stroke="#D9D9D9"
                                                 fill="none"></path> -->
                         </g>
@@ -213,10 +217,10 @@
                             :opacity="filterValue == t_item.id ? 1 : 0"></path>
                     </g>
 
-                    <g :transform="translate(0, groupHeight - 65, 0)">
-                        <text x="50%" y="20" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                    <g :transform="translate(0, groupHeight - 60, 0)">
+                        <text x="50%" y="20" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
                             'Num_Projects ' + item.num_project }}</text>
-                        <text x="50%" y="40" font-size="14" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
+                        <text x="50%" y="40" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
                             'Ave_Impact ' + (item.ave_impact)
                         }}</text>
                     </g>

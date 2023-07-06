@@ -112,7 +112,7 @@ export default {
 .framework .frameworkBody {
     /* background-color: #000; */
     height: calc(100% - 40px);
-    font-size: 16px;
+    font-size: 18px;
     color: #534F4F;
     font-family: Arial, Helvetica, sans-serif;
     /* width: 100%; */
@@ -137,7 +137,7 @@ export default {
     font-family: 'KoHo';
     font-style: normal;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 23px;
     display: flex;
     align-items: center;

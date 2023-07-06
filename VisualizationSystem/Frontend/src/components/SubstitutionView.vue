@@ -19,20 +19,20 @@
             </span>
 
             <span style="float: right; position: relative; top: -2px; font-size: 16px;">
-                <svg height="27" width="500" transform="translate(0, 10)">
+                <svg height="27" width="540" transform="translate(0, 10)">
                     <g v-for="(item, i) in (all_group_array)" :key="'gcolor' + i">
-                        <rect :x="0 + i * 50" :y="2" :width="50" :height="9" :fill="colormap[i]" :stroke="'#534f4f'"></rect>
-                        <text :x="0 + i * 50 + 25" :y="23" font-size="12" text-anchor="middle" fill="#534F4F">{{ 'Group' + i
+                        <rect :x="0 + i * 60" :y="2" :width="60" :height="9" :fill="colormap[i]" :stroke="'#534f4f'"></rect>
+                        <text :x="0 + i * 60 + 30" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'Group' + i
                         }}</text>
                     </g>
                     <g>
-                        <rect :x="0 + 400" :y="2" :width="9" :height="9" :fill="'#A50021'" :stroke="'#534f4f'"></rect>
-                        <text :x="0 + 400 + 4.5" :y="23" font-size="12" text-anchor="middle" fill="#534F4F">{{ 'In-flow'
+                        <rect :x="40 + 380" :y="2" :width="9" :height="9" :fill="'#A50021'" :stroke="'#534f4f'"></rect>
+                        <text :x="40 + 380 + 4.5" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'In-flow'
                         }}</text>
 
 
-                        <rect :x="0 + 450" :y="2" :width="9" :height="9" :fill="'#181CF7'" :stroke="'#534f4f'"></rect>
-                        <text :x="0 + 450 + 4.5" :y="23" font-size="12" text-anchor="middle" fill="#534F4F">{{ 'Out-flow'
+                        <rect :x="40 + 450" :y="2" :width="9" :height="9" :fill="'#181CF7'" :stroke="'#534f4f'"></rect>
+                        <text :x="40 + 450 + 4.5" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'Out-flow'
                         }}</text>
                     </g>
                 </svg>
@@ -103,7 +103,7 @@
                         <!-- <div style="text-align: center;">{{ item.holder }}</div> -->
                     </div>
                 </div>
-                <span style="position: absolute; top: 0px; color: #ABACBE; font-size: 14px;z-index: 100;">
+                <span style="position: absolute; top: 0px; color: #ABACBE; font-size: 16px;z-index: 100;">
                     Selecting <span class="php">{{ select_project_num }} projects</span> from <span
                         class="php">{{ allProject_num }} results</span>
                     <br>
@@ -299,15 +299,15 @@
 
                                 <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .75 / 2 + 15))"
                                     :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .75 / 2 + 15))"
-                                    font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
+                                    font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">H</text>
                                 <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .75 / 2 + 15))"
                                     :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .75 / 2 + 15))"
-                                    font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
+                                    font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">B</text>
                                 <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .75 / 2 + 15))"
                                     :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .75 / 2 + 15))"
-                                    font-size="14" dy="0.5em" text-anchor="middle" fill="#534F4F"
+                                    font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">S</text>
                             </g>
                         </g>

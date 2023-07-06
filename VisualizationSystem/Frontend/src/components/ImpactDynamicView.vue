@@ -21,12 +21,12 @@
                 <svg height="27" width="260" transform="translate(0, 10)">
                     <g v-for="(item, i) in colormap1" :key="'icolor' + i" :transform="translate(20, 0, 0)">
                         <rect :x="0 + i * 40" :y="2" :width="9" :height="9" :fill="item" :stroke="'#534f4f'"></rect>
-                        <text :x="0 + i * 40 + 4.5" :y="23" font-size="12" text-anchor="middle">{{ i == 0 ? 'Sell' : i
+                        <text :x="0 + i * 40 + 4.5" :y="25" font-size="14" text-anchor="middle">{{ i == 0 ? 'Sell' : i
                             == 1 ? 'Buy' : 'Hold' }}</text>
                     </g>
-                    <g v-for="(item, i) in colormap2" :key="'icolor' + i" :transform="translate(140, 0, 0)">
+                    <g v-for="(item, i) in colormap2" :key="'icolor' + i" :transform="translate(137, 0, 0)">
                         <rect :x="0 + i * 11" :y="1" :width="11" :height="11" :fill="item" :stroke="'none'"></rect>
-                        <text v-if="i == 0 || i == 5 || i == 10" :x="0 + i * 11 + 5.5" :y="23" font-size="12"
+                        <text v-if="i == 0 || i == 5 || i == 10" :x="0 + i * 11 + 5.5" :y="25" font-size="14"
                             text-anchor="middle">{{ i == 0 ? '-1' : i == 5 ? '0' : '+1' }}</text>
                     </g>
                 </svg>
@@ -54,16 +54,16 @@
 
                         <g :transform="translate(30, 50, 0)">
                             <g>
-                                <g :transform="translate(0, -70, 0)">
-                                    <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Group:</text>
-                                    <text x="17" y="35" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
+                                <g :transform="translate(-5, -70, 0)">
+                                    <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="16" fill="#534f4f">Group:</text>
+                                    <text x="25" y="35" dx="0.5em" dy="0.3em" font-size="16" text-decoration="underline"
                                         fill="#534f4f">{{ selectGroupTag }}</text>
                                     <!-- <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time
                                         Slot:</text>
                                     <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
                                         fill="#534f4f">{{ timeSelectionText }}</text> -->
                                 </g>
-                                <g v-if="legendTag == 1">
+                                <g v-if="legendTag != 0">
                                     <!-- <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i"> -->
                                     <g :transform="translate(cvWidth * 0.15, cvWidth * 0.15, 0)">
                                         <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
@@ -229,13 +229,13 @@
                                                         <text fill="#534f4f" font-size="16" text-anchor="middle">{{ item.name.name }}</text>
                                                     </g> -->
                                 <g :transform="translate(nameWidth / 2 - 10, i * pjHeight / 2 + 200, 0)">
-                                    <text fill="#534f4f" font-size="14" text-anchor="middle">Time Slot: </text>
-                                    <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
+                                    <text fill="#534f4f" font-size="16" text-anchor="middle">Time Slot: </text>
+                                    <text fill="#534f4f" font-size="16" text-anchor="middle" text-decoration="underline"
                                         dy="2em">{{
                                             item.name.timeS }}</text>
-                                    <text fill="#534f4f" font-size="14" text-anchor="middle" dy="3.5em">{{
+                                    <text fill="#534f4f" font-size="16" text-anchor="middle" dy="3.5em">{{
                                         '-' }}</text>
-                                    <text fill="#534f4f" font-size="14" text-anchor="middle" text-decoration="underline"
+                                    <text fill="#534f4f" font-size="16" text-anchor="middle" text-decoration="underline"
                                         dy="5em">{{
                                             item.name.timeE }}</text>
 
@@ -437,13 +437,16 @@ export default {
 
         },
         hoverCorrelation (data) {
+            if (this.legendTag == 2) return;
             this.legendTag = 1;
             this.legendData = data;
         },
         outCorrelation () {
+            if (this.legendTag != 2)
             this.legendTag = 0;
         },
         clickCorrelation (cnt, projectA, projectB) {
+            this.legendTag = 2;
             if (this.pre_select_corr != -1) {
                 this.correlationData[this.pre_select_corr].opacity = 0;
             }
@@ -658,9 +661,10 @@ export default {
                 .range([margin.left, this.barWidth * this.allDay - margin.right]);
             let timeXAxis = (g, x, height) => g
                 .attr("transform", `translate(0,${height - margin.bottom})`)
+                .attr('font-size', '14px')
                 .call(axisBottom(x).ticks(this.barWidth * this.allDay / 80).tickSizeOuter(0))
             selectAll('timeAxis_g').remove();
-            select('#xAxisLegend').append('g').attr('id', 'timeAxis_g').call(timeXAxis, timeX, 0)
+            select('#xAxisLegend').append('g').attr('id', 'timeAxis_g').attr('font-size', '14px').call(timeXAxis, timeX, 0)
             // console.log(data3);
             let data = [];
             for (let i in data1) {
@@ -914,9 +918,10 @@ export default {
                 .range([margin.left, this.barWidth * this.allDay - margin.right]);
             let timeXAxis = (g, x, height) => g
                 .attr("transform", `translate(0,${height - margin.bottom})`)
+                .attr('font-size', '14px')
                 .call(axisBottom(x).ticks(this.barWidth * this.allDay / 80).tickSizeOuter(0))
             selectAll('timeAxis_g').remove();
-            select('#xAxisLegend').append('g').attr('id', 'timeAxis_g').call(timeXAxis, timeX, 0)
+            select('#xAxisLegend').append('g').attr('id', 'timeAxis_g').attr('font-size', '14px').call(timeXAxis, timeX, 0)
             // console.log(data3);
             let data = [];
             for (let i in data1) {
@@ -1453,6 +1458,9 @@ export default {
 </script>
 
 <style>
+#timeAxis_g .tick text {
+    font-size: 14px;
+}
 .el-input__suffix-inner i {
     border: 1px solid #dcdfe6;
 }
