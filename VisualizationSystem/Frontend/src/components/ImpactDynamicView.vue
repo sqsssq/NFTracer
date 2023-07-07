@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-07-06 20:23:33
+ * @LastEditTime: 2023-07-07 12:37:00
 -->
 <template>
     <div style="height: 100%">
@@ -77,8 +77,8 @@
                                             {{ o.text }}
                                         </text>
                                         <text v-for="(o, i) in legendData.outArc" :key="'out_k' + i"
-                                            :text-anchor="i == 1 ? 'middle' : i == 0 ? 'start' : 'end'"
-                                            :transform="translatePos([(i == 1) ? 0 : (i == 0 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 1 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])"
+                                            :text-anchor="i == 0 ? 'middle' : i == 1 ? 'start' : 'end'"
+                                            :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])"
                                             dy="0em" font-size="18" fill="#534f4f">
                                             {{ o.text }}
                                         </text>
