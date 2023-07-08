@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-07-08 15:11:53
+ * @LastEditTime: 2023-07-08 16:49:11
 -->
 <template>
     <div style="height: 100%;">
@@ -19,20 +19,20 @@
             </span>
 
             <span style="float: right; position: relative; top: -2px; font-size: 16px;">
-                <svg height="27" width="540" transform="translate(0, 10)">
+                <svg height="27" width="600" transform="translate(0, 10)">
                     <g v-for="(item, i) in (all_group_array)" :key="'gcolor' + i">
                         <rect :x="0 + i * 60" :y="2" :width="60" :height="9" :fill="colormap[i]" :stroke="'#534f4f'"></rect>
                         <text :x="0 + i * 60 + 30" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'Group' + i
                         }}</text>
                     </g>
                     <g>
-                        <rect :x="40 + 380" :y="2" :width="9" :height="9" :fill="'#A50021'" :stroke="'#534f4f'"></rect>
-                        <text :x="40 + 380 + 4.5" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'In-flow'
+                        <rect :x="70 + 380" :y="2" :width="9" :height="9" :fill="'#A50021'" :stroke="'#534f4f'"></rect>
+                        <text :x="70 + 380 + 4.5" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'In-flow'
                         }}</text>
 
 
-                        <rect :x="40 + 450" :y="2" :width="9" :height="9" :fill="'#181CF7'" :stroke="'#534f4f'"></rect>
-                        <text :x="40 + 450 + 4.5" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'Out-flow'
+                        <rect :x="70 + 450" :y="2" :width="9" :height="9" :fill="'#181CF7'" :stroke="'#534f4f'"></rect>
+                        <text :x="70 + 450 + 4.5" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'Out-flow'
                         }}</text>
                     </g>
                 </svg>
