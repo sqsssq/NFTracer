@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-07-08 11:34:21
+ * @LastEditTime: 2023-07-08 15:11:53
 -->
 <template>
     <div style="height: 100%;">
@@ -108,6 +108,8 @@
                         class="php">{{ allProject_num }} results</span>
                     <br>
                     Time Slot: <span class="php">{{ timeSelectionText }}</span>
+                </span>
+                <span style="position: absolute; top: 50px; color: #ABACBE; font-size: 18px;z-index: 100;">
                     <span>
                         <p style="cursor:pointer; margin-top: 10px; width: 30px; height: 30px;" @click="groupSelectBtn">
                             <svg style="margin-left: -3px;" v-if="groupSelect == 0" t="1679856784187" class="icon"

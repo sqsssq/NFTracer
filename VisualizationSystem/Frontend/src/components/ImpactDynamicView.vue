@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-07-07 12:37:00
+ * @LastEditTime: 2023-07-08 16:23:52
 -->
 <template>
     <div style="height: 100%">
@@ -1279,7 +1279,7 @@ export default {
                         value: {
                             seller: sum(data[i]['Seller'], d => d.value),
                             buyer: sum(data[i]['Buyer'], d => d.value),
-                            holder: sum(data[i]['Holder'], d => d.value)
+                            holder: data[i].Holder[data[i].Holder.length - 1].value
                         }
                     }
                     textPlace.push({

@@ -1,3 +1,10 @@
+<!--
+ * @Description: 
+ * @Author: Qing Shi
+ * @Date: 2023-03-17 11:04:09
+ * @LastEditors: Qing Shi
+ * @LastEditTime: 2023-07-08 15:05:25
+-->
 <template>
     <div style="height: 100%;">
         <div class="frameworkTitle">
@@ -308,7 +315,7 @@ export default {
             selectSlice: [],
             unreleasedProject: [],
             groupValue: 6,
-            groupOptions: [1, 2, 3, 4, 5, 6],
+            groupOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             attributeOption: [],
             attributeValue: '',
             rankValue: 'M3',
