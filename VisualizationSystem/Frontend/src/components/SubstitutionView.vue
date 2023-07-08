@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-07-02 15:22:29
+ * @LastEditTime: 2023-07-08 11:34:21
 -->
 <template>
     <div style="height: 100%;">
@@ -143,7 +143,7 @@
                                     p-id="5147" fill="#5c5c66"></path>
                             </svg>
                         </p>
-                        <p style="cursor:pointer; margin-top: 10px;width: 30px; height: 30px;" @click="zoomBtn(2)">
+                        <p style="cursor:pointer; margin-top: 0px;width: 30px; height: 30px;" @click="zoomBtn(2)">
                             <svg style="margin-left: -3px;" t="1679896989202" class="icon" viewBox="0 0 1024 1024"
                                 version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3386" width="32" height="32">
                                 <path
