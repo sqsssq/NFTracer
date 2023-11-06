@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-07-08 15:05:25
+ * @LastEditTime: 2023-11-06 12:01:33
 -->
 <template>
     <div style="height: 100%;">
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
-            <div style="font-size: 16px; margin-top: 5px; height: calc(10% + 0px);">
+            <div style="font-size: 16px; margin-top: 5px; height: calc(7% + 0px);">
                 <div style="margin-top: 0px;">
                     <span style="color: #ABACBE;">
                         Showing <span class="php">{{ select_project_num }} projects</span> from 70 results
@@ -163,7 +163,7 @@
                 </span> ~~>
             </div>-->
                 <!-- </div> -->
-                <div style="margin-top: 5px;">
+                <!-- <div style="margin-top: 5px;">
                     <span>
                         Recency scale:
                         <span>
@@ -173,7 +173,7 @@
                             </svg>
                         </span>
                     </span>
-                </div>
+                </div> -->
                 <div style="margin-top: 7px;">
                     <!-- <span style="">
                                         Probability: [70%-95%]
@@ -185,18 +185,19 @@
                             <el-option v-for="item in rankOptions" :key="item" :label="item.label" :value="item.value" />
                         </el-select>
                     </span>
-                    <span style="float: right; position: relative; top: -4px;">
+                    <!-- <span style="float: right; position: relative; top: -4px;">
                         Filter:
                         <el-select v-model="attributeValue" class="m-2" placeholder="Select"
                             style="width: 130px; --el-border-color: white;">
                             <el-option v-for="item in attributeOption" :key="item" :label="item.label"
                                 :value="item.value" />
                         </el-select>
-                    </span>
+                    </span> -->
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
-            <div style="overflow-y: auto; height: calc(50% - 25px); margin-top: 10px; margin-bottom: 10px; width: calc(100% + 10px);">
+            <div
+                style="overflow-y: auto; height: calc(53% - 25px); margin-top: 10px; margin-bottom: 10px; width: calc(100% + 10px);">
                 <el-table class="customer-no-border-table" :data="tableData" :show-header="false"
                     style="height: calc(100% + 0px); width: calc(100% + 0px);overflow-x: hidden;" :row-style="{
                         height: elHeight / 6 + 'px',
@@ -207,17 +208,134 @@
                     <el-table-column type="expand" width="25" fixed>
                         <template #default="props">
                             <div m="4">
-                                <div style="margin-left: 112px; height: 120px;">
-                                    <svg height="100%" :width="elWidth - 24">
-                                        <g v-for="(item, i) in props.row.group" :key="'plg' + i">
-                                            <!-- <g v-for="(l_item, l_i) in item.line" :key="'pllg' + l_i"> -->
-                                            <path :d="item.line[attributeValue].d" :class="item.line[attributeValue].class"
-                                                :id="item.line[attributeValue].id" :fill="'none'"
-                                                :stroke="item.line[attributeValue].color"></path>
-                                            <!-- </g> -->
+                                <!-- <div style="margin-left: 112px; height: 120px;"> -->
+                                <div>
+                                    <el-table class="customer-no-border-table" border :data="props.row.group"
+                                        style="width: 100%;" :header-row-style="{
+                                            height: '30px'
+                                        }" cell-class-name="DetailTableName">
 
-                                        </g>
-                                    </svg>
+                                        <el-table-column label="Name" width="88" style="overflow-x: hidden;" align="center">
+
+                                            <template #default="scope">
+                                                {{ (scope.row['name']).slice(0, 8) }}
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="Logo" width="58" style="overflow-x: hidden;" align="center">
+                                            <template #default="scope">
+                                                <svg width="30" height="30" style="margin-top: 7px;">
+
+                                                    <clipPath id="clipPath3_1">
+                                                        <circle :cx="15" :cy="15" :r="15">
+                                                        </circle>
+                                                    </clipPath>
+                                                    <g clip-path="url(#clipPath3_1)">
+                                                        <image :href="scope.row.link" x="0" y="0" :height="30"
+                                                            :width="30" />
+                                                    </g>
+                                                    <!-- <circle :cx="15" :cy="15" r="15" fill="none" stroke="#606060" stroke-width="1"></circle> -->
+                                                </svg>
+                                            </template>
+                                        </el-table-column>
+
+                                        <el-table-column label="M1" width="70" style="overflow-x: hidden; height: 100px;"
+                                            align="center">
+                                            <template #default="scope">
+                                                <svg width="70" height="30" style="margin-top: 7px;">
+                                                    <g>
+                                                        <rect y="8" height="15" :width="60 * parseFloat(scope.row['M1'])"
+                                                            :fill="axisColor['M1']"></rect>
+                                                        <text x="3" y="20"
+                                                            color="#606060">{{ Math.round(parseFloat(scope.row['M1']) * 100) / 100 }}</text>
+                                                    </g>
+                                                </svg>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="M2" width="70" style="overflow-x: hidden; height: 100px;"
+                                            align="center">
+
+                                            <template #default="scope">
+                                                <svg width="70" height="30" style="margin-top: 7px;">
+                                                    <g>
+                                                        <rect y="8" height="15" :width="60 * parseFloat(scope.row['M2'])"
+                                                            :fill="axisColor['M2']"></rect>
+                                                        <text x="3" y="20"
+                                                            color="#606060">{{ Math.round(parseFloat(scope.row['M2']) * 100) / 100 }}</text>
+                                                    </g>
+                                                </svg>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="M3" width="70" style="overflow-x: hidden; height: 100px;"
+                                            align="center">
+
+                                            <template #default="scope">
+                                                <svg width="70" height="30" style="margin-top: 7px;">
+                                                    <g>
+                                                        <rect y="8" height="15" :width="60 * parseFloat(scope.row['M3'])"
+                                                            :fill="axisColor['M3']"></rect>
+                                                        <text x="3" y="20"
+                                                            color="#606060">{{ Math.round(parseFloat(scope.row['M3']) * 100) / 100 }}</text>
+                                                    </g>
+                                                </svg>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="IMP" width="70" style="overflow-x: hidden; height: 100px;"
+                                            align="center">
+
+                                            <template #default="scope">
+                                                <svg width="70" height="30" style="margin-top: 7px;">
+                                                    <g>
+                                                        <rect y="8" height="15" :width="60 * parseFloat(scope.row['IMP'])"
+                                                            :fill="axisColor['IMP']"></rect>
+                                                        <text x="3" y="20"
+                                                            color="#606060">{{ Math.round(parseFloat(scope.row['IMP']) * 100) / 100 }}</text>
+                                                    </g>
+                                                </svg>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column label="Exp." width="65" style="overflow-x: hidden; height: 100px;"
+                                            align="center">
+                                            <template #default="scope">
+                                                <!-- <svg t="1699242295547" class="icon" style="margin-top: 7px;"
+                                                    viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                    p-id="4014" width="20" height="20">
+                                                    <path
+                                                        d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+                                                        p-id="4015" fill="#cdcdcd"></path>
+                                                    <path
+                                                        d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                                                        p-id="4016" fill="#cdcdcd"></path>
+                                                </svg> -->
+                                                <el-popover placement="right" :width="400" trigger="click">
+                                                    <template #reference>
+                                                        <el-button
+                                                            style="width: 20px; height: 20px; border-width: 0px; margin-top: 0px;"><svg
+                                                                t="1699242295547" class="icon" style="margin-top: 0px; "
+                                                                viewBox="0 0 1024 1024" version="1.1"
+                                                                xmlns="http://www.w3.org/2000/svg" p-id="4014" width="20"
+                                                                height="20">
+                                                                <path
+                                                                    d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+                                                                    p-id="4015" fill="#cdcdcd"></path>
+                                                                <path
+                                                                    d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                                                                    p-id="4016" fill="#cdcdcd"></path>
+                                                            </svg></el-button>
+                                                    </template>
+
+                                                    <el-table style="overflow-y: auto; height: 300px" :data="scope.row.attributeTable" border>
+                                                        <el-table-column label="Date" prop="date" width="120" align="center"/>
+                                                        <el-table-column :label="attributeMap['buyer_num']" prop="buyer_num" align="center"/>
+                                                        <el-table-column :label="attributeMap['holder_num']" prop="holder_num" align="center"/>
+                                                        <el-table-column :label="attributeMap['seller_num']" prop="seller_num" align="center"/>
+                                                        <el-table-column :label="attributeMap['liquidity']" prop="liquidity" align="center"/>
+                                                        <el-table-column :label="attributeMap['popularity']" prop="popularity" align="center"/>
+                                                    </el-table>
+                                                </el-popover>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
                                 </div>
                             </div>
                         </template>
@@ -423,6 +541,7 @@ export default {
                 dataStore.allData.tag = 1;
 
                 this.tableData = this.calcTable(dataStore.allData.cpData.data);
+                console.log(this.tableData)
                 this.unreleasedProject = this.calcUnreleasedProject(dataStore.allData.cpData.unClusterProject);
             }
         },
@@ -517,6 +636,17 @@ export default {
                 for (let j in group[i].group) {
                     // console.log(group[i].project[j]);
                     group[i].group[j]['attributeLine'] = group[i].project[j]['attributeLine'];
+                    let tmp_attribute_line = group[i].project[j]['attributeLine'];
+                    let tmp_attribute = [];
+                    for (let k =0; k < tmp_attribute_line[Object.keys(tmp_attribute_line)[0]].length; ++k) {
+                        let tmp_obj = {};
+                        tmp_obj['date'] = tmp_attribute_line[Object.keys(tmp_attribute_line)[0]][k]['date'];
+                        for (let kk of Object.keys(tmp_attribute_line)) {
+                            tmp_obj[kk] = tmp_attribute_line[kk][k]['value'];
+                        }
+                        tmp_attribute.push(tmp_obj);
+                    }
+                    group[i].group[j]['attributeTable'] = tmp_attribute;
                     for (let k in group[i].project[j]['attributeLine']) {
                         lineDataRange[k][0] = Math.min(lineDataRange[k][0], min(group[i].project[j]['attributeLine'][k], d => d.value));
                         lineDataRange[k][1] = Math.max(lineDataRange[k][1], max(group[i].project[j]['attributeLine'][k], d => d.value));
@@ -706,6 +836,11 @@ export default {
 </script>
 
 <style>
+.DetailTableName .cell {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .el-radio__label {
     padding-left: 3px;
     /* font-size: 16px; */
@@ -801,4 +936,5 @@ el-checkbox__label {
 .el-radio__input.is-checked .el-radio__inner {
     border-color: #94a7c7;
     background-color: #94a7c7;
-}</style>
+}
+</style>

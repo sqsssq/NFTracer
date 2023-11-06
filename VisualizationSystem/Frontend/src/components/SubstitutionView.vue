@@ -36,11 +36,11 @@
                         }}</text>
                     </g>
                 </svg>
-                Filter by:
+                <!-- Filter by:
                 <el-select v-model="filterValue" class="m-2" placeholder="Select"
                     style="width: 50px; --el-border-color: white;">
                     <el-option v-for="item in filterOptions" :key="item" :label="item.label" :value="item.value" />
-                </el-select>
+                </el-select> -->
             </span>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
         </div>
@@ -196,7 +196,7 @@
                                                                                                                                     stroke="#C6BCBC" fill="none"></path> -->
                                 <!-- <text x="0" :y="-(distributionHeight * 0.9 / 2)" dy="0.5em" font-size="14"
                                     text-anchor="middle" fill="#534F4F" font-weight="bold">{{ '2022' }}</text>
-                                <text x="0" :y="-(distributionHeight * 0.80 / 2 - 3)" dy="0.5em" font-size="14"
+                                <text x="0" :y="-(distributionHeight * 0.850 / 2 - 3)" dy="0.5em" font-size="14"
                                     text-anchor="middle" fill="#534F4F" font-weight="bold">{{ '2021' }}</text> -->
 
                                 <!-- <text v-for="(t_item, t_i) in monthName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
@@ -208,8 +208,8 @@
                             </g>
 
                             <g :transform="translate(0, 0, 180 - 6)">
-                                <path v-for="(arc_item, arc_i) in innerArc" :key="'arc' + arc_i" :d="arc_item"
-                                    stroke="#C6BCBC" :fill="'none'" :opacity="innerArea[arc_i].cnt == 0 ? 0 : 1"></path>
+                                <!-- <path v-for="(arc_item, arc_i) in innerArc" :key="'arc' + arc_i" :d="arc_item"
+                                    stroke="#C6BCBC" :fill="'none'" :opacity="innerArea[arc_i].cnt == 0 ? 0 : 1"></path> -->
                             </g>
                             <!-- <g>
                                 <path v-for="(arc_item, arc_i) in monthArc" :key="'select_time' + arc_i" :d="arc_item"
@@ -217,14 +217,14 @@
                             </g> -->
 
                             <clipPath id="clipPathNetwork">
-                                <circle :cx="0" :cy="0" :r="distributionHeight * .80 / 2 + 6"></circle>
+                                <circle :cx="0" :cy="0" :r="distributionHeight * .850 / 2 + 6"></circle>
                             </clipPath>
 
                             <g clip-path="url(#clipPathNetwork)">
-                                <circle cx="0" cy="0" :r="distributionHeight * .80 / 2" fill="none" stroke="#534F4F"
+                                <circle cx="0" cy="0" :r="distributionHeight * .850 / 2" fill="none" stroke="#534F4F"
                                     stroke-width="1"></circle>
                                 <path v-for="item in 30" :key="'path' + item"
-                                    :d="'M 0 0 L ' + (Math.sin(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .80 / 2 - 2)) + ' ' + (Math.cos(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .80 / 2 - 2))"
+                                    :d="'M 0 0 L ' + (Math.sin(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (Math.cos(((item * 12 - 6) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2))"
                                     stroke="#534F4F" stroke-width="0.5"></path>
 
                             </g>
@@ -251,13 +251,13 @@
                                                                                         :stroke="arc_item.group == groupTag ? '#C6BCBC' : colormap[parseInt(arc_item.group)]" :stroke-opacity="arc_item.tag"></path>
                                                                                     </g> -->
                             </g>
-                            <g>
+                            <!-- <g>
                                 <g v-for="(a_item, a_i) in innerArea" :key="'ia' + a_i"
                                     :transform="translate(0, 0, a_i * 12)">
                                     <path :d="a_item[filterValue]" :fill="axisColorA[filterValue]"
                                         :stroke="axisColorA[filterValue]" :opacity="a_item.cnt == 0 ? 0 : 1"></path>
                                 </g>
-                            </g>
+                            </g> -->
                             <g clip-path="url(#clipPathNetwork)">
 
                                 <circle v-for="(c_item, c_i) in scatterData" :key="'gc' + c_i"
@@ -296,19 +296,19 @@
                             </g>
                             <g v-show="showHSB">
                                 <path
-                                    :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .80 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .80 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .80 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .80 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .80 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .80 / 2 - 2)) + ' Z'"
+                                    :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' Z'"
                                     stroke-dasharray="5.5" stroke="#C6BCBC" fill="none"></path>
 
-                                <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .80 / 2 + 15))"
-                                    :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .80 / 2 + 15))"
+                                <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">H</text>
-                                <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .80 / 2 + 15))"
-                                    :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .80 / 2 + 15))"
+                                <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">B</text>
-                                <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .80 / 2 + 15))"
-                                    :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .80 / 2 + 15))"
+                                <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
                                     font-weight="bold">S</text>
                             </g>
@@ -932,7 +932,7 @@ export default {
                 min_m3 = Math.min(min_m3, data[i].M3);
                 min_imp = Math.min(min_imp, data[i].IMP);
             }
-            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)));
+            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)));
             // console.log(t_h);
             let areaData = [];
             for (let i = 0; i < 30; ++i) {
@@ -1003,14 +1003,14 @@ export default {
                     ry: sy * t_h,
                     t_h: t_h,
                     center: {
-                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)),
-                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2))
+                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)),
+                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2))
                     },
-                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) + sx * t_h,
-                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - sy * t_h,
+                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) + sx * t_h,
+                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - sy * t_h,
                     // cx: sx * t_h,
                     // cy: sy * t_h,
-                    rr: this.distributionHeight * .80,
+                    rr: this.distributionHeight * .850,
                     id_cnt: pro_cnt++
                 };
                 // console.log(tp);
@@ -1057,14 +1057,14 @@ export default {
                         ry: sy * t_h,
                         t_h: t_h,
                         center: {
-                            x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)),
-                            y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2))
+                            x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)),
+                            y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2))
                         },
-                        cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) + sx * t_h,
-                        cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - sy * t_h,
+                        cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) + sx * t_h,
+                        cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - sy * t_h,
                         // cx: sx * t_h,
                         // cy: sy * t_h,
-                        rr: this.distributionHeight * .80,
+                        rr: this.distributionHeight * .850,
                         id_cnt: pro_cnt++
                     };
                     // console.log(tp);
@@ -1155,7 +1155,7 @@ export default {
                 // break;
                 areaData[Math.floor(t_cnt)].impArea[impp]++;
             }
-            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .80 / 2 + 10, this.distributionHeight * .71 / 2]);
+            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .850 / 2 + 10, this.distributionHeight * .71 / 2]);
             let m1Scale = scaleLinear([0, m1_max], [0, 4]);
             let m2Scale = scaleLinear([0, m2_max], [0, 4]);
             let m3Scale = scaleLinear([0, m3_max], [0, 4]);
@@ -1234,7 +1234,7 @@ export default {
         //         min_m3 = Math.min(min_m3, data[i].M3);
         //         min_imp = Math.min(min_imp, data[i].IMP);
         //     }
-        //     let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)));
+        //     let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)));
         //     // console.log(t_h);
         //     let areaData = [];
         //     for (let i = 0; i < 30; ++i) {
@@ -1303,14 +1303,14 @@ export default {
         //             ry: sy * t_h,
         //             t_h: t_h,
         //             center: {
-        //                 x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)),
-        //                 y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2))
+        //                 x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)),
+        //                 y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2))
         //             },
-        //             cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) + sx * t_h,
-        //             cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - sy * t_h,
+        //             cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) + sx * t_h,
+        //             cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - sy * t_h,
         //             // cx: sx * t_h,
         //             // cy: sy * t_h,
-        //             rr: this.distributionHeight * .80,
+        //             rr: this.distributionHeight * .850,
         //             id_cnt: pro_cnt++
         //         };
         //         // console.log(tp);
@@ -1338,14 +1338,14 @@ export default {
         //             maxLen = Math.max(maxLen, len);
         //         }
         //         // console.log(maxLen);
-        //         let lenScale = scaleLinear([0, maxLen], [0, 0.80 * this.distributionHeight / 2]);
+        //         let lenScale = scaleLinear([0, maxLen], [0, 0.850 * this.distributionHeight / 2]);
         //         zoomLenScale = lenScale;
         //         // for (let i in scatterData) {
         //         //     let len = Math.sqrt((scatterData[i].cx - center.x) * (scatterData[i].cx - center.x) + (scatterData[i].cy - center.y) * (scatterData[i].cy - center.y));
 
         //         //     if (len != 0) {
         //         //         let lenn = Math.pow(len, 1 / 2)
-        //         //         console.log(center, lenScale(len), .80 * this.distributionHeight / 2, len, namespace)
+        //         //         console.log(center, lenScale(len), .850 * this.distributionHeight / 2, len, namespace)
         //         //         // console.log(lenScale(lenn), scatterData[i].x - center.x)
         //         //         scatterData[i].ax = (scatterData[i].cx - center.x) * (lenScale(len) / len);
         //         //         scatterData[i].ay = (scatterData[i].cy - center.y) * (lenScale(len) / len);
@@ -1375,8 +1375,8 @@ export default {
         //         // console.log(data[i]);
         //         let sx = (parseFloat(pre_data[i].Holder / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer)) + parseFloat(pre_data[i].Buyer) * 2 / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer)) / Math.sqrt(3);
         //         let sy = parseFloat(pre_data[i].Holder / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer));
-        //         let cx = (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) + sx * t_h;
-        //         let cy = (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - sy * t_h;
+        //         let cx = (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) + sx * t_h;
+        //         let cy = (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - sy * t_h;
         //         if (powIndex == 2) {
         //             let len = Math.sqrt((cx - centerCir.x) * (cx - centerCir.x) + (cy - centerCir.y) * (cy - centerCir.y));
         //             let ax, ay;
@@ -1392,8 +1392,8 @@ export default {
         //         } else if (powIndex == 3) {
         //             sx = xScale(sx);
         //             sy = yScale(sy);
-        //             cx = (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) + sx * t_h;
-        //             cy = (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - sy * t_h;
+        //             cx = (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) + sx * t_h;
+        //             cy = (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - sy * t_h;
         //         }
         //         // if (powIndex != 1) {
         //         //     if (sx > 0.5) {
@@ -1424,14 +1424,14 @@ export default {
         //             ry: sy * t_h,
         //             t_h: t_h,
         //             center: {
-        //                 x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)),
-        //                 y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2))
+        //                 x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)),
+        //                 y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2))
         //             },
         //             cx: cx,
         //             cy: cy,
         //             // cx: sx * t_h,
         //             // cy: sy * t_h,
-        //             rr: this.distributionHeight * .80,
+        //             rr: this.distributionHeight * .850,
         //             id_cnt: pro_cnt++
         //         };
         //         // console.log(tp);
@@ -1481,7 +1481,7 @@ export default {
         //         // break;
         //         areaData[Math.floor(t_cnt)].impArea[impp]++;
         //     }
-        //     let ayScale = scaleLinear([0, 4], [this.distributionHeight * .80 / 2 + 10, this.distributionHeight * .71 / 2]);
+        //     let ayScale = scaleLinear([0, 4], [this.distributionHeight * .850 / 2 + 10, this.distributionHeight * .71 / 2]);
         //     let m1Scale = scaleLinear([0, m1_max], [0, 4]);
         //     let m2Scale = scaleLinear([0, m2_max], [0, 4]);
         //     let m3Scale = scaleLinear([0, m3_max], [0, 4]);
@@ -1562,7 +1562,7 @@ export default {
                 min_m3 = Math.min(min_m3, data[i].M3);
                 min_imp = Math.min(min_imp, data[i].IMP);
             }
-            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)));
+            let t_h = Math.abs((-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - (-Math.cos(((0) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)));
             // console.log(t_h);
             let areaData = [];
             for (let i = 0; i < 30; ++i) {
@@ -1631,14 +1631,14 @@ export default {
                     ry: sy * t_h,
                     t_h: t_h,
                     center: {
-                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)),
-                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2))
+                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)),
+                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2))
                     },
-                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) + sx * t_h,
-                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - sy * t_h,
+                    cx: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) + sx * t_h,
+                    cy: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - sy * t_h,
                     // cx: sx * t_h,
                     // cy: sy * t_h,
-                    rr: this.distributionHeight * .80,
+                    rr: this.distributionHeight * .850,
                     id_cnt: pro_cnt++
                 };
                 // console.log(tp);
@@ -1666,14 +1666,14 @@ export default {
                     maxLen = Math.max(maxLen, len);
                 }
                 // console.log(maxLen);
-                let lenScale = scaleLinear([0, maxLen], [0, 0.80 * this.distributionHeight / 2]);
+                let lenScale = scaleLinear([0, maxLen], [0, 0.850 * this.distributionHeight / 2]);
                 zoomLenScale = lenScale;
                 // for (let i in scatterData) {
                 //     let len = Math.sqrt((scatterData[i].cx - center.x) * (scatterData[i].cx - center.x) + (scatterData[i].cy - center.y) * (scatterData[i].cy - center.y));
 
                 //     if (len != 0) {
                 //         let lenn = Math.pow(len, 1 / 2)
-                //         console.log(center, lenScale(len), .80 * this.distributionHeight / 2, len, namespace)
+                //         console.log(center, lenScale(len), .850 * this.distributionHeight / 2, len, namespace)
                 //         // console.log(lenScale(lenn), scatterData[i].x - center.x)
                 //         scatterData[i].ax = (scatterData[i].cx - center.x) * (lenScale(len) / len);
                 //         scatterData[i].ay = (scatterData[i].cy - center.y) * (lenScale(len) / len);
@@ -1703,8 +1703,8 @@ export default {
                 // console.log(data[i]);
                 let sx = (parseFloat(pre_data[i].Holder / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer)) + parseFloat(pre_data[i].Buyer) * 2 / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer)) / Math.sqrt(3);
                 let sy = parseFloat(pre_data[i].Holder / (pre_data[i].Holder + pre_data[i].Seller + pre_data[i].Buyer));
-                let cx = (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) + sx * t_h;
-                let cy = (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - sy * t_h;
+                let cx = (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) + sx * t_h;
+                let cy = (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - sy * t_h;
                 if (powIndex == 2) {
                     let len = Math.sqrt((cx - centerCir.x) * (cx - centerCir.x) + (cy - centerCir.y) * (cy - centerCir.y));
                     let ax, ay;
@@ -1720,8 +1720,8 @@ export default {
                 } else if (powIndex == 3) {
                     sx = xScale(sx);
                     sy = yScale(sy);
-                    cx = (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) + sx * t_h;
-                    cy = (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)) - sy * t_h;
+                    cx = (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) + sx * t_h;
+                    cy = (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)) - sy * t_h;
                 }
                 // if (powIndex != 1) {
                 //     if (sx > 0.5) {
@@ -1752,14 +1752,14 @@ export default {
                     ry: sy * t_h,
                     t_h: t_h,
                     center: {
-                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2)),
-                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .80 / 2))
+                        x: (Math.sin(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2)),
+                        y: (-Math.cos(((240) * Math.PI) / 180) * (this.distributionHeight * .850 / 2))
                     },
                     cx: cx,
                     cy: cy,
                     // cx: sx * t_h,
                     // cy: sy * t_h,
-                    rr: this.distributionHeight * .80,
+                    rr: this.distributionHeight * .850,
                     id_cnt: pro_cnt++
                 };
                 // console.log(tp);
@@ -1811,7 +1811,7 @@ export default {
                 // break;
                 areaData[Math.floor(t_cnt)].impArea[impp]++;
             }
-            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .80 / 2 + 10, this.distributionHeight * .90 / 2]);
+            let ayScale = scaleLinear([0, 4], [this.distributionHeight * .850 / 2 + 10, this.distributionHeight * .90 / 2]);
             // console.log(m1_max, m2_max, m3_max);
             let m1Scale = scaleLinear([0, m1_max], [0, 4]);
             let m2Scale = scaleLinear([0, m2_max], [0, 4]);
@@ -1865,7 +1865,7 @@ export default {
             // let cnt = 0;
             for (let d of innerArcData) {
                 d.innerRadius = this.distributionHeight * .90 / 2 + 5;
-                d.outerRadius = this.distributionHeight * .80 / 2 + 7;
+                d.outerRadius = this.distributionHeight * .850 / 2 + 7;
                 let darcs = arc()(d);
                 innerArc.push(darcs);
                 // // break
