@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-07-08 16:23:52
+ * @LastEditTime: 2023-11-07 22:35:19
 -->
 <template>
     <div style="height: 100%">
@@ -18,16 +18,16 @@
                 &nbsp; Impact Dynamic View
             </span>
             <span style="float: right; position: relative; top: -2px; font-size: 16px;">
-                <svg height="27" width="260" transform="translate(0, 10)">
+                <svg height="27" width="200" transform="translate(0, 10)">
                     <g v-for="(item, i) in colormap1" :key="'icolor' + i" :transform="translate(20, 0, 0)">
                         <rect :x="0 + i * 40" :y="2" :width="9" :height="9" :fill="item" :stroke="'#534f4f'"></rect>
                         <text :x="0 + i * 40 + 4.5" :y="25" font-size="14" text-anchor="middle">{{ i == 0 ? 'Sell' : i
                             == 1 ? 'Buy' : 'Hold' }}</text>
                     </g>
-                    <g v-for="(item, i) in colormap2" :key="'icolor' + i" :transform="translate(137, 0, 0)">
-                        <rect :x="0 + i * 11" :y="1" :width="11" :height="11" :fill="item" :stroke="'none'"></rect>
-                        <text v-if="i == 0 || i == 5 || i == 10" :x="0 + i * 11 + 5.5" :y="25" font-size="14"
-                            text-anchor="middle">{{ i == 0 ? '-1' : i == 5 ? '0' : '+1' }}</text>
+                    <g v-for="(item, i) in colormap2" :key="'icolor' + i" :transform="translate(140, 0, 0)">
+                        <rect :x="0 + i * 40" :y="2" :width="9" :height="9" :fill="item" :stroke="'#534f4f'"></rect>
+                        <text :x="i * 40 + 4.5" :y="25" font-size="14"
+                            text-anchor="middle">{{ i == 0 ? '<0' : '>0' }}</text>
                     </g>
                 </svg>
             </span>
@@ -65,9 +65,11 @@
                                 </g>
                                 <g v-if="legendTag != 0">
                                     <!-- <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i"> -->
-                                    <g :transform="translate(cvWidth * 0.15, cvWidth * 0.15, 0)">
+                                    <g :transform="translate(cvWidth * 0.15 + 30, cvWidth * 0.15 + 30, 0)">
                                         <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
                                             :d="a_item.dLegend" :fill="a_item.fill"></path>
+                                            <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i" :transform="translate(0, 0, a_i * 120)"
+                                            :d="'M0 68L0 75'" :fill="'none'" stroke="black" stroke-width="2"></path>
 
                                         <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
                                             :d="a_item.dLegend" :fill="a_item.fill"></path>
@@ -78,9 +80,15 @@
                                         </text>
                                         <text v-for="(o, i) in legendData.outArc" :key="'out_k' + i"
                                             :text-anchor="i == 0 ? 'middle' : i == 1 ? 'start' : 'end'"
-                                            :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])"
+                                            :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])" style="font-weight: bold;"
                                             dy="0em" font-size="18" fill="#534f4f">
                                             {{ o.text }}
+                                        </text>
+                                        <text v-for="(o, i) in legendData.outArc" :key="'out_k' + i" 
+                                            :text-anchor="i == 0 ? 'middle' : i == 1 ? 'start' : 'end'"
+                                            :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])" style="font-weight: bold;" :dx="i == 1 ? '-0.5em' :  i == 2 ? '0.5em' : '0em'" 
+                                            :dy="i == 0 ? '-1.2em' : '1.2em'" font-size="16" fill="#534f4f">
+                                            {{ 'CC-' + o.type_name + 's' }}
                                         </text>
 
                                     </g>
@@ -396,7 +404,8 @@ export default {
                 seller: '#b69acb',
                 buyer: '#6f319b',
             },
-            colormap2: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#f4d58d', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
+            // colormap2: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#f4d58d', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
+            colormap2: ['#56B0FF', '#FF3D3D'],
             correlationData: [],
             axisColor: { 'M1': '#EA7C16', 'M3': '#61bad6', 'IMP': '#d77a78', 'M2': '#53ad92' },
             tableRect: [],
@@ -1109,25 +1118,27 @@ export default {
             let outArc = [];
             let angle = 45;
             let colorScale = scaleLinear([-1, 1], [0, 10]);
+            console.log(data);
             let cnt = 0;
             for (let i in data.outer) {
                 outArc.push({
                     d: arc().innerRadius(r - 2).outerRadius(r).cornerRadius(5)({
-                        startAngle: ((cnt * 120) - angle / 2) * Math.PI / 180,
-                        endAngle: ((cnt * 120) + angle / 2) * Math.PI / 180,
+                        startAngle: ((cnt * 120) - data.outer[i] * 120 / 2) * Math.PI / 180,
+                        endAngle: ((cnt * 120) + data.outer[i] * 120 / 2) * Math.PI / 180,
                         index: cnt,
                         padAngle: 0,
                         value: 1
                     }),
                     dLegend: arc().innerRadius(this.cvWidth * 0.15 - 5).outerRadius(this.cvWidth * 0.15).cornerRadius(5)({
-                        startAngle: ((cnt * 120) - angle / 2) * Math.PI / 180,
-                        endAngle: ((cnt * 120) + angle / 2) * Math.PI / 180,
+                        startAngle: ((cnt * 120) - data.outer[i] * 120 / 2) * Math.PI / 180,
+                        endAngle: ((cnt * 120) + data.outer[i] * 120 / 2) * Math.PI / 180,
                         index: cnt,
                         padAngle: 0,
                         value: 1
                     }),
-                    fill: this.colormap2[(colorScale(data.outer[i])).toFixed(0)],
+                    fill: ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1) > 0 ? this.colormap2[1] : ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1) == 0 ? 'white' : this.colormap2[0],
                     type: i,
+                    type_name: i == 'c1' ? 'Holder' : i == 'c2' ? 'Buyer' : 'Seller', 
                     text: ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1)
                 });
                 cnt++;

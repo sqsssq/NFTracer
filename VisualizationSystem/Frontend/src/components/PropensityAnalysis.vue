@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-06 12:01:33
+ * @LastEditTime: 2023-11-07 20:43:44
 -->
 <template>
     <div style="height: 100%;">
@@ -323,14 +323,38 @@
                                                                     p-id="4016" fill="#cdcdcd"></path>
                                                             </svg></el-button>
                                                     </template>
-
-                                                    <el-table style="overflow-y: auto; height: 300px" :data="scope.row.attributeTable" border>
-                                                        <el-table-column label="Date" prop="date" width="120" align="center"/>
-                                                        <el-table-column :label="attributeMap['buyer_num']" prop="buyer_num" align="center"/>
-                                                        <el-table-column :label="attributeMap['holder_num']" prop="holder_num" align="center"/>
-                                                        <el-table-column :label="attributeMap['seller_num']" prop="seller_num" align="center"/>
-                                                        <el-table-column :label="attributeMap['liquidity']" prop="liquidity" align="center"/>
-                                                        <el-table-column :label="attributeMap['popularity']" prop="popularity" align="center"/>
+                                                    <div>
+                                                        <h3 style="font-weight: 600; float: left;">
+                                                            
+                                                            {{ scope.row.name }}
+                                                        </h3>
+                                                        <span style="float: right;">
+                                                            <svg t="1699360816762" class="icon" viewBox="0 0 1024 1024"
+                                                                version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4034"
+                                                                width="20" height="20">
+                                                                <path
+                                                                    d="M505.7 661c3.2 4.1 9.4 4.1 12.6 0l112-141.7c4.1-5.2 0.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8z"
+                                                                    p-id="4035"></path>
+                                                                <path
+                                                                    d="M878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
+                                                                    p-id="4036"></path>
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                    <el-table style="overflow-y: auto; height: 300px"
+                                                        :data="scope.row.attributeTable" border>
+                                                        <el-table-column label="Date" prop="date" width="120"
+                                                            align="center" />
+                                                        <el-table-column :label="attributeMap['buyer_num']" prop="buyer_num"
+                                                            align="center" />
+                                                        <el-table-column :label="attributeMap['holder_num']"
+                                                            prop="holder_num" align="center" />
+                                                        <el-table-column :label="attributeMap['seller_num']"
+                                                            prop="seller_num" align="center" />
+                                                        <el-table-column :label="attributeMap['liquidity']" prop="liquidity"
+                                                            align="center" />
+                                                        <el-table-column :label="attributeMap['popularity']"
+                                                            prop="popularity" align="center" />
                                                     </el-table>
                                                 </el-popover>
                                             </template>
@@ -638,7 +662,7 @@ export default {
                     group[i].group[j]['attributeLine'] = group[i].project[j]['attributeLine'];
                     let tmp_attribute_line = group[i].project[j]['attributeLine'];
                     let tmp_attribute = [];
-                    for (let k =0; k < tmp_attribute_line[Object.keys(tmp_attribute_line)[0]].length; ++k) {
+                    for (let k = 0; k < tmp_attribute_line[Object.keys(tmp_attribute_line)[0]].length; ++k) {
                         let tmp_obj = {};
                         tmp_obj['date'] = tmp_attribute_line[Object.keys(tmp_attribute_line)[0]][k]['date'];
                         for (let kk of Object.keys(tmp_attribute_line)) {
@@ -936,5 +960,4 @@ el-checkbox__label {
 .el-radio__input.is-checked .el-radio__inner {
     border-color: #94a7c7;
     background-color: #94a7c7;
-}
-</style>
+}</style>
