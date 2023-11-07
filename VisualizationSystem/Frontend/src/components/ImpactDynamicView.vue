@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-07 22:35:19
+ * @LastEditTime: 2023-11-07 23:11:53
 -->
 <template>
     <div style="height: 100%">
@@ -86,8 +86,8 @@
                                         </text>
                                         <text v-for="(o, i) in legendData.outArc" :key="'out_k' + i" 
                                             :text-anchor="i == 0 ? 'middle' : i == 1 ? 'start' : 'end'"
-                                            :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])" style="font-weight: bold;" :dx="i == 1 ? '-0.5em' :  i == 2 ? '0.5em' : '0em'" 
-                                            :dy="i == 0 ? '-1.2em' : '1.2em'" font-size="16" fill="#534f4f">
+                                            :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])" style="font-weight: bold;" :dx="i == 1 ? '-1em' :  i == 2 ? '1em' : '0em'" 
+                                            :dy="i == 0 ? '-1.5em' : '1.5em'" font-size="16" fill="#534f4f">
                                             {{ 'CC-' + o.type_name + 's' }}
                                         </text>
 
