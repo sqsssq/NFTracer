@@ -179,10 +179,10 @@
                                         Probability: [70%-95%]
                                     </span> -->
                     <span style="float: left; position: relative; top: -4px;">
-                        Rank by:
+                        Group Select:
                         <el-select v-model="rankValue" class="m-2" placeholder="Select"
                             style="width: 130px; --el-border-color: white;">
-                            <el-option v-for="item in rankOptions" :key="item" :label="item.label" :value="item.value" />
+                            <el-option v-for="(item, i) in rankOptions" :key="item" :label="'Group ' + i" :value="item.value" />
                         </el-select>
                     </span>
                     <!-- <span style="float: right; position: relative; top: -4px;">
