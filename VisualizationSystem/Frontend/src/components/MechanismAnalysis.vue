@@ -201,8 +201,8 @@
                             'Group ' + i
                         }}</text>
                     <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
-                        <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'"
-                            :fill="colormap[i]"></path>
+                        <!-- <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'"
+                            :fill="colormap[i]"></path> -->
                         <!-- <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
                             :transform="translate(0, 0, 90 * t_i)" :fill="axisColor[t_i]"></path> -->
                         <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
@@ -239,7 +239,7 @@
                         </g>
 
                         <path v-for="(t_item, t_i) in item['projectLine']" :key="'pL' + t_i" :d="t_item.d" :fill="'none'"
-                            :stroke="'#534F4F'" :class="t_item.class" :id="'g_' + t_item.group + '_' + t_item.id"
+                            :stroke="colormap[i]" :class="t_item.class" :id="'g_' + t_item.group + '_' + t_item.id" stroke-width="2"
                             :opacity="filterValue == t_item.id ? 1 : 1"></path>
                     </g>
 
@@ -281,7 +281,7 @@
 <script>
 import { scaleLinear } from 'd3-scale';
 import { select, selectAll } from 'd3-selection';
-import { arc, area, curveBasis, curveLinear, line, pie } from 'd3-shape';
+import { arc, area, curveBasis, curveCardinal, curveLinear, line, pie } from 'd3-shape';
 
 import { axisLeft, axisBottom } from 'd3-axis';
 import { sum } from 'd3-array';
@@ -302,7 +302,8 @@ export default {
             // colormap: ["#DA927C", "#175E7D", "#B1E1E9", "#A6BAA7", "#9B9364", "#C59CA0", "#FFDDB7"],
             // colormap: ["#F3F0C7", "#BEC68A", "#72926A", "#F7C183", "#FEA541", "#FBC9C6", "#8A8CA8"],
             // colormap: ["#565C76", "#B06E62", "#66323E", "#90A1B8", "#9D717C", "#838F7E", "#ADA397"],
-            colormap: ["#8F5362", "#B1818F", "#DFA57C", "#CCAA66", "#A6C9A6", "#6888A5", "#12507B"],
+            // colormap: ["#8F5362", "#B1818F", "#DFA57C", "#CCAA66", "#A6C9A6", "#6888A5", "#12507B"],
+            colormap: ["rgb(131,84,36)", "rgb(165,209,179)", "rgb(54,128,152)", "rgb(233,191,152)", "rgb(141,41,115)", "rgb(28,95,30)", "rgb(253,156,186)"],
             // colormap: ["#B3AE94", "#C59A81", "#D8876F", "#DDBE8F", "#94A7C7", "#9B8FB7", "#D883AF"],
             monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
@@ -528,7 +529,7 @@ export default {
                         [0, lineYScale(m11 / 10)],
 
                     ];
-                    let projectLineGenerate = line().x(d => d[0]).y(d => d[1]);
+                    let projectLineGenerate = line().x(d => d[0]).y(d => d[1]).curve(curveCardinal);
                     // if (j == 0 && i == 0) {
                     // console.log(m11, m22, m33, impp);
                     // console.log(projectLineData);
