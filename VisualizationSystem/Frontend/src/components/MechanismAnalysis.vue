@@ -89,7 +89,49 @@
                         fill="none" stroke="#c6bcbc"></path>
 
 
-                    <g :transform="translate(0, 2 * (barHeight + 29), 0)" id="m3Bar">
+
+                    <g :transform="translate(0, 0, 0)" id="m1Bar">
+                        <text x="5" y="20" font-size="16" fill="#534F4F">[M-1: Recency]</text>
+                        <g :transform="translate(5, 25, 0)">
+                            <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                            </rect>
+                            <!-- <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
+                                :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m1' + r_i">
+                                <rect v-for="(item, i) in groupSet[r_i].m1Bar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#EA7C16">
+                                </rect>
+                            </g> -->
+                            <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
+                                fill="none" stroke="#534f4f">
+                            </path>
+                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
+                                fill="none" stroke="#c6bcbc"></path> -->
+                        </g>
+                    </g>
+
+                    <g :transform="translate(barWidth / 2, 0, 0)" id="m2Bar">
+                        <text x="5" y="20" font-size="16" fill="#534F4F">[M-2: Preferential Attachment]</text>
+                        <g :transform="translate(5, 25, 0)">
+                            <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                            </rect>
+                            <!-- <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
+                                :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m2' + r_i">
+                                <rect v-for="(item, i) in groupSet[r_i].m2Bar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#53ad92">
+                                </rect>
+                            </g> -->
+                            <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
+                                fill="none" stroke="#534f4f">
+                            </path>
+                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
+                                fill="none" stroke="#c6bcbc"></path> -->
+                        </g>
+                    </g>
+
+
+                    <g :transform="translate(0, (barHeight + 40), 0)" id="m3Bar">
                         <text x="5" y="20" font-size="16" fill="#534F4F">[M-3: Propensity]</text>
                         <g :transform="translate(5, 25, 0)">
 
@@ -98,58 +140,42 @@
                                 <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
                                     :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
                                 </rect>
-                                <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
+                                <!-- <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                                     :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m3' + r_i">
                                     <rect v-for="(item, i) in groupSet[r_i].m3Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                         :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#61bad6">
                                     </rect>
-                                </g>
+                                </g> -->
                             </g>
-                            <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
+                            <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
                                 fill="none" stroke="#534f4f">
                             </path>
                             <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
-                                fill="none" stroke="#c6bcbc" stroke-width="1"></path>
-                        </g>
-                    </g>
-                    <g :transform="translate(0, (barHeight + 29), 0)">
-                        <text x="5" y="20" font-size="16" fill="#534F4F">[M-2: Preferential attachment]</text>
-                        <g :transform="translate(5, 25, 0)" id="m1Bar">
-                            <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
-                            </rect>
-                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
-                                :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m2' + r_i">
-                                <rect v-for="(item, i) in groupSet[r_i].m2Bar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#53ad92">
-                                </rect>
-                            </g>
-                            <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
-                                fill="none" stroke="#534f4f">
-                            </path>
-                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
-                                fill="none" stroke="#c6bcbc"></path>
+                                fill="none" stroke="#c6bcbc" stroke-width="1"></path> -->
                         </g>
                     </g>
 
-
-                    <g :transform="translate(0, 0, 0)" id="m2Bar">
-                        <text x="5" y="20" font-size="16" fill="#534F4F">[M-1: Recency]</text>
+                    <g :transform="translate(barWidth / 2, (barHeight + 40), 0)" id="impBar">
+                        <text x="5" y="20" font-size="16" fill="#534F4F">[IMP: Impact Dynamic]</text>
                         <g :transform="translate(5, 25, 0)">
-                            <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
-                            </rect>
-                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
-                                :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m1' + r_i">
-                                <rect v-for="(item, i) in groupSet[r_i].m1Bar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#EA7C16">
+
+                            <g>
+
+                                <rect v-for="(item, i) in impactDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
+                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
                                 </rect>
+                                <!-- <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
+                :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m3' + r_i">
+                <rect v-for="(item, i) in groupSet[r_i].m3Bar" :key="'bar' + i" :x="item.x" :y="item.y"
+                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#61bad6">
+                </rect>
+            </g> -->
                             </g>
-                            <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
-                                fill="none" stroke="#534f4f">
-                            </path>
-                            <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
-                                fill="none" stroke="#c6bcbc"></path>
+                            <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
+            fill="none" stroke="#534f4f">
+        </path>
+        <path :d="'M -5 ' + (barHeight + 5) + ' L ' + (barWidth - 5) + ' ' + (barHeight + 5)"
+            fill="none" stroke="#c6bcbc" stroke-width="1"></path> -->
                         </g>
                     </g>
 
@@ -177,8 +203,8 @@
                     <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
                         <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'"
                             :fill="colormap[i]"></path>
-                        <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
-                            :transform="translate(0, 0, 90 * t_i)" :fill="axisColor[t_i]"></path>
+                        <!-- <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
+                            :transform="translate(0, 0, 90 * t_i)" :fill="axisColor[t_i]"></path> -->
                         <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
                             :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 22)"
                             :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 22)" font-size="16" dy="0.3em"
@@ -214,7 +240,7 @@
 
                         <path v-for="(t_item, t_i) in item['projectLine']" :key="'pL' + t_i" :d="t_item.d" :fill="'none'"
                             :stroke="'#534F4F'" :class="t_item.class" :id="'g_' + t_item.group + '_' + t_item.id"
-                            :opacity="filterValue == t_item.id ? 1 : 0"></path>
+                            :opacity="filterValue == t_item.id ? 1 : 1"></path>
                     </g>
 
                     <g :transform="translate(0, groupHeight - 60, 0)">
@@ -251,7 +277,7 @@
         </div>
     </div>
 </template>
-``
+
 <script>
 import { scaleLinear } from 'd3-scale';
 import { select, selectAll } from 'd3-selection';
@@ -288,6 +314,7 @@ export default {
             attachmentDataBar: [],
             recencyDataBar: [],
             propensityDataBar: [],
+            impactDataBar: [],
             barHeight: 100,
             barWidth: 100,
             groupWidth: 1000,
@@ -333,6 +360,7 @@ export default {
             let m1 = [],
                 m2 = [],
                 m3 = [],
+                imp = [],
                 group = {};
             let max_m1 = 0,
                 max_m2 = 0,
@@ -352,9 +380,10 @@ export default {
                         m2: [],
                         m3: [],
                         imp: [],
-                        m1Bar: new Array(20),
-                        m2Bar: new Array(20),
-                        m3Bar: new Array(20),
+                        m1Bar: new Array(10),
+                        m2Bar: new Array(10),
+                        m3Bar: new Array(10),
+                        impBar: new Array(10),
                         m1Area: new Array(10).fill(0),
                         m2Area: new Array(10).fill(0),
                         m3Area: new Array(10).fill(0),
@@ -372,6 +401,7 @@ export default {
                 m1.push(parseFloat(data[i].M1));
                 m2.push(parseFloat(data[i].M2));
                 m3.push(parseFloat(data[i].M3));
+                imp.push(parseFloat(data[i].IMP));
                 max_m1 = Math.max(max_m1, data[i].M1)
                 max_m2 = Math.max(max_m2, data[i].M2)
                 max_m3 = Math.max(max_m3, data[i].M3)
@@ -387,68 +417,87 @@ export default {
             let maxA = 0;
             let maxR = 0;
             let maxP = 0;
+            let maxM = 0;
+            // let single_bar_width = (this.barWidth - 20) / 10
 
-            let xScale = scaleLinear([0, 20], [22, this.barWidth - 15])
-            let a = new Array(20),
-                r = new Array(20),
-                p = new Array(20);
+            let xScale = scaleLinear([0, 10], [22, (this.barWidth) / 2 - 15])
+            let a = new Array(10),
+                r = new Array(10),
+                p = new Array(10),
+                m = new Array(10);
             for (let i in group) {
-                for (let j = 0; j < 20; ++j) {
+                for (let j = 0; j < 10; ++j) {
                     group[i].m1Bar[j] = {
                         x: xScale(j),
                         v: 0,
                         y: 0,
-                        w: (this.barWidth - 20) / 20
+                        w: (this.barWidth / 2 - 15 - 22) / 10
                     };
                     group[i].m2Bar[j] = {
                         x: xScale(j),
                         v: 0,
                         y: 0,
-                        w: (this.barWidth - 20) / 20
+                        w: (this.barWidth / 2 - 15 - 22) / 10
                     };
                     group[i].m3Bar[j] = {
                         x: xScale(j),
                         v: 0,
                         y: 0,
-                        w: (this.barWidth - 20) / 20
+                        w: (this.barWidth / 2 - 15 - 22) / 10
+                    };
+                    group[i].impBar[j] = {
+                        x: xScale(j),
+                        v: 0,
+                        y: 0,
+                        w: (this.barWidth / 2 - 15 - 22) / 10
                     };
                 }
             }
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 10; i++) {
                 a[i] = {
                     x: xScale(i),
                     v: 0,
                     y: 0,
-                    w: (this.barWidth - 20) / 20
+                    w: (this.barWidth / 2 - 15 - 22) / 10
                 }
                 r[i] = {
                     x: xScale(i),
                     v: 0,
                     y: 0,
-                    w: (this.barWidth - 20) / 20
+                    w: (this.barWidth / 2 - 15 - 22) / 10
                 }
                 p[i] = {
                     x: xScale(i),
                     v: 0,
                     y: 0,
-                    w: (this.barWidth - 20) / 20
+                    w: (this.barWidth / 2 - 15 - 22) / 10
+                }
+                m[i] = {
+                    x: xScale(i),
+                    v: 0,
+                    y: 0,
+                    w: (this.barWidth / 2 - 15 - 22) / 10
                 }
             }
             // console.log(m1)
             for (let i = 0; i < m1.length; i++) {
-                let rr = Math.floor(((m1[i] - min_m1) / (max_m1 - min_m1)) / (1 / 20));
-                if (rr >= 20) rr--;
-                let aa = Math.floor(((m2[i] - min_m2) / (max_m2 - min_m2)) / (1 / 20));
-                if (aa >= 20) aa--;
-                let pp = Math.floor(((m3[i] - min_m3) / (max_m3 - min_m3)) / (1 / 20));
-                if (pp >= 20) pp--;
+                let rr = Math.floor(((m1[i] - min_m1) / (max_m1 - min_m1)) / (1 / 10));
+                if (rr >= 10) rr = 9;
+                let aa = Math.floor(((m2[i] - min_m2) / (max_m2 - min_m2)) / (1 / 10));
+                if (aa >= 10) aa = 9;
+                let pp = Math.floor(((m3[i] - min_m3) / (max_m3 - min_m3)) / (1 / 10));
+                if (pp >= 10) pp = 9;
+                let mm = Math.floor(((imp[i] - min_imp) / (max_imp - min_imp)) / (1 / 10));
+                if (mm >= 10) mm = 9;
 
                 a[aa].v++;
                 r[rr].v++;
                 p[pp].v++;
+                m[mm].v++;
                 maxA = Math.max(maxA, a[aa].v);
                 maxR = Math.max(maxR, r[rr].v);
                 maxP = Math.max(maxP, p[pp].v);
+                maxM = Math.max(maxM, m[mm].v);
             }
             let max_g = 0;
 
@@ -493,16 +542,19 @@ export default {
                     // }
 
 
-                    let m111 = Math.floor(((group[i].m1[j] - min_m1) / (max_m1 - min_m1)) / (1 / 20));
-                    let m222 = Math.floor(((group[i].m2[j] - min_m2) / (max_m2 - min_m2)) / (1 / 20));
-                    let m333 = Math.floor(((group[i].m3[j] - min_m3) / (max_m3 - min_m3)) / (1 / 20));
+                    let m111 = Math.floor(((group[i].m1[j] - min_m1) / (max_m1 - min_m1)) / (1 / 10));
+                    let m222 = Math.floor(((group[i].m2[j] - min_m2) / (max_m2 - min_m2)) / (1 / 10));
+                    let m333 = Math.floor(((group[i].m3[j] - min_m3) / (max_m3 - min_m3)) / (1 / 10));
+                    let m444 = Math.floor(((group[i].imp[j] - min_imp) / (max_imp - min_imp)) / (1 / 10));
 
-                    m111 = m111 == 20 ? m111 - 1 : m111;
-                    m222 = m222 == 20 ? m222 - 1 : m222;
-                    m333 = m333 == 20 ? m333 - 1 : m333;
+                    m111 = m111 == 10 ? m111 - 1 : m111;
+                    m222 = m222 == 10 ? m222 - 1 : m222;
+                    m333 = m333 == 10 ? m333 - 1 : m333;
+                    m444 = m444 == 10 ? m444 - 1 : m444;
                     group[i].m1Bar[m111].v++;
                     group[i].m2Bar[m222].v++;
                     group[i].m3Bar[m333].v++;
+                    group[i].impBar[m444].v++;
                 }
             }
 
@@ -511,21 +563,28 @@ export default {
             let yAScale = scaleLinear([0, maxA], [this.barHeight - 3, 10]);
             let yRScale = scaleLinear([0, maxR], [this.barHeight - 3, 10]);
             let yPScale = scaleLinear([0, maxP], [this.barHeight - 3, 10]);
-            select('#m1Bar').append('g').call(axisLeft(yAScale).ticks(3)).attr('transform', 'translate(21, 0)');
-
-            select('#m2Bar').append('g').call(axisLeft(yRScale).ticks(3)).attr('transform', 'translate(26, 25)');
-
-            select('#m3Bar').append('g').call(axisLeft(yPScale).ticks(3)).attr('transform', 'translate(26, 25)');
+            let yMScale = scaleLinear([0, maxM], [this.barHeight - 3, 10]);
+            let x_scale = scaleLinear([0, 1], [22, (this.barWidth) / 2 - 15])
+            select('#m1Bar').append('g').call(axisLeft(yAScale).ticks(3)).attr('transform', 'translate(27, 25)');
+            select('#m2Bar').append('g').call(axisLeft(yRScale).ticks(3)).attr('transform', 'translate(27, 25)');
+            select('#m3Bar').append('g').call(axisLeft(yPScale).ticks(3)).attr('transform', 'translate(27, 25)');
+            select('#impBar').append('g').call(axisLeft(yMScale).ticks(3)).attr('transform', 'translate(27, 25)');
+            select('#m1Bar').append('g').call(axisBottom(x_scale).ticks(3)).attr('transform', `translate(5, ${this.barHeight - 3 + 25})`);
+            select('#m2Bar').append('g').call(axisBottom(x_scale).ticks(3)).attr('transform', `translate(5, ${this.barHeight - 3 + 25})`);
+            select('#m3Bar').append('g').call(axisBottom(x_scale).ticks(3)).attr('transform', `translate(5, ${this.barHeight - 3 + 25})`);
+            select('#impBar').append('g').call(axisBottom(x_scale).ticks(3)).attr('transform', `translate(5, ${this.barHeight - 3 + 25})`);
             for (let i in a) {
                 a[i].y = yAScale(a[i].v);
                 r[i].y = yRScale(r[i].v);
                 p[i].y = yPScale(p[i].v);
+                m[i].y = yMScale(m[i].v);
             }
             for (let i in group) {
                 for (let j in group[i].m1Bar) {
                     group[i].m1Bar[j].y = yRScale(group[i].m1Bar[j].v);
                     group[i].m2Bar[j].y = yAScale(group[i].m2Bar[j].v);
                     group[i].m3Bar[j].y = yPScale(group[i].m3Bar[j].v);
+                    group[i].impBar[j].y = yMScale(group[i].impBar[j].v);
                 }
             }
             let areaGenerate = area()
@@ -538,7 +597,8 @@ export default {
                 group[d]['area'] = [areaGenerate(group[d].m1Area), areaGenerate(group[d].m3Area), areaGenerate(group[d].impArea), areaGenerate(group[d].m2Area)];
                 group[d]['num_project'] = group[d].project.length;
                 group[d]['ave_impact'] = (sum(group[d].imp, d => ((d - min_imp) / (max_imp - min_imp))) / group[d].imp.length).toFixed(2);
-                group[d]['pie'] = pie().padAngle(0.01)(group[d].project_holder);
+                // group[d]['pie'] = pie().padAngle(0.01)(group[d].project_holder);
+                group[d]['pie'] = pie().padAngle(0.01)([1]);
                 group[d]['arc'] = [];
                 for (let i in group[d].pie) {
                     let tArc = arc().cornerRadius(3)
@@ -550,7 +610,7 @@ export default {
                 groupSet.push(group[d]);
             }
             // console.log(groupSet);
-            return [a, r, p, groupSet];
+            return [a, r, p, m, groupSet];
             // // console.log(this.attachmentData)
         },
         // calcFilter (data) {}
@@ -558,7 +618,7 @@ export default {
     created () { },
     mounted () {
         // console.log
-        this.barHeight = (this.$refs.attr_bar.offsetHeight - 85) / 3;
+        this.barHeight = (this.$refs.attr_bar.offsetHeight - 80) / 2;
         this.barWidth = this.$refs.attr_bar.offsetWidth - 15;
         this.groupHeight = this.$refs.groupView.offsetHeight;
         this.groupWidth = this.$refs.groupView.offsetWidth;
@@ -572,7 +632,7 @@ export default {
                 this.cpData = dataStore.allData.cpData;
                 this.timeSelectionText = dataStore.timeRange.start_format + ' - ' + dataStore.timeRange.end_format;
 
-                [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.groupSet] = this.dataProcess(dataStore.allData.cpData.data);
+                [this.attachmentDataBar, this.recencyDataBar, this.propensityDataBar, this.impactDataBar, this.groupSet] = this.dataProcess(dataStore.allData.cpData.data);
             }
 
             if (dataStore.selectGroup != -1) {
@@ -657,4 +717,5 @@ export default {
   height: 10px; */
     top: calc(50% - 8px);
     left: -16px;
-}</style>
+}
+</style>

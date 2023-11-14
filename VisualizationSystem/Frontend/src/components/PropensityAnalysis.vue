@@ -33,7 +33,7 @@
                         <span style="float: right; width: 65%;">
                             <el-date-picker v-model="selectSlice" type="daterange" range-separator="To"
                                 start-placeholder="Start date" end-placeholder="End date" style="width: 100%"
-                                :default-value="new Date(2021, 5, 1)" />
+                                :default-value="new Date(2021, 7, 1)" />
                         </span>
 
                     </div>
