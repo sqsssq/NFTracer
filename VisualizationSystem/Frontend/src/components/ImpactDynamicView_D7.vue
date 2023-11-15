@@ -1125,9 +1125,9 @@ export default {
             for (let i in pieData) {
                 innerArc.push({
                     data: pieData[i].data,
-                    d: arc().innerRadius(r / 2 - r / 2 * (pieData[i].data.inner / innerSum)).outerRadius(r / 2)(pieData[i]),
+                    d: arc().innerRadius(0).outerRadius(r / 2 * (pieData[i].data.inner / innerSum))(pieData[i]),
                     dOut: arc().innerRadius(r / 2).outerRadius(r / 2 + r / 2 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
-                    dLegend: arc().innerRadius(this.cvHeight * 0.15 / 2 - this.cvHeight * 0.15 / 2 * (pieData[i].data.inner / innerSum)).outerRadius(this.cvHeight * 0.15 / 2)(pieData[i]),
+                    dLegend: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 / 2 * (pieData[i].data.inner / innerSum))(pieData[i]),
                     dLegendOut: arc().innerRadius(this.cvHeight * 0.15 / 2).outerRadius(this.cvHeight * 0.15 / 2 + this.cvHeight * 0.15 / 2 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
                     textTrans: (arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]),
                     fill: this.colorType[pieData[i].data.type],

@@ -66,17 +66,14 @@
                                 <g v-if="legendTag != 0">
                                     <!-- <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i"> -->
                                     <g :transform="translate(cvWidth * 0.15 + 30, cvWidth * 0.15 + 30, 0)">
-                                        <!-- <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
-                                            :d="a_item.dLegend" :fill="a_item.fill"></path> -->
-                                        <!-- <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
-                                            :transform="translate(0, 0, a_i * 120)" :d="'M0 68L0 75'" :fill="'none'"
-                                            stroke="black" stroke-width="2"></path> -->
+                                        <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
+                                            :d="a_item.dLegend" :fill="a_item.fill"></path>
+                                            <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i" :transform="translate(0, 0, a_i * 120)"
+                                            :d="'M0 68L0 75'" :fill="'none'" stroke="black" stroke-width="2"></path>
 
                                         <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
-                                            :d="a_item.dLegendOut" stroke="white" :fill="a_item.fill2"></path>
-                                        <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
-                                            :d="a_item.dLegend" stroke="none" :fill="a_item.fill"></path>
-                                        <!-- <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" text-anchor="middle"
+                                            :d="a_item.dLegend" :fill="a_item.fill"></path>
+                                        <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" text-anchor="middle"
                                             :transform="translatePos(o.textTrans)" dy="0.5em" font-size="18" fill="black"
                                             style="font-weight: bold;">
                                             {{ o.text }}
@@ -92,7 +89,7 @@
                                             :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])" style="font-weight: bold;" :dx="i == 1 ? '-1em' :  i == 2 ? '1em' : '0em'" 
                                             :dy="i == 0 ? '-1.5em' : '1.5em'" font-size="16" fill="#534f4f">
                                             {{ 'CC-' + o.type_name + 's' }}
-                                        </text> -->
+                                        </text>
 
                                     </g>
                                     <!-- <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
@@ -111,25 +108,21 @@
                         </g>
                         <g>
                             <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i">
-                                <path :d="item.HighlightPath" :stroke="item.circleData.stroke" :stroke-width="4" fill="none"
-                                    :opacity="item.opacity"></path>
+                                <path :d="item.HighlightPath" :stroke="item.circleData.stroke" :stroke-width="4" fill="none" :opacity="item.opacity"></path>
                             </g>
                         </g>
                         <g>
                             <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i"
                                 :transform="translate(item.x, item.y, 0)" @mouseover="hoverCorrelation(item)"
-                                @mouseout="outCorrelation()"
-                                @click="clickCorrelation(i, item.projectA, item.projectB, item)">
+                                @mouseout="outCorrelation()" @click="clickCorrelation(i, item.projectA, item.projectB, item)">
                                 <circle :x="0" :y="0" :fill="'white'" :stroke="item.circleData.stroke"
                                     :r="item.circleData.r" :opacity="item.opacity" :stroke-width="4"></circle>
                                 <!-- <path :d="item.HighlightPath" :stroke="'black'" :stroke-width="4" fill="none" :opacity="item.opacity" :transform="translate(-item.x, -item.y, 0)"></path> -->
 
-                                <!-- <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                    :fill="a_item.fill"></path> -->
-                                <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dOut"
-                                    stroke="white" :fill="a_item.fill2"></path>
+                                <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                    :fill="a_item.fill"></path>
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                    stroke="#534f4f" :fill="a_item.fill"></path>
+                                    :fill="a_item.fill"></path>
                             </g>
                         </g>
                         <g>
@@ -166,10 +159,7 @@
                                     :transform="translate(0, 25, 0)"
                                     :d="'M' + (p_item.x + p_item.rw) + ',' + p_item.y + 'L' + (p_item.x + p_item.rw) + ',' + (p_item.y + p_item.h)"
                                     :fill="'none'" :stroke="p_item.stroke" :stroke-width="3" :opacity="item.opacity"></path>
-                                <text v-for="(t_item, t_i) in item.lineData" :key="'select_text_' + t_i"
-                                    :x="ctWidth / 3 + t_item.x" :y="t_item.y + t_item.h" fill="black" text-anchor="end"
-                                    dx="-0.1em" dy="1em" style="font-weight: bold;"
-                                    :opacity="item.opacity">{{ t_item.text }}</text>
+                                <text v-for="(t_item, t_i) in item.lineData" :key="'select_text_' + t_i" :x="ctWidth / 3 + t_item.x" :y="t_item.y + t_item.h" fill="black" text-anchor="end" dx="-0.1em" dy="1em" style="font-weight: bold;" :opacity="item.opacity">{{ t_item.text }}</text>
                             </g>
                         </g>
                         <g transform="translate(0, 20)">
@@ -414,7 +404,7 @@ export default {
                 seller: '#b69acb',
                 buyer: '#6f319b',
             },
-            colormap3: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#f4d58d', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
+            // colormap2: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#f4d58d', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
             colormap2: ['#56B0FF', '#FF3D3D'],
             correlationData: [],
             axisColor: { 'M1': '#EA7C16', 'M3': '#61bad6', 'IMP': '#d77a78', 'M2': '#53ad92' },
@@ -462,7 +452,7 @@ export default {
         },
         outCorrelation () {
             if (this.legendTag != 2)
-                this.legendTag = 0;
+            this.legendTag = 0;
         },
         clickCorrelation (cnt, projectA, projectB, data) {
             this.legendTag = 2;
@@ -1104,20 +1094,12 @@ export default {
 
         },
         calcCorrelation (data, r, x, y, rectScale, holderScale, y1, y2, HighlightPath, r_color) {
-            console.log(data)
             let tmpData = [];
-            let innerSum = 0;
-            let colorScale = scaleLinear([-1, 1], [0, 10]);
             for (let i in data.inner) {
-                let outerName = i == 'holder' ? 'c1' : (i == 'buyer' ? 'c2' : 'c3');
-                // innerSum += data.inner[i];
-                innerSum = Math.max(data.inner[i], innerSum);
                 tmpData.push({
                     type: i,
-                    value: 1,
-                    inner: data.inner[i],
-                    raw: data.raw[i],
-                    corr: data.outer[outerName]
+                    value: data.inner[i],
+                    raw: data.raw[i]
                 });
             }
             let pieData = pie().sort(null).value(d => d.value)(tmpData);
@@ -1125,20 +1107,18 @@ export default {
             for (let i in pieData) {
                 innerArc.push({
                     data: pieData[i].data,
-                    d: arc().innerRadius(r / 2 - r / 2 * (pieData[i].data.inner / innerSum)).outerRadius(r / 2)(pieData[i]),
-                    dOut: arc().innerRadius(r / 2).outerRadius(r / 2 + r / 2 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
-                    dLegend: arc().innerRadius(this.cvHeight * 0.15 / 2 - this.cvHeight * 0.15 / 2 * (pieData[i].data.inner / innerSum)).outerRadius(this.cvHeight * 0.15 / 2)(pieData[i]),
-                    dLegendOut: arc().innerRadius(this.cvHeight * 0.15 / 2).outerRadius(this.cvHeight * 0.15 / 2 + this.cvHeight * 0.15 / 2 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
+                    d: arc().innerRadius(0).outerRadius(r - 5)(pieData[i]),
+                    dLegend: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)(pieData[i]),
                     textTrans: (arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]),
                     fill: this.colorType[pieData[i].data.type],
-                    fill2: this.colormap3[(colorScale(pieData[i].data.corr)).toFixed(0)],
                     text: pieData[i].data.raw
                 })
                 // console.log((arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]), pieData[i])
             }
             let outArc = [];
             let angle = 45;
-            // console.log(data);
+            let colorScale = scaleLinear([-1, 1], [0, 10]);
+            console.log(data);
             let cnt = 0;
             for (let i in data.outer) {
                 outArc.push({
@@ -1158,7 +1138,7 @@ export default {
                     }),
                     fill: ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1) > 0 ? this.colormap2[1] : ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1) == 0 ? 'white' : this.colormap2[0],
                     type: i,
-                    type_name: i == 'c1' ? 'Holder' : i == 'c2' ? 'Buyer' : 'Seller',
+                    type_name: i == 'c1' ? 'Holder' : i == 'c2' ? 'Buyer' : 'Seller', 
                     text: ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1)
                 });
                 cnt++;
@@ -1377,7 +1357,7 @@ export default {
                     project = [co_data[i]['Project Name B'], co_data[i]['Project Name A']];
                 }
 
-                let HighlightPath = 'M' + projectPosition[co_data[i]['Project Name A']].pos[0] + ',' + projectPosition[co_data[i]['Project Name A']].pos[1] + 'L' + x + ',' + y + 'L' + projectPosition[co_data[i]['Project Name B']].pos[0] + ',' + projectPosition[co_data[i]['Project Name B']].pos[1];
+                let HighlightPath = 'M' + projectPosition[co_data[i]['Project Name A']].pos[0] + ',' + projectPosition[co_data[i]['Project Name A']].pos[1] + 'L' + x + ','+ y + 'L' + projectPosition[co_data[i]['Project Name B']].pos[0] + ',' + projectPosition[co_data[i]['Project Name B']].pos[1];
                 corr_res_data.push(this.calcCorrelation({
                     project: project,
                     projectA: co_data[i]['Project Name A'],
@@ -1502,7 +1482,6 @@ export default {
 #timeAxis_g .tick text {
     font-size: 14px;
 }
-
 .el-input__suffix-inner i {
     border: 1px solid #dcdfe6;
 }

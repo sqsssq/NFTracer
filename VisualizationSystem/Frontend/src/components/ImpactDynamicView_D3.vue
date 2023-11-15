@@ -1106,16 +1106,12 @@ export default {
         calcCorrelation (data, r, x, y, rectScale, holderScale, y1, y2, HighlightPath, r_color) {
             console.log(data)
             let tmpData = [];
-            let innerSum = 0;
             let colorScale = scaleLinear([-1, 1], [0, 10]);
             for (let i in data.inner) {
                 let outerName = i == 'holder' ? 'c1' : (i == 'buyer' ? 'c2' : 'c3');
-                // innerSum += data.inner[i];
-                innerSum = Math.max(data.inner[i], innerSum);
                 tmpData.push({
                     type: i,
-                    value: 1,
-                    inner: data.inner[i],
+                    value: data.inner[i],
                     raw: data.raw[i],
                     corr: data.outer[outerName]
                 });
@@ -1125,10 +1121,10 @@ export default {
             for (let i in pieData) {
                 innerArc.push({
                     data: pieData[i].data,
-                    d: arc().innerRadius(r / 2 - r / 2 * (pieData[i].data.inner / innerSum)).outerRadius(r / 2)(pieData[i]),
-                    dOut: arc().innerRadius(r / 2).outerRadius(r / 2 + r / 2 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
-                    dLegend: arc().innerRadius(this.cvHeight * 0.15 / 2 - this.cvHeight * 0.15 / 2 * (pieData[i].data.inner / innerSum)).outerRadius(this.cvHeight * 0.15 / 2)(pieData[i]),
-                    dLegendOut: arc().innerRadius(this.cvHeight * 0.15 / 2).outerRadius(this.cvHeight * 0.15 / 2 + this.cvHeight * 0.15 / 2 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
+                    d: arc().innerRadius(0).outerRadius(r * .7)(pieData[i]),
+                    dOut: arc().innerRadius(r * .7).outerRadius(r * .7 + r * .3 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
+                    dLegend: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 * .7)(pieData[i]),
+                    dLegendOut: arc().innerRadius(this.cvHeight * 0.15 * .7).outerRadius(this.cvHeight * 0.15 * .7 + this.cvHeight * 0.15 * .3 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
                     textTrans: (arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]),
                     fill: this.colorType[pieData[i].data.type],
                     fill2: this.colormap3[(colorScale(pieData[i].data.corr)).toFixed(0)],
