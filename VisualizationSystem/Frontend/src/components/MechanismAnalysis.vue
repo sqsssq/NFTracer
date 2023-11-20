@@ -21,7 +21,7 @@
             <span style="float: right; position: relative; top: 3px; font-size: 16px;">
 
                 <span style="float: right;">
-                    <span style="margin-right: 20px;">
+                    <!-- <span style="margin-right: 20px;">
                         [M-1] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                             xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
                             <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
@@ -38,7 +38,7 @@
                             xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
                             <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#d77a78" fill-opacity="0.7" />
                         </svg>
-                    </span>
+                    </span> -->
                     <span style="margin-right: 220px;">
                         Time Slot:
                         <span style="text-decoration: underline; width: 200px; position: absolute; left: 90px; top: -3px;">
@@ -198,7 +198,7 @@
                     <text x="50%" y="20" font-size="18" text-anchor="middle"
                         :fill="i != selectGroupTag ? '#534F4F' : colormap[i]" font-weight="bold"
                         style="font-weight: 600;">{{
-                            'Group ' + i
+                            'Group ' + (i + 1)
                         }}</text>
                     <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
                         <!-- <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'"

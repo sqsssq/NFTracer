@@ -22,7 +22,7 @@
                 <svg height="27" width="600" transform="translate(0, 10)">
                     <g v-for="(item, i) in (all_group_array)" :key="'gcolor' + i">
                         <rect :x="0 + i * 60" :y="2" :width="60" :height="9" :fill="colormap[i]" :stroke="'#534f4f'"></rect>
-                        <text :x="0 + i * 60 + 30" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'Group' + i
+                        <text :x="0 + i * 60 + 30" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'Group' + (i + 1)
                         }}</text>
                     </g>
                     <g>

@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-13 20:01:48
+ * @LastEditTime: 2023-11-16 17:07:09
 -->
 <template>
     <div style="height: 100%;">
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
-            <div style="font-size: 16px; margin-top: 5px; height: calc(7% + 0px);">
+            <div style="font-size: 16px; margin-top: 5px; height: calc(9% + 0px);">
                 <div style="margin-top: 0px;">
                     <span style="color: #ABACBE;">
                         Showing <span class="php">{{ select_project_num }} projects</span> from 70 results
@@ -174,11 +174,11 @@
                         </span>
                     </span>
                 </div> -->
-                <div style="margin-top: 7px;">
+                <div style="margin-top: 0px;">
                     <!-- <span style="">
                                         Probability: [70%-95%]
                                     </span> -->
-                    <span style="float: left; position: relative; top: -4px;">
+                    <span style="">
                         Group Select:
                         <el-select v-model="rankValue" class="m-2" placeholder="Select"
                             style="width: 130px; --el-border-color: white;">
@@ -194,10 +194,30 @@
                         </el-select>
                     </span> -->
                 </div>
+                <div style="margin-top: 0px;">
+                    <span style="margin-right: 20px;">
+                        [M-1] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#EA7C16" fill-opacity="0.7" />
+                        </svg> &nbsp;
+                        [M-2] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#53ad92" fill-opacity="0.7" />
+                        </svg> &nbsp;
+                        [M-3] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#61bad6" fill-opacity="0.7" />
+                        </svg>&nbsp;
+                        [IMP] &nbsp; <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" transform="translate(0,3)">
+                            <rect x="0" y="0" width="15" height="15" rx="1.29984" fill="#d77a78" fill-opacity="0.7" />
+                        </svg>
+                    </span>
+                </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
             <div
-                style="overflow-y: auto; height: calc(53% - 25px); margin-top: 10px; margin-bottom: 10px; width: calc(100% + 10px);">
+                style="overflow-y: auto; height: calc(51% - 25px); margin-top: 10px; margin-bottom: 10px; width: calc(100% + 10px);">
                 <el-table class="customer-no-border-table" :data="tableData"
                     style="height: calc(100% + 0px); width: calc(100% + 0px);" border :row-style="{
                         height: 30 + 'px',
@@ -250,7 +270,7 @@
                             <svg width="70" height="30" style="margin-top: 7px;">
                                 <g>
                                     <rect y="8" height="15" :width="60 * parseFloat(scope.row['M1'])"
-                                        :fill="axisColor['M1']"></rect>
+                                        :fill="axisColor['M1']" fill-opacity=".7"></rect>
                                     <text x="3" y="20"
                                         color="#606060">{{ Math.round(parseFloat(scope.row['M1']) * 100) / 100 }}</text>
                                 </g>
@@ -263,7 +283,7 @@
                             <svg width="70" height="30" style="margin-top: 7px;">
                                 <g>
                                     <rect y="8" height="15" :width="60 * parseFloat(scope.row['M2'])"
-                                        :fill="axisColor['M2']"></rect>
+                                        :fill="axisColor['M2']" fill-opacity=".7"></rect>
                                     <text x="3" y="20"
                                         color="#606060">{{ Math.round(parseFloat(scope.row['M2']) * 100) / 100 }}</text>
                                 </g>
@@ -276,7 +296,7 @@
                             <svg width="70" height="30" style="margin-top: 7px;">
                                 <g>
                                     <rect y="8" height="15" :width="60 * parseFloat(scope.row['M3'])"
-                                        :fill="axisColor['M3']"></rect>
+                                        :fill="axisColor['M3']" fill-opacity=".7"></rect>
                                     <text x="3" y="20"
                                         color="#606060">{{ Math.round(parseFloat(scope.row['M3']) * 100) / 100 }}</text>
                                 </g>
@@ -289,7 +309,7 @@
                             <svg width="70" height="30" style="margin-top: 7px;">
                                 <g>
                                     <rect y="8" height="15" :width="60 * parseFloat(scope.row['IMP'])"
-                                        :fill="axisColor['IMP']"></rect>
+                                        :fill="axisColor['IMP']" fill-opacity=".7"></rect>
                                     <text x="3" y="20"
                                         color="#606060">{{ Math.round(parseFloat(scope.row['IMP']) * 100) / 100 }}</text>
                                 </g>
@@ -369,7 +389,7 @@ import { arc, line, pie } from 'd3-shape';
 import { scaleLinear } from 'd3-scale';
 import { useDataStore } from "../stores/counter";
 import { extent, max, min } from 'd3-array';
-import { interpolateViridis } from 'd3';
+import { cluster, interpolateViridis } from 'd3';
 import { select, selectAll } from 'd3-selection';
 // import star from 'd3-shape/src/symbol/star';
 
@@ -492,7 +512,33 @@ export default {
                 for (let i in importData) {
                     console.log(i);
                     if (file_cnt == 0) {
-                        dataStore.allData.cpData = importData[i]['default'];
+                        let tempData = importData[i]['default'];
+                        let cluster_res = {};
+
+                        for (let j in tempData['data']) {
+
+                            if (typeof cluster_res[tempData['data'][j]['Group']] == 'undefined') {
+                                cluster_res[tempData['data'][j]['Group']] = 0;
+                            }
+                            cluster_res[tempData['data'][j]['Group']]++;
+                        }
+                        const sort_values = Object.values(cluster_res).sort((a, b) => b - a);
+                        // console.log(sort_values);
+                        let tmp1 = {};
+                        for (let j in sort_values) {
+                            for (let k in cluster_res) {
+                                if (sort_values[j] == cluster_res[k]) {
+                                    tmp1[k] = parseInt(j);
+                                }
+                            }
+                        }
+                        for (let j in tempData['data']) {
+                            tempData['data'][j]['Group'] = tmp1[tempData['data'][j]['Group']];
+                        }
+                        // console.log(tmp1, cluster_res);
+                        // dataStore.allData.cpData = importData[i]['default'];
+                        // console.log(importData[i]['default'])
+                        dataStore.allData.cpData = tempData;
                     } else if (file_cnt == 1) {
                         dataStore.allData.projectData = importData[i]['default'];
                     } else if (file_cnt == 2) {
