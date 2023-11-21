@@ -1,9 +1,16 @@
 <!--
  * @Description: 
  * @Author: Qing Shi
+ * @Date: 2023-11-20 22:31:42
+ * @LastEditors: Qing Shi
+ * @LastEditTime: 2023-11-20 22:31:42
+-->
+<!--
+ * @Description: 
+ * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-20 22:44:51
+ * @LastEditTime: 2023-11-20 22:30:49
 -->
 <template>
     <div style="height: 100%">
@@ -71,11 +78,11 @@
                                         <!-- <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
                                             :transform="translate(0, 0, a_i * 120)" :d="'M0 68L0 75'" :fill="'none'"
                                             stroke="black" stroke-width="2"></path> -->
-                                        <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
+<path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
                                             :d="a_item.dLegend" stroke="none" :fill="a_item.fill"></path>
-                                        <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i" stroke-width="3"
-                                            :d="a_item.dLegendOut" :stroke="a_item.fill2" :fill="a_item.fill2"></path>
-
+                                        <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
+                                            :d="a_item.dLegendOut" stroke="white" :fill="a_item.fill2"></path>
+                                        
                                         <!-- <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" text-anchor="middle"
                                             :transform="translatePos(o.textTrans)" dy="0.5em" font-size="18" fill="black"
                                             style="font-weight: bold;">
@@ -129,7 +136,7 @@
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
                                     stroke="#534f4f" :fill="a_item.fill"></path>
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dOut"
-                                    stroke-width="3" :stroke="a_item.fill2" :fill="a_item.fill2"></path>
+                                    stroke="#534f4f" :fill="a_item.fill2"></path>
                             </g>
                         </g>
                         <g>
@@ -1118,18 +1125,13 @@ export default {
             }
             let pieData = pie().sort(null).value(d => d.value)(tmpData);
             let innerArc = [];
-            console.log(pieData);
             for (let i in pieData) {
                 innerArc.push({
                     data: pieData[i].data,
                     d: arc().innerRadius(0).outerRadius(r * .9)(pieData[i]),
-                    dOut: arc().innerRadius(0).outerRadius(r * .9 * parseFloat(Math.abs(pieData[i].data.corr)))({
-                        startAngle: (pieData[i].startAngle + pieData[i].endAngle) / 2, endAngle: (pieData[i].startAngle + pieData[i].endAngle) / 2
-                    }),
+                    dOut: arc().innerRadius(0).outerRadius(r * .7 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
                     dLegend: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 * .9)(pieData[i]),
-                    dLegendOut: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 * .9 * parseFloat(Math.abs(pieData[i].data.corr)))({
-                        startAngle: (pieData[i].startAngle + pieData[i].endAngle) / 2, endAngle: (pieData[i].startAngle + pieData[i].endAngle) / 2
-                    }),
+                    dLegendOut: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 * .7 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
                     textTrans: (arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]),
                     fill: this.colorType[pieData[i].data.type],
                     fill2: this.colormap3[(colorScale(pieData[i].data.corr)).toFixed(0)],
