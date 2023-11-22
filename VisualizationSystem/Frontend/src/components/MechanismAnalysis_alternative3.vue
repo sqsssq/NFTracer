@@ -1,9 +1,23 @@
 <!--
  * @Description: 
  * @Author: Qing Shi
+ * @Date: 2023-11-22 21:47:01
+ * @LastEditors: Qing Shi
+ * @LastEditTime: 2023-11-22 21:47:02
+-->
+<!--
+ * @Description: 
+ * @Author: Qing Shi
+ * @Date: 2023-11-20 21:30:34
+ * @LastEditors: Qing Shi
+ * @LastEditTime: 2023-11-22 21:35:18
+-->
+<!--
+ * @Description: 
+ * @Author: Qing Shi
  * @Date: 2023-03-13 13:01:44
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-22 22:05:52
+ * @LastEditTime: 2023-11-20 21:30:27
 -->
 <template>
     <div style="height: 100%">
@@ -193,35 +207,30 @@
                                     'border': '1px solid purple',
                                     'display': 'inline-block'
                                 }"> -->
-                <svg v-show="showTag" v-for="(item, i) in groupSet" :key="'group' + i" height="97%" width="24%" style=" box-shadow: 1px 3px 5px #888888; margin-right: 1%; margin-top: .3%;">
+                <svg v-show="showTag" v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
                     <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
                     <text x="50%" y="20" font-size="18" text-anchor="middle"
                         :fill="i != selectGroupTag ? '#534F4F' : colormap[i]" font-weight="bold"
                         style="font-weight: 600;">{{
                             'Group ' + (i + 1)
                         }}</text>
-                    <g :transform="translate(groupWidth / 8 - 8, groupWidth / 8 + 8, 0)">
+                    <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
                         <!-- <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'"
                             :fill="colormap[i]"></path> -->
                         <!-- <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
                             :transform="translate(0, 0, 90 * t_i)" :fill="axisColor[t_i]"></path> -->
                         <text v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
-                            :x="-(groupWidth / 8 - 30) + (groupWidth / 8 - 30) / 1.5 * t_i"
-                            :y="groupWidth / 8 - 10" font-size="16" dy="0.3em"
+                            :x="Math.sin((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 22)"
+                            :y="-Math.cos((Math.PI * (90 * t_i)) / 180) * (groupWidth / 8 - 22)" font-size="16" dy="0.3em"
                             text-anchor="middle" fill="#534F4F" font-weight="bold">{{ t_item }}</text>
-                        <path v-for="(t_item, t_i) in axisName" :key="'gt' + t_i" :transform="translate(0, 0, 0)"
-                            :d="'M' + (-(groupWidth / 8 - 30) + (groupWidth / 8 - 30) / 1.5 * t_i) + ',' + (groupWidth / 8 - 30) + 'L' +  + (-(groupWidth / 8 - 30) + (groupWidth / 8 - 30) / 1.5 * t_i) + ',' + (-(groupWidth / 8 - 30))"
-                            stroke-dasharray="5.5"  fill="none"
-                                stroke="#7F7F7F"
-                            ></path>
                         <g :transform="translate(0, 0, 0)">
-                            <!-- <path stroke-dasharray="5.5"
+                            <path stroke-dasharray="5.5"
                                 :d="'M 0 ' + -(groupWidth / 8 - 48) + ' L 0 ' + ((groupWidth / 8 - 48))" fill="none"
                                 stroke="#7F7F7F"></path>
                             <path stroke-dasharray="5.5"
                                 :d="'M ' + -(groupWidth / 8 - 48) + ' 0 L ' + ((groupWidth / 8 - 48)) + ' 0'" fill="none"
-                                stroke="#7F7F7F"></path> -->
-                            <!-- <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) + 15" fill="none" stroke="#7F7F7F"
+                                stroke="#7F7F7F"></path>
+                            <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) + 15" fill="none" stroke="#7F7F7F"
                                 stroke-dasharray="5.5"></circle>
                             <circle x="0" y="0" :r="(groupWidth / 8 - 48 - 15) * 2 / 3 + 15" fill="none" stroke="#7F7F7F"
                                 stroke-dasharray="5.5"></circle>
@@ -238,17 +247,17 @@
                             <text font-size="16" :y="(groupWidth / 8 - 48 - 15) + 15" x="0" fill="#534F4F"
                                 text-anchor="middle" dy="-0.2em" dx="0.5em">1</text>
                             <text font-size="16" :y="-(groupWidth / 8 - 48 - 15) - 15" x="0" fill="#534F4F"
-                                text-anchor="middle" dy="0.9em" dx="0.5em">1</text> -->
+                                text-anchor="middle" dy="0.9em" dx="0.5em">1</text>
                             <!-- <path v-for="(arc_item, arc_i) in monthArc" :key="'arc' + arc_i" :d="arc_item" stroke="#D9D9D9"
                                                 fill="none"></path> -->
                         </g>
 
                         <path v-for="(t_item, t_i) in item['projectLine']" :key="'pL' + t_i" :d="t_item.d" :fill="'none'"
                             :stroke="colormap[i]" :class="t_item.class" :id="'g_' + t_item.group + '_' + t_item.id"
-                            stroke-width="1" :opacity="filterValue == t_item.id ? 1 : 1"></path>
+                            stroke-width=".8" :opacity="filterValue == t_item.id ? 1 : 1"></path>
                     </g>
 
-                    <g :transform="translate(0, groupHeight - 65, 0)">
+                    <g :transform="translate(0, groupHeight - 60, 0)">
                         <text x="50%" y="20" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
                             'Num_Projects ' + item.num_project }}</text>
                         <text x="50%" y="40" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
@@ -312,7 +321,7 @@ export default {
             // colormap: ["#B3AE94", "#C59A81", "#D8876F", "#DDBE8F", "#94A7C7", "#9B8FB7", "#D883AF"],
             monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-            axisName: ['M1', 'M2', 'M3', 'IMP'],
+            axisName: ['M1', 'M3', 'IMP', 'M2'],
             axisColor: ['#EA7C16', '#61bad6', '#d77a78', '#53ad92'],
             attachmentData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
             recencyData: [3, 2, 1, 5, 3, 4, 2, 4, 2, 1, 3, 2, 1, 5, 3, 4, 2, 4, 2, 1],
@@ -525,23 +534,32 @@ export default {
             for (let i in group) {
                 // console.log(group[i]);
                 for (let j in group[i].m1) {
-                    let m11 = ((group[i].m1[j] - min_m1) / (max_m1 - min_m1));
-                    let m22 = ((group[i].m2[j] - min_m2) / (max_m2 - min_m2));
-                    let m33 = ((group[i].m3[j] - min_m3) / (max_m3 - min_m3));
-                    let impp = ((group[i].imp[j] - min_imp) / (max_imp - min_imp));
+                    let m11 = (((group[i].m1[j] - min_m1) / (max_m1 - min_m1)));
+                    let m22 = (((group[i].m2[j] - min_m2) / (max_m2 - min_m2)));
+                    let m33 = (((group[i].m3[j] - min_m3) / (max_m3 - min_m3)));
+                    let impp = (((group[i].imp[j] - min_imp) / (max_imp - min_imp)));
+                    m11 = m11 > 1 ?  1 : m11;
+                    m22 = m22 > 1 ?  1 : m22;
+                    m33 = m33 > 1 ?1 : m33;
+                    impp = impp > 1 ? 1 : impp;
+                    group[i].m1Area[m11]++;
+                    group[i].m2Area[m22]++;
+                    group[i].m3Area[m33]++;
+                    group[i].impArea[impp]++;
                     max_g = Math.max(max_g, group[i].m1Area[m11], group[i].m2Area[m22], group[i].m3Area[m33], group[i].impArea[impp]);
 
-                    let lineYScale = scaleLinear([0, 1], [(this.groupWidth / 8 - 30), -(this.groupWidth / 8 - 30)])
-                    let lineXScale = scaleLinear([0, 3], [-(this.groupWidth / 8 - 30), (this.groupWidth / 8 - 30)])
+                    let lineYScale = scaleLinear([0, 1], [-15, -(this.groupWidth / 8 - 48)])
 
                     let projectLineData = [
-                        [lineXScale(0), lineYScale(m11)],
-                        [lineXScale(1), lineYScale(m22)],
-                        [lineXScale(2), lineYScale(m33)],
-                        [lineXScale(3), lineYScale(impp)]
+                        [0, lineYScale(m11)],
+                        [-lineYScale(m33), 0],
+                        [0, -lineYScale(impp)],
+                        [lineYScale(m22), 0],
+                        [0, lineYScale(m11)],
+
                     ];
                     let projectLineGenerate = line().x(d => d[0]).y(d => d[1])
-                    // .curve(curveCardinal);
+                    .curve(curveCardinal);
                     // if (j == 0 && i == 0) {
                     // console.log(m11, m22, m33, impp);
                     // console.log(projectLineData);
@@ -805,5 +823,3 @@ export default {
     left: -16px;
 }
 </style>
-
-

@@ -1,16 +1,16 @@
 <!--
  * @Description: 
  * @Author: Qing Shi
- * @Date: 2023-11-20 22:31:42
+ * @Date: 2023-11-22 21:13:10
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-22 21:28:53
+ * @LastEditTime: 2023-11-22 21:13:11
 -->
 <!--
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-20 22:30:49
+ * @LastEditTime: 2023-11-21 18:21:14
 -->
 <template>
     <div style="height: 100%">
@@ -78,11 +78,11 @@
                                         <!-- <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
                                             :transform="translate(0, 0, a_i * 120)" :d="'M0 68L0 75'" :fill="'none'"
                                             stroke="black" stroke-width="2"></path> -->
-<path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
+                                        <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
                                             :d="a_item.dLegend" stroke="none" :fill="a_item.fill"></path>
                                         <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
                                             :d="a_item.dLegendOut" stroke="white" :fill="a_item.fill2"></path>
-                                        
+
                                         <!-- <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" text-anchor="middle"
                                             :transform="translatePos(o.textTrans)" dy="0.5em" font-size="18" fill="black"
                                             style="font-weight: bold;">
@@ -133,7 +133,6 @@
 
                                 <!-- <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
                                     :fill="a_item.fill"></path> -->
-                                <circle :x="0" :y="0" :fill="'white'" :r="item.circleData.r" stroke="none"></circle>
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
                                     stroke="#534f4f" :fill="a_item.fill"></path>
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dOut"
@@ -1126,14 +1125,15 @@ export default {
             }
             let pieData = pie().sort(null).value(d => d.value)(tmpData);
             let innerArc = [];
+            console.log(pieData);
             for (let i in pieData) {
+                // console.log(r * .45, pieData[i].data.corr < 0 ? r * .45 * parseFloat(Math.abs(pieData[i].data.corr)) : 0, r * .45 + (pieData[i].data.corr < 0 ? r * .45 * parseFloat(Math.abs(pieData[i].data.corr)) : 0), r * .45 - (pieData[i].data.corr < 0 ? r * .45 * parseFloat(Math.abs(pieData[i].data.corr)) : 0));
                 innerArc.push({
                     data: pieData[i].data,
-                    r: .9 * r + 5,
-                    d: arc().innerRadius(.9 * r).outerRadius(r * .9 + 5)(pieData[i]),
-                    dOut: arc().innerRadius(0).outerRadius(r * .9 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
-                    dLegend: arc().innerRadius(this.cvHeight * .15 * .9).outerRadius(this.cvHeight * 0.15 * .9 + 20)(pieData[i]),
-                    dLegendOut: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 * .9 * parseFloat(Math.abs(pieData[i].data.corr)))(pieData[i]),
+                    d: arc().innerRadius(0).outerRadius(r * .9)(pieData[i]),
+                    dOut: arc().innerRadius(r * .45 - (pieData[i].data.corr < 0 ? r * .45 * parseFloat(Math.abs(pieData[i].data.corr)) : 0)).outerRadius(r * .45 + (pieData[i].data.corr < 0 ? 0: r * .45 * parseFloat(Math.abs(pieData[i].data.corr))))(pieData[i]),
+                    dLegend: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 * .9)(pieData[i]),
+                    dLegendOut: arc().innerRadius(this.cvHeight * 0.15 * .45 - (pieData[i].data.corr < 0 ? this.cvHeight * 0.15 * .45 * parseFloat(Math.abs(pieData[i].data.corr)) : 0)).outerRadius(this.cvHeight * 0.15 * .45 + (pieData[i].data.corr < 0 ? 0:this.cvHeight * 0.15 * .45 * parseFloat(Math.abs(pieData[i].data.corr))))(pieData[i]),
                     textTrans: (arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]),
                     fill: this.colorType[pieData[i].data.type],
                     fill2: this.colormap3[(colorScale(pieData[i].data.corr)).toFixed(0)],

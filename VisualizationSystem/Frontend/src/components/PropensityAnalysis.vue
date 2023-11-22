@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-16 17:07:09
+ * @LastEditTime: 2023-11-22 21:42:12
 -->
 <template>
     <div style="height: 100%;">
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
-            <div style="font-size: 16px; margin-top: 5px; height: calc(9% + 0px);">
+            <div style="font-size: 16px; margin-top: 5px; height: calc(10% + 0px);">
                 <div style="margin-top: 0px;">
                     <span style="color: #ABACBE;">
                         Showing <span class="php">{{ select_project_num }} projects</span> from 70 results
@@ -703,9 +703,9 @@ export default {
                 res_data.push(group[i]);
                 for (let j in group[i].group) {
                     
-                    if (j == 0)
-                        group[i].group[j]['group'] = 'G' + i;
-                    else group[i].group[j]['group'] = '';
+                    // if (j == 0)
+                        group[i].group[j]['group'] = 'G' + (parseInt(i) + 1);
+                    // else group[i].group[j]['group'] = '';
                     res_single_data.push(group[i].group[j]);
                 }
             }
