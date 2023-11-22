@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-13 13:01:44
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-20 22:23:17
+ * @LastEditTime: 2023-11-22 22:15:00
 -->
 <template>
     <div style="height: 100%">
@@ -193,14 +193,14 @@
                                     'border': '1px solid purple',
                                     'display': 'inline-block'
                                 }"> -->
-                <svg v-show="showTag" v-for="(item, i) in groupSet" :key="'group' + i" height="100%" width="25%">
+                <svg v-show="showTag" v-for="(item, i) in groupSet" :key="'group' + i" height="97%" width="24%" style=" box-shadow: 1px 3px 5px #888888; margin-right: 1%; margin-top: .3%;">
                     <!-- <circle cx="10" cy="10" r="10" fill="red"></circle> -->
                     <text x="50%" y="20" font-size="18" text-anchor="middle"
                         :fill="i != selectGroupTag ? '#534F4F' : colormap[i]" font-weight="bold"
                         style="font-weight: 600;">{{
                             'Group ' + (i + 1)
                         }}</text>
-                    <g :transform="translate(groupWidth / 8, groupWidth / 8 + 15, 0)">
+                    <g :transform="translate(groupWidth / 8 - 8, groupWidth / 8 + 8, 0)">
                         <!-- <path v-for="(t_item, t_i) in item['arc']" :key="'gHolder' + t_i" :d="t_item" :stroke="'none'"
                             :fill="colormap[i]"></path> -->
                         <!-- <path v-for="(t_item, t_i) in item['area']" :key="'gd' + t_i" :d="t_item"
@@ -248,7 +248,7 @@
                             stroke-width="1" :opacity="filterValue == t_item.id ? 1 : 1"></path>
                     </g>
 
-                    <g :transform="translate(0, groupHeight - 60, 0)">
+                    <g :transform="translate(0, groupHeight - 65, 0)">
                         <text x="50%" y="20" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
                             'Num_Projects ' + item.num_project }}</text>
                         <text x="50%" y="40" font-size="16" text-anchor="middle" fill="#534F4F" font-weight="bold">{{
