@@ -1,3 +1,4 @@
+
 <!--
  * @Description: 
  * @Author: Qing Shi
@@ -81,18 +82,13 @@
                                             <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i" stroke-width="5"
                                             :d="a_item.dLegend" stroke="white" :fill="a_item.fill"></path>
                                         <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i" stroke-width="5"
-                                            :d="a_item.dLegendOut" stroke="white" :fill="a_item.fill"></path>
+                                            :d="a_item.dLegendOut" stroke="white" :fill="a_item.fill3"></path>
 
                                             <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i" :d="a_item.dLegendOutBack" stroke-width="5"
-                                    stroke="white" :fill="'#606060'" opacity=".1"></path>
+                                    stroke="white" :fill="'#606060'" :opacity="a_i == 0 ? .1 : 0"></path>
                                 
-                                    <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i" :d="a_item.dLegendBase" stroke-width="2"
-                                    stroke="black" :fill="'#606060'" opacity="1"></path>
                                     <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i" :d="a_item.dLegendInBack" stroke-width="5"
                                     stroke="white" :fill="'#606060'" :opacity="a_i == 0 ? .1 : 0"></path>
-                                    <text :x="0" :y="-0.19 * cvHeight" font-size="28" text-anchor="middle">+1</text>
-                                    <text :x="-cvHeight * .21" :y="0 * cvHeight" dy=".4em" font-size="28" text-anchor="middle">0</text>
-                                    <text :x="-cvHeight * 0" :y=".22 * cvHeight" font-size="30" text-anchor="middle">-1</text>
                                         <!-- <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" text-anchor="middle"
                                             :transform="translatePos(o.textTrans)" dy="0.5em" font-size="18" fill="black"
                                             style="font-weight: bold;">
@@ -148,13 +144,11 @@
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
                                     stroke-width="2" stroke="white" :fill="a_item.fill"></path>
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dOut"
-                                    stroke="white" :fill="a_item.fill" opacity="1"></path>
+                                    stroke="white" :fill="a_item.fill3" opacity="1"></path>
                                     <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dOutBack"
-                                    stroke="white" :fill="'#606060'" opacity=".1"></path>
+                                    stroke="white" :fill="'#606060'" :opacity="a_i == 0 ? .1: 0"></path>
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dInBack" stroke-width="2"
                                     stroke="white" :fill="'#606060'" :opacity="a_i == 0 ? .1 : 0"></path>
-                                    <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dBase"
-                                    stroke="black" :fill="'none'" opacity="1"></path>
                             </g>
                         </g>
                         <g>
@@ -1160,32 +1154,30 @@ export default {
                     data: pieData[i].data,
                     r: .9 * r + 5,
                     d: arc().innerRadius(.2 * r).outerRadius(.2 * r + r * .7 * (pieData[i].data.value / cir_max_value))(pieData[i]),
-                    dOut: arc().innerRadius(.2 * r + i * .7 * r / 3).outerRadius(.2 * r + i * .7 * r / 3 + (.7 * r / 3)).cornerRadius(3)({
-                        startAngle: 270 * Math.PI / 180,
-                        endAngle:(270 + (pieData[i].data.corr > 0 ? 1 : -1) *  parseFloat(Math.abs(pieData[i].data.corr)) * 90) * Math.PI / 180
+                    dOut: arc().innerRadius(.2 * r ).outerRadius(.2 * r + r * .7 * Math.abs(pieData[i].data.corr))({
+                        startAngle: (360 * Math.PI / 180) - pieData[i].startAngle,
+                        endAngle: (360 * Math.PI / 180) - pieData[i].endAngle
                     }),
-                    dOutBack: arc().innerRadius(.2 * r + i * .7 * r / 3).outerRadius(.2 * r + i * .7 * r / 3 + (.7 * r / 3)).cornerRadius(3)(pieData[3]),
-                    dBase: arc().innerRadius(.2 * r + i * .7 * r / 3 + 2).outerRadius(.2 * r + i * .7 * r / 3 + (.7 * r / 3) - 2)({
-                        startAngle: 270 * Math.PI / 180,
-                        endAngle: 270 * Math.PI / 180
+                    dOutBack: arc().innerRadius(.2 * r).outerRadius(.9 * r )({
+                        startAngle: 180 * Math.PI / 180,
+                        endAngle: 360 * Math.PI / 180
                     }),
                     dInBack: arc().innerRadius(.2 * r).outerRadius(.9 * r )({
                         startAngle: 0,
                         endAngle: 180 * Math.PI / 180
                     }),
-                    dLegendOutBack: arc().innerRadius(.2 * this.cvHeight * .2 + i * .7 * this.cvHeight * .2 / 3).outerRadius(.2 * this.cvHeight * .2 + i * .7 * this.cvHeight * .2 / 3 + (.7 * this.cvHeight * .2 / 3)).cornerRadius(10)(pieData[3]),
+                    dLegendOutBack: arc().innerRadius(.2 * this.cvHeight * .2).outerRadius(.9 * this.cvHeight * .2)({
+                        startAngle: 180 * Math.PI / 180,
+                        endAngle: 360 * Math.PI / 180
+                    }),
                     dLegendInBack: arc().innerRadius(.2 * this.cvHeight * .2).outerRadius(.9 * this.cvHeight * .2)({
                         startAngle: 0,
                         endAngle: 180 * Math.PI / 180
                     }),
-                    dLegendBase: arc().innerRadius(.2 * this.cvHeight * .2 + i * .7 * this.cvHeight * .2 / 3 + 5).outerRadius(.2 * this.cvHeight * .2 + i * .7 * this.cvHeight * .2 / 3 + (.7 * this.cvHeight * .2 / 3) - 5)({
-                        startAngle: 270 * Math.PI / 180,
-                        endAngle: 270 * Math.PI / 180
-                    }),
                     dLegend: arc().innerRadius(this.cvHeight * .2 * .2).outerRadius(.9 * this.cvHeight * .2 * .2 + this.cvHeight * 0.2 * .7 * (pieData[i].data.value / cir_max_value))(pieData[i]),
-                    dLegendOut: arc().innerRadius(.2 * this.cvHeight * .2 + i * .7 * this.cvHeight * .2 / 3).outerRadius(.2 * this.cvHeight * .2 + i * .7 * this.cvHeight * .2 / 3 + (.7 * this.cvHeight * .2 / 3)).cornerRadius(10)({
-                        startAngle: 270 * Math.PI / 180,
-                        endAngle:(270 + (pieData[i].data.corr > 0 ? 1 : -1) *  parseFloat(Math.abs(pieData[i].data.corr)) * 90) * Math.PI / 180
+                    dLegendOut: arc().innerRadius(.2 * this.cvHeight * .2).outerRadius(.2 * this.cvHeight * .2 + .7 * this.cvHeight * .2 * Math.abs(pieData[i].data.corr))({
+                        startAngle: (360 * Math.PI / 180) - pieData[i].startAngle,
+                        endAngle: (360 * Math.PI / 180) - pieData[i].endAngle
                     }),
                     fill: this.colorType[pieData[i].data.type],
                     fill2: this.colormap3[(colorScale(pieData[i].data.corr)).toFixed(0)],
