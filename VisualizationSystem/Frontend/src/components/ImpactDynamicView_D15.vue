@@ -1,9 +1,16 @@
 <!--
  * @Description: 
  * @Author: Qing Shi
+ * @Date: 2023-11-24 22:55:45
+ * @LastEditors: Qing Shi
+ * @LastEditTime: 2023-11-24 22:55:46
+-->
+<!--
+ * @Description: 
+ * @Author: Qing Shi
  * @Date: 2023-11-20 22:31:42
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-24 23:53:25
+ * @LastEditTime: 2023-11-24 22:55:21
 -->
 <!--
  * @Description: 
@@ -72,7 +79,7 @@
                                 </g>
                                 <g v-if="legendTag != 0">
                                     <!-- <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i"> -->
-                                    <g :transform="translate(cvWidth * 0.15 + 35, cvWidth * 0.15 + 0, 0)">
+                                    <g :transform="translate(cvWidth * 0.15 + 0, cvWidth * 0.15 + 0, 0)">
                                         <!-- <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
                                             :d="a_item.dLegend" :fill="a_item.fill"></path> -->
                                         <!-- <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
@@ -96,51 +103,49 @@
                                         <circle :cx="cvHeight * .2 * .9" :cy="0" r="5" fill="black"></circle>
                                         <circle :cx="cvHeight * .2 * .9 / 2" :cy="-cvHeight * .2 * .9 * Math.sqrt(3) / 2" r="5" fill="black"></circle> -->
 
-                                        <path :d="'M' + ((cvHeight * .14 * .9 - 3) / 2) + ',' + ((cvHeight * .14 * .9 - 3) * Math.sqrt(3) / 2) + 'L' + ((cvHeight * .14 * .9 + 20) / 2) + ',' + (((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)) + 'L' + (70 + ((cvHeight * .14 * .9))) + ',' + (((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
-                                        <path :d="'M' + ((cvHeight * .14 * .9 - 3) / 2) + ',' + (-(cvHeight * .14 * .9 - 3) * Math.sqrt(3) / 2) + 'L' + ((cvHeight * .14 * .9 + 20) / 2) + ',' + ((-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)) + 'L' + (70 + ((cvHeight * .14 * .9))) + ',' + (-((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
-                                        <path :d="'M' + (cvHeight * .14 * .9 - 3) + ',' + (0) + 'L' + (70 + ((cvHeight * .14 * .9))) + ',' + (0)" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        <path :d="'M' + (cvHeight * .15 * .9 / 2) + ',' + (cvHeight * .15 * .9 * Math.sqrt(3) / 2) + 'L' + ((cvHeight * .15 * .9 + 30) / 2) + ',' + (((cvHeight * .15 * .9 + 30) * Math.sqrt(3) / 2)) + 'L' + (60 + ((cvHeight * .15 * .9))) + ',' + (((cvHeight * .15 * .9 + 30) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        <path :d="'M' + (cvHeight * .15 * .9 / 2) + ',' + (-cvHeight * .15 * .9 * Math.sqrt(3) / 2) + 'L' + ((cvHeight * .15 * .9 + 30) / 2) + ',' + ((-(cvHeight * .15 * .9 + 30) * Math.sqrt(3) / 2)) + 'L' + (60 + ((cvHeight * .15 * .9))) + ',' + (-((cvHeight * .15 * .9 + 30) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        <path :d="'M' + (cvHeight * .15 * .9) + ',' + (0) + 'L' + (60 + ((cvHeight * .15 * .9))) + ',' + (0)" fill="none" stroke="#534f4f" stroke-width="2"></path>
 
-                                        <path :d="'M' + (-(cvHeight * .14 * .9 - 3) / 2) + ',' + ((cvHeight * .14 * .9 - 3) * Math.sqrt(3) / 2) + 'L' + (-(cvHeight * .14 * .9 + 20) / 2) + ',' + (((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)) + 'L' + (-70 + (-(cvHeight * .14 * .9))) + ',' + (((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
-                                        <path :d="'M' + ((-cvHeight * .14 * .9 + cvHeight * .14 * .7 * 2 / 3 + 3) / 2) + ',' + ((-cvHeight * .14 * .9 + cvHeight * .14 * .7 * 2 / 3 + 3) * Math.sqrt(3) / 2) + 'L' + (-(cvHeight * .14 * .9 + 20) / 2) + ',' + ((-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)) + 'L' + -(70 + ((cvHeight * .14 * .9))) + ',' + (-((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
-                                        <path :d="'M' + (-cvHeight * .14 * .9 + cvHeight * .14 * .7 / 3 + 3) + ',' + (0) + 'L' + -(70 + ((cvHeight * .14 * .9))) + ',' + (0)" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        <path :d="'M' + (-cvHeight * .15 * .9 + 3) + ',' + (0) + 'L' + (-cvHeight * .15 * .9 + 3) + ',' + (cvHeight * .15 * .9 + 95)+ 'L' + (-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3) + ',' + (cvHeight * .15 * .9 + 95)" fill="none" stroke="#534f4f" stroke-width="2" stroke-dasharray="0"></path> 
+                                        <path :d="'M' + (-cvHeight * .15 * .9 + 3 + cvHeight * .15 * .7 / 3) + ',' + (0) + 'L' + (-cvHeight * .15 * .9 + 3 + cvHeight * .15 * .7 / 3) + ',' + (cvHeight * .15 * .9 + 55) + 'L' + (-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3) + ',' + (cvHeight * .15 * .9 + 55)" fill="none" stroke="#534f4f" stroke-width="2" stroke-dasharray="0"></path>                 
+                                        <path :d="'M' + (-cvHeight * .15 * .9 + 3 + cvHeight * .15 * 2 * .7 / 3) + ',' + (0) + 'L' + (-cvHeight * .15 * .9 + 3 + cvHeight * .15 * .7 * 2 / 3) + ',' + (cvHeight * .15 * .9 + 16)+ 'L' + (-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3) + ',' + (cvHeight * .15 * .9 + 16)" fill="none" stroke="#534f4f" stroke-width="2" stroke-dasharray="0"></path>    
                                         
-                                        
-                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="(-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3" :y="(cvHeight * .15 * .9 + 16)" dy="1em" font-size="16" fill="#534f4f" dx="0em">
                                             {{ legendData.innerArc[0].text2.toFixed(2) }}
                                         </text>
-                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="(-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3" :y="(cvHeight * .15 * .9 + 16)" dy="-0.3em" font-size="16" fill="#534f4f" dx="0em">
                                             {{ 'CC-Holder' }}
                                         </text>
-                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="0" dy="1em" font-size="16" fill="#534f4f" dx="0em">
+                                        <text text-anchor="end" :x="-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3" :y="(cvHeight * .15 * .9 + 55)" dy="1em" font-size="16" fill="#534f4f" dx="0em">
                                             {{ legendData.innerArc[1].text2.toFixed(2) }}
                                         </text>
-                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="0" dy="-0.3em" font-size="16" fill="#534f4f" dx="0em">
+                                        <text text-anchor="end" :x="-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3" :y="(cvHeight * .15 * .9 + 55)" dy="-0.3em" font-size="16" fill="#534f4f" dx="0em">
                                             {{ 'CC-Buyer' }}
                                         </text>
-                                        
-                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3" :y="(cvHeight * .15 * .9 + 95)" dy="1em" font-size="16" fill="#534f4f" dx="0em">
                                             {{ legendData.innerArc[2].text2.toFixed(2) }}
                                         </text>
-                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="-cvHeight * .15 * .9 + 80 + cvHeight * .15 * .7 * 2 / 3" :y="(cvHeight * .15 * .9 + 95)" dy="-0.3em" font-size="16" fill="#534f4f" dx="0em">
                                             {{ 'CC-Seller' }}
                                         </text>
 
-                                        <text text-anchor="end" :x="(70 + ((cvHeight * .14 * .9)))" :y="((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="(60 + ((cvHeight * .15 * .9)))" :y="((cvHeight * .15 * .9 + 30) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
                                             {{ legendData.innerArc[2].text }}
                                         </text>
-                                        <text text-anchor="end" :x="70 + ((cvHeight * .14 * .9))" :y="((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="60 + ((cvHeight * .15 * .9))" :y="((cvHeight * .15 * .9 + 30) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
                                             {{ '#Sellers' }}
                                         </text>
-                                        <text text-anchor="end" :x="70 + ((cvHeight * .14 * .9))" :y="0" dy="1em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="60 + ((cvHeight * .15 * .9))" :y="0" dy="1em" font-size="16" fill="#534f4f">
                                             {{ legendData.innerArc[1].text }}
                                         </text>
-                                        <text text-anchor="end" :x="0 + ((cvHeight * .14 * .9)) + 70" :y="0" dy="-0.3em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="0 + ((cvHeight * .15 * .9)) + 60" :y="0" dy="-0.3em" font-size="16" fill="#534f4f">
                                             {{ '#Buyers' }}
                                         </text>
-                                        <text text-anchor="end" :x="70 + ((cvHeight * .14 * .9))" :y="(-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="60 + ((cvHeight * .15 * .9))" :y="(-(cvHeight * .15 * .9 + 30) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
                                             {{ legendData.innerArc[0].text }}
                                         </text>
-                                        <text text-anchor="end" :x="70 + ((cvHeight * .14 * .9))" :y="(-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
+                                        <text text-anchor="end" :x="60 + ((cvHeight * .15 * .9))" :y="(-(cvHeight * .15 * .9 + 30) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
                                             {{ '#Holders' }}
                                         </text>
                                         <!-- <text v-for="(o, i) in legendData.outArc" :key="'out_k' + i"
@@ -212,7 +217,7 @@
                     </svg>
                 </div>
                 <div ref="correlationTable"
-                    style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%); margin-top: 10px;">
+                    style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%);">
                     <svg width="100%" height="100%" v-show="selectGroupTag != -1">
 
                         <g>
@@ -261,14 +266,14 @@
                             <text font-size="14" :x="ctWidth * 3 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
                                 font-family="sans-serif">{{ max_holder }}</text>
                             <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M 0 ' + (ctHeight - 45) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 45)" fill="none"
+                            <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
                                 stroke="#C6BCBC"></path>
-                            <path :d="'M 0 30 L 0 ' + (ctHeight - 45)" fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 45)"
+                            <path :d="'M 0 30 L 0 ' + (ctHeight - 40)" fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 40)"
                                 fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 45)"
+                            <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 40)"
                                 fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 45)"
+                            <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 40)"
                                 fill="none" stroke="#C6BCBC"></path>
                         </g>
                     </svg>
@@ -1212,14 +1217,14 @@ export default {
                         startAngle: 0,
                         endAngle: 180 * Math.PI / 180
                     }),
-                    dLegendOutBack: arc().innerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3).outerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + (.7 * this.cvHeight * .14 / 3)).cornerRadius(10)(pieData[3]),
-                    dLegendOutStroke: arc().innerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + 5).outerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + (.7 * this.cvHeight * .14 / 3) - 5).cornerRadius(10)(pieData[3]),
-                    dLegendInBack: arc().innerRadius(.2 * this.cvHeight * .14).outerRadius(.9 * this.cvHeight * .14)({
+                    dLegendOutBack: arc().innerRadius(.2 * this.cvHeight * .15 + i * .7 * this.cvHeight * .15 / 3).outerRadius(.2 * this.cvHeight * .15 + i * .7 * this.cvHeight * .15 / 3 + (.7 * this.cvHeight * .15 / 3)).cornerRadius(10)(pieData[3]),
+                    dLegendOutStroke: arc().innerRadius(.2 * this.cvHeight * .15 + i * .7 * this.cvHeight * .15 / 3 + 5).outerRadius(.2 * this.cvHeight * .15 + i * .7 * this.cvHeight * .15 / 3 + (.7 * this.cvHeight * .15 / 3) - 5).cornerRadius(10)(pieData[3]),
+                    dLegendInBack: arc().innerRadius(.2 * this.cvHeight * .15).outerRadius(.9 * this.cvHeight * .15)({
                         startAngle: 0,
                         endAngle: 180 * Math.PI / 180
                     }),
-                    dLegend: arc().innerRadius(this.cvHeight * .14 * .2).outerRadius(.9 * this.cvHeight * .14 * .2 + this.cvHeight * .14 * .7 * (pieData[i].data.value / cir_max_value))(pieData[i]),
-                    dLegendOut: arc().innerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + 5).outerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + (.7 * this.cvHeight * .14 / 3) - 5).cornerRadius(10)({
+                    dLegend: arc().innerRadius(this.cvHeight * .15 * .2).outerRadius(.9 * this.cvHeight * .15 * .2 + this.cvHeight * .15 * .7 * (pieData[i].data.value / cir_max_value))(pieData[i]),
+                    dLegendOut: arc().innerRadius(.2 * this.cvHeight * .15 + i * .7 * this.cvHeight * .15 / 3 + 5).outerRadius(.2 * this.cvHeight * .15 + i * .7 * this.cvHeight * .15 / 3 + (.7 * this.cvHeight * .15 / 3) - 5).cornerRadius(10)({
                         startAngle: (360 - parseFloat(Math.abs(pieData[i].data.corr)) * 180) * Math.PI / 180,
                         endAngle: 360 * Math.PI / 180
                     }),
