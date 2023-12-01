@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-13 13:01:44
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-22 22:05:52
+ * @LastEditTime: 2023-12-01 17:10:20
 -->
 <template>
     <div style="height: 100%">
@@ -94,14 +94,14 @@
                         <text x="5" y="20" font-size="16" fill="#534F4F">[M-1: Recency]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in recencyDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                :height="item.h" :width="item.w" stroke="white" :fill="colormap[item.type]">
-                            </rect>
-                            <!-- <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
+                                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                                            </rect>
+                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                                 :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m1' + r_i">
                                 <rect v-for="(item, i) in groupSet[r_i].m1Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                     :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#EA7C16">
                                 </rect>
-                            </g> -->
+                            </g>
                             <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
                                 fill="none" stroke="#534f4f">
                             </path>
@@ -114,14 +114,14 @@
                         <text x="5" y="20" font-size="16" fill="#534F4F">[M-2: Preferential Attachment]</text>
                         <g :transform="translate(5, 25, 0)">
                             <rect v-for="(item, i) in attachmentDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                :height="item.h" :width="item.w" stroke="white" :fill="colormap[item.type]">
-                            </rect>
-                            <!-- <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
+                                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                                            </rect>
+                            <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                                 :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m2' + r_i">
                                 <rect v-for="(item, i) in groupSet[r_i].m2Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                     :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#53ad92">
                                 </rect>
-                            </g> -->
+                            </g>
                             <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
                                 fill="none" stroke="#534f4f">
                             </path>
@@ -138,14 +138,14 @@
                             <g>
 
                                 <rect v-for="(item, i) in propensityDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                    :height="item.h" :width="item.w" stroke="white" :fill="colormap[item.type]">
-                                </rect>
-                                <!-- <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
+                                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                                                </rect>
+                                <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                                     :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m3' + r_i">
                                     <rect v-for="(item, i) in groupSet[r_i].m3Bar" :key="'bar' + i" :x="item.x" :y="item.y"
                                         :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#61bad6">
                                     </rect>
-                                </g> -->
+                                </g>
                             </g>
                             <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
                                 fill="none" stroke="#534f4f">
@@ -162,14 +162,14 @@
                             <g>
 
                                 <rect v-for="(item, i) in impactDataBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                    :height="item.h" :width="item.w" stroke="white" :fill="colormap[item.type]">
-                                </rect>
-                                <!-- <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
+                                                :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#D9D9D9">
+                                            </rect>
+                                <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                 :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m3' + r_i">
-                <rect v-for="(item, i) in groupSet[r_i].m3Bar" :key="'bar' + i" :x="item.x" :y="item.y"
-                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#61bad6">
+                <rect v-for="(item, i) in groupSet[r_i].impBar" :key="'bar' + i" :x="item.x" :y="item.y"
+                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#d77a78">
                 </rect>
-            </g> -->
+            </g>
                             </g>
                             <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
             fill="none" stroke="#534f4f">
@@ -695,8 +695,8 @@ export default {
                 groupSet.push(group[d]);
             }
             // console.log(groupSet);
-            // return [a, r, p, m, groupSet];
-            return [a_sta_data, r_sta_data, p_sta_data, m_sta_data, groupSet];
+            return [a, r, p, m, groupSet];
+            // return [a_sta_data, r_sta_data, p_sta_data, m_sta_data, groupSet];
             // // console.log(this.attachmentData)
         },
         // calcFilter (data) {}
