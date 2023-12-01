@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-12-01 18:02:49
+ * @LastEditTime: 2023-12-01 18:24:06
 -->
 <template>
     <div style="height: 100%;">
@@ -401,6 +401,8 @@ export default {
             elHeight: 100,
             elWidth: 100,
             select_project_num: 0,
+            selectGroupTag: '-1',
+            allTableData: [],
             formData: {
                 checked0: false,
                 checked1: false,
@@ -553,6 +555,7 @@ export default {
                 dataStore.allData.tag = 1;
 
                 this.tableData = this.calcTable(dataStore.allData.cpData.data);
+                this.allTableData = this.tableData;
                 console.log(this.tableData)
                 this.unreleasedProject = this.calcUnreleasedProject(dataStore.allData.cpData.unClusterProject);
             }
@@ -790,6 +793,13 @@ export default {
         this.elHeight = this.$refs.controlPanel.offsetHeight * 0.50;
         this.elWidth = this.$refs.controlPanel.offsetWidth - 112;
 
+        const dataStore = useDataStore();
+        dataStore.$subscribe((mutations, state) => {
+            if (dataStore.selectGroup != -1) {
+                this.selectGroupTag = dataStore.selectGroup;
+                this.rankValue = this.selectGroupTag;
+            }
+        })
         // this.tableData = this.calcTable(this.cpData.data);
         // this.unreleasedProject = this.calcUnreleasedProject(this.cpData.unClusterProject);
     },
@@ -798,11 +808,23 @@ export default {
             handler: function (newVal, oldVal) {
                 console.log(newVal, oldVal);
                 console.log(this.tableData);
-                for (let i in this.tableData) {
-                    this.tableData[i].group.sort((a, b) => {
-                        return b[newVal] - a[newVal];
-                    })
+                // for (let i in this.tableData) {
+                //     this.tableData[i].group.sort((a, b) => {
+                //         return b[newVal] - a[newVal];
+                //     })
+                // }
+                this.selectGroupTag = this.rankValue;
+
+                const dataStore = useDataStore();
+                let tmpTableData = [];
+                console.log(this.allTableData);
+                for (let i in this.allTableData) {
+                    if (this.allTableData[i]['group'] == 'G' + (parseInt(this.selectGroupTag) + 1)) {
+                        tmpTableData.push(this.allTableData[i]);
+                    }
                 }
+                this.tableData = tmpTableData;
+                dataStore.selectGroup = this.selectGroupTag;
             },
             deep: true
         },
