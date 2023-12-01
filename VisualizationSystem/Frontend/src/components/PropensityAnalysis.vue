@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-12-01 17:31:05
+ * @LastEditTime: 2023-12-01 18:02:49
 -->
 <template>
     <div style="height: 100%;">
@@ -181,7 +181,7 @@
                     <span style="">
                         Group Select:
                         <el-select v-model="rankValue" class="m-2" placeholder="Select"
-                            style="width: 130px; --el-border-color: white;">
+                            style="width: 75px; --el-border-color: white;">
                             <el-option v-for="(item, i) in rankOptions" :key="item" :label="item.label" :value="item.value" />
                         </el-select>
                     </span>
@@ -217,7 +217,7 @@
             </div>
             <hr style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#c6bcbc SIZE=2>
             <div
-                style="overflow-y: auto; height: calc(51% - 25px); margin-top: 10px; margin-bottom: 10px; width: calc(100% + 10px);">
+                style="overflow-y: auto; height: calc(51% - 25px); margin-top: 10px; margin-bottom: 10px; width: calc(100% + 0px);">
                 <el-table class="customer-no-border-table" :data="tableData"
                     style="height: calc(100% + 0px); width: calc(100% + 0px);" border :row-style="{
                         height: 30 + 'px',
@@ -422,8 +422,8 @@ export default {
             groupOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             attributeOption: [],
             attributeValue: '',
-            rankValue: 'M3',
-            rankOptions: [{ label: 'Recency', value: 'M1' }, { label: 'Preferential attachment', value: 'M2' }, { label: 'Propensity', value: 'M3' }, { label: 'Impact dynamic', value: 'IMP' }],
+            rankValue: '-1',
+            rankOptions: [{ label: 'All', value: '-1' }, { label: 'Group 1', value: '0' }, { label: 'Group 2', value: '1' }, { label: 'Group 3', value: '2' }, { label: 'Group 4', value: '3' }, { label: 'Group 5', value: '4' }, { label: 'Group 6', value: '5' }],
             // colormap: ['#440154', '#46327e', '#365c8d', '#277f8e', '#1fa187', '#4ac16d', '#a0da39', '#fde725'],
             colormap: ["#f6cba2", "#f2b67d", "#eea158", "#eb8c33", "#e98120", "#d7771d", "#b46318", "#905014"],
 
