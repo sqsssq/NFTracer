@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-13 13:01:44
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-12-01 17:10:20
+ * @LastEditTime: 2023-12-01 17:23:09
 -->
 <template>
     <div style="height: 100%">
@@ -245,7 +245,7 @@
 
                         <path v-for="(t_item, t_i) in item['projectLine']" :key="'pL' + t_i" :d="t_item.d" :fill="'none'"
                             :stroke="colormap[i]" :class="t_item.class" :id="'g_' + t_item.group + '_' + t_item.id"
-                            stroke-width="1" :opacity="filterValue == t_item.id ? 1 : 1"></path>
+                            stroke-width="1" :opacity="selectGroupTag != i || filterValue == '' || filterValue == t_item.id ? 1 : .1"></path>
                     </g>
 
                     <g :transform="translate(0, groupHeight - 65, 0)">

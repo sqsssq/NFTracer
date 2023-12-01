@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-22 21:42:12
+ * @LastEditTime: 2023-12-01 17:31:05
 -->
 <template>
     <div style="height: 100%;">
@@ -182,7 +182,7 @@
                         Group Select:
                         <el-select v-model="rankValue" class="m-2" placeholder="Select"
                             style="width: 130px; --el-border-color: white;">
-                            <el-option v-for="(item, i) in rankOptions" :key="item" :label="'Group ' + i" :value="item.value" />
+                            <el-option v-for="(item, i) in rankOptions" :key="item" :label="item.label" :value="item.value" />
                         </el-select>
                     </span>
                     <!-- <span style="float: right; position: relative; top: -4px;">
