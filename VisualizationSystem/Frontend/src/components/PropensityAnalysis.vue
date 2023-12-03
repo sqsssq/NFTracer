@@ -424,8 +424,8 @@ export default {
             groupOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             attributeOption: [],
             attributeValue: '',
-            rankValue: '-1',
-            rankOptions: [{ label: 'All', value: '-1' }, { label: 'Group 1', value: '0' }, { label: 'Group 2', value: '1' }, { label: 'Group 3', value: '2' }, { label: 'Group 4', value: '3' }, { label: 'Group 5', value: '4' }, { label: 'Group 6', value: '5' }],
+            rankValue: -2,
+            rankOptions: [{ label: 'All', value: -2 }, { label: 'Group 1', value: 0 }, { label: 'Group 2', value: 1 }, { label: 'Group 3', value: 2 }, { label: 'Group 4', value: 3 }, { label: 'Group 5', value: 4 }, { label: 'Group 6', value: 5 }],
             // colormap: ['#440154', '#46327e', '#365c8d', '#277f8e', '#1fa187', '#4ac16d', '#a0da39', '#fde725'],
             colormap: ["#f6cba2", "#f2b67d", "#eea158", "#eb8c33", "#e98120", "#d7771d", "#b46318", "#905014"],
 
@@ -823,8 +823,10 @@ export default {
                         tmpTableData.push(this.allTableData[i]);
                     }
                 }
-                this.tableData = tmpTableData;
-                dataStore.selectGroup = this.selectGroupTag;
+                if (this.rankValue == -2) this.tableData = this.allTableData;
+                else this.tableData = tmpTableData;
+                
+                // dataStore.selectGroup = this.selectGroupTag;
             },
             deep: true
         },
