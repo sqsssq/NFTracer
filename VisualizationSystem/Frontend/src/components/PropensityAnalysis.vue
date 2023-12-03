@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-12-01 18:24:06
+ * @LastEditTime: 2023-12-03 19:51:27
 -->
 <template>
     <div style="height: 100%;">
@@ -516,24 +516,30 @@ export default {
                     if (file_cnt == 0) {
                         let tempData = importData[i]['default'];
                         let cluster_res = {};
-
+                        console.log(tempData);
                         for (let j in tempData['data']) {
 
                             if (typeof cluster_res[tempData['data'][j]['Group']] == 'undefined') {
                                 cluster_res[tempData['data'][j]['Group']] = 0;
                             }
+                            console.log(tempData['data'][j]['Project Name'], tempData['data'][j]['Group'])
                             cluster_res[tempData['data'][j]['Group']]++;
                         }
+                        console.log(cluster_res);
                         const sort_values = Object.values(cluster_res).sort((a, b) => b - a);
-                        // console.log(sort_values);
+                        console.log(sort_values);
+                        let tmpK = {};
                         let tmp1 = {};
                         for (let j in sort_values) {
                             for (let k in cluster_res) {
-                                if (sort_values[j] == cluster_res[k]) {
+                                if (sort_values[j] == cluster_res[k] && tmpK[k] != 1) {
+                                    tmpK[k] = 1;
                                     tmp1[k] = parseInt(j);
+                                    break;
                                 }
                             }
                         }
+                        console.log(tmp1);
                         for (let j in tempData['data']) {
                             tempData['data'][j]['Group'] = tmp1[tempData['data'][j]['Group']];
                         }
@@ -581,7 +587,7 @@ export default {
         },
         calcTable (data) {
             this.select_project_num = data.length;
-            // console.log(data[0])
+            // console.log(data)
             let lineDataRange = {};
             for (let i in data[0].attributeLine) {
                 lineDataRange[i] = [];
@@ -600,6 +606,7 @@ export default {
                 min_m3 = 99999,
                 min_imp = 99999;
             for (let i in data) {
+                // console.log('GGG', data[i].Group);
                 if (typeof (group[data[i].Group]) === 'undefined') {
                     group[data[i].Group] = {
                         project: [],
@@ -706,6 +713,7 @@ export default {
                 res_data.push(group[i]);
                 for (let j in group[i].group) {
                     
+                    // console.log(i)
                     // if (j == 0)
                         group[i].group[j]['group'] = 'G' + (parseInt(i) + 1);
                     // else group[i].group[j]['group'] = '';

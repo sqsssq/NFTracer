@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-07-08 16:49:11
+ * @LastEditTime: 2023-12-03 18:21:29
 -->
 <template>
     <div style="height: 100%;">
@@ -81,15 +81,23 @@
                     style="opacity: 0; background-color: white; border: solid; border-width: 2px; border-radius: 5px; padding: 5px; position: absolute; z-index: 100; left: -1000px;">
                     <div>
                         <svg width="310" height="50">
+
+                            <defs>
+                                    <!-- A marker to be used as an arrowhead -->
+                                    <marker id="arrowF" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6"
+                                        markerHeight="6" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10" stroke-width="100" />
+                                    </marker>
+                                </defs>
                             <text x="150" y="25" stroke="#534f4f" text-anchor="middle"
                                 font-weight="400">{{ flowHoverVal }}</text>
-                            <path d="M120,35L180,35" stroke="#534f4f" fill="none" marker-end="url(#arrow)" stroke-width="2">
+                            <path d="M120,35L180,35" stroke="#534f4f" fill="none" marker-end="url(#arrowF)" stroke-width="2">
                             </path>
                             <g v-for="(item, i) in flowHoverData" :transform="translate(75 + i * 160, 25, 0)">
-                                <clipPath id="clipPath2">
+                                <clipPath id="clipPathD">
                                     <circle :cx="20" :cy="20" :r="20"></circle>
                                 </clipPath>
-                                <g clip-path="url(#clipPath2)" :transform="translate(-20, -20, 0)">
+                                <g clip-path="url(#clipPathD)" :transform="translate(-20, -20, 0)">
                                     <image :href="item.logo_link" x="0" y="0" :height="40" :width="40" />
                                 </g>
                             </g>
@@ -97,10 +105,7 @@
                     </div>
                     <div v-for="(item, i) in flowHoverData"
                         :style="{ width: '150px', display: 'inline', float: i == 0 ? 'left' : 'right' }">
-                        <!-- <div style="text-align: center;">#Project Name</div> -->
                         <div style="text-align: center;">{{ item.name }}</div>
-                        <!-- <div style="text-align: center;">#Holder</div> -->
-                        <!-- <div style="text-align: center;">{{ item.holder }}</div> -->
                     </div>
                 </div>
                 <span style="position: absolute; top: 0px; color: #ABACBE; font-size: 18px;z-index: 100;">
