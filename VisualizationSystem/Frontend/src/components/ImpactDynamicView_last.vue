@@ -1,16 +1,16 @@
 <!--
  * @Description: 
  * @Author: Qing Shi
- * @Date: 2023-12-03 20:34:19
+ * @Date: 2023-11-20 22:31:42
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-12-03 20:34:19
+ * @LastEditTime: 2023-12-03 19:04:36
 -->
 <!--
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-03-17 11:04:09
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-11-13 18:13:32
+ * @LastEditTime: 2023-11-20 22:30:49
 -->
 <template>
     <div style="height: 100%">
@@ -64,7 +64,7 @@
                                 <g :transform="translate(-5, -70, 0)">
                                     <text x="-30" y="35" dx="0.5em" dy="0.3em" font-size="16" fill="#534f4f">Group:</text>
                                     <text x="25" y="35" dx="0.5em" dy="0.3em" font-size="16" text-decoration="underline"
-                                        fill="#534f4f">{{ selectGroupTag }}</text>
+                                        fill="#534f4f">{{ selectGroupTag + 1 }}</text>
                                     <!-- <text x="-30" y="60" dx="0.5em" dy="0.3em" font-size="14" fill="#534f4f">Time
                                         Slot:</text>
                                     <text x="37" y="60" dx="0.5em" dy="0.3em" font-size="14" text-decoration="underline"
@@ -72,20 +72,80 @@
                                 </g>
                                 <g v-if="legendTag != 0">
                                     <!-- <g v-for="(item, i) in legendData" :key="'correlation_circle_' + i"> -->
-                                    <g :transform="translate(cvWidth * 0.15 + 30, cvWidth * 0.15 + 30, 0)">
-                                        <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
-                                            :d="a_item.dLegend" :fill="a_item.fill"></path>
-                                            <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i" :transform="translate(0, 0, a_i * 120)"
-                                            :d="'M0 68L0 75'" :fill="'none'" stroke="black" stroke-width="2"></path>
+                                    <g :transform="translate(cvWidth * 0.15 + 35, cvWidth * 0.15 + 0, 0)">
+                                        <!-- <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
+                                            :d="a_item.dLegend" :fill="a_item.fill"></path> -->
+                                        <!-- <path v-for="(a_item, a_i) in legendData.outArc" :key="'corr_out_' + a_i"
+                                            :transform="translate(0, 0, a_i * 120)" :d="'M0 68L0 75'" :fill="'none'"
+                                            stroke="black" stroke-width="2"></path> -->
+                                        <g transform="translate(1, 0)"><path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
+                                            stroke-width="5" :d="a_item.dLegend" stroke="white" :fill="a_item.fill"></path>
 
                                         <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
-                                            :d="a_item.dLegend" :fill="a_item.fill"></path>
-                                        <text v-for="(o, i) in legendData.innerArc" :key="'out_k' + i" text-anchor="middle"
-                                            :transform="translatePos(o.textTrans)" dy="0.5em" font-size="18" fill="black"
-                                            style="font-weight: bold;">
-                                            {{ o.text }}
+                                            :d="a_item.dLegendInBack" stroke-width="2" stroke="white" :fill="'#606060'"
+                                            :fill-opacity="a_i == 0 ? 0.1 : 0"></path>
+                                        </g>
+                                        <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
+                                            stroke-width="0" :d="a_item.dLegendOut" :stroke="'none'" :fill="a_item.fill3">
+                                        </path>
+                                        <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
+                                            :d="a_item.dLegendOutBack" stroke-width="0" stroke="white" :fill="'#606060'"
+                                            opacity=".1"></path>
+                                        <!-- <path v-for="(a_item, a_i) in legendData.innerArc" :key="'corr_out_' + a_i"
+                                            :d="a_item.dLegendOutStroke" stroke-width="3" :stroke="a_item.fill" :fill="'none'" 
+                                            opacity="1"></path> -->
+                                        <!-- <circle :cx="cvHeight * .2 * .9 / 2" :cy="cvHeight * .2 * .9 * Math.sqrt(3) / 2" r="5" fill="black"></circle>
+                                        <circle :cx="cvHeight * .2 * .9" :cy="0" r="5" fill="black"></circle>
+                                        <circle :cx="cvHeight * .2 * .9 / 2" :cy="-cvHeight * .2 * .9 * Math.sqrt(3) / 2" r="5" fill="black"></circle> -->
+
+                                        <path :d="'M' + ((cvHeight * .14 * .9 - 3) / 2) + ',' + ((cvHeight * .14 * .9 - 3) * Math.sqrt(3) / 2) + 'L' + ((cvHeight * .14 * .9 + 20) / 2) + ',' + (((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)) + 'L' + (70 + ((cvHeight * .14 * .9))) + ',' + (((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        <path :d="'M' + ((cvHeight * .14 * .9 - 3) / 2) + ',' + (-(cvHeight * .14 * .9 - 3) * Math.sqrt(3) / 2) + 'L' + ((cvHeight * .14 * .9 + 20) / 2) + ',' + ((-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)) + 'L' + (70 + ((cvHeight * .14 * .9))) + ',' + (-((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        <path :d="'M' + (cvHeight * .14 * .9 - 3) + ',' + (0) + 'L' + (70 + ((cvHeight * .14 * .9))) + ',' + (0)" fill="none" stroke="#534f4f" stroke-width="2"></path>
+
+                                        <path :d="'M' + (-(cvHeight * .14 * .9 - 3) / 2) + ',' + ((cvHeight * .14 * .9 - 3) * Math.sqrt(3) / 2) + 'L' + (-(cvHeight * .14 * .9 + 20) / 2) + ',' + (((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)) + 'L' + (-70 + (-(cvHeight * .14 * .9))) + ',' + (((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        <path :d="'M' + ((-cvHeight * .14 * .9 + cvHeight * .14 * .7 * 2 / 3 + 3) / 2) + ',' + ((-cvHeight * .14 * .9 + cvHeight * .14 * .7 * 2 / 3 + 3) * Math.sqrt(3) / 2) + 'L' + (-(cvHeight * .14 * .9 + 20) / 2) + ',' + ((-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)) + 'L' + -(70 + ((cvHeight * .14 * .9))) + ',' + (-((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2))" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        <path :d="'M' + (-cvHeight * .14 * .9 + cvHeight * .14 * .7 / 3 + 3) + ',' + (0) + 'L' + -(70 + ((cvHeight * .14 * .9))) + ',' + (0)" fill="none" stroke="#534f4f" stroke-width="2"></path>
+                                        
+                                        
+                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="(-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
+                                            {{ legendData.innerArc[0].text2.toFixed(2) }}
                                         </text>
-                                        <text v-for="(o, i) in legendData.outArc" :key="'out_k' + i"
+                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="(-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
+                                            {{ 'CC-Holder' }}
+                                        </text>
+                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="0" dy="1em" font-size="16" fill="#534f4f" dx="0em">
+                                            {{ legendData.innerArc[1].text2.toFixed(2) }}
+                                        </text>
+                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="0" dy="-0.3em" font-size="16" fill="#534f4f" dx="0em">
+                                            {{ 'CC-Buyer' }}
+                                        </text>
+                                        
+                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
+                                            {{ legendData.innerArc[2].text2.toFixed(2) }}
+                                        </text>
+                                        <text text-anchor="start" :x="-(70 + ((cvHeight * .14 * .9)))" :y="((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
+                                            {{ 'CC-Seller' }}
+                                        </text>
+
+                                        <text text-anchor="end" :x="(70 + ((cvHeight * .14 * .9)))" :y="((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
+                                            {{ legendData.innerArc[2].text }}
+                                        </text>
+                                        <text text-anchor="end" :x="70 + ((cvHeight * .14 * .9))" :y="((cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
+                                            {{ '#Sellers' }}
+                                        </text>
+                                        <text text-anchor="end" :x="70 + ((cvHeight * .14 * .9))" :y="0" dy="1em" font-size="16" fill="#534f4f">
+                                            {{ legendData.innerArc[1].text }}
+                                        </text>
+                                        <text text-anchor="end" :x="0 + ((cvHeight * .14 * .9)) + 70" :y="0" dy="-0.3em" font-size="16" fill="#534f4f">
+                                            {{ '#Buyers' }}
+                                        </text>
+                                        <text text-anchor="end" :x="70 + ((cvHeight * .14 * .9))" :y="(-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="1em" font-size="16" fill="#534f4f">
+                                            {{ legendData.innerArc[0].text }}
+                                        </text>
+                                        <text text-anchor="end" :x="70 + ((cvHeight * .14 * .9))" :y="(-(cvHeight * .14 * .9 + 20) * Math.sqrt(3) / 2)" dy="-0.3em" font-size="16" fill="#534f4f">
+                                            {{ '#Holders' }}
+                                        </text>
+                                        <!-- <text v-for="(o, i) in legendData.outArc" :key="'out_k' + i"
                                             :text-anchor="i == 0 ? 'middle' : i == 1 ? 'start' : 'end'"
                                             :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])" style="font-weight: bold;"
                                             dy="0em" font-size="18" fill="#534f4f">
@@ -96,7 +156,7 @@
                                             :transform="translatePos([(i == 0) ? 0 : (i == 1 ? (cvWidth * .15 + 5) * Math.cos(Math.PI / 6) : (-(cvWidth * .15 + 5) * Math.cos(Math.PI / 6))), (i == 0 ? (-cvWidth * .15 - 5) : ((cvWidth * .15 + 5) * Math.sin(Math.PI / 6)))])" style="font-weight: bold;" :dx="i == 1 ? '-1em' :  i == 2 ? '1em' : '0em'" 
                                             :dy="i == 0 ? '-1.5em' : '1.5em'" font-size="16" fill="#534f4f">
                                             {{ 'CC-' + o.type_name + 's' }}
-                                        </text>
+                                        </text> -->
 
                                     </g>
                                     <!-- <path d="M 0 -15 L 60 -15" fill="none" stroke="#C6BCBC"></path>
@@ -115,21 +175,31 @@
                         </g>
                         <g>
                             <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i">
-                                <path :d="item.HighlightPath" :stroke="item.circleData.stroke" :stroke-width="4" fill="none" :opacity="item.opacity"></path>
+                                <path :d="item.HighlightPath" :stroke="item.circleData.stroke" :stroke-width="4" fill="none"
+                                    :opacity="item.opacity"></path>
                             </g>
                         </g>
                         <g>
                             <g v-for="(item, i) in correlationData" :key="'correlation_circle_' + i"
                                 :transform="translate(item.x, item.y, 0)" @mouseover="hoverCorrelation(item)"
-                                @mouseout="outCorrelation()" @click="clickCorrelation(i, item.projectA, item.projectB, item)">
+                                @mouseout="outCorrelation()"
+                                @click="clickCorrelation(i, item.projectA, item.projectB, item)">
                                 <circle :x="0" :y="0" :fill="'white'" :stroke="item.circleData.stroke"
                                     :r="item.circleData.r" :opacity="item.opacity" :stroke-width="4"></circle>
                                 <!-- <path :d="item.HighlightPath" :stroke="'black'" :stroke-width="4" fill="none" :opacity="item.opacity" :transform="translate(-item.x, -item.y, 0)"></path> -->
 
-                                <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                    :fill="a_item.fill"></path>
+                                <!-- <path v-for="(a_item, a_i) in item.outArc" :key="'corr_out_' + a_i" :d="a_item.d"
+                                    :fill="a_item.fill"></path> -->
+                                <circle :x="0" :y="0" :fill="'white'" :r="item.circleData.r" stroke="none"></circle>
                                 <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.d"
-                                    :fill="a_item.fill"></path>
+                                    stroke-width="2" stroke="white" :fill="a_item.fill"></path>
+                                <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dOut"
+                                    stroke="white" :fill="a_item.fill3" opacity="1"></path>
+                                <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dOutBack"
+                                    stroke="white" :fill="'#606060'" opacity=".1"></path>
+                                <path v-for="(a_item, a_i) in item.innerArc" :key="'corr_out_' + a_i" :d="a_item.dInBack"
+                                    stroke-width="2" stroke="white" :fill="'#606060'" :opacity="a_i == 0 ? .1 : 0"></path>
+
                             </g>
                         </g>
                         <g>
@@ -144,7 +214,7 @@
                     </svg>
                 </div>
                 <div ref="correlationTable"
-                    style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%);">
+                    style="float: right; position: absolute; right: 0px; top: 0px; width: calc(35% - 10px); height: calc(100%); margin-top: 10px;">
                     <svg width="100%" height="100%" v-show="selectGroupTag != -1">
 
                         <g>
@@ -166,7 +236,10 @@
                                     :transform="translate(0, 25, 0)"
                                     :d="'M' + (p_item.x + p_item.rw) + ',' + p_item.y + 'L' + (p_item.x + p_item.rw) + ',' + (p_item.y + p_item.h)"
                                     :fill="'none'" :stroke="p_item.stroke" :stroke-width="3" :opacity="item.opacity"></path>
-                                <text v-for="(t_item, t_i) in item.lineData" :key="'select_text_' + t_i" :x="ctWidth / 3 + t_item.x" :y="t_item.y + t_item.h" fill="black" text-anchor="end" dx="-0.1em" dy="1em" style="font-weight: bold;" :opacity="item.opacity">{{ t_item.text }}</text>
+                                <text v-for="(t_item, t_i) in item.lineData" :key="'select_text_' + t_i"
+                                    :x="ctWidth / 3 + t_item.x" :y="t_item.y + t_item.h" fill="black" text-anchor="end"
+                                    dx="-0.1em" dy="1em" style="font-weight: bold;"
+                                    :opacity="item.opacity">{{ t_item.text }}</text>
                             </g>
                         </g>
                         <g transform="translate(0, 20)">
@@ -190,14 +263,14 @@
                             <text font-size="14" :x="ctWidth * 3 / 3 - 5" y="45" text-anchor="end" fill="#534f4f"
                                 font-family="sans-serif">{{ max_holder }}</text>
                             <path :d="'M 0 30 L ' + (ctWidth - 1) + ' 30'" fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M 0 ' + (ctHeight - 40) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 40)" fill="none"
+                            <path :d="'M 0 ' + (ctHeight - 45) + ' L ' + (ctWidth - 1) + ' ' + (ctHeight - 45)" fill="none"
                                 stroke="#C6BCBC"></path>
-                            <path :d="'M 0 30 L 0 ' + (ctHeight - 40)" fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 40)"
+                            <path :d="'M 0 30 L 0 ' + (ctHeight - 45)" fill="none" stroke="#C6BCBC"></path>
+                            <path :d="'M  ' + (ctWidth / 3) + '  30 L  ' + (ctWidth / 3) + '  ' + (ctHeight - 45)"
                                 fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 40)"
+                            <path :d="'M  ' + (ctWidth * 2 / 3) + '  30 L ' + (ctWidth * 2 / 3) + '  ' + (ctHeight - 45)"
                                 fill="none" stroke="#C6BCBC"></path>
-                            <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 40)"
+                            <path :d="'M  ' + (ctWidth - 1) + '  30 L  ' + (ctWidth - 1) + '  ' + (ctHeight - 45)"
                                 fill="none" stroke="#C6BCBC"></path>
                         </g>
                     </svg>
@@ -398,7 +471,8 @@ export default {
             pieLegend: [],
             legendArc: [],
             outLegendArc: [],
-            group_colormap: ["#8F5362", "#B1818F", "#DFA57C", "#CCAA66", "#A6C9A6", "#6888A5", "#12507B"],
+            // group_colormap: ["#8F5362", "#B1818F", "#DFA57C", "#CCAA66", "#A6C9A6", "#6888A5", "#12507B"],
+            group_colormap: ["rgb(131,84,36)", "rgb(165,209,179)", "rgb(54,128,152)", "rgb(233,191,152)", "rgb(141,41,115)", "rgb(28,95,30)", "rgb(253,156,186)"],
             legendData: [],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
             nftName: ['CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks', 'CryptoPunks'],
@@ -411,7 +485,7 @@ export default {
                 seller: '#b69acb',
                 buyer: '#6f319b',
             },
-            // colormap2: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#f4d58d', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
+            colormap3: ['#2301d1', '#2a57f7', '#4186f9', '#5aaffa', '#79d2fc', '#f4d58d', '#fc7b5c', '#fc4443', '#f4313b', '#d52133', '#a30e24'],
             colormap2: ['#56B0FF', '#FF3D3D'],
             correlationData: [],
             axisColor: { 'M1': '#EA7C16', 'M3': '#61bad6', 'IMP': '#d77a78', 'M2': '#53ad92' },
@@ -459,7 +533,7 @@ export default {
         },
         outCorrelation () {
             if (this.legendTag != 2)
-            this.legendTag = 0;
+                this.legendTag = 0;
         },
         clickCorrelation (cnt, projectA, projectB, data) {
             this.legendTag = 2;
@@ -1101,31 +1175,72 @@ export default {
 
         },
         calcCorrelation (data, r, x, y, rectScale, holderScale, y1, y2, HighlightPath, r_color) {
+            console.log(data)
             let tmpData = [];
+            let colorScale = scaleLinear([-1, 1], [0, 10]);
+            let cir_max_value = 0;
             for (let i in data.inner) {
+                let outerName = i == 'holder' ? 'c1' : (i == 'buyer' ? 'c2' : 'c3');
+                cir_max_value = Math.max(cir_max_value, data.inner[i])
                 tmpData.push({
                     type: i,
                     value: data.inner[i],
-                    raw: data.raw[i]
+                    raw: data.raw[i],
+                    corr: data.outer[outerName],
+                    circle_value: 1
                 });
             }
-            let pieData = pie().sort(null).value(d => d.value)(tmpData);
+            tmpData.push({
+                type: 3,
+                value: 0,
+                raw: 0,
+                corr: 0,
+                circle_value: 3
+            });
+            let pieData = pie().sort(null).padAngle(0).value(d => d.circle_value)(tmpData);
             let innerArc = [];
+            console.log(cir_max_value, pieData)
             for (let i in pieData) {
+                if (i == 3) break;
                 innerArc.push({
                     data: pieData[i].data,
-                    d: arc().innerRadius(0).outerRadius(r - 5)(pieData[i]),
-                    dLegend: arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)(pieData[i]),
-                    textTrans: (arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]),
+                    r: .9 * r + 5,
+                    d: arc().innerRadius(.2 * r).outerRadius(.2 * r + r * .7 * (pieData[i].data.value / cir_max_value))(pieData[i]),
+                    dOut: arc().innerRadius(.2 * r + i * .7 * r / 3).outerRadius(.2 * r + i * .7 * r / 3 + (.7 * r / 3)).cornerRadius(3)({
+                        startAngle: (360 - parseFloat(Math.abs(pieData[i].data.corr)) * 180) * Math.PI / 180,
+                        endAngle: 360 * Math.PI / 180
+                    }),
+                    dOutBack: arc().innerRadius(.2 * r + i * .7 * r / 3).outerRadius(.2 * r + i * .7 * r / 3 + (.7 * r / 3)).cornerRadius(3)(pieData[3]),
+                    dInBack: arc().innerRadius(.2 * r).outerRadius(.9 * r)({
+                        startAngle: 0,
+                        endAngle: 180 * Math.PI / 180
+                    }),
+                    dLegendOutBack: arc().innerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + 3).outerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + (.7 * this.cvHeight * .14 / 3) - 3).cornerRadius(10)({
+                        startAngle: (180) * Math.PI / 180,
+                        endAngle: 360 * Math.PI / 180
+
+                    }),
+                    dLegendOutStroke: arc().innerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + 3).outerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + (.7 * this.cvHeight * .14 / 3) - 3).cornerRadius(10)(pieData[3]),
+                    dLegendInBack: arc().innerRadius(.2 * this.cvHeight * .14 + 3).outerRadius(.9 * this.cvHeight * .14 - 3)({
+                        startAngle: 0,
+                        endAngle: 180 * Math.PI / 180
+                    }),
+                    dLegend: arc().innerRadius(this.cvHeight * .14 * .2).outerRadius(.9 * this.cvHeight * .14 * .2 + this.cvHeight * .14 * .7 * (pieData[i].data.value / cir_max_value))(pieData[i]),
+                    dLegendOut: arc().innerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + 3).outerRadius(.2 * this.cvHeight * .14 + i * .7 * this.cvHeight * .14 / 3 + (.7 * this.cvHeight * .14 / 3) - 3).cornerRadius(10)({
+                        startAngle: (360 - parseFloat(Math.abs(pieData[i].data.corr)) * 180) * Math.PI / 180,
+                        endAngle: 360 * Math.PI / 180
+                    }),
                     fill: this.colorType[pieData[i].data.type],
-                    text: pieData[i].data.raw
+                    fill2: this.colormap3[(colorScale(pieData[i].data.corr)).toFixed(0)],
+                    fill3: this.colormap2[pieData[i].data.corr < 0 ? 0 : 1],
+                    text: pieData[i].data.raw,
+                    text2: pieData[i].data.corr
                 })
                 // console.log((arc().innerRadius(0).outerRadius(this.cvHeight * 0.15 - 20)).centroid(pieData[i]), pieData[i])
             }
             let outArc = [];
             let angle = 45;
-            let colorScale = scaleLinear([-1, 1], [0, 10]);
-            console.log(data);
+            // console.log(data);
             let cnt = 0;
             for (let i in data.outer) {
                 outArc.push({
@@ -1145,7 +1260,7 @@ export default {
                     }),
                     fill: ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1) > 0 ? this.colormap2[1] : ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1) == 0 ? 'white' : this.colormap2[0],
                     type: i,
-                    type_name: i == 'c1' ? 'Holder' : i == 'c2' ? 'Buyer' : 'Seller', 
+                    type_name: i == 'c1' ? 'Holder' : i == 'c2' ? 'Buyer' : 'Seller',
                     text: ((data.outer[i] * 10).toFixed(0) / 10).toFixed(1)
                 });
                 cnt++;
@@ -1364,7 +1479,7 @@ export default {
                     project = [co_data[i]['Project Name B'], co_data[i]['Project Name A']];
                 }
 
-                let HighlightPath = 'M' + projectPosition[co_data[i]['Project Name A']].pos[0] + ',' + projectPosition[co_data[i]['Project Name A']].pos[1] + 'L' + x + ','+ y + 'L' + projectPosition[co_data[i]['Project Name B']].pos[0] + ',' + projectPosition[co_data[i]['Project Name B']].pos[1];
+                let HighlightPath = 'M' + projectPosition[co_data[i]['Project Name A']].pos[0] + ',' + projectPosition[co_data[i]['Project Name A']].pos[1] + 'L' + x + ',' + y + 'L' + projectPosition[co_data[i]['Project Name B']].pos[0] + ',' + projectPosition[co_data[i]['Project Name B']].pos[1];
                 corr_res_data.push(this.calcCorrelation({
                     project: project,
                     projectA: co_data[i]['Project Name A'],
@@ -1489,6 +1604,7 @@ export default {
 #timeAxis_g .tick text {
     font-size: 14px;
 }
+
 .el-input__suffix-inner i {
     border: 1px solid #dcdfe6;
 }
@@ -1508,5 +1624,4 @@ export default {
 
 #legendSpace::-webkit-scrollbar {
     display: none;
-}
-</style>
+}</style>
