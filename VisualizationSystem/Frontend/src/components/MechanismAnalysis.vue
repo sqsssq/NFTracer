@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-03-13 13:01:44
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-12-01 17:23:09
+ * @LastEditTime: 2024-04-10 23:05:07
 -->
 <template>
     <div style="height: 100%">
@@ -99,7 +99,7 @@
                             <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                                 :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m1' + r_i">
                                 <rect v-for="(item, i) in groupSet[r_i].m1Bar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#EA7C16">
+                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#EA7C16" fill-opacity=".7">
                                 </rect>
                             </g>
                             <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
@@ -119,7 +119,7 @@
                             <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                                 :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m2' + r_i">
                                 <rect v-for="(item, i) in groupSet[r_i].m2Bar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#53ad92">
+                                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#53ad92" fill-opacity=".7">
                                 </rect>
                             </g>
                             <!-- <path :d="'M 20 ' + (barHeight - 3) + ' L ' + (barWidth - 10) + ' ' + (barHeight - 3)"
@@ -143,7 +143,7 @@
                                 <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                                     :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m3' + r_i">
                                     <rect v-for="(item, i) in groupSet[r_i].m3Bar" :key="'bar' + i" :x="item.x" :y="item.y"
-                                        :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#61bad6">
+                                        :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill-opacity=".7" fill="#61bad6">
                                     </rect>
                                 </g>
                             </g>
@@ -167,7 +167,7 @@
                                 <g v-for="(r_item, r_i) in groupSet" :key="'sel_m' + r_i"
                 :opacity="r_i == selectGroupTag ? 1 : 0" :id="'sel_m3' + r_i">
                 <rect v-for="(item, i) in groupSet[r_i].impBar" :key="'bar' + i" :x="item.x" :y="item.y"
-                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#d77a78">
+                    :height="(barHeight - 3) - item.y" :width="item.w" stroke="white" fill="#d77a78" fill-opacity=".7">
                 </rect>
             </g>
                             </g>
@@ -308,7 +308,7 @@ export default {
             // colormap: ["#F3F0C7", "#BEC68A", "#72926A", "#F7C183", "#FEA541", "#FBC9C6", "#8A8CA8"],
             // colormap: ["#565C76", "#B06E62", "#66323E", "#90A1B8", "#9D717C", "#838F7E", "#ADA397"],
             // colormap: ["#8F5362", "#B1818F", "#DFA57C", "#CCAA66", "#A6C9A6", "#6888A5", "#12507B"],
-            colormap: ["rgb(131,84,36)", "rgb(165,209,179)", "rgb(54,128,152)", "rgb(233,191,152)", "rgb(141,41,115)", "rgb(28,95,30)", "rgb(253,156,186)"],
+            colormap: ["rgb(131,84,36)", "#b0d992", "#7ca7ae", "rgb(233,191,152)", "rgb(141,41,115)", "rgb(28,95,30)", "rgb(253,156,186)"],
             // colormap: ["#B3AE94", "#C59A81", "#D8876F", "#DDBE8F", "#94A7C7", "#9B8FB7", "#D883AF"],
             monthStep: [20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],
             monthName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],

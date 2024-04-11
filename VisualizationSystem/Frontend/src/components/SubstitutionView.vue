@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2023-12-03 18:21:29
+ * @LastEditTime: 2024-04-10 23:08:18
 -->
 <template>
     <div style="height: 100%;">
@@ -26,12 +26,12 @@
                         }}</text>
                     </g>
                     <g>
-                        <rect :x="70 + 380" :y="2" :width="9" :height="9" :fill="'#A50021'" :stroke="'#534f4f'"></rect>
+                        <rect :x="70 + 355" :y="2" :width="60" :height="9" :fill="'#e25508'" :stroke="'#534f4f'"></rect>
                         <text :x="70 + 380 + 4.5" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'In-flow'
                         }}</text>
 
 
-                        <rect :x="70 + 450" :y="2" :width="9" :height="9" :fill="'#181CF7'" :stroke="'#534f4f'"></rect>
+                        <rect :x="70 + 425" :y="2" :width="60" :height="9" :fill="'#547ac0'" :stroke="'#534f4f'"></rect>
                         <text :x="70 + 450 + 4.5" :y="25" font-size="14" text-anchor="middle" fill="#534F4F">{{ 'Out-flow'
                         }}</text>
                     </g>
@@ -292,11 +292,11 @@
                                     </marker>
                                 </defs>
                                 <path v-for="(p_item, p_i) in projectFlow" :key="'flow' + p_i" :d="p_item.d" :fill="'none'"
-                                    :stroke="lineHover == p_i || lineHover == -1 ? (p_item.dir == 1 ? '#181CF7' : '#A50021') : (p_item.dir == 1 ? '#181CF7' : '#A50021')"
+                                    :stroke="lineHover == p_i || lineHover == -1 ? (p_item.dir == 1 ? '#547ac0' : '#e25508') : (p_item.dir == 1 ? '#547ac0' : '#e25508')"
                                     :id="'flow_line' + p_i" :class="'all_flow_line'" :stroke-width="p_item.w"
                                     :marker-end="lineHover == p_i && p_item.dir == 1 ? 'url(#arrow)' : ''"
                                     :marker-start="lineHover == p_i && p_item.dir == 0 ? 'url(#arrow)' : ''"
-                                    :opacity="lineHover == -1 ? 0.5 : (lineHover == p_i ? 1 : 0.1)"
+                                    :opacity="lineHover == -1 ? 1 : (lineHover == p_i ? 1 : 0.1)"
                                     @mouseenter="mouseoverFlow($event, p_item, p_i)" @mouseout="mouseoutFlow()"></path>
                             </g>
                             <g v-show="showHSB">
@@ -304,17 +304,29 @@
                                     :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' Z'"
                                     stroke-dasharray="5.5" stroke="#C6BCBC" fill="none"></path>
 
+                                    <!-- <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    font-size="28" dy="0.3em" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
+                                    font-weight="bold">Holder</text>
+                                <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    font-size="28" dy="0.7em" text-anchor="end" fill="#534F4F" font-family="Arial" dx=".3em" style="font-weight: 600;"
+                                    font-weight="bold">Buyer</text>
+                                <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    font-size="28" dy="0.7em" text-anchor="start" fill="#534F4F" font-family="Arial" dx="-.3em" style="font-weight: 600;"
+                                    font-weight="bold">Seller</text>  -->
                                 <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
-                                    font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
+                                    font-size="28" dy="0.3em" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
                                     font-weight="bold">H</text>
                                 <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
-                                    font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
+                                    font-size="28" dy="0.3em" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
                                     font-weight="bold">B</text>
                                 <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
-                                    font-size="20" dy="0.5em" text-anchor="middle" fill="#534F4F"
+                                    font-size="28" dy="0.3em" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
                                     font-weight="bold">S</text>
                             </g>
                         </g>
@@ -387,7 +399,7 @@ export default {
             // colormap: ["#8F5362", "#B1818F", "#DFA57C", "#CCAA66", "#A6C9A6", "#6888A5", "#12507B"],
             // colormap: ["#B3AE94", "#C59A81", "#D8876F", "#DDBE8F", "#94A7C7", "#9B8FB7", "#D883AF"],
 
-            colormap: ["rgb(131,84,36)", "rgb(165,209,179)", "rgb(54,128,152)", "rgb(233,191,152)", "rgb(141,41,115)", "rgb(28,95,30)", "rgb(253,156,186)"],
+            colormap: ["rgb(131,84,36)", "#b0d992", "#7ca7ae", "rgb(233,191,152)", "rgb(141,41,115)", "rgb(28,95,30)", "rgb(253,156,186)"],
             groupTag: -1,
             outerArc: [],
             groupArc: [],
