@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: Qing Shi
  * @Date: 2023-02-11 23:40:58
- * @LastEditTime: 2024-04-10 23:08:18
+ * @LastEditTime: 2024-04-17 23:35:33
 -->
 <template>
     <div style="height: 100%;">
@@ -224,6 +224,7 @@
                             <clipPath id="clipPathNetwork">
                                 <circle :cx="0" :cy="0" :r="distributionHeight * .850 / 2 + 6"></circle>
                             </clipPath>
+                            
 
                             <g clip-path="url(#clipPathNetwork)">
                                 <circle cx="0" cy="0" :r="distributionHeight * .850 / 2" fill="none" stroke="#534F4F"
@@ -302,21 +303,56 @@
                             <g v-show="showHSB">
                                 <path
                                     :d="'M ' + (Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' L' + (Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' L ' + (Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' ' + (-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 - 2)) + ' Z'"
-                                    stroke-dasharray="5.5" stroke="#C6BCBC" fill="none"></path>
+                                    stroke-dasharray="5.5" stroke="#C6BCBC" fill="none" stroke-width="2"></path>
 
-                                    <!-- <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
-                                    :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
-                                    font-size="28" dy="0.3em" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
-                                    font-weight="bold">Holder</text>
-                                <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    <defs>
+                                        <path id="sig_out_path_0" fill="none" stroke="red" :d="'M ' + (-(distributionHeight * .850 / 2 + 4) * Math.sin((60 * Math.PI) / 180)) + ' ' + (-(distributionHeight * .850 / 2 + 4) * Math.cos((60 * Math.PI) / 180))+ 'A' + (distributionHeight * .850 / 2 + 4) + ' ' + (distributionHeight * .850 / 2 + 4) + ' 0 0 1 ' + ((distributionHeight * .850 / 2 + 4) * Math.sin((60 * Math.PI) / 180)) + ' ' + (-(distributionHeight * .850 / 2 + 4) * Math.cos((60 * Math.PI) / 180))  " stroke-width="3"></path>
+                                        <path id="sig_out_path_1" fill="none" stroke="blue" :d="'M ' + (-(distributionHeight * .850 / 2 + 4) * Math.sin((60 * Math.PI) / 180)) + ' ' + (-(distributionHeight * .850 / 2 + 4) * Math.cos((60 * Math.PI) / 180)) + 'A' + (distributionHeight * .850 / 2 + 4) + ' ' + (distributionHeight * .850 / 2 + 4) + ' 0 0 0 ' + (0) + ' ' + ((distributionHeight * .850 / 2 + 4))" stroke-width="3" ></path>
+
+                                        <path id="sig_out_path_2" fill="none" stroke="blue" :d="'M '  + (0) + ' ' + ((distributionHeight * .850 / 2 + 4) + 'A' + (distributionHeight * .850 / 2 + 4) + ' ' + (distributionHeight * .850 / 2 + 4) + ' 0 0 0 ' + ((distributionHeight * .850 / 2 + 4) * Math.sin((60 * Math.PI) / 180)) + ' ' + (-(distributionHeight * .850 / 2 + 4) * Math.cos((60 * Math.PI) / 180)))" stroke-width="3" ></path>
+                                    </defs>
+
+                                    <text 
+                                    font-size="32" dx="-16px" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
+                                    font-weight="bold"><textPath :xlink:href="'#sig_out_path_0'"  startOffset="50%" text-anchor="middle">H</textPath></text>
+
+                                    <text 
+                                    font-size="20" dx="16px" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: normal;"
+                                    font-weight="bold"><textPath :xlink:href="'#sig_out_path_0'"  startOffset="50%" text-anchor="middle">older</textPath></text>
+
+                                    <text 
+                                    font-size="32" dx="-15px" dy="22px"  fill="#534F4F" font-family="Arial" style="font-weight: 600;"
+                                    font-weight="bold"><textPath :xlink:href="'#sig_out_path_2'"  startOffset="50%" text-anchor="middle">B</textPath></text>
+
+                                    <text 
+                                    font-size="20" dx="15px" dy="22px" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: normal;"
+                                    font-weight="bold"><textPath :xlink:href="'#sig_out_path_2'"  startOffset="50%" text-anchor="middle">uyer</textPath></text>
+
+                                    <text 
+                                    font-size="32" dx="-15px" dy="22px" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
+                                    font-weight="bold"><textPath :xlink:href="'#sig_out_path_1'"  startOffset="50%" text-anchor="middle">S</textPath></text>
+
+                                    <text 
+                                    font-size="20" dx="15px" dy="22px" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: normal;"
+                                    font-weight="bold"><textPath :xlink:href="'#sig_out_path_1'"  startOffset="50%" text-anchor="middle">eller</textPath></text>
+                                
+                                    <!-- <text 
+                                    font-size="28" fill="rgb(111, 49, 155)" font-family="Arial" dx="-2em" style="font-weight: 600;"
+                                    font-weight="bold"><textPath :xlink:href="'#sig_out_path_1'" startOffset="50%" text-anchor="middle">B</textPath></text>
+
+                                    <text :x="(Math.sin(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     :y="(-Math.cos(((120) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
-                                    font-size="28" dy="0.7em" text-anchor="end" fill="#534F4F" font-family="Arial" dx=".3em" style="font-weight: 600;"
-                                    font-weight="bold">Buyer</text>
+                                    font-size="28" fill="#534F4F" font-family="Arial" dx="0em" style="font-weight: normal;"
+                                    font-weight="bold"><textPath :xlink:href="'#sig_out_path_1'" startOffset="50%" text-anchor="middle">uyer</textPath></text>
                                 <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
-                                    font-size="28" dy="0.7em" text-anchor="start" fill="#534F4F" font-family="Arial" dx="-.3em" style="font-weight: 600;"
-                                    font-weight="bold">Seller</text>  -->
-                                <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    font-size="28" dy="0.7em" text-anchor="start" fill="rgb(182, 154, 203)" font-family="Arial" dx="-.3em" style="font-weight: 600;"
+                                    font-weight="bold">S</text> 
+                                    <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
+                                    font-size="28" dy="0.7em" text-anchor="start" fill="#534F4F" font-family="Arial" dx=".4em" style="font-weight: normal;"
+                                    font-weight="bold">eller</text>  -->
+                                <!-- <text :x="(Math.sin(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     :y="(-Math.cos(((0) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     font-size="28" dy="0.3em" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
                                     font-weight="bold">H</text>
@@ -327,7 +363,7 @@
                                 <text :x="(Math.sin(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     :y="(-Math.cos(((240) * Math.PI) / 180) * (distributionHeight * .850 / 2 + 15))"
                                     font-size="28" dy="0.3em" text-anchor="middle" fill="#534F4F" font-family="Arial" style="font-weight: 600;"
-                                    font-weight="bold">S</text>
+                                    font-weight="bold">S</text> -->
                             </g>
                         </g>
                     </svg>

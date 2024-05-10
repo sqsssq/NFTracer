@@ -3,7 +3,7 @@
  * @Author: Qing Shi
  * @Date: 2023-07-05 18:17:06
  * @LastEditors: Qing Shi
- * @LastEditTime: 2023-07-05 20:40:16
+ * @LastEditTime: 2024-04-17 23:05:40
 -->
 <!--
  * @Description: 
@@ -120,7 +120,7 @@
                                 <path :d="item.d" :stroke="item.fill" :fill="item.fill"></path>
                             </g> -->
                             <g v-for="(item, i) in projectConnect" :key="'connect_' + i">
-                                <path :d="item.d" :stroke="'#666'" :fill="'#666'" :opacity="0.2"></path>
+                                <path :d="item.d" :stroke="item.fill" :fill="item.fill" :opacity="0.2"></path>
                             </g>
                             <g v-for="(item, i) in projectPosition" :key="'logo_' + i" :transform="translate(-20, -20, 0)">
                                 <clipPath id="clipPath20">
@@ -282,8 +282,8 @@ export default {
                 let b = data[i]['Project Name To'];
                 let v = data[i]['SubstitutionFlow'];
                 if (v < 0) continue;
-                // if (!(a == typeName || b == typeName))
-                //     continue;
+                if (!(a == typeName || b == typeName))
+                    continue;
                 if (repeatData[a + b] == 1) continue;
                 repeatData[a + b] = 1;
                 // console.log(project[a], a, data[i]);
@@ -300,7 +300,7 @@ export default {
                 tmp_data.push({
                     arc: tmp_arc,
                     d: ribbonGenerator(tmp_arc),
-                    fill: b == typeName ? '#A50021' : '#181CF7'
+                    fill: b == typeName ? '#e25508' : '#547ac0'
                 })
                 // if (repeatData[])
                 // if (data[i])
